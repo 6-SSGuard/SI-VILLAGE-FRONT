@@ -64,6 +64,7 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
           height: "100%",
         }).embed(elementLayer);
 
+        // iframe을 보이게 하고 중앙에 배치
         elementLayer.style.display = "block";
         initLayerPosition();
       }

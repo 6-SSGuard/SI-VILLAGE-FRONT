@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import DialogComponent from "@/components/layouts/DialogComponent";
-import MembershipRankList from "@/components/layouts/MembershipRankList";
-import MembershipPoint from "@/components/layouts/MembershipPoint";
+import DialogComponent from "@/components/dialog/DialogComponent";
+import MembershipRankList from "@/components/dialog/MembershipRankList";
+import MembershipPoint from "@/components/dialog/MembershipPoint";
+import Link from "next/link";
 
 export default function page() {
   const [dialogContent, setDialogContent] = useState<{
@@ -98,18 +99,19 @@ export default function page() {
           멤버십회원(본인인증)으로 전환가입 하셔야 더 많은 멤버십 혜택을 받으실
           수 있습니다.
         </p>
-        <div className="btn-wrap join__btn-3 flex justify-center">
-          <button className="btn-wide btn-line-gray border border-gray-300 text-gray-600 w-full py-3 font-bold text-sm">
+        <div className="flex justify-center">
+          <Link
+            href="/sign-up/join-simple"
+            className="btn-line-gray border border-gray-300 text-gray-600 w-full py-3 font-bold text-sm block text-center"
+          >
             온라인 간편가입하기
-          </button>
+          </Link>
         </div>
       </div>
       <div className=" gray-bar bg-gray-200 h-1 w-full my-6"></div>
-      <div className="join-container-guide">
-        <p className="join-container-guide-title text-base font-semibold mb-4">
-          안내사항
-        </p>
-        <div className="desc join-container-guide-info space-y-2 text-gray-500 text-xs">
+      <div>
+        <p className="text-base font-semibold mb-4">안내사항</p>
+        <div className="desc space-y-2 text-gray-500 text-xs">
           <li>
             본인인증 시 사용한 휴대폰 번호와 등록된 정보가 상이할 경우, 본인인증
             시 등록된 휴대폰 번호로 변경될 수 있습니다.

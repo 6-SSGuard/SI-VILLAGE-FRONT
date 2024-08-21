@@ -1,6 +1,6 @@
 "use client";
 import SearchIcon from "@/components/icons/SearchIcon";
-import AddressSearchDialog from "../../../../components/layouts/AddressDialog";
+import AddressSearchDialog from "../../../../components/dialog/AddressDialog";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -10,6 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import React, { useState } from "react";
+import DialogComponent from "@/components/dialog/DialogComponent";
+import MarketingPurpose from "@/components/dialog/MarketingPurpose";
+import WebsiteTerms from "@/components/dialog/WebsiteTerms";
+import MemberTerms from "@/components/dialog/MemberTerms";
+import ServiceTerms from "@/components/dialog/ServiceTerms";
+import TomboyTerms from "@/components/dialog/TomboyTerms";
 
 type TermKeys = "termAll" | "1" | "2" | "3" | "4";
 
@@ -141,31 +147,6 @@ export default function Page() {
     });
   };
 
-  // const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  // const { name, checked } = e.target;
-
-  // if (name === "all") {
-  //   setCheckedState({
-  //     all: checked,
-  //     sms: checked,
-  //     email: checked,
-  //     dm: checked,
-  //     call: checked,
-  //   });
-  // } else {
-  //   setCheckedState((prevState) => ({
-  //     ...prevState,
-  //     [name]: checked,
-  //     all:
-  //       checked &&
-  //       prevState.sms &&
-  //       prevState.email &&
-  //       prevState.dm &&
-  //       prevState.call,
-  //   }));
-  // }
-  // };
-
   const handlePopupOpen = (id: string, title: string) => {
     // 팝업 열기 로직을 여기에 추가
     console.log(`Open popup for ${id} with title ${title}`);
@@ -175,6 +156,28 @@ export default function Page() {
     { length: 2010 - 1924 + 1 },
     (_, i) => 1924 + i
   ).reverse();
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const [dialogContent, setDialogContent] = useState<{
+    title: string;
+    description?: string;
+    contentComponent?: React.ReactNode;
+  } | null>(null);
+
+  const handleOpenDialog = (
+    title: string,
+    description?: string,
+    contentComponent?: React.ReactNode
+  ) => {
+    setDialogContent({ title, description, contentComponent });
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+    setDialogContent(null);
+  };
 
   return (
     <div
@@ -368,9 +371,10 @@ export default function Page() {
             <a
               href="#"
               onClick={() =>
-                handlePopupOpen(
-                  "1908000711",
-                  "마케팅 목적의 개인정보 수집 및 이용동의"
+                handleOpenDialog(
+                  "마케팅 목적의 개인정보 수집 및 이용동의",
+                  "",
+                  <MarketingPurpose />
                 )
               }
               className="text-blue-500 underline"
@@ -500,22 +504,26 @@ export default function Page() {
                 id: "1",
                 title: "신세계인터내셔날 웹사이트 이용약관",
                 essential: true,
+                components: <WebsiteTerms />,
               },
               {
                 id: "2",
                 title: "신세계인터내셔날 통합회원 이용약관",
                 essential: true,
+                components: <MemberTerms />,
               },
               {
                 id: "3",
                 title: "서비스 제공을 위한 개인정보 수집 및 이용동의",
                 essential: true,
+                components: <ServiceTerms />,
               },
               {
                 id: "4",
                 title:
                   "통합 멤버십 서비스 제공을 위한 신세계톰보이 정보 제공 동의",
                 essential: false,
+                components: <TomboyTerms />,
               },
             ].map((term) => (
               <li
@@ -545,7 +553,9 @@ export default function Page() {
                 </div>
                 <a
                   href="#"
-                  onClick={() => handlePopupOpen(term.id, term.title)}
+                  onClick={() =>
+                    handleOpenDialog(term.title, "", term.components)
+                  }
                   className="text-blue-500 underline"
                 >
                   <SearchIcon />
@@ -564,6 +574,17 @@ export default function Page() {
           </div>
         </div>
       </div>
+      {/* Dialog Component */}
+      {dialogContent && (
+        <DialogComponent
+          title={dialogContent.title}
+          description={dialogContent.description}
+          open={dialogOpen}
+          onClose={handleCloseDialog}
+        >
+          {dialogContent.contentComponent}
+        </DialogComponent>
+      )}
     </div>
   );
 }
