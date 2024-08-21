@@ -67,9 +67,13 @@ function LogInForm() {
         </div>
 
         {/* 회원가입 버튼 레이아웃 */}
-        <Button className="border border-2px w-full h-14 mt-10 bg-white-200 text-black hover:bg-white-200">
+
+        <Link
+          href="/sign-up"
+          className="flex items-center justify-center my-3 w-full h-10 bg-white border border-gray-300 text-black text-center hover:bg-gray-100"
+        >
           회원가입
-        </Button>
+        </Link>
 
         {/* ID/PW 찾기 링크 레이아웃 */}
         <h1 className="w-100 text-center mt-8 text-sm"> 비회원 주문조회</h1>
