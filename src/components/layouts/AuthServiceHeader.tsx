@@ -16,6 +16,9 @@ export default function AuthServiceHeader() {
     } else if (pathName === '/sign-up') {
       setTitle('회원가입')
     }
+    else if(pathName === '/sign-in/ForgotCredential') {
+      setTitle('ID/PW 찾기')
+    }
   }, [pathName])
 
   return (

@@ -1,11 +1,59 @@
+"use client";
+import Head from 'next/head';
+import Link from 'next/link';
+import { useEffect, useRef } from 'react';
+import {useState} from 'react';
+import FindID_form from '@/components/login/FindID_Form';
+import FindPW_form from '@/components/login/FindPW-Form';
+import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
+
 function Page() {
 
-    return (
+    const navRef = useRef(' ');
+    const [activityContent, setContent] = useState('id');
 
-        <p>
-            ID/PW 찾기 페이지
-        </p>
+    const renderContent = () => {
+
+        // Content가 ID / PW에 따라 레이아웃이 변환
+        if(activityContent === 'id') {
+            return (
+
+                <FindID_form />
+            )
+        }
+
+        else if(activityContent === 'pw'){
+            return (
+                <FindPW_form />
+            )
+        }
+    }
+
+    
+    return (
+        <div className="w-full h-min-screen">
+            <div className="w-full h-12">
+
+            <Tabs defaultValue="account" className="relative flex w-screen justify-center border-b-2">
+                <TabsList className="flex flex-direction justify-center mt-8 bg-white">
+
+                    <TabsTrigger className="flex mr-24 justify-start font-bold border-b-2" value="ID" onClick = {() => setContent('id')}> 
+                       아이디 찾기
+                    </TabsTrigger>
+                    
+                    <TabsTrigger value="password" className='font-bold' onClick = {() => setContent('pw')}>
+                        비밀번호 찾기
+        
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
+            {/* 슬라이드 효과 */}
+            </div>
+            {renderContent()}
+        </div>
+
     )
+    
 }
 
 export default Page
