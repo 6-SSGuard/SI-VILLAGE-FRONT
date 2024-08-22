@@ -7,9 +7,6 @@ function LogInForm() {
 
   return (
     <main className="h-min-screen">
-      
-      
-        
     <form className="p-10">
       <Input type="search" name="email" placeholder="Email" />
       <Input className ="mt-3" type="search" name="password" placeholder="Password" />
@@ -34,7 +31,6 @@ function LogInForm() {
         </div>
 
         <Button className= "w-full h-12 mt-5" type="submit">로그인</Button>
-
         {/* 소셜 로그인 레이아웃 */}
         <div className="w-full h-14 mr-10 mt-8 flex items-center justify-center">
 
