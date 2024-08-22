@@ -19,6 +19,8 @@ export default function AuthServiceHeader() {
       setTitle("온라인 간편가입");
     } else if (pathName === "/sign-in/ForgotCredential") {
       setTitle("ID/PW 찾기");
+    } else if (pathName === "/mypage") {
+      setTitle("마이페이지");
     }
   }, [pathName]);
 
