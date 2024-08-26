@@ -55,7 +55,7 @@ export default function SelectField() {
     <>
       <h1 className="text-xl font-bold">선택항목</h1>
       <h1 className="text-base font-bold mt-4">생년월일</h1>
-      <div className="flex flex-row space-x-2">
+      <div className="flex space-x-2">
         <select
           id="year"
           name="year"

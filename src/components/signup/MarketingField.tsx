@@ -76,10 +76,10 @@ export default function MarketingField() {
       <div className="space-y-4">
         <p className="text-lg font-semibold">마케팅정보 수신동의</p>
 
-        <div className="flex flex-row space-x-5">
+        <div className="flex space-x-5">
           <label className="flex items-center space-x-2">
             <input
-              id="marketing_term_1908000711"
+              id="marketing_term"
               type="checkbox"
               name="chk-marketing"
               value="40"

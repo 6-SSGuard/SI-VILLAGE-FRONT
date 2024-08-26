@@ -48,7 +48,7 @@ export default function NecessaryField() {
     <>
       <h1 className="text-xl font-bold">필수항목</h1>
       <div className="space-y-6">
-        <div className="flex items-center space-x-2">
+        <div>
           <div className="flex items-center space-x-2">
             <Input
               type="text"

@@ -4,7 +4,7 @@ import ArrowRightIcon from "../../components/icons/ArrowRightIcon";
 function ListItem({ text, href }: { text: string; href: string }) {
   return (
     <li className="border-b border-gray-200 pb-2">
-      <a href={href} className="flex justify-between items-center block">
+      <a href={href} className="flex justify-between items-center">
         <span>{text}</span>
         <ArrowRightIcon />
       </a>
