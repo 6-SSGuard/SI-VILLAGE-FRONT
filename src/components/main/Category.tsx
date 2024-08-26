@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
 import Image from 'next/image';
 
 function ButtonList() {
@@ -10,7 +9,7 @@ function ButtonList() {
         <div className="m-2 mr-2 ml-6 w-full h-full flex flex-row flex-wrap">
 
             <div className="w-16 h-22 flex text-center">
-            <Link href="/src/components/main/a.tsx" className="mt-4"> 
+            <Link href="/sign-in" className="mt-4"> 
                 
                     <Image src = "/store.png"
                     alt="store" width={16} height = {16} className="w-16 h-16 bg-blue-300 rounded-full">
@@ -32,7 +31,7 @@ function ButtonList() {
             </div>
 
             <div className="w-16 h-22 ml-4 flex text-center">
-            <Link href="/src/components/main/a.tsx" className="mt-4"> 
+            <Link href="/A.tsx" className="mt-4"> 
                 
             <Image src = "/woman.png"
                     alt="woman" width={16} height = {16} className="w-16 h-16 bg-blue-300 rounded-full">
