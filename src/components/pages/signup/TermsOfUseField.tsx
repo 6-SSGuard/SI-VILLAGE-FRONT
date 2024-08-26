@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { TermKeys } from "../form/SignUpForm";
+import { TermKeys } from "../forms/signup/SignUpForm";
 import WebsiteTerms from "../dialog/WebsiteTerms";
 import MemberTerms from "../dialog/MemberTerms";
 import ServiceTerms from "../dialog/ServiceTerms";

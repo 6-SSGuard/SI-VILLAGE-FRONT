@@ -1,6 +1,5 @@
-import MainImage from '@/components/main/HomeImage';
-import ButtonList from '@/components/main/Category';
-import Eventbanner from '@/components/main/EventBanner';
+import MainImage from '@/components/pages/main/HomeImage';
+import ButtonList from '@/components/pages/main/ButtonList';
 
 function maininit() {
 
@@ -10,13 +9,11 @@ function maininit() {
         <div style = {{
             overflowY:"auto"
         }}>
-        <MainImage>
             
-        </MainImage>
+        <MainImage />
 
         <ButtonList />
 
-        <Eventbanner/>
         </div>
         </main>
     )
