@@ -8,9 +8,9 @@ export default function MyPageProfile() {
         <div className="flex items-center">
           <div className="relative w-16 h-16">
             <img
-              src="cdn-mo.sivillage.com/mo/assets/comm/image/badge_diamond.png"
+              src="https://cdn-mo.sivillage.com/mo/assets/comm/image/badge_diamond.png"
               alt="Badge"
-              className="w-8 h-8 items-center"
+              className="w-14 h-14"
             />
           </div>
           <div className="ml-4">

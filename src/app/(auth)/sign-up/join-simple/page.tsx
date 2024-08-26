@@ -1,5 +1,4 @@
 "use client";
-import SearchIcon from "@/components/icons/SearchIcon";
 import AddressSearchDialog from "../../../../components/dialog/AddressDialog";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,6 +15,7 @@ import WebsiteTerms from "@/components/dialog/WebsiteTerms";
 import MemberTerms from "@/components/dialog/MemberTerms";
 import ServiceTerms from "@/components/dialog/ServiceTerms";
 import TomboyTerms from "@/components/dialog/TomboyTerms";
+import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 
 type TermKeys = "termAll" | "1" | "2" | "3" | "4";
 
@@ -379,7 +379,7 @@ export default function Page() {
               }
               className="text-blue-500 underline"
             >
-              <SearchIcon />
+              <ArrowRightIcon />
             </a>
           </div>
 
@@ -528,7 +528,7 @@ export default function Page() {
             ].map((term) => (
               <li
                 key={term.id}
-                className="flex items-center space-x-1 space-y-4 border-b-[1px]"
+                className="flex items-center space-x-1 border-b-[1px]"
               >
                 <div className="flex items-center space-x-1 flex-grow ">
                   <input
@@ -558,7 +558,7 @@ export default function Page() {
                   }
                   className="text-blue-500 underline"
                 >
-                  <SearchIcon />
+                  <ArrowRightIcon />
                 </a>
               </li>
             ))}
