@@ -5,7 +5,7 @@ import Image from "next/image";
 function ButtonList() {
   return (
     <main>
-      <div className="m-2 mr-2 ml-6 w-full h-full flex flex-row flex-wrap">
+      <div className="flex flex-wrap items-center mx-4">
         <div className="w-16 h-22 flex text-center">
           <Link href="/src/components/main/a.tsx" className="mt-4">
             <Image

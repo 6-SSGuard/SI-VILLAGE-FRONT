@@ -1,5 +1,5 @@
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
