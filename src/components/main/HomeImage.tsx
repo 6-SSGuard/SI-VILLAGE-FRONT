@@ -10,10 +10,7 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 
-  import useEmblaCarousel from "embla-carousel-react";
-  
   import * as React from "react"
-import { Button } from '../ui/button';
   function ImageLayout() {
 
     // 이미지 딜레이 후 자동으로 넘어가기
