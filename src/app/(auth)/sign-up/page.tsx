@@ -4,11 +4,6 @@ import DialogComponent from "@/components/dialog/DialogComponent";
 import MembershipRankList from "@/components/dialog/MembershipRankList";
 import MembershipPoint from "@/components/dialog/MembershipPoint";
 import Link from "next/link";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "회원가입",
-};
 
 export default function page() {
   const [dialogContent, setDialogContent] = useState<{
