@@ -6,10 +6,12 @@ import SearchIcon from "../icons/SearchIcon";
 import ShoppingBagIcon from "../icons/ShoppingBagIcon";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function AuthServiceHeader() {
   const pathName = usePathname();
   const [title, setTitle] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     if (pathName === "/sign-in") {
@@ -18,12 +20,14 @@ export default function AuthServiceHeader() {
       setTitle("회원가입");
     } else if (pathName === "/sign-up/join-simple") {
       setTitle("온라인 간편가입");
-    } else if (pathName === "/sign-in/ForgotCredential") {
+    } else if (pathName === "/sign-in/forgotcredential") {
       setTitle("ID/PW 찾기");
     } else if (pathName === "/mypage") {
       setTitle("마이페이지");
     } else if (pathName === "/") {
       setTitle("");
+    } else if (pathName === "/searchbrand" || pathName === "/myfavor") {
+      setTitle("BRAND");
     }
   }, [pathName]);
 
@@ -41,10 +45,12 @@ export default function AuthServiceHeader() {
                 className="items-start"
               />
             ) : (
-              <ArrowLeftIcon />
+              <button type="button" onClick={() => router.back()}>
+                <ArrowLeftIcon />
+              </button>
             )}
           </li>
-          <li className="flex-1 flex justify-center">
+          <li className="absolute left-[50%] translate-x-[-50%]">
             <TitleHeader title={title} textStyle="text-lg font-semibold" />
           </li>
           <li>

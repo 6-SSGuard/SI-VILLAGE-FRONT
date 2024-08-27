@@ -1,5 +1,5 @@
-import { Button } from "../../ui/button";
-import { Input } from "../../ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -28,7 +28,7 @@ function LogInForm() {
             {/* ID와 PW찾기 라벨 부모 레이아웃 */}
             {/* 다른 컴포넌트 구조가 나오면 다음에 페이지 링크 */}
             <div className="text-sm flex mt-5 absolute right-10">
-              <Link href={"/sign-in/ForgotCredential"}>
+              <Link href={"/sign-in/forgotcredential"}>
                 <h1 className="w-100"> ID/PW 찾기</h1>
               </Link>
             </div>
