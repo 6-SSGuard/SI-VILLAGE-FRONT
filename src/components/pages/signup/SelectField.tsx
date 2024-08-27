@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import AddressSearchDialog from "../../components/dialog/AddressDialog";
+import AddressSearchDialog from "@/components/dialog/AddressDialog";
 
 export default function SelectField() {
   const [formData, setFormData] = useState({

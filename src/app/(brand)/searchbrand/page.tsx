@@ -1,7 +1,10 @@
 import React from "react";
 import BrandTab from "@/components/pages/brand/BrandTab";
-import Search from "@/components/pages/brand/Search";
-import BrandList from "@/components/pages/brand/BrandList";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Brand",
+};
 
 function page() {
   return (
