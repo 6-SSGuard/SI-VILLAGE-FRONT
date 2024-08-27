@@ -14,16 +14,7 @@ function BottomTabBar() {
             </Link>
           </li>
           <li className="active:scale-95 active:bg-gray-400 p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold">
-            <Link href="#">
-              {/* <a className="flex flex-col items-center justify-center text-sm"> */}
-              {/* <img
-                  src={}
-                  alt=""
-                  className="w-8"
-                /> */}
-              brand
-              {/* </a> */}
-            </Link>
+            <Link href="/searchbrand">brand</Link>
           </li>
           <li className="active:scale-95 active:bg-gray-400 p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold">
             <Link href="/">

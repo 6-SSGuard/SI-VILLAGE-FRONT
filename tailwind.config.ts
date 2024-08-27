@@ -1,6 +1,4 @@
-import {nextui} from '@nextui-org/theme';
-import { animate } from 'framer-motion';
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -9,7 +7,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/components/[object Object].js"
+    "./node_modules/@nextui-org/theme/dist/components/[object Object].js",
   ],
   prefix: "",
   theme: {
@@ -77,7 +75,19 @@ const config = {
       },
     },
   },
-  plugins: [],
-} satisfies Config
+  plugins: [
+    function ({ addUtilities }: any) {
+      addUtilities({
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none" /* IE and Edge */,
+          "scrollbar-width": "none" /* Firefox */,
+          "&::-webkit-scrollbar": {
+            display: "none" /* Safari and Chrome */,
+          },
+        },
+      });
+    },
+  ],
+} satisfies Config;
 
-export default config
+export default config;

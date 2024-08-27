@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <>
-      <nav className="bg-white w-full flex justify-around text-sm p-2">
+      <nav className="bg-white w-full flex justify-around text-sm p-2 border-t-8">
         <Link href="#">ABOUT</Link>
         <Link href="http://www.sikorea.co.kr" passHref>
           회사소개

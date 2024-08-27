@@ -1,5 +1,4 @@
 // MembershipRankItem.tsx
-import { Description } from "@radix-ui/react-dialog";
 import React from "react";
 
 interface MembershipRankItemProps {
