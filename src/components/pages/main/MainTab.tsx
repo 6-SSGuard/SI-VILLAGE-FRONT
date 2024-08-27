@@ -1,22 +1,28 @@
-import { Tabs } from "@/components/ui/tabs";
-import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { Tabs } from "@/components/ui/tabs"
+import { TabsList, TabsTrigger } from "@radix-ui/react-tabs"
+import Link from "next/link"
 
 function Tab() {
-  return (
-    <main>
-      <Tabs className="w-full flex justify-center items-center p-2">
-        <TabsList className="overflow-x-auto whitespace-nowrap scrollbar-hide sticky top-0 bg-white ml-4 space-x-5">
-          <TabsTrigger value={"Home"}>Home</TabsTrigger>
-          <TabsTrigger value={"Event"}>Event</TabsTrigger>
-          <TabsTrigger value={"Deal"}>Deal</TabsTrigger>
-          <TabsTrigger value={"Best"}>Best</TabsTrigger>
-          <TabsTrigger value={"SILIVE"}>S.I.LIVE</TabsTrigger>
-          <TabsTrigger value={"Content"}>Content</TabsTrigger>
-          <TabsTrigger value={"SSG DF"}>SSG DF</TabsTrigger>
-        </TabsList>
-      </Tabs>
-    </main>
-  );
+
+    return (
+
+        <main>
+        <Tabs className="w-full h-16 flex justify-center items-center">
+            <TabsList className=" scrollb mt-10 overflow-x-auto whitespace-nowrap scrollbar-hide pl-5 pr-5" >
+                <TabsTrigger className=" m1-6" value={"Home"}>Home</TabsTrigger>
+                <TabsTrigger className=" ml-6 " value={"Event"}>Event</TabsTrigger>
+                <Link href="/deal">
+                <TabsTrigger className=" ml-6 " value={"Deal"}>Deal</TabsTrigger>
+                </Link>
+                <TabsTrigger className=" ml-6 " value={"Best"}>Best</TabsTrigger>
+                <TabsTrigger className=" ml-6 " value={"SILIVE"}>S.I.LIVE</TabsTrigger>
+                <TabsTrigger className=" ml-6 " value={"Content"}>Content</TabsTrigger>
+                <TabsTrigger className=" ml-6 " value={"SSG DF"}>SSG DF</TabsTrigger>
+            </TabsList>
+        </Tabs>
+        </main>
+
+    )
 }
 
 export default Tab;

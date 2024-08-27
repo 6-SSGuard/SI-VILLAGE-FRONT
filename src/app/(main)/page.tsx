@@ -4,8 +4,7 @@ import ButtonList from "@/components/pages/main/ButtonList";
 function maininit() {
   return (
     <main>
-      <MainImage></MainImage>
-
+      <MainImage />
       <ButtonList />
     </main>
   );
