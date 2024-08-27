@@ -1,5 +1,6 @@
 import { Tabs } from "@/components/ui/tabs"
 import { TabsList, TabsTrigger } from "@radix-ui/react-tabs"
+import Link from "next/link"
 
 function Tab() {
 
@@ -10,7 +11,9 @@ function Tab() {
             <TabsList className=" scrollb mt-10 overflow-x-auto whitespace-nowrap scrollbar-hide pl-5 pr-5" >
                 <TabsTrigger className=" m1-6" value={"Home"}>Home</TabsTrigger>
                 <TabsTrigger className=" ml-6 " value={"Event"}>Event</TabsTrigger>
+                <Link href="/deal">
                 <TabsTrigger className=" ml-6 " value={"Deal"}>Deal</TabsTrigger>
+                </Link>
                 <TabsTrigger className=" ml-6 " value={"Best"}>Best</TabsTrigger>
                 <TabsTrigger className=" ml-6 " value={"SILIVE"}>S.I.LIVE</TabsTrigger>
                 <TabsTrigger className=" ml-6 " value={"Content"}>Content</TabsTrigger>
