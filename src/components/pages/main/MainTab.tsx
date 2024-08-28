@@ -25,5 +25,4 @@ function Tab() {
     )
 }
 
-export default Tab
-
+export default Tab;
