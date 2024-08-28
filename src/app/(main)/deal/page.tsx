@@ -1,7 +1,7 @@
 import React from 'react';
 import { dealDatas } from '@/datas/dealDatas';
 import {dealCardDataType, dealListDataType} from '@/types/domainTapes';
-import DealPage from './dealMain/dealListContainer';
+import DealPage from './dealmain/dealListContainer';
 
 async function getDealListData() {
     const res = await dealDatas;
