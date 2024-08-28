@@ -1,154 +1,74 @@
-import Link from "next/link";
-import { Button } from "../../ui/button";
-import Image from "next/image";
+import Images from "./Images";
 
 function ButtonList() {
+  const images = [
+    {
+      href: "#",
+      src: "/store.png",
+      alt: "store",
+      label: "공식스토어",
+    },
+    {
+      href: "#",
+      src: "/beauty.png",
+      alt: "beauty",
+      label: "뷰티",
+    },
+    {
+      href: "#",
+      src: "/woman.png",
+      alt: "woman",
+      label: "여성의류",
+    },
+    {
+      href: "#",
+      src: "/man.png",
+      alt: "man",
+      label: "남성의류",
+    },
+    {
+      href: "#",
+      src: "/bag.png",
+      alt: "bag",
+      label: "백",
+    },
+    {
+      href: "#",
+      src: "/shose.png",
+      alt: "shose",
+      label: "슈즈",
+    },
+    {
+      href: "#",
+      src: "/ak.png",
+      alt: "ak",
+      label: "액세서리",
+    },
+    {
+      href: "#",
+      src: "/sport.png",
+      alt: "sport",
+      label: "스포츠/레저",
+    },
+    {
+      href: "#",
+      src: "/life.png",
+      alt: "life",
+      label: "라이프",
+    },
+    {
+      href: "#",
+      src: "/JAJU.png",
+      alt: "JAJU",
+      label: "JAJU",
+    },
+  ];
   return (
     <main>
-      <div className="flex flex-wrap items-center mx-4">
-        <div className="w-16 h-22 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/store.png"
-              alt="store"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">공식스토어</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/beauty.png"
-              alt="beauty"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">뷰티</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/woman.png"
-              alt="woman"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">여성의류</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/man.png"
-              alt="man"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">남성의류</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/bag.png"
-              alt="bag"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">백</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/shose.png"
-              alt="shose"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">슈즈</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/ak.png"
-              alt="ak"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">액세서리</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/sport.png"
-              alt="sport"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">
-              스포츠/
-              <br />
-              레저
-            </span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/life.png"
-              alt="life"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">라이프</span>
-          </Link>
-        </div>
-
-        <div className="w-16 h-22 ml-4 flex text-center">
-          <Link href="/src/components/main/a.tsx" className="mt-4">
-            <Image
-              src="/JAJU.png"
-              alt="JAJU"
-              width={16}
-              height={16}
-              className="w-16 h-16 bg-blue-300 rounded-full"
-            ></Image>
-
-            <span className="text-xs font-bold">JAJU</span>
-          </Link>
-        </div>
+      <div className="grid grid-cols-5 gap-1 m-[0_24px]">
+        {images.map((image, index) => (
+          <Images key={index} {...image} />
+        ))}
       </div>
     </main>
   );

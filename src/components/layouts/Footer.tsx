@@ -2,14 +2,25 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-import DownArrowIcon from "@/components/icons/footer/DownArrowIcon.png";
-import UpArrowIcon from "@/components/icons/footer/UpArrowIcon.png";
 import FacebookIcon from "@/components/icons/footer/FacebookIcon.png";
 import InstagramIcon from "@/components/icons/footer/InstagramIcon.png";
 import YoutubeIcon from "@/components/icons/footer/YoutubeIcon.png";
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import ArrowTopIcon from "../icons/ArrowTopIcon";
 import ArrowBottomIcon from "../icons/ArrowBottomIcon";
+import Image, { StaticImageData } from "next/image";
+import { Separator } from "@/components/ui/separator";
+
+interface SocialIcon {
+  src: StaticImageData;
+  alt: string;
+}
+
+const socialIcons: SocialIcon[] = [
+  { src: FacebookIcon, alt: "Facebook Icon" },
+  { src: InstagramIcon, alt: "Instagram Icon" },
+  { src: YoutubeIcon, alt: "Youtube Icon" },
+];
 
 export default function Footer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +42,8 @@ export default function Footer() {
         <Link href="#">채팅상담</Link>
       </nav>
       <div className="p-4">
-        <div className="flex justify-between mt-4 border-b border-gray-200">
-          <p className="font-semibold ">㈜신세계인터내셔날 사업자 정보</p>
+        <div className="flex justify-between mt-4">
+          <p className="p-4 font-semibold ">㈜신세계인터내셔날 사업자 정보</p>
           <button onClick={toggleInfo}>
             {isOpen ? <ArrowBottomIcon /> : <ArrowTopIcon />}
           </button>
@@ -64,7 +75,7 @@ export default function Footer() {
               <div className="flex flex-row gap-1">
                 <p>이메일 : </p>
                 <Link
-                  className="flex flex-row items-end break-all"
+                  className="flex flex-row items-center break-all"
                   href={`mailTo:siv_cs@sikorea.co.kr`}
                 >
                   siv_cs@sikorea.co.kr
@@ -74,13 +85,13 @@ export default function Footer() {
             </div>
             <ul className="mt-[16px] flex justify-start]">
               <li className="mr-[16px]">
-                <Link className="flex flex-row items-end" href={"/"}>
+                <Link className="flex flex-row items-center" href={"/"}>
                   사업자정보확인
                   <ArrowRightIcon />
                 </Link>
               </li>
               <li className="mr-[16px]">
-                <Link className="flex flex-row items-end" href={"/"}>
+                <Link className="flex flex-row items-center" href={"/"}>
                   에스크로서비스가입확인
                   <ArrowRightIcon />
                 </Link>
@@ -89,19 +100,36 @@ export default function Footer() {
           </div>
         </div>
 
-        <ul className="flex divide-x divide-gray-300 space-x-2 text-xs mt-4">
-          <li>
-            <Link href="#">
-              <b>개인정보처리방침</b>
-            </Link>
+        <div className="w-[95%] ml-4 h-[1px] bg-[#e0e0e0] mx-auto ">
+          <span className="sr-only">분기선</span>
+        </div>
+
+        <ul className="p-[14px_24px] flex flex-row">
+          <li className=" pr-5 text-[12px] font-semibold leading-[20px] text-[#787878]">
+            <Link href={"/"}>개인정보처리방침</Link>
           </li>
-          <li>
-            <Link href="#">이용약관</Link>
+          <li className=" pr-5 text-[12px] font-medium leading-[20px] text-[#787878]">
+            <Link href={"/"}>이용약관</Link>
           </li>
-          <li>
-            <Link href="#">PC 버전보기</Link>
+
+          <li className=" pr-5 text-[12px] font-medium leading-[20px] text-[#787878]">
+            <Link href={"/"}>PC 버전보기</Link>
           </li>
         </ul>
+
+        <ul className="p-[0_24px] flex flex-row">
+          {socialIcons.map((icon, idx) => (
+            <li className="mr-[6px]" key={idx}>
+              <Link href={"/"}>
+                <Image src={icon.src} alt={icon.alt} />
+                <span className="sr-only">{icon.alt} 로 이동</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="p-[16px_24px_80px] text-[10px] leading-[18px] tracking-[-0.06px] text-[#a0a0a0]">
+          Ⓒ 2020 SHINSEGAE INTERNATIONAL. ALL RIGHTS RESERVED
+        </div>
       </div>
     </>
   );
