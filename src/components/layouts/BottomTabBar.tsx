@@ -8,7 +8,7 @@ function BottomTabBar() {
       <nav>
         <ul className="flex justify-around list-none m-0 p-0">
           <li className="active:scale-95 active:bg-gray-400 p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold">
-            <Link href="#">
+            <Link href="/category">
               {/* <img src={} alt="" className="w-8" /> */}
               <span>Category</span>
             </Link>

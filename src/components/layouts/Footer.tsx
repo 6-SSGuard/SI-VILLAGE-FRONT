@@ -1,8 +1,15 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import ArrowBottomIcon from "../icons/ArrowBottomIcon";
+
+import DownArrowIcon from "@/components/icons/footer/DownArrowIcon.png";
+import UpArrowIcon from "@/components/icons/footer/UpArrowIcon.png";
+import FacebookIcon from "@/components/icons/footer/FacebookIcon.png";
+import InstagramIcon from "@/components/icons/footer/InstagramIcon.png";
+import YoutubeIcon from "@/components/icons/footer/YoutubeIcon.png";
+import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import ArrowTopIcon from "../icons/ArrowTopIcon";
+import ArrowBottomIcon from "../icons/ArrowBottomIcon";
 
 export default function Footer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,39 +38,56 @@ export default function Footer() {
           </button>
         </div>
 
-        {isOpen && (
-          <div className="text-xs mt-4 ">
-            서울특별시 강남구 도산대로 449 (청담동)
-            <br />
-            대표이사 : 윌리엄김
-            <br />
-            사업자등록번호 : 201-81-53657
-            <br />
-            통신판매업 신고번호 : 강남-13797
-            <br />
-            개인정보보호책임자 : 임홍철
-            <br />
-            호스팅사업자 : ㈜신세계아이앤씨
-            <br />
-            고객센터(유료) : 1644-4490
-            <br />
-            이메일 :{" "}
-            <a href="mailto:siv_cs@sikorea.co.kr">siv_cs@sikorea.co.kr</a>
-            <div className="my-4">
-              <Link
-                href="https://www.ftc.go.kr/info/bizinfo/communicationView.jsp?wrkr_no=2018153657&amp;apv_perm_no=2007322008330213797"
-                className="mr-6"
-              >
-                사업자정보확인
-              </Link>
-              <Link href="https://pg.nicepay.co.kr/issue/IssueEscrow.jsp?CoNo=2018153657">
-                에스크로서비스가입확인
-              </Link>
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out h-0 ${
+            isOpen ? `h-[225px]` : "h-0"
+          }`}
+        >
+          <div
+            className={` p-[3px_24px_26px_24px] text-[12px] leading-[20px] text-[#787878]  `}
+          >
+            <div>
+              서울특별시 강남구 도산대로 449 (청담동)
+              <br />
+              대표이사 : 윌리엄김
+              <br />
+              사업자등록번호 : 201-81-53657
+              <br />
+              통신판매업 신고번호 : 강남-13797
+              <br />
+              개인정보보호책임자 : 임홍철
+              <br />
+              호스팅사업자 : ㈜신세계아이앤씨
+              <br />
+              고객센터(유료) : 1644-4490
+              <br />
+              <div className="flex flex-row gap-1">
+                <p>이메일 : </p>
+                <Link
+                  className="flex flex-row items-end break-all"
+                  href={`mailTo:siv_cs@sikorea.co.kr`}
+                >
+                  siv_cs@sikorea.co.kr
+                  <ArrowRightIcon />
+                </Link>
+              </div>
             </div>
+            <ul className="mt-[16px] flex justify-start]">
+              <li className="mr-[16px]">
+                <Link className="flex flex-row items-end" href={"/"}>
+                  사업자정보확인
+                  <ArrowRightIcon />
+                </Link>
+              </li>
+              <li className="mr-[16px]">
+                <Link className="flex flex-row items-end" href={"/"}>
+                  에스크로서비스가입확인
+                  <ArrowRightIcon />
+                </Link>
+              </li>
+            </ul>
           </div>
-        )}
-
-        <div />
+        </div>
 
         <ul className="flex divide-x divide-gray-300 space-x-2 text-xs mt-4">
           <li>
