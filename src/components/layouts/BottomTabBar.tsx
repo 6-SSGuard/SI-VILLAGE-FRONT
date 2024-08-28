@@ -3,7 +3,7 @@ import React from "react";
 
 function BottomTabBar() {
   return (
-    <div className="text-sm bg-white items-center justify-center p-1 fixed inset-x-0 bottom-0 border-t border-gray-200">
+    <div className="text-sm bg-white items-center justify-center p-1 fixed inset-x-0 bottom-0 border-t border-gray-200 z-10">
       {/* 하단바 */}
       <nav>
         <ul className="grid grid-cols-5 gap-0 list-none m-0 p-0">
