@@ -5,7 +5,6 @@ export const dealDatas:dealListDataType = {
 
     page: 1,
     data: [{
-
         id: 1,
         dealImageUrl: "https://image.sivillage.com/upload/C00001/s3/goods/org/040/240328012294040.jpg",
         brandName: "청담30",

@@ -2,6 +2,7 @@ import { dealCardDataType } from "@/types/domainTapes";
 import Image from "next/image";
 import Badge from "@/components/ui/badge";
 import { badge } from "@nextui-org/theme";
+import Link from "next/link";
 function dealPage({deal} : {deal: dealCardDataType}) {
 
     //현재 시간
@@ -27,8 +28,10 @@ function dealPage({deal} : {deal: dealCardDataType}) {
                     <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">{time} 남음</p>
             </div>
             
-                <div className="flex justify-center">
+            <div className="flex justify-center">
+                <Link href ="/details">
                     <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
+                </Link>
                 </div>
 
                 <div className="mt-3 px-6">
