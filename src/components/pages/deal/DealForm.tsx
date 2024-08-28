@@ -21,38 +21,35 @@ function dealPage({deal} : {deal: dealCardDataType}) {
 
     
     return (
-        <main>
         
-        <div className="flex px-5">
-        <li>
-        <div className="p-4 px-6 w-full ">
-        <p className="bg-black h-10 text-white text-center">{time} 남음</p>
-        </div>
+            <div className="w-full mt-2">
+                <div className="mt-8 px-6 ">
+                    <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">{time} 남음</p>
+            </div>
+            
+                <div className="flex justify-center">
+                    <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
+                </div>
 
-        <div className="flex items-center justify-center">
-        <Image src={deal.dealImageUrl} alt="이미지" width={350} height={350} />
-        </div>
-        <div className="w-full flex flex-col">
-         <p className="text-sm text-orange-500">{deal.discountRate}%</p>
-         <p className="font-bole text-xl">{deal.discountPrice}</p>
-        </div>
-
-        <div className="w-full flex flex-col">
-        <p>{deal.brandName}</p>
-        <p>{deal.brandTitle}</p>
-        </div>
-
-        <ul className="flex gap-1 mt-1">
-            {
-                deal.badgList.map((badge,index) =>(
-                    <Badge key={index} badgeText={badge}/>
-                ))
-            }
-
-        </ul>
-        </li>
-        </div>
-        </main>
+                <div className="mt-3 px-6">
+                    <div className="flex items-center mt-3 ml-2">
+                        <p className="text-base font-bold text-orange-500">{deal.discountRate}%</p>
+                        <p className="font-bold text-base ml-2">{deal.discountPrice}원</p>
+                    </div>
+                    <div className="flex items-center mt-1 ml-2">
+                        <p className="text-xs">{deal.brandName}</p>
+                        <p className="text-xs ml-1">{deal.brandTitle}</p>
+                    </div>
+                    <ul className="flex gap-1 mt-2 ml-2">
+                        {
+                            deal.badgList.map((badge,index) =>(
+                                <Badge key={index} badgeText={badge}/>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        
     )
 }
 
