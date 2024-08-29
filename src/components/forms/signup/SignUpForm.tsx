@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { Button } from "../../ui/button";
-import NecessaryField from "../../pages/signup/NecessaryField";
-import SelectField from "../../pages/signup/SelectField";
-import MarketingField from "../../pages/signup/MarketingField";
-import TermsOfUseField from "../../pages/signup/TermsOfUseField";
+import { Button } from "@/components/ui/button";
+import NecessaryField from "@/components/pages/signup/NecessaryField";
+import SelectField from "@/components/pages/signup/SelectField";
+import MarketingField from "@/components/pages/signup/MarketingField";
+import TermsOfUseField from "@/components/pages/signup/TermsOfUseField";
 
 export type TermKeys = "termAll" | "1" | "2" | "3" | "4";
 export default function SignUpForm() {

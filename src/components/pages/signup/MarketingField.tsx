@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import MarketingPurpose from "../dialog/MarketingPurpose";
-import SearchIcon from "../icons/SearchIcon";
-import DialogComponent from "../dialog/DialogComponent";
+import MarketingPurpose from "@/components/dialog/MarketingPurpose";
+import SearchIcon from "@/components/icons/SearchIcon";
+import DialogComponent from "@/components/dialog/DialogComponent";
 
 export default function MarketingField() {
   const [checkedState, setCheckedState] = useState({
@@ -28,6 +28,7 @@ export default function MarketingField() {
     setDialogContent({ title, description, contentComponent });
     setDialogOpen(true);
   };
+
   const handleCloseDialog = () => {
     setDialogOpen(false);
     setDialogContent(null);

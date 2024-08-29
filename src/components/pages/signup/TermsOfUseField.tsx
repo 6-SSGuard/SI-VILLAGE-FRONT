@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { TermKeys } from "../forms/signup/SignUpForm";
-import WebsiteTerms from "../dialog/WebsiteTerms";
-import MemberTerms from "../dialog/MemberTerms";
-import ServiceTerms from "../dialog/ServiceTerms";
-import TomboyTerms from "../dialog/TomboyTerms";
-import SearchIcon from "../icons/SearchIcon";
-import DialogComponent from "../dialog/DialogComponent";
+import { TermKeys } from "@/components/forms/signup/SignUpForm";
+import WebsiteTerms from "@/components/dialog/WebsiteTerms";
+import MemberTerms from "@/components/dialog/MemberTerms";
+import ServiceTerms from "@/components/dialog/ServiceTerms";
+import TomboyTerms from "@/components/dialog/TomboyTerms";
+import SearchIcon from "@/components/icons/SearchIcon";
+import DialogComponent from "@/components/dialog/DialogComponent";
 
 export default function TermsOfUseField() {
   const [checkedTerms, setCheckedTerms] = useState<Record<TermKeys, boolean>>({
