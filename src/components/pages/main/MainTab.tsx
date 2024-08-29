@@ -6,13 +6,15 @@ function Tab() {
   return (
     <main>
       <Tabs className="w-full h-16 flex justify-center items-center">
-        <TabsList className=" scrollb mt-10 overflow-x-auto whitespace-nowrap scrollbar-hide pl-5 pr-5">
+        <TabsList className="mt-10 overflow-x-auto whitespace-nowrap scrollbar-hide pl-5 pr-5">
           <TabsTrigger className=" m1-6" value={"Home"}>
             Home
           </TabsTrigger>
-          <TabsTrigger className=" ml-6 " value={"Event"}>
-            Event
-          </TabsTrigger>
+          <Link href="/event">
+            <TabsTrigger className=" ml-6 " value={"Event"}>
+              Event
+            </TabsTrigger>
+          </Link>
           <Link href="/deal">
             <TabsTrigger className=" ml-6 " value={"Deal"}>
               Deal
