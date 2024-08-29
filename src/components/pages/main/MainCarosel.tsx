@@ -9,7 +9,7 @@ import { Navigation, Scrollbar, Autoplay } from "swiper/modules";
 import SwiperCore from "swiper";
 import Image from "next/image";
 
-function MainTest() {
+function MainCarosel() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay]);
   const slideData = [
     {
@@ -178,4 +178,4 @@ function MainTest() {
   );
 }
 
-export default MainTest;
+export default MainCarosel;

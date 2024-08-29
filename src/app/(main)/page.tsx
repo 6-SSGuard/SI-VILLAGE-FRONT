@@ -1,10 +1,10 @@
 import ButtonList from "@/components/pages/main/ButtonList";
-import MainTest from "@/components/pages/main/MainTest";
+import MainCarosel from "@/components/pages/main/MainCarosel";
 
 function maininit() {
   return (
     <main>
-      <MainTest />
+      <MainCarosel />
       <ButtonList />
     </main>
   );
