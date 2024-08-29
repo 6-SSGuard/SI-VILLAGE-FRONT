@@ -1,7 +1,6 @@
 import { dealCardDataType } from "@/types/domainTapes";
 import Image from "next/image";
 import Badge from "@/components/ui/badge";
-import { badge } from "@nextui-org/theme";
 function dealPage({deal} : {deal: dealCardDataType}) {
 
     //현재 시간

@@ -28,6 +28,7 @@ export default function MarketingField() {
     setDialogContent({ title, description, contentComponent });
     setDialogOpen(true);
   };
+
   const handleCloseDialog = () => {
     setDialogOpen(false);
     setDialogContent(null);

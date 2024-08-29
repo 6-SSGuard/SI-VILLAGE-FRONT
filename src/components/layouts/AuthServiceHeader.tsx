@@ -32,7 +32,7 @@ export default function AuthServiceHeader() {
   }, [pathName]);
 
   return (
-    <header className="flex items-center justify-between w-full h-[56px] px-[16px]">
+    <header className="flex items-center justify-between w-full h-[56px] p-[0_16px_0_0]">
       <nav className="w-full">
         <ul className="flex items-center justify-between w-full">
           <li>
