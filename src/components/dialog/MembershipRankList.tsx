@@ -77,7 +77,6 @@ const MembershipRankList: React.FC = () => {
         onlineBenefits={["e포인트 5천점 적립 (가입시 1회)"]}
         offlineBenefits={["WELCOME 10% 할인 (최대 할인 한도 20만원)"]}
       />
-      {/* <div className=" gray-bar bg-gray-200 h-0.5 w-full my-1"></div> */}
     </ul>
   );
 };
