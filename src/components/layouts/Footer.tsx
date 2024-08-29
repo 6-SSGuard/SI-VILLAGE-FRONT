@@ -9,7 +9,6 @@ import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import ArrowTopIcon from "../icons/ArrowTopIcon";
 import ArrowBottomIcon from "../icons/ArrowBottomIcon";
 import Image, { StaticImageData } from "next/image";
-import { Separator } from "@/components/ui/separator";
 
 interface SocialIcon {
   src: StaticImageData;
@@ -32,7 +31,7 @@ export default function Footer() {
 
   return (
     <>
-      <nav className="bg-white w-full flex justify-around text-sm p-2 border-t-8">
+      <nav className="bg-white w-full flex justify-around text-[14px] text-[#404040] p-4 border-t-8">
         <Link href="#">ABOUT</Link>
         <Link href="http://www.sikorea.co.kr" passHref>
           회사소개

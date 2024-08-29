@@ -6,8 +6,8 @@ function BottomTabBar() {
     <div className="text-sm bg-white items-center justify-center p-1 fixed inset-x-0 bottom-0 border-t border-gray-200 z-10">
       {/* 하단바 */}
       <nav>
-        <ul className="grid grid-cols-5 gap-0 list-none m-0 p-0">
-          <li className="p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
+        <ul className="grid grid-cols-5 gap-0 list-none m-0 p-[2px]">
+          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
             <Link
               href="/category"
               className="flex justify-center items-center flex-col"
@@ -15,15 +15,15 @@ function BottomTabBar() {
               <span>Category</span>
             </Link>
           </li>
-          <li className="p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
+          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
             <Link
               href="/searchbrand"
               className="flex justify-center items-center flex-col"
             >
-              brand
+              Brand
             </Link>
           </li>
-          <li className="p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
+          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
             <Link
               href="/"
               className="flex justify-center items-center flex-col"
@@ -35,7 +35,7 @@ function BottomTabBar() {
               />
             </Link>
           </li>
-          <li className="p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
+          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
             <Link
               href="/mypage"
               className="flex justify-center items-center flex-col"
@@ -43,7 +43,7 @@ function BottomTabBar() {
               My
             </Link>
           </li>
-          <li className="p-2 rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
+          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
             <Link
               href="#"
               className="flex justify-center items-center flex-col"

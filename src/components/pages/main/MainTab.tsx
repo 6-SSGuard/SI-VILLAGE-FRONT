@@ -1,35 +1,93 @@
+"use client";
 import { Tabs } from "@/components/ui/tabs";
 import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import Link from "next/link";
+import { useState } from "react";
 
-function Tab() {
+function MainTab() {
+  const [activeTab, setActiveTab] = useState("Home");
   return (
-    <main>
-      <Tabs className="w-full h-16 flex justify-center items-center">
-        <TabsList className="mt-10 overflow-x-auto whitespace-nowrap scrollbar-hide pl-5 pr-5">
-          <TabsTrigger className=" m1-6" value={"Home"}>
-            Home
-          </TabsTrigger>
-          <Link href="/event">
-            <TabsTrigger className=" ml-6 " value={"Event"}>
+    <main className="sticky top-0 z-10 bg-white border-b">
+      <Tabs
+        className="w-full flex justify-center items-center"
+        value={activeTab}
+        onValueChange={(value) => setActiveTab(value)}
+      >
+        <TabsList className="overflow-x-auto whitespace-nowrap scrollbar-hide px-5 space-x-5 mt-2">
+          <Link href="/" passHref>
+            <TabsTrigger
+              value="Home"
+              className={`${
+                activeTab === "Home"
+                  ? "border-b-2 border-black"
+                  : "text-[#929292]"
+              } pb-2`}
+            >
+              Home
+            </TabsTrigger>
+          </Link>
+          <Link href="/event" passHref>
+            <TabsTrigger
+              value="Event"
+              className={`${
+                activeTab === "Event"
+                  ? "border-b-2 border-black"
+                  : "text-[#929292]"
+              } pb-2`}
+            >
               Event
             </TabsTrigger>
           </Link>
-          <Link href="/deal">
-            <TabsTrigger className=" ml-6 " value={"Deal"}>
+          <Link href="/deal" passHref>
+            <TabsTrigger
+              value="Deal"
+              className={`${
+                activeTab === "Deal"
+                  ? "border-b-2 border-black"
+                  : "text-[#929292]"
+              } pb-2`}
+            >
               Deal
             </TabsTrigger>
           </Link>
-          <TabsTrigger className=" ml-6 " value={"Best"}>
+          <TabsTrigger
+            value="Best"
+            className={`${
+              activeTab === "Best"
+                ? "border-b-2 border-black"
+                : "text-[#929292]"
+            } pb-2`}
+          >
             Best
           </TabsTrigger>
-          <TabsTrigger className=" ml-6 " value={"SILIVE"}>
+          <TabsTrigger
+            value="SILIVE"
+            className={`${
+              activeTab === "SILIVE"
+                ? "border-b-2 border-black"
+                : "text-[#929292]"
+            } pb-2`}
+          >
             S.I.LIVE
           </TabsTrigger>
-          <TabsTrigger className=" ml-6 " value={"Content"}>
+          <TabsTrigger
+            value="Content"
+            className={`${
+              activeTab === "Content"
+                ? "border-b-2 border-black"
+                : "text-[#929292]"
+            } pb-2`}
+          >
             Content
           </TabsTrigger>
-          <TabsTrigger className=" ml-6 " value={"SSG DF"}>
+          <TabsTrigger
+            value="SSG DF"
+            className={`${
+              activeTab === "SSG DF"
+                ? "border-b-2 border-black"
+                : "text-[#929292]"
+            } pb-2`}
+          >
             SSG DF
           </TabsTrigger>
         </TabsList>
@@ -38,4 +96,4 @@ function Tab() {
   );
 }
 
-export default Tab;
+export default MainTab;

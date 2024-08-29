@@ -18,7 +18,7 @@ function Images({ href, src, alt, label }: ButtonProps) {
           alt={alt}
           width={64}
           height={64}
-          className="w-16 h-16  rounded-full"
+          className="w-16 h-16 rounded-full"
         />
         <span className="text-xs font-bold text-center mt-[6px]">{label}</span>
       </Link>
