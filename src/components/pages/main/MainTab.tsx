@@ -7,7 +7,7 @@ import { useState } from "react";
 function MainTab() {
   const [activeTab, setActiveTab] = useState("Home");
   return (
-    <main className="sticky top-0 z-10 bg-white border-b">
+    <main className="sticky top-0 z-20 bg-white border-b">
       <Tabs
         className="w-full flex justify-center items-center"
         value={activeTab}

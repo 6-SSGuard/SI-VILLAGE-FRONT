@@ -5,9 +5,9 @@ import React, { useState } from "react";
 import FacebookIcon from "@/components/icons/footer/FacebookIcon.png";
 import InstagramIcon from "@/components/icons/footer/InstagramIcon.png";
 import YoutubeIcon from "@/components/icons/footer/YoutubeIcon.png";
-import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
-import ArrowTopIcon from "../icons/ArrowTopIcon";
-import ArrowBottomIcon from "../icons/ArrowBottomIcon";
+import ArrowRightIcon from "@/components/icons/common/ArrowRightIcon";
+import ArrowTopIcon from "../icons/common/ArrowTopIcon";
+import ArrowBottomIcon from "../icons/common/ArrowBottomIcon";
 import Image, { StaticImageData } from "next/image";
 
 interface SocialIcon {
@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <>
+    <footer className="pb-12 bg-gray-100 text-black mt-4">
       <nav className="bg-white w-full flex justify-around text-[14px] text-[#404040] p-4 border-t-8">
         <Link href="#">ABOUT</Link>
         <Link href="http://www.sikorea.co.kr" passHref>
@@ -130,6 +130,6 @@ export default function Footer() {
           Ⓒ 2020 SHINSEGAE INTERNATIONAL. ALL RIGHTS RESERVED
         </div>
       </div>
-    </>
+    </footer>
   );
 }

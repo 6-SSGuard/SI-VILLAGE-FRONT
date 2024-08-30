@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
+import ArrowRightIcon from "@/components/icons/common/ArrowRightIcon";
 import Link from "next/link";
 import Image from "next/image";
 

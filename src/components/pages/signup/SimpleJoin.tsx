@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const SimpleJoin: React.FC = () => (
   <div>
-    <div className="join-container-inner mb-8">
+    <div className="my-10">
       <p className="text-lg font-bold mb-2">S.I.VILLAGE 간편회원 가입</p>
       <p className="text-gray-500 mb-4 font-extrabold text-xs">
         본인인증 없이 간편가입하는 방식입니다. <br />

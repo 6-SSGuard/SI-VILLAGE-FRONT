@@ -5,7 +5,7 @@ import WebsiteTerms from "@/components/dialog/WebsiteTerms";
 import MemberTerms from "@/components/dialog/MemberTerms";
 import ServiceTerms from "@/components/dialog/ServiceTerms";
 import TomboyTerms from "@/components/dialog/TomboyTerms";
-import SearchIcon from "@/components/icons/SearchIcon";
+import SearchIcon from "@/components/icons/common/SearchIcon";
 import DialogComponent from "@/components/dialog/DialogComponent";
 
 export default function TermsOfUseField() {

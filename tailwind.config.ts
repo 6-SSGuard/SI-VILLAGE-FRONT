@@ -20,6 +20,7 @@ const config = {
     },
     extend: {
       colors: {
+        "si-text-gray": "#929292",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

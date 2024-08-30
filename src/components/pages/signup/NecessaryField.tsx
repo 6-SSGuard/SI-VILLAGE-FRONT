@@ -21,29 +21,25 @@ export default function NecessaryField() {
     isAgeConfirmed: false,
   });
 
+  // 공통 Input 스타일
+  const inputStyle = "border p-2 border-[#E0E0E0] text-[#E0E0E0]";
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: type === "checkbox" ? checked : value,
-    });
+    }));
   };
 
   const handleDomainChange = (value: string) => {
-    if (value === "custom") {
-      setFormData({
-        ...formData,
-        emailDomain: "",
-        isCustomDomain: true,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        emailDomain: value,
-        isCustomDomain: false,
-      });
-    }
+    setFormData({
+      ...formData,
+      emailDomain: value === "custom" ? "" : value,
+      isCustomDomain: value === "custom",
+    });
   };
+
   return (
     <>
       <h1 className="text-xl font-bold">필수항목</h1>
@@ -55,21 +51,22 @@ export default function NecessaryField() {
               name="emailId"
               value={formData.emailId}
               onChange={handleChange}
-              className="border p-2 flex-grow"
+              className={`${inputStyle} flex-grow`}
             />
             <span className="text-lg">@</span>
             <Input
               type="text"
-              name="emailId"
+              name="emailDomain"
               value={formData.emailDomain}
               onChange={handleChange}
-              className="border p-2 flex-grow"
+              disabled={!formData.isCustomDomain}
+              className={`${inputStyle} flex-grow`}
             />
             <Select
               onValueChange={handleDomainChange}
               value={formData.emailDomain}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className={`w-[180px] ${inputStyle}`}>
                 <SelectValue placeholder="직접입력" />
               </SelectTrigger>
               <SelectContent>
@@ -91,7 +88,7 @@ export default function NecessaryField() {
             placeholder="비밀번호"
             value={formData.password}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className={`${inputStyle} w-full`}
           />
           <p className="text-xs text-gray-400">숫자, 영문 포함 10자 이상</p>
           <Input
@@ -100,7 +97,7 @@ export default function NecessaryField() {
             placeholder="비밀번호 확인"
             value={formData.passwordConfirm}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className={`${inputStyle} w-full`}
           />
           <p className="text-xs text-gray-400">숫자, 영문 포함 10자 이상</p>
         </div>
@@ -111,7 +108,7 @@ export default function NecessaryField() {
           placeholder="이름"
           value={formData.name}
           onChange={handleChange}
-          className="border p-2 w-full"
+          className={`${inputStyle} w-full`}
         />
 
         <div className="flex space-x-2">
@@ -121,7 +118,7 @@ export default function NecessaryField() {
             placeholder="휴대폰번호"
             value={formData.phoneNumber}
             onChange={handleChange}
-            className="border p-2 flex-grow"
+            className={`${inputStyle} flex-grow`}
           />
         </div>
 

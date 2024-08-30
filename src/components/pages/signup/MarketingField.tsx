@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import MarketingPurpose from "@/components/dialog/MarketingPurpose";
-import SearchIcon from "@/components/icons/SearchIcon";
+import SearchIcon from "@/components/icons/common/SearchIcon";
 import DialogComponent from "@/components/dialog/DialogComponent";
 
 export default function MarketingField() {

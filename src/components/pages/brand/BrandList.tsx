@@ -31,7 +31,7 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
     "Z",
   ];
 
-  const stickyHeaderHeight = 56; // 예를 들어 56px
+  const stickyHeaderHeight = 56;
 
   const [selectedButton, setSelectedButton] = useState("A");
   // ref 객체의 타입을 명시적으로 설정
