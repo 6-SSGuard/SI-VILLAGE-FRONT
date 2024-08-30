@@ -24,7 +24,11 @@ export default function AuthServiceHeader() {
       setTitle("ID/PW 찾기");
     } else if (pathName === "/mypage") {
       setTitle("마이페이지");
-    } else if (pathName === "/") {
+    } else if (
+      pathName === "/" ||
+      pathName === "/deal" ||
+      pathName === "/event"
+    ) {
       setTitle("");
     } else if (pathName === "/searchbrand" || pathName === "/myfavor") {
       setTitle("BRAND");
@@ -32,11 +36,13 @@ export default function AuthServiceHeader() {
   }, [pathName]);
 
   return (
-    <header className="flex items-center justify-between w-full h-[56px] px-[16px]">
+    <header className="flex items-center justify-between w-full h-[56px] p-[0_16px_0_0]">
       <nav className="w-full">
         <ul className="flex items-center justify-between w-full">
           <li>
-            {pathName === "/" ? (
+            {pathName === "/" ||
+            pathName === "/deal" ||
+            pathName === "/event" ? (
               <Image
                 src="/siv_logo.png"
                 alt="메인페이지 이미지"

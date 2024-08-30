@@ -11,6 +11,7 @@ export default function layout({
     <>
       <AuthServiceHeader />
       <MainTab />
+      
       {children}
       <footer className="pb-12 bg-gray-100 text-black mt-4">
         <Footer />
