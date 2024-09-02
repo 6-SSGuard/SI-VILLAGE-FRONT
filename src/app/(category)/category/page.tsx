@@ -4,10 +4,10 @@ import React from 'react';
 
 function page() {
   return (
-    <div className="h-screen overflow-hidden">
+    <main className="h-screen overflow-hidden">
       <CategoryHeader />
       <CategorySide />
-    </div>
+    </main>
   );
 }
 

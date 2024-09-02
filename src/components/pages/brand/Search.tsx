@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import SearchIcon from '@/components/icons/SearchIcon';
+import SearchIcon from '@/components/icons/common/SearchIcon';
 import BrandList from './BrandList';
 
 function Search() {

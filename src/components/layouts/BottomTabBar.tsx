@@ -1,5 +1,9 @@
-import Link from 'next/link';
 import React from 'react';
+import BottomCategoryIcon from '../icons/bottom/BottomCategoryIcon';
+import BottomBrandIcon from '../icons/bottom/BottomBrandIcon';
+import BottomMyIcon from '../icons/bottom/BottomMyIcon';
+import BottomRecentIcon from '../icons/bottom/BottomRecentIcon';
+import BottomTabBarItems from './BottomTabBarItems';
 
 function BottomTabBar() {
   return (
@@ -7,50 +11,37 @@ function BottomTabBar() {
       {/* 하단바 */}
       <nav>
         <ul className="grid grid-cols-5 gap-0 list-none m-0 p-[2px]">
-          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
-            <Link
-              href="/category"
-              className="flex justify-center items-center flex-col"
-            >
-              <span>Category</span>
-            </Link>
-          </li>
-          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
-            <Link
-              href="/searchbrand"
-              className="flex justify-center items-center flex-col"
-            >
-              Brand
-            </Link>
-          </li>
-          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
-            <Link
-              href="/"
-              className="flex justify-center items-center flex-col"
-            >
+          <BottomTabBarItems
+            href="/category"
+            icon={<BottomCategoryIcon />}
+            label="Category"
+          />
+          <BottomTabBarItems
+            href="/searchbrand"
+            icon={<BottomBrandIcon />}
+            label="BRAND"
+          />
+          <BottomTabBarItems
+            href="/"
+            icon={
               <img
                 src="https://m.sivillage.com/mo/assets/comm/image/logo_tabbar_siv.png"
-                alt=""
-                className="w-12"
+                alt="Home"
+                className="w-[44px]"
               />
-            </Link>
-          </li>
-          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
-            <Link
-              href="/mypage"
-              className="flex justify-center items-center flex-col"
-            >
-              My
-            </Link>
-          </li>
-          <li className="rounded-lg transition duration-150 ease-in-out font-hyemin-bold flex justify-center items-center flex-col">
-            <Link
-              href="#"
-              className="flex justify-center items-center flex-col"
-            >
-              Recent
-            </Link>
-          </li>
+            }
+            label=""
+          />
+          <BottomTabBarItems
+            href="/mypage"
+            icon={<BottomMyIcon />}
+            label="MY"
+          />
+          <BottomTabBarItems
+            href="#"
+            icon={<BottomRecentIcon />}
+            label="Recent"
+          />
         </ul>
       </nav>
     </div>

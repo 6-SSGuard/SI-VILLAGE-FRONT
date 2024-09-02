@@ -1,6 +1,6 @@
 'use client';
-import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
-import SearchIcon from '@/components/icons/SearchIcon';
+import ArrowLeftIcon from '@/components/icons/common/ArrowLeftIcon';
+import SearchIcon from '@/components/icons/common/SearchIcon';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 

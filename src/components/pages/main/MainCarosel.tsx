@@ -1,16 +1,26 @@
 'use client';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-creative';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Scrollbar, Autoplay } from 'swiper/modules';
+import {
+  Navigation,
+  Scrollbar,
+  Autoplay,
+  EffectCreative,
+} from 'swiper/modules';
 import SwiperCore from 'swiper';
 import Image from 'next/image';
+import { Swiper as SwiperType } from 'swiper/types';
 
 function MainCarosel() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+  const swiperRef = useRef<SwiperType | null>(null);
   const slideData = [
     {
       id: 1,
@@ -136,9 +146,25 @@ function MainCarosel() {
     },
   ];
 
+  const handleSlideChange = (swiper: SwiperType) => {
+    setCurrentPage(swiper.realIndex + 1);
+  };
+
+  const handlePauseToggle = () => {
+    if (swiperRef.current) {
+      if (isPaused) {
+        swiperRef.current.autoplay.start();
+      } else {
+        swiperRef.current.autoplay.stop();
+      }
+      setIsPaused(!isPaused);
+    }
+  };
+
   return (
     <div className="swiper-container">
       <Swiper
+        modules={[EffectCreative]}
         loop={true} // 슬라이드 루프
         spaceBetween={50} // 슬라이스 사이 간격
         slidesPerView={1} // 보여질 슬라이스 수
@@ -147,6 +173,19 @@ function MainCarosel() {
           delay: 5000,
           disableOnInteraction: false, // 사용자 상호작용시 슬라이더 일시 정지 비활성
         }}
+        speed={1200}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: ['-20%', 0, -1],
+          },
+          next: {
+            translate: ['100%', 0, 0],
+          },
+        }}
+        effect={'creative'}
+        onSlideChange={handleSlideChange}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
         {slideData.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -174,6 +213,21 @@ function MainCarosel() {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="absolute top-28 right-4 z-10 w-[100px] h-[28px] flex justify-between items-center p-2 bg-[#00000033] bg-opacity-50 text-white">
+        <button
+          onClick={handlePauseToggle}
+          className="items-center justify-center"
+        >
+          <Image src="/pause.png" alt="pause" width={16} height={16} />
+        </button>
+        <div className="text-xs items-center justify-center">
+          <span className="font-bold">{currentPage}</span> /{' '}
+          <span>{slideData.length}</span>
+        </div>
+        <button className="text-[10px] items-center justify-center">
+          <Image src="/plus.png" alt="plus" width={16} height={16} />
+        </button>
+      </div>
     </div>
   );
 }
