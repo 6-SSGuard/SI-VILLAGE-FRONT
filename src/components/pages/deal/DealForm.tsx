@@ -1,4 +1,4 @@
-import { dealCardDataType } from '@/types/domainTapes';
+import { dealCardDataType } from '@/types/domainTypes';
 import Image from 'next/image';
 import Badge from '@/components/ui/badge';
 function dealPage({ deal }: { deal: dealCardDataType }) {

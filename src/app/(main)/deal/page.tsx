@@ -1,6 +1,6 @@
 import React from 'react';
 import { dealDatas } from '@/datas/dealDatas';
-import { dealListDataType } from '@/types/domainTapes';
+import { dealListDataType } from '@/types/domainTypes';
 import DealPage from './dealmain/dealListContainer';
 
 async function getDealListData() {

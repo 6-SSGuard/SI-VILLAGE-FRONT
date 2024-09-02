@@ -1,4 +1,4 @@
-import { dealListDataType } from '@/types/domainTapes';
+import { dealListDataType } from '@/types/domainTypes';
 
 export const dealDatas: dealListDataType = {
   page: 1,
