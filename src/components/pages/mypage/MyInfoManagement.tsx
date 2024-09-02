@@ -8,7 +8,7 @@ export default function MyInfoManagement() {
     { text: 'SNS 연결 관리', href: '#' },
     { text: '배송지/환불계좌 관리', href: '#' },
     { text: '회원탈퇴', href: '#' },
-    { text: '사이즈 / 뷰티정보 설정', href: '#' },
+    { text: '사이즈 / 뷰티정보 설정', href: '/mypage/sizeagreeinfo' },
     { text: '로그인 정보 관리', href: '#' },
   ];
   return (
