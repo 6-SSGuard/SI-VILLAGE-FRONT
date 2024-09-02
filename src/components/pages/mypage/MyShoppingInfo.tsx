@@ -1,14 +1,14 @@
-import React from "react";
-import ListItem from "./ListItem";
+import React from 'react';
+import ListItem from './ListItem';
 
 export default function MyShoppingInfo() {
   const items = [
-    { text: "주문/배송 조회", href: "#" },
-    { text: "오프라인 주문 조회", href: "#" },
-    { text: "취소/반품/교환 조회", href: "#" },
-    { text: "Vpay 간편결제 관리", href: "#" },
-    { text: "정기배송 조회", href: "#" },
-    { text: "선물함", href: "#" },
+    { text: '주문/배송 조회', href: '#' },
+    { text: '오프라인 주문 조회', href: '#' },
+    { text: '취소/반품/교환 조회', href: '#' },
+    { text: 'Vpay 간편결제 관리', href: '#' },
+    { text: '정기배송 조회', href: '#' },
+    { text: '선물함', href: '#' },
   ];
 
   return (

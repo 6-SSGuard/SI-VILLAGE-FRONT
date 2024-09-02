@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 export default function NecessaryField() {
   const [formData, setFormData] = useState({
-    emailId: "",
-    emailDomain: "",
-    password: "",
-    passwordConfirm: "",
-    name: "",
-    phoneNumber: "",
-    selectedDomain: "direct",
+    emailId: '',
+    emailDomain: '',
+    password: '',
+    passwordConfirm: '',
+    name: '',
+    phoneNumber: '',
+    selectedDomain: 'direct',
     isCustomDomain: false,
     isAgeConfirmed: false,
   });
@@ -25,15 +25,15 @@ export default function NecessaryField() {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
   const handleDomainChange = (value: string) => {
-    if (value === "custom") {
+    if (value === 'custom') {
       setFormData({
         ...formData,
-        emailDomain: "",
+        emailDomain: '',
         isCustomDomain: true,
       });
     } else {

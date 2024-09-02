@@ -1,5 +1,5 @@
-import AuthServiceHeader from "@/components/layouts/AuthServiceHeader";
-import React from "react";
+import AuthServiceHeader from '@/components/layouts/AuthServiceHeader';
+import React from 'react';
 
 export default function layout({
   children,

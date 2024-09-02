@@ -1,12 +1,12 @@
-"use client";
-import React, { useState } from "react";
-import { TermKeys } from "@/components/forms/signup/SignUpForm";
-import WebsiteTerms from "@/components/dialog/WebsiteTerms";
-import MemberTerms from "@/components/dialog/MemberTerms";
-import ServiceTerms from "@/components/dialog/ServiceTerms";
-import TomboyTerms from "@/components/dialog/TomboyTerms";
-import SearchIcon from "@/components/icons/SearchIcon";
-import DialogComponent from "@/components/dialog/DialogComponent";
+'use client';
+import React, { useState } from 'react';
+import { TermKeys } from '@/components/forms/signup/SignUpForm';
+import WebsiteTerms from '@/components/dialog/WebsiteTerms';
+import MemberTerms from '@/components/dialog/MemberTerms';
+import ServiceTerms from '@/components/dialog/ServiceTerms';
+import TomboyTerms from '@/components/dialog/TomboyTerms';
+import SearchIcon from '@/components/icons/SearchIcon';
+import DialogComponent from '@/components/dialog/DialogComponent';
 
 export default function TermsOfUseField() {
   const [checkedTerms, setCheckedTerms] = useState<Record<TermKeys, boolean>>({
@@ -26,7 +26,7 @@ export default function TermsOfUseField() {
 
       // If all individual checkboxes are checked, set termAll to true
       const allChecked = (Object.keys(newCheckedTerms) as TermKeys[])
-        .filter((key) => key !== "termAll")
+        .filter((key) => key !== 'termAll')
         .every((key) => newCheckedTerms[key]);
 
       return { ...newCheckedTerms, termAll: allChecked };
@@ -94,27 +94,27 @@ export default function TermsOfUseField() {
           </li>
           {[
             {
-              id: "1",
-              title: "신세계인터내셔날 웹사이트 이용약관",
+              id: '1',
+              title: '신세계인터내셔날 웹사이트 이용약관',
               essential: true,
               components: <WebsiteTerms />,
             },
             {
-              id: "2",
-              title: "신세계인터내셔날 통합회원 이용약관",
+              id: '2',
+              title: '신세계인터내셔날 통합회원 이용약관',
               essential: true,
               components: <MemberTerms />,
             },
             {
-              id: "3",
-              title: "서비스 제공을 위한 개인정보 수집 및 이용동의",
+              id: '3',
+              title: '서비스 제공을 위한 개인정보 수집 및 이용동의',
               essential: true,
               components: <ServiceTerms />,
             },
             {
-              id: "4",
+              id: '4',
               title:
-                "통합 멤버십 서비스 제공을 위한 신세계톰보이 정보 제공 동의",
+                '통합 멤버십 서비스 제공을 위한 신세계톰보이 정보 제공 동의',
               essential: false,
               components: <TomboyTerms />,
             },
@@ -138,16 +138,16 @@ export default function TermsOfUseField() {
                   htmlFor={`term_${term.id}`}
                   className="text-sm font-semibold text-gray-700 my-4"
                 >
-                  {term.title}{" "}
-                  <span className={`text-yellow-500`}>
-                    {term.essential ? "(필수)" : "(선택)"}
+                  {term.title}{' '}
+                  <span className={'text-yellow-500'}>
+                    {term.essential ? '(필수)' : '(선택)'}
                   </span>
                 </label>
               </div>
               <a
                 href="#"
                 onClick={() =>
-                  handleOpenDialog(term.title, "", term.components)
+                  handleOpenDialog(term.title, '', term.components)
                 }
                 className="text-blue-500 underline"
               >

@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import { Button } from "@/components/ui/button";
-import NecessaryField from "@/components/pages/signup/NecessaryField";
-import SelectField from "@/components/pages/signup/SelectField";
-import MarketingField from "@/components/pages/signup/MarketingField";
-import TermsOfUseField from "@/components/pages/signup/TermsOfUseField";
+'use client';
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import NecessaryField from '@/components/pages/signup/NecessaryField';
+import SelectField from '@/components/pages/signup/SelectField';
+import MarketingField from '@/components/pages/signup/MarketingField';
+import TermsOfUseField from '@/components/pages/signup/TermsOfUseField';
 
-export type TermKeys = "termAll" | "1" | "2" | "3" | "4";
+export type TermKeys = 'termAll' | '1' | '2' | '3' | '4';
 export default function SignUpForm() {
   return (
     <form className="mx-4 flex flex-col gap-2">

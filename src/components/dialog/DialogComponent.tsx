@@ -1,12 +1,12 @@
 // src/components/layouts/DialogComponent.tsx
-import React from "react";
+import React from 'react';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 export interface DialogComponentProps {
   title: string | undefined;
@@ -26,11 +26,11 @@ export default function DialogComponent({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{title || "Default Title"}</DialogTitle>
+          <DialogTitle>{title || 'Default Title'}</DialogTitle>
         </DialogHeader>
         <div
           style={{
-            overflowY: "auto", // 내용이 길어지면 스크롤이 생기도록 합니다.
+            overflowY: 'auto', // 내용이 길어지면 스크롤이 생기도록 합니다.
           }}
         >
           {<DialogDescription>{description}</DialogDescription>}

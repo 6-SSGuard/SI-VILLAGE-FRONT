@@ -1,5 +1,5 @@
 // MembershipRankItem.tsx
-import React from "react";
+import React from 'react';
 
 interface MembershipRankItemProps {
   badgeSrc: string;

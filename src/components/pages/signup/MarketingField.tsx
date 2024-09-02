@@ -1,8 +1,8 @@
-"use client";
-import React, { useState } from "react";
-import MarketingPurpose from "@/components/dialog/MarketingPurpose";
-import SearchIcon from "@/components/icons/SearchIcon";
-import DialogComponent from "@/components/dialog/DialogComponent";
+'use client';
+import React, { useState } from 'react';
+import MarketingPurpose from '@/components/dialog/MarketingPurpose';
+import SearchIcon from '@/components/icons/SearchIcon';
+import DialogComponent from '@/components/dialog/DialogComponent';
 
 export default function MarketingField() {
   const [checkedState, setCheckedState] = useState({
@@ -45,11 +45,11 @@ export default function MarketingField() {
 
       return {
         ...newState,
-        all: allChecked || (name === "all" && checked), // 전체수신이 선택되면 모두 선택, 하나라도 선택되면 전체수신 선택
+        all: allChecked || (name === 'all' && checked), // 전체수신이 선택되면 모두 선택, 하나라도 선택되면 전체수신 선택
       };
     });
 
-    if (name === "all") {
+    if (name === 'all') {
       setCheckedState({
         all: checked,
         sms: checked,
@@ -96,8 +96,8 @@ export default function MarketingField() {
             href="#"
             onClick={() =>
               handleOpenDialog(
-                "마케팅 목적의 개인정보 수집 및 이용동의",
-                "",
+                '마케팅 목적의 개인정보 수집 및 이용동의',
+                '',
                 <MarketingPurpose />
               )
             }

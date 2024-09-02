@@ -1,10 +1,10 @@
-"use client";
-import React, { useState } from "react";
-import SearchIcon from "@/components/icons/SearchIcon";
-import BrandList from "./BrandList";
+'use client';
+import React, { useState } from 'react';
+import SearchIcon from '@/components/icons/SearchIcon';
+import BrandList from './BrandList';
 
 function Search() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value.toLowerCase());

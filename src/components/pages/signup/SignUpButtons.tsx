@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const SignUpButtons: React.FC = () => (
   <div className="mb-6 flex flex-col gap-4">

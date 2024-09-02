@@ -1,12 +1,12 @@
-import React from "react";
-import ListItem from "./ListItem";
+import React from 'react';
+import ListItem from './ListItem';
 
 export default function MyActiveInfo() {
   const items = [
-    { text: "상품문의", href: "#" },
-    { text: "1:1문의내역", href: "#" },
-    { text: "이벤트 참여내역", href: "#" },
-    { text: "친구추천", href: "#" },
+    { text: '상품문의', href: '#' },
+    { text: '1:1문의내역', href: '#' },
+    { text: '이벤트 참여내역', href: '#' },
+    { text: '친구추천', href: '#' },
   ];
 
   return (

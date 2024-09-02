@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function ArrowBottomIcon() {
   return (
@@ -13,7 +13,7 @@ export default function ArrowBottomIcon() {
       <g clipPath="url(#clip0_42_182)">
         <mask
           id="mask0_42_182"
-          style={{ maskType: "luminance" }}
+          style={{ maskType: 'luminance' }}
           maskUnits="userSpaceOnUse"
           x="0"
           y="0"

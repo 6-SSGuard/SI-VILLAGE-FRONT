@@ -1,9 +1,9 @@
-"use client";
-import React, { useState } from "react";
-import DialogComponent from "@/components/dialog/DialogComponent";
-import SignUpButtons from "@/components/pages/signup/SignUpButtons";
-import MembershipInfo from "@/components/pages/signup/MembershipInfo";
-import SimpleJoin from "@/components/pages/signup/SimpleJoin";
+'use client';
+import React, { useState } from 'react';
+import DialogComponent from '@/components/dialog/DialogComponent';
+import SignUpButtons from '@/components/pages/signup/SignUpButtons';
+import MembershipInfo from '@/components/pages/signup/MembershipInfo';
+import SimpleJoin from '@/components/pages/signup/SimpleJoin';
 
 export default function SignUpInfo() {
   const [dialogContent, setDialogContent] = useState<{

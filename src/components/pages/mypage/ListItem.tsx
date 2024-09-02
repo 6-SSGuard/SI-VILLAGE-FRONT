@@ -1,5 +1,5 @@
-import React from "react";
-import ArrowRightIcon from "../../icons/ArrowRightIcon";
+import React from 'react';
+import ArrowRightIcon from '../../icons/ArrowRightIcon';
 
 function ListItem({ text, href }: { text: string; href: string }) {
   return (

@@ -1,41 +1,41 @@
-"use client";
-import React, { useState } from "react";
-import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import ArrowRightIcon from '@/components/icons/ArrowRightIcon';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const subcategories: { [key: string]: string[] } = {
   뷰티: [
-    "전체",
-    "향수",
-    "스킨케어",
-    "메이크업",
-    "바디케어",
-    "헤어케어",
-    "맨즈케어",
+    '전체',
+    '향수',
+    '스킨케어',
+    '메이크업',
+    '바디케어',
+    '헤어케어',
+    '맨즈케어',
   ],
-  여성의류: ["전체", "케어"],
-  남성의류: ["전체", "뭔데"],
-  백: ["전체", "여성 가방", "남성 가방"],
-  슈즈: ["전체", "여성", "성"],
-  액세서리: ["전체", "여성 세서리", "성 세서리"],
-  스포츠레저: ["전체", "화", "구두", "신발", "스포츠"],
-  골프: ["전체", "케어"],
-  키즈: ["전체", "케어"],
-  라이프: ["전체", "케어"],
+  여성의류: ['전체', '케어'],
+  남성의류: ['전체', '뭔데'],
+  백: ['전체', '여성 가방', '남성 가방'],
+  슈즈: ['전체', '여성', '성'],
+  액세서리: ['전체', '여성 세서리', '성 세서리'],
+  스포츠레저: ['전체', '화', '구두', '신발', '스포츠'],
+  골프: ['전체', '케어'],
+  키즈: ['전체', '케어'],
+  라이프: ['전체', '케어'],
 };
 
 const categories = [
-  "뷰티",
-  "여성의류",
-  "남성의류",
-  "백",
-  "슈즈",
-  "액세서리",
-  "스포츠레저",
-  "골프",
-  "키즈",
-  "라이프",
+  '뷰티',
+  '여성의류',
+  '남성의류',
+  '백',
+  '슈즈',
+  '액세서리',
+  '스포츠레저',
+  '골프',
+  '키즈',
+  '라이프',
 ];
 
 function CategorySide() {
@@ -99,8 +99,8 @@ function CategorySide() {
                 key={category}
                 className={`p-4 text-sm cursor-pointer ${
                   selectedCategory === category
-                    ? "bg-black text-white font-semibold"
-                    : "text-[#a0a0a0]"
+                    ? 'bg-black text-white font-semibold'
+                    : 'text-[#a0a0a0]'
                 }`}
                 onClick={() => setSelectedCategory(category)}
               >

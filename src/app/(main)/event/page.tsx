@@ -1,5 +1,5 @@
-import React from 'react'
-import { eventDatas } from '@/datas/eventDatas'
+import React from 'react';
+import { eventDatas } from '@/datas/eventDatas';
 import { eventListDataType } from '@/types/eventTypes';
 import EventListContainer from './mainevent/eventcontainer';
 import EventFilter from '@/components/pages/event/EventFilter';
@@ -11,18 +11,16 @@ async function getEventListData() {
 }
 
 async function page() {
-
-  const data:eventListDataType = await getEventListData();
+  const data: eventListDataType = await getEventListData();
 
   return (
     <main>
-    <div>
-      <EventFilter eventListCnt={data.eventListCnt} />
-      <EventListContainer 
-      eventListData={data.data}/>
+      <div>
+        <EventFilter eventListCnt={data.eventListCnt} />
+        <EventListContainer eventListData={data.data} />
       </div>
     </main>
-  )
+  );
 }
 
-export default page
+export default page;

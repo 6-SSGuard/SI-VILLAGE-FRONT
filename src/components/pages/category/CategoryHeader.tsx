@@ -1,8 +1,8 @@
-"use client";
-import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon";
-import SearchIcon from "@/components/icons/SearchIcon";
-import { useRouter } from "next/navigation";
-import React from "react";
+'use client';
+import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
+import SearchIcon from '@/components/icons/SearchIcon';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
 function CategoryHeader() {
   const router = useRouter();

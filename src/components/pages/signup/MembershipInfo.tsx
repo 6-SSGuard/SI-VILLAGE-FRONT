@@ -1,6 +1,6 @@
-import React from "react";
-import MembershipRankList from "@/components/dialog/MembershipRankList";
-import MembershipPoint from "@/components/dialog/MembershipPoint";
+import React from 'react';
+import MembershipRankList from '@/components/dialog/MembershipRankList';
+import MembershipPoint from '@/components/dialog/MembershipPoint';
 
 interface Props {
   handleOpenDialog: (
@@ -40,8 +40,8 @@ const MembershipInfo: React.FC<Props> = ({ handleOpenDialog }) => (
           className="border border-gray-300 text-gray-600 w-48 py-2 font-semibold text-xs"
           onClick={() =>
             handleOpenDialog(
-              "멤버십 회원 등급 안내",
-              "신세계인터내셔날 회원등급 및 혜택",
+              '멤버십 회원 등급 안내',
+              '신세계인터내셔날 회원등급 및 혜택',
               <MembershipRankList />
             )
           }
@@ -52,8 +52,8 @@ const MembershipInfo: React.FC<Props> = ({ handleOpenDialog }) => (
           className="border border-gray-300 text-gray-600 w-48 py-2 font-semibold text-xs"
           onClick={() =>
             handleOpenDialog(
-              "통합 멤버십 포인트 안내",
-              "신세계인터내셔날 통합 멤버십 포인트 안내",
+              '통합 멤버십 포인트 안내',
+              '신세계인터내셔날 통합 멤버십 포인트 안내',
               <MembershipPoint />
             )
           }
