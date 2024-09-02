@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 function ID_Page() {
   return (
@@ -35,7 +35,7 @@ function ID_Page() {
               <option value="017">017</option>
               <option value="018">018</option>
               <option value="019">019</option>
-              010{" "}
+              010{' '}
             </select>
             <Input
               className=" w-2/3 h-12 ml-4"

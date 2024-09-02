@@ -1,5 +1,5 @@
-import React from "react";
-import BottomTabBar from "@/components/layouts/BottomTabBar";
+import React from 'react';
+import BottomTabBar from '@/components/layouts/BottomTabBar';
 
 export default function layout({
   children,

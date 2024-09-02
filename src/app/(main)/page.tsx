@@ -1,5 +1,5 @@
-import ButtonList from "@/components/pages/main/ButtonList";
-import MainCarosel from "@/components/pages/main/MainCarosel";
+import ButtonList from '@/components/pages/main/ButtonList';
+import MainCarosel from '@/components/pages/main/MainCarosel';
 
 function maininit() {
   return (

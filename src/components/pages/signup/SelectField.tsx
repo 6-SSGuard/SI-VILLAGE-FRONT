@@ -1,16 +1,16 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import AddressSearchDialog from "@/components/dialog/AddressDialog";
+'use client';
+import React, { useEffect, useState } from 'react';
+import AddressSearchDialog from '@/components/dialog/AddressDialog';
 
 export default function SelectField() {
   const [formData, setFormData] = useState({
-    year: "",
-    month: "",
-    day: "",
+    year: '',
+    month: '',
+    day: '',
   });
 
   const [days, setDays] = useState<number[]>([]); // 일자 리스트 관리
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 년도 리스트 생성
@@ -107,8 +107,8 @@ export default function SelectField() {
       <div className="space-y-4">
         <p className="text-base font-bold mt-4">주소</p>
         <div className="flex items-center justify-between space-x-4">
-          <p className={`text-gray-600 ${!address ? "" : ""}`}>
-            {address || "주소를 선택하세요"}
+          <p className={`text-gray-600 ${!address ? '' : ''}`}>
+            {address || '주소를 선택하세요'}
           </p>
           <button
             type="button"

@@ -1,6 +1,6 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import Script from "next/script";
+'use client';
+import React, { useState, useEffect } from 'react';
+import Script from 'next/script';
 
 // Daum Postcode API의 타입을 정의합니다.
 interface IAddr {
@@ -53,7 +53,7 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
 
   const handlePostcodeSearch = () => {
     if (window.daum && window.daum.Postcode) {
-      const elementLayer = document.getElementById("postcode-layer");
+      const elementLayer = document.getElementById('postcode-layer');
 
       if (elementLayer) {
         new window.daum.Postcode({
@@ -61,19 +61,19 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
             onComplete(data);
             onClose();
           },
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
         }).embed(elementLayer);
 
         // iframe을 보이게 하고 중앙에 배치
-        elementLayer.style.display = "block";
+        elementLayer.style.display = 'block';
         initLayerPosition();
       }
     }
   };
 
   const initLayerPosition = () => {
-    const elementLayer = document.getElementById("postcode-layer");
+    const elementLayer = document.getElementById('postcode-layer');
     if (elementLayer) {
       const width = 350; // iframe의 너비
       const height = 500; // iframe의 높이
@@ -109,9 +109,9 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
         <div
           id="postcode-layer"
           style={{
-            display: "none",
-            position: "fixed",
-            overflow: "hidden",
+            display: 'none',
+            position: 'fixed',
+            overflow: 'hidden',
             zIndex: 1000,
           }}
         >
@@ -119,10 +119,10 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
             src="//t1.daumcdn.net/postcode/resource/images/close.png"
             id="btnCloseLayer"
             style={{
-              cursor: "pointer",
-              position: "absolute",
-              right: "-3px",
-              top: "-3px",
+              cursor: 'pointer',
+              position: 'absolute',
+              right: '-3px',
+              top: '-3px',
               zIndex: 1001,
             }}
             onClick={onClose}

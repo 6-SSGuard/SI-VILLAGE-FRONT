@@ -1,15 +1,14 @@
-import { dealCardDataType } from "@/types/domainTapes";
-import Image from "next/image";
-import Badge from "@/components/ui/badge";
-import { badge } from "@nextui-org/theme";
-import Link from "next/link";
-function dealPage({deal} : {deal: dealCardDataType}) {
+import { dealCardDataType } from '@/types/domainTypes';
+import Image from 'next/image';
+import Badge from '@/components/ui/badge';
+function dealPage({ deal }: { deal: dealCardDataType }) {
+  //현재 시간
+  const currentDate = new Date();
 
   //총 시간
   const full_time = new Date();
   full_time.setHours(24, 0, 0, 0);
-  const currentDate = new Date();
-
+  
   //남은 시간
   const ref_time = full_time.getTime() - currentDate.getTime();
 
@@ -27,9 +26,8 @@ function dealPage({deal} : {deal: dealCardDataType}) {
             </div>
             
             <div className="flex justify-center">
-                <Link href ="/details">
+                
                     <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
-                </Link>
                 </div>
 
       <div className="flex justify-center">

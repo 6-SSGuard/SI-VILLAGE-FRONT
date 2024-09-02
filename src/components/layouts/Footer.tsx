@@ -1,14 +1,14 @@
-"use client";
-import Link from "next/link";
-import React, { useState } from "react";
+'use client';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
-import FacebookIcon from "@/components/icons/footer/FacebookIcon.png";
-import InstagramIcon from "@/components/icons/footer/InstagramIcon.png";
-import YoutubeIcon from "@/components/icons/footer/YoutubeIcon.png";
-import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
-import ArrowTopIcon from "../icons/ArrowTopIcon";
-import ArrowBottomIcon from "../icons/ArrowBottomIcon";
-import Image, { StaticImageData } from "next/image";
+import FacebookIcon from '@/components/icons/footer/FacebookIcon.png';
+import InstagramIcon from '@/components/icons/footer/InstagramIcon.png';
+import YoutubeIcon from '@/components/icons/footer/YoutubeIcon.png';
+import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
+import ArrowTopIcon from '../icons/common/ArrowTopIcon';
+import ArrowBottomIcon from '../icons/common/ArrowBottomIcon';
+import Image, { StaticImageData } from 'next/image';
 
 interface SocialIcon {
   src: StaticImageData;
@@ -16,9 +16,9 @@ interface SocialIcon {
 }
 
 const socialIcons: SocialIcon[] = [
-  { src: FacebookIcon, alt: "Facebook Icon" },
-  { src: InstagramIcon, alt: "Instagram Icon" },
-  { src: YoutubeIcon, alt: "Youtube Icon" },
+  { src: FacebookIcon, alt: 'Facebook Icon' },
+  { src: InstagramIcon, alt: 'Instagram Icon' },
+  { src: YoutubeIcon, alt: 'Youtube Icon' },
 ];
 
 export default function Footer() {
@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <>
+    <footer className="pb-12 bg-gray-100 text-black mt-4">
       <nav className="bg-white w-full flex justify-around text-[14px] text-[#404040] p-4 border-t-8">
         <Link href="#">ABOUT</Link>
         <Link href="http://www.sikorea.co.kr" passHref>
@@ -50,11 +50,13 @@ export default function Footer() {
 
         <div
           className={`overflow-hidden transition-all duration-500 ease-in-out h-0 ${
-            isOpen ? `h-[225px]` : "h-0"
+            isOpen ? 'h-[225px]' : 'h-0'
           }`}
         >
           <div
-            className={` p-[3px_24px_26px_24px] text-[12px] leading-[20px] text-[#787878]  `}
+            className={
+              ' p-[3px_24px_26px_24px] text-[12px] leading-[20px] text-[#787878]  '
+            }
           >
             <div>
               서울특별시 강남구 도산대로 449 (청담동)
@@ -75,7 +77,7 @@ export default function Footer() {
                 <p>이메일 : </p>
                 <Link
                   className="flex flex-row items-center break-all"
-                  href={`mailTo:siv_cs@sikorea.co.kr`}
+                  href={'mailTo:siv_cs@sikorea.co.kr'}
                 >
                   siv_cs@sikorea.co.kr
                   <ArrowRightIcon />
@@ -84,13 +86,13 @@ export default function Footer() {
             </div>
             <ul className="mt-[16px] flex justify-start]">
               <li className="mr-[16px]">
-                <Link className="flex flex-row items-center" href={"/"}>
+                <Link className="flex flex-row items-center" href={'/'}>
                   사업자정보확인
                   <ArrowRightIcon />
                 </Link>
               </li>
               <li className="mr-[16px]">
-                <Link className="flex flex-row items-center" href={"/"}>
+                <Link className="flex flex-row items-center" href={'/'}>
                   에스크로서비스가입확인
                   <ArrowRightIcon />
                 </Link>
@@ -105,21 +107,21 @@ export default function Footer() {
 
         <ul className="p-[14px_24px] flex flex-row">
           <li className=" pr-5 text-[12px] font-semibold leading-[20px] text-[#787878]">
-            <Link href={"/"}>개인정보처리방침</Link>
+            <Link href={'/'}>개인정보처리방침</Link>
           </li>
           <li className=" pr-5 text-[12px] font-medium leading-[20px] text-[#787878]">
-            <Link href={"/"}>이용약관</Link>
+            <Link href={'/'}>이용약관</Link>
           </li>
 
           <li className=" pr-5 text-[12px] font-medium leading-[20px] text-[#787878]">
-            <Link href={"/"}>PC 버전보기</Link>
+            <Link href={'/'}>PC 버전보기</Link>
           </li>
         </ul>
 
         <ul className="p-[0_24px] flex flex-row">
           {socialIcons.map((icon, idx) => (
             <li className="mr-[6px]" key={idx}>
-              <Link href={"/"}>
+              <Link href={'/'}>
                 <Image src={icon.src} alt={icon.alt} />
                 <span className="sr-only">{icon.alt} 로 이동</span>
               </Link>
@@ -130,6 +132,6 @@ export default function Footer() {
           Ⓒ 2020 SHINSEGAE INTERNATIONAL. ALL RIGHTS RESERVED
         </div>
       </div>
-    </>
+    </footer>
   );
 }

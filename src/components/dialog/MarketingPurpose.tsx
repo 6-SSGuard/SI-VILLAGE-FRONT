@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const MarketingPurpose: React.FC = () => {
   return (
@@ -44,7 +44,7 @@ const MarketingPurpose: React.FC = () => {
               <div className="text-gray-900">
                 <strong className="font-semibold underline underline-offset-0">
                   회원 탈퇴 및 동의 철회 시까지
-                </strong>{" "}
+                </strong>{' '}
                 <p className=" text-xs text-gray-700">
                   ※ 단, 관계법령에 의해 보존할 경우 그 의무기간 동안 별도
                   보관되며 본인확인에 필요한 정보(CI) 및 이메일(ID)는 일정기간

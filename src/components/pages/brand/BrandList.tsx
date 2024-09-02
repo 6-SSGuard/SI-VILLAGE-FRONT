@@ -1,39 +1,39 @@
-"use client";
-import React, { useState, useRef, useEffect } from "react";
+'use client';
+import React, { useState, useRef, useEffect } from 'react';
 
 function BrandList({ searchQuery }: { searchQuery: string }) {
   const buttons = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
   ];
 
-  const stickyHeaderHeight = 56; // 예를 들어 56px
+  const stickyHeaderHeight = 56;
 
-  const [selectedButton, setSelectedButton] = useState("A");
+  const [selectedButton, setSelectedButton] = useState('A');
   // ref 객체의 타입을 명시적으로 설정
   const brandRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -43,7 +43,7 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
       setSelectedButton(letter);
       window.scrollTo({
         top: brandRefs.current[letter]!.offsetTop - stickyHeaderHeight,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -62,16 +62,16 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   // "맨 위로 가기" 버튼 클릭 시 페이지 최상단으로 스크롤
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -83,8 +83,8 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
             onClick={() => scrollToBrand(letter)}
             className={`px-2 py-1 mx-[1.5px] text-xs mt-4 ${
               selectedButton === letter
-                ? "border-2 border-black text-black bg-white"
-                : "border-2 border-gray-300 text-gray-700 bg-white"
+                ? 'border-2 border-black text-black bg-white'
+                : 'border-2 border-gray-300 text-gray-700 bg-white'
             }`}
           >
             {letter}
@@ -124,32 +124,32 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
 }
 
 const brands: { [key: string]: string } = {
-  A: "Apple",
-  B: "Boeing",
-  C: "Coca-Cola",
-  D: "Disney",
-  E: "eBay",
-  F: "Ford",
-  G: "Google",
-  H: "Honda",
-  I: "IBM",
-  J: "Johnson & Johnson",
-  K: "Kellogg's",
-  L: "Lego",
-  M: "Microsoft",
-  N: "Nike",
-  O: "Oracle",
-  P: "Pepsi",
-  Q: "Qualcomm",
-  R: "Rolex",
-  S: "Samsung",
-  T: "Tesla",
-  U: "Uber",
-  V: "Visa",
-  W: "Walmart",
-  X: "Xerox",
-  Y: "Yahoo",
-  Z: "Zara",
+  A: 'Apple',
+  B: 'Boeing',
+  C: 'Coca-Cola',
+  D: 'Disney',
+  E: 'eBay',
+  F: 'Ford',
+  G: 'Google',
+  H: 'Honda',
+  I: 'IBM',
+  J: 'Johnson & Johnson',
+  K: 'Kelloggs',
+  L: 'Lego',
+  M: 'Microsoft',
+  N: 'Nike',
+  O: 'Oracle',
+  P: 'Pepsi',
+  Q: 'Qualcomm',
+  R: 'Rolex',
+  S: 'Samsung',
+  T: 'Tesla',
+  U: 'Uber',
+  V: 'Visa',
+  W: 'Walmart',
+  X: 'Xerox',
+  Y: 'Yahoo',
+  Z: 'Zara',
 };
 
 export default BrandList;

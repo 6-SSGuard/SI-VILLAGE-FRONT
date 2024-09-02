@@ -1,9 +1,9 @@
-"use client";
-import React, { useState } from "react";
-import DialogComponent from "@/components/dialog/DialogComponent";
-import SignUpButtons from "@/components/pages/signup/SignUpButtons";
-import MembershipInfo from "@/components/pages/signup/MembershipInfo";
-import SimpleJoin from "@/components/pages/signup/SimpleJoin";
+'use client';
+import React, { useState } from 'react';
+import DialogComponent from '@/components/dialog/DialogComponent';
+import SignUpButtons from '@/components/pages/signup/SignUpButtons';
+import MembershipInfo from '@/components/pages/signup/MembershipInfo';
+import SimpleJoin from '@/components/pages/signup/SimpleJoin';
 
 export default function SignUpInfo() {
   const [dialogContent, setDialogContent] = useState<{
@@ -28,7 +28,7 @@ export default function SignUpInfo() {
   };
 
   return (
-    <div className="px-4 py-6">
+    <div className="p-6 pb-10">
       <div className="mb-8">
         <p className="text-lg font-semibold mb-4">
           신세계인터내셔날 통합 멤버십 가입

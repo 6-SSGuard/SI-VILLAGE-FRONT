@@ -1,37 +1,37 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import TitleHeader from "../ui/TitleHeader";
-import ArrowLeftIcon from "../icons/ArrowLeftIcon";
-import SearchIcon from "../icons/SearchIcon";
-import ShoppingBagIcon from "../icons/ShoppingBagIcon";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+'use client';
+import React, { useEffect, useState } from 'react';
+import TitleHeader from '../ui/TitleHeader';
+import ArrowLeftIcon from '../icons/common/ArrowLeftIcon';
+import SearchIcon from '../icons/common/SearchIcon';
+import ShoppingBagIcon from '../icons/common/ShoppingBagIcon';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function AuthServiceHeader() {
   const pathName = usePathname();
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState<string>('');
   const router = useRouter();
 
   useEffect(() => {
-    if (pathName === "/sign-in") {
-      setTitle("로그인");
-    } else if (pathName === "/sign-up") {
-      setTitle("회원가입");
-    } else if (pathName === "/sign-up/join-simple") {
-      setTitle("온라인 간편가입");
-    } else if (pathName === "/sign-in/forgotcredential") {
-      setTitle("ID/PW 찾기");
-    } else if (pathName === "/mypage") {
-      setTitle("마이페이지");
+    if (pathName === '/sign-in') {
+      setTitle('로그인');
+    } else if (pathName === '/sign-up') {
+      setTitle('회원가입');
+    } else if (pathName === '/sign-up/join-simple') {
+      setTitle('온라인 간편가입');
+    } else if (pathName === '/sign-in/forgotcredential') {
+      setTitle('ID/PW 찾기');
+    } else if (pathName === '/mypage') {
+      setTitle('마이페이지');
     } else if (
-      pathName === "/" ||
-      pathName === "/deal" ||
-      pathName === "/event"
+      pathName === '/' ||
+      pathName === '/deal' ||
+      pathName === '/event'
     ) {
-      setTitle("");
-    } else if (pathName === "/searchbrand" || pathName === "/myfavor") {
-      setTitle("BRAND");
+      setTitle('');
+    } else if (pathName === '/searchbrand' || pathName === '/myfavor') {
+      setTitle('BRAND');
     }
   }, [pathName]);
 
@@ -40,9 +40,9 @@ export default function AuthServiceHeader() {
       <nav className="w-full">
         <ul className="flex items-center justify-between w-full">
           <li>
-            {pathName === "/" ||
-            pathName === "/deal" ||
-            pathName === "/event" ? (
+            {pathName === '/' ||
+            pathName === '/deal' ||
+            pathName === '/event' ? (
               <Image
                 src="/siv_logo.png"
                 alt="메인페이지 이미지"

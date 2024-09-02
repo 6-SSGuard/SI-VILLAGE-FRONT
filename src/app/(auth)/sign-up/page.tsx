@@ -1,9 +1,9 @@
-import React from "react";
-import SignUpInfo from "@/components/pages/signup/SignUpInfo";
-import { Metadata } from "next";
+import React from 'react';
+import SignUpInfo from '@/components/pages/signup/SignUpInfo';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "회원가입",
+  title: '회원가입',
 };
 
 export default function page() {

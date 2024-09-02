@@ -1,11 +1,11 @@
-import React from "react";
-import ListItem from "./ListItem";
+import React from 'react';
+import ListItem from './ListItem';
 
 export default function MyInterestInfo() {
   const items = [
-    { text: "관심클럽 설정", href: "#" },
-    { text: "찜", href: "#" },
-    { text: "재입고 알림신청 내역", href: "#" },
+    { text: '관심클럽 설정', href: '#' },
+    { text: '찜', href: '#' },
+    { text: '재입고 알림신청 내역', href: '#' },
   ];
   return (
     <div className="p-4 bg-white rounded-md shadow-md text-sm">

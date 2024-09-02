@@ -1,13 +1,13 @@
-"use client";
-import { Tabs } from "@/components/ui/tabs";
-import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import Link from "next/link";
-import { useState } from "react";
+'use client';
+import { Tabs } from '@/components/ui/tabs';
+import { TabsList, TabsTrigger } from '@radix-ui/react-tabs';
+import Link from 'next/link';
+import { useState } from 'react';
 
 function MainTab() {
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState('Home');
   return (
-    <main className="sticky top-0 z-10 bg-white border-b">
+    <main className="sticky top-0 z-20 bg-white border-b">
       <Tabs
         className="w-full flex justify-center items-center"
         value={activeTab}
@@ -18,9 +18,9 @@ function MainTab() {
             <TabsTrigger
               value="Home"
               className={`${
-                activeTab === "Home"
-                  ? "border-b-2 border-black"
-                  : "text-[#929292]"
+                activeTab === 'Home'
+                  ? 'border-b-2 border-black'
+                  : 'text-[#929292]'
               } pb-2`}
             >
               Home
@@ -30,9 +30,9 @@ function MainTab() {
             <TabsTrigger
               value="Event"
               className={`${
-                activeTab === "Event"
-                  ? "border-b-2 border-black"
-                  : "text-[#929292]"
+                activeTab === 'Event'
+                  ? 'border-b-2 border-black'
+                  : 'text-[#929292]'
               } pb-2`}
             >
               Event
@@ -42,9 +42,9 @@ function MainTab() {
             <TabsTrigger
               value="Deal"
               className={`${
-                activeTab === "Deal"
-                  ? "border-b-2 border-black"
-                  : "text-[#929292]"
+                activeTab === 'Deal'
+                  ? 'border-b-2 border-black'
+                  : 'text-[#929292]'
               } pb-2`}
             >
               Deal
@@ -53,9 +53,9 @@ function MainTab() {
           <TabsTrigger
             value="Best"
             className={`${
-              activeTab === "Best"
-                ? "border-b-2 border-black"
-                : "text-[#929292]"
+              activeTab === 'Best'
+                ? 'border-b-2 border-black'
+                : 'text-[#929292]'
             } pb-2`}
           >
             Best
@@ -63,9 +63,9 @@ function MainTab() {
           <TabsTrigger
             value="SILIVE"
             className={`${
-              activeTab === "SILIVE"
-                ? "border-b-2 border-black"
-                : "text-[#929292]"
+              activeTab === 'SILIVE'
+                ? 'border-b-2 border-black'
+                : 'text-[#929292]'
             } pb-2`}
           >
             S.I.LIVE
@@ -73,9 +73,9 @@ function MainTab() {
           <TabsTrigger
             value="Content"
             className={`${
-              activeTab === "Content"
-                ? "border-b-2 border-black"
-                : "text-[#929292]"
+              activeTab === 'Content'
+                ? 'border-b-2 border-black'
+                : 'text-[#929292]'
             } pb-2`}
           >
             Content
@@ -83,9 +83,9 @@ function MainTab() {
           <TabsTrigger
             value="SSG DF"
             className={`${
-              activeTab === "SSG DF"
-                ? "border-b-2 border-black"
-                : "text-[#929292]"
+              activeTab === 'SSG DF'
+                ? 'border-b-2 border-black'
+                : 'text-[#929292]'
             } pb-2`}
           >
             SSG DF
