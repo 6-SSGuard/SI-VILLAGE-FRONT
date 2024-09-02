@@ -11,7 +11,7 @@ export const dealDatas:dealListDataType = {
         brandTitle: "에센스팩트 라이트베이지 21호 13g",
         discountPrice: "37350",
         discountRate: "55",
-        badgList: ['쿠폰','S.I.포인트 적립'],
+        badgeList: ['쿠폰','S.I.포인트 적립'],
     },
 
     {
@@ -21,7 +21,7 @@ export const dealDatas:dealListDataType = {
         brandTitle: "하이드라메모리크림 30ml",
         discountPrice: "59000",
         discountRate: "35",
-        badgList: ['쿠폰','S.I.포인트 적립'],
+        badgeList: ['쿠폰','S.I.포인트 적립'],
 
     },
 
@@ -32,7 +32,7 @@ export const dealDatas:dealListDataType = {
         brandTitle: "민감피부도 당당한 민낯 광채 & 결 스킨케어 3종 세트",
         discountPrice: "120000",
         discountRate: "55",
-        badgList: ['쿠폰','S.I.포인트 적립'],
+        badgeList: ['쿠폰','S.I.포인트 적립'],
     },
 
     {
@@ -42,7 +42,7 @@ export const dealDatas:dealListDataType = {
         brandTitle: "JUDD 크루넥 티셔츠",
         discountPrice: "30000",
         discountRate: "62",
-        badgList: ['쿠폰','S.I.포인트 적립'],
+        badgeList: ['쿠폰','S.I.포인트 적립'],
     },
 
     {
@@ -52,7 +52,7 @@ export const dealDatas:dealListDataType = {
         brandTitle: "JUDD 크루넥 티셔츠",
         discountPrice: "30000",
         discountRate: "62",
-        badgList: ['쿠폰','S.I.포인트 적립'],
+        badgeList: ['쿠폰','S.I.포인트 적립'],
     },
 
     {
@@ -62,7 +62,7 @@ export const dealDatas:dealListDataType = {
         brandTitle: "JUDD 크루넥 티셔츠",
         discountPrice: "30000",
         discountRate: "62",
-        badgList: ['쿠폰','S.I.포인트 적립'],
+        badgeList: ['쿠폰','S.I.포인트 적립'],
     },
         
         

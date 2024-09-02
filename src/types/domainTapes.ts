@@ -1,5 +1,4 @@
 export interface dealListDataType {
-
     page: number,
     data: dealCardDataType[]
 }
@@ -11,5 +10,5 @@ export interface dealCardDataType {
     brandTitle: string
     discountPrice: string,
     discountRate: string,
-    badgList: string[]
+    badgeList: string[]
 }
