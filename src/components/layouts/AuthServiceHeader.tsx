@@ -4,6 +4,7 @@ import TitleHeader from '../ui/TitleHeader';
 import ArrowLeftIcon from '../icons/common/ArrowLeftIcon';
 import SearchIcon from '../icons/common/SearchIcon';
 import ShoppingBagIcon from '../icons/common/ShoppingBagIcon';
+import SearchModal from '../pages/search/searchModal';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -12,6 +13,14 @@ export default function AuthServiceHeader() {
   const pathName = usePathname();
   const [title, setTitle] = useState<string>('');
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     if (pathName === '/sign-in') {
@@ -61,9 +70,11 @@ export default function AuthServiceHeader() {
           </li>
           <li>
             <ul className="flex items-center gap-4">
-              <li>
+              <li onClick={openModal} className="cursor-pointer">
                 <SearchIcon />
               </li>
+
+              {isModalOpen && <SearchModal onClose={closeModal} />}
               <li>
                 <ShoppingBagIcon />
               </li>

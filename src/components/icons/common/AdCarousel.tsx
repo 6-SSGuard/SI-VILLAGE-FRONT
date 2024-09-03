@@ -3,6 +3,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-creative';
+import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   Navigation,
@@ -40,9 +41,13 @@ function AdCarousel() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay]);
 
   return (
-    <div className="swiper-container">
+    <div className="swiper-container relative">
       <Swiper
         modules={[EffectCreative]}
+        scrollbar={{
+          hide: false, // 스크롤바를 항상 표시
+          draggable: true,
+        }}
         loop={true} // 슬라이드 루프
         spaceBetween={50} // 슬라이스 사이 간격
         slidesPerView={1} // 보여질 슬라이스 수
@@ -62,6 +67,7 @@ function AdCarousel() {
           },
         }}
         effect={'creative'}
+        className="mySwiper"
       >
         {slideData.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -79,6 +85,8 @@ function AdCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
+      {/* Custom Scrollbar */}
+      <div className="custom-swiper-scrollbar w-20 h-4 mt-2"></div>
     </div>
   );
 }
