@@ -8,7 +8,7 @@ function dealPage({ deal }: { deal: dealCardDataType }) {
   //총 시간
   const full_time = new Date();
   full_time.setHours(24, 0, 0, 0);
-  
+
   //남은 시간
   const ref_time = full_time.getTime() - currentDate.getTime();
 
@@ -17,18 +17,17 @@ function dealPage({ deal }: { deal: dealCardDataType }) {
   const hours = Math.floor(ref_time / (1000 * 60 * 60));
   const time = `${hours} : ${min} : ${sec}`;
 
-    
-    return (
-        
-            <div className="w-full mt-2">
-                <div className="mt-8 px-6 ">
-                    <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">{time} 남음</p>
-            </div>
-            
-            <div className="flex justify-center">
-                
-                    <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
-                </div>
+  return (
+    <div className="w-full mt-2">
+      <div className="mt-8 px-6 ">
+        <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">
+          {time} 남음
+        </p>
+      </div>
+
+      <div className="flex justify-center">
+        <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
+      </div>
 
       <div className="flex justify-center">
         <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />

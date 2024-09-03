@@ -20,6 +20,12 @@ const config = {
     },
 
     extend: {
+      width: {
+        '15': '60px',
+        '22': '88px',
+        '25': '108px',
+        '19': '76px',
+      },
       colors: {
         'si-text-gray': '#929292',
         'border': 'hsl(var(--border))',
