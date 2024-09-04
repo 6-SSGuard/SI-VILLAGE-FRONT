@@ -23,31 +23,40 @@ export default function AuthServiceHeader() {
   };
 
   useEffect(() => {
-    if (pathName === '/sign-in') {
-      setTitle('로그인');
-    } else if (pathName === '/sign-up') {
-      setTitle('회원가입');
-    } else if (pathName === '/sign-up/join-simple') {
-      setTitle('온라인 간편가입');
-    } else if (pathName === '/sign-in/forgotcredential') {
-      setTitle('ID/PW 찾기');
-    } else if (pathName === '/mypage') {
-      setTitle('마이페이지');
-    } else if (
-      pathName === '/' ||
-      pathName === '/deal' ||
-      pathName === '/event'
-    ) {
-      setTitle('');
-    } else if (pathName === '/searchbrand' || pathName === '/myfavor') {
-      setTitle('BRAND');
+    switch (pathName) {
+      case '/sign-in':
+        setTitle('로그인');
+        break;
+      case '/sign-up':
+        setTitle('회원가입');
+        break;
+      case '/sign-up/join-simple':
+        setTitle('온라인 간편가입');
+        break;
+      case '/sign-in/forgotcredential':
+        setTitle('ID/PW 찾기');
+        break;
+      case '/mypage':
+        setTitle('마이페이지');
+        break;
+      case '/searchbrand':
+      case '/myfavor':
+        setTitle('BRAND');
+        break;
+      case '/product':
+        setTitle('test');
+        break;
+      default:
+        setTitle('');
+        break;
     }
   }, [pathName]);
 
   return (
-    <header className="flex items-center justify-between w-full h-[56px] p-[0_16px_0_0]">
+    <header className="flex items-center justify-between w-full h-[56px] p-[0_14px_0_0]">
       <nav className="w-full">
-        <ul className="flex items-center justify-between w-full">
+        <ul className="flex items-center justify-between w-full relative">
+          {/* 첫 번째 li */}
           <li>
             {pathName === '/' ||
             pathName === '/deal' ||
@@ -60,14 +69,35 @@ export default function AuthServiceHeader() {
                 className="items-start"
               />
             ) : (
+              pathName !== '/product' && (
+                <button type="button" onClick={() => router.back()}>
+                  <ArrowLeftIcon />
+                </button>
+              )
+            )}
+          </li>
+
+          {/* 가운데 li: /product일 때와 아닐 때 구분 */}
+          {pathName === '/product' ? (
+            <li className="flex-grow flex items-center gap-3 p-1">
               <button type="button" onClick={() => router.back()}>
                 <ArrowLeftIcon />
               </button>
-            )}
-          </li>
-          <li className="absolute left-[50%] translate-x-[-50%]">
-            <TitleHeader title={title} textStyle="text-lg font-semibold" />
-          </li>
+              <div
+                className="flex-grow text-sm border-b border-black text-[#787878] justify-center h-7"
+                onClick={openModal}
+              >
+                놓칠 수 없는 최대 30% 페이백
+              </div>
+              {isModalOpen && <SearchModal onClose={closeModal} />}
+            </li>
+          ) : (
+            <li className="absolute left-[50%] translate-x-[-50%]">
+              <TitleHeader title={title} textStyle="text-lg font-semibold" />
+            </li>
+          )}
+
+          {/* 마지막 li */}
           <li>
             <ul className="flex items-center gap-4">
               <li onClick={openModal} className="cursor-pointer">

@@ -26,7 +26,6 @@ function CategoryHeader() {
         onClick={openModal}
       >
         <SearchIcon />
-
         <span className="text-sm ml-2 text-[#787878]">
           미리 준비하는 추석 최대 15% 쿠폰
         </span>

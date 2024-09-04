@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'RegularBoldCello-Heavy';
+  src: url('/fonts/RegularBoldCello-Heavy.ttf');
+}
