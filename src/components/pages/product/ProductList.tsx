@@ -1,9 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import BoxFourIcon from '@/components/icons/product/BoxFourIcon';
-import RowFourIcon from '@/components/icons/product/RowFourIcon';
-import RowOneIcon from '@/components/icons/product/RowOneIcon';
-import SortIcon from '@/components/icons/product/SortIcon';
+import BoxFourIcon from '@/components/icons/product/boxFourIcon';
+import RowFourIcon from '@/components/icons/product/rowFourIcon';
+import RowOneIcon from '@/components/icons/product/rowOneIcon';
+import SortIcon from '@/components/icons/product/sortIcon';
+import Image from 'next/image';
+import ProductSortModal from './ProductSortModal';
 
 const products = [
   {
@@ -91,9 +93,11 @@ const filters = [
   '길이',
   '핏',
 ];
-
 function ProductList() {
   const [layoutMode, setLayoutMode] = useState('grid-cols-2');
+  const [likedProducts, setLikedProducts] = useState<{
+    [key: number]: boolean;
+  }>({});
 
   const toggleLayoutMode = () => {
     if (layoutMode === 'grid-cols-2') {
@@ -104,14 +108,27 @@ function ProductList() {
       setLayoutMode('grid-cols-2');
     }
   };
+
+  const toggleLike = (productId: number) => {
+    setLikedProducts((prevLikedProducts) => ({
+      ...prevLikedProducts,
+      [productId]: !prevLikedProducts[productId], // Toggle the liked state
+    }));
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <div>
       <div className="flex justify-between items-center mt-4 p-[0px_16px_0px_24px]">
         <h1 className="text-xl font-bold font-RBC-H">All Product</h1>
         <div className="flex">
-          <button>
+          <button onClick={openModal}>
             <SortIcon />
           </button>
+
           <button onClick={toggleLayoutMode}>
             {layoutMode === 'grid-cols-2' && <RowFourIcon />}
             {layoutMode === 'grid-cols-1' && <RowOneIcon />}
@@ -145,7 +162,7 @@ function ProductList() {
                 className="w-full h-auto"
               />
             ) : (
-              <>
+              <div className="relative">
                 <img
                   src={product.imagesrc}
                   alt={product.name}
@@ -156,11 +173,34 @@ function ProductList() {
                 <p className="text-gray-500 text-xs">
                   {product.price.toLocaleString()}
                 </p>
-              </>
+                <div className="absolute top-2 right-2">
+                  {/* Toggle the heart image based on the liked state */}
+                  <button onClick={() => toggleLike(product.id)}>
+                    {likedProducts[product.id] ? (
+                      <Image
+                        src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/blackheart.png"
+                        alt="black heart"
+                        width={24}
+                        height={24}
+                      />
+                    ) : (
+                      <Image
+                        src="/images/heart.png"
+                        alt="heart"
+                        width={24}
+                        height={24}
+                      />
+                    )}
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         ))}
       </div>
+
+      {/* Render the BottomModal */}
+      <ProductSortModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }

@@ -13,13 +13,12 @@ export async function signUpAction(signUpFormData: FormData) {
     email: signUpFormData.get('email') as string,
     password: signUpFormData.get('password') as string,
     name: signUpFormData.get('name') as string,
-    phone: signUpFormData.get('phoneNumber') as string,
-    birthday: signUpFormData.get('birth') as string,
-    permission: signUpFormData.get('birth') as string,
+    role: 'ADMIN',
   };
 
   console.log('action payload', payload);
-  const res = await fetch(`${process.env.API_BASE_URL}/api/member/signup`, {
+
+  const res = await fetch(`${process.env.API_BASE_URL}/member/signup`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {

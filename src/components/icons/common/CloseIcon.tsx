@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ArrowBottomIcon() {
+function CloseIcon() {
   return (
     <svg
       width="16"
@@ -17,12 +17,14 @@ export default function ArrowBottomIcon() {
           <use xlinkHref="#a" />
         </mask>
         <path
-          d="m10.5 3-5 5 5 5"
+          d="M2.25 8h11.5M8 2.25v11.5"
           stroke="#000"
           mask="url(#b)"
-          transform="rotate(-90 8 8)"
+          transform="rotate(45 8 8)"
         />
       </g>
     </svg>
   );
 }
+
+export default CloseIcon;

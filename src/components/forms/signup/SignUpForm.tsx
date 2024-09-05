@@ -7,9 +7,13 @@ import MarketingField from '@/components/pages/signup/MarketingField';
 import TermsOfUseField from '@/components/pages/signup/TermsOfUseField';
 
 export type TermKeys = 'termAll' | '1' | '2' | '3' | '4';
-export default function SignUpForm() {
+export default function SignUpForm({
+  handleSignUp,
+}: {
+  handleSignUp: (formData: FormData) => void;
+}) {
   return (
-    <form className="mx-4 flex flex-col gap-2">
+    <form className="mx-4 flex flex-col gap-2" action={handleSignUp}>
       {/* 필수항목 */}
       <NecessaryField />
       <div className="gray-bar bg-gray-200 h-1 w-full my-6"></div>

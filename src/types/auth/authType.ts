@@ -3,9 +3,10 @@ export interface signUpDataRequest {
   email: string;
   password: string;
   name: string;
-  phone: string;
-  birthday: string;
-  permission: string;
+  role: string;
+  // phone: string;
+  // birthday: string;
+  // permission: string;
 }
 
 //로그인 Type

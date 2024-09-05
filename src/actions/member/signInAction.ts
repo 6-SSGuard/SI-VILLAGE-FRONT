@@ -16,7 +16,7 @@ export async function signInAction(signInFormData: FormData) {
   };
 
   console.log('action payload', payload);
-  const res = await fetch(`${process.env.API_BASE_URL}/api/member/login`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/member/login`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {
@@ -40,7 +40,7 @@ export async function signInAction(signInFormData: FormData) {
  */
 export async function logoutAction() {
   console.log('action payload');
-  const res = await fetch(`${process.env.API_BASE_URL}/api/member/logout`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/member/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

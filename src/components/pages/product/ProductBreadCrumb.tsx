@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import BreadRightIcon from '@/components/icons/product/breadRightIcon';
+import BreadVIcon from '@/components/icons/product/breadVIcon';
 
 interface BreadcrumbProps {
   pathname: string;
@@ -16,7 +17,7 @@ const ProductBreadCrumb: React.FC<BreadcrumbProps> = ({ pathname }) => {
   const visibleSegments = filteredSegments.slice(0, maxSegments);
 
   return (
-    <nav aria-label="breadcrumb" className="p-[0px_16px_0px_24px]">
+    <nav aria-label="breadcrumb" className="p-[0px_16px_0px_24px] h-8">
       <ol className="flex space-x-2">
         {visibleSegments.length > 0 && (
           <li className="flex items-center">
@@ -35,6 +36,7 @@ const ProductBreadCrumb: React.FC<BreadcrumbProps> = ({ pathname }) => {
             >
               {visibleSegments[1]}
             </Link>
+            <BreadVIcon />
           </li>
         )}
       </ol>
