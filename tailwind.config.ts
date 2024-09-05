@@ -26,6 +26,14 @@ const config = {
         '25': '108px',
         '19': '76px',
       },
+      fontSize: {
+        '8': '8px',
+      },
+
+      borderWidth: {
+        '1': '1px',
+      },
+
       colors: {
         'si-text-gray': '#929292',
         'border': 'hsl(var(--border))',
