@@ -10,9 +10,11 @@ public/*
 
 # public 폴더 내 images 폴더는 제외
 !public/images/
+!public/fonts/
 
 # images 폴더 내 모든 파일 추적
 !public/images/*
+!public/fonts/*
 
 # testing
 /coverage
