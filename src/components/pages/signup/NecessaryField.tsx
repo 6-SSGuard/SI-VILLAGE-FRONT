@@ -10,8 +10,9 @@ import {
 
 export default function NecessaryField() {
   const [formData, setFormData] = useState({
-    emailId: '',
-    emailDomain: '',
+    email: '',
+    // emailId: '',
+    // emailDomain: '',
     password: '',
     passwordConfirm: '',
     name: '',
@@ -22,7 +23,7 @@ export default function NecessaryField() {
   });
 
   // 공통 Input 스타일
-  const inputStyle = 'border p-2 border-[#E0E0E0] text-[#E0E0E0]';
+  const inputStyle = 'border p-2 border-[#E0E0E0] placeholder:text-[#E0E0E0]';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -32,13 +33,13 @@ export default function NecessaryField() {
     }));
   };
 
-  const handleDomainChange = (value: string) => {
-    setFormData({
-      ...formData,
-      emailDomain: value === 'custom' ? '' : value,
-      isCustomDomain: value === 'custom',
-    });
-  };
+  // const handleDomainChange = (value: string) => {
+  //   setFormData({
+  //     ...formData,
+  //     emailDomain: value === 'custom' ? '' : value,
+  //     isCustomDomain: value === 'custom',
+  //   });
+  // };
 
   return (
     <>
@@ -47,6 +48,14 @@ export default function NecessaryField() {
         <div>
           <div className="flex items-center space-x-2">
             <Input
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={`${inputStyle} flex-grow`}
+              placeholder="email"
+            />
+            {/* <Input
               type="text"
               name="emailId"
               value={formData.emailId}
@@ -61,8 +70,8 @@ export default function NecessaryField() {
               onChange={handleChange}
               disabled={!formData.isCustomDomain}
               className={`${inputStyle} flex-grow`}
-            />
-            <Select
+            /> */}
+            {/* <Select
               onValueChange={handleDomainChange}
               value={formData.emailDomain}
             >
@@ -77,7 +86,7 @@ export default function NecessaryField() {
                 <SelectItem value="hanmail.net">hanmail.net</SelectItem>
                 <SelectItem value="nate.com">nate.com</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
         </div>
 

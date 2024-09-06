@@ -72,3 +72,16 @@ export interface shippingDataType {
   brand: string;
   contentImage: string;
 }
+
+export interface productRequest {
+  productName: string;
+  price: number;
+  stock: number;
+  color: string;
+  capacity: string;
+  size: string;
+  brandEngName: string;
+  detailContent: string;
+  productImageUrls: string[];
+  categoryCode: string;
+}
