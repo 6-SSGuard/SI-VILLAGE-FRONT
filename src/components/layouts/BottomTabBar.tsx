@@ -4,6 +4,7 @@ import BottomBrandIcon from '../icons/bottom/BottomBrandIcon';
 import BottomMyIcon from '../icons/bottom/BottomMyIcon';
 import BottomRecentIcon from '../icons/bottom/BottomRecentIcon';
 import BottomTabBarItems from './BottomTabBarItems';
+import Image from 'next/image';
 
 function BottomTabBar() {
   return (
@@ -24,10 +25,11 @@ function BottomTabBar() {
           <BottomTabBarItems
             href="/"
             icon={
-              <img
+              <Image
                 src="https://m.sivillage.com/mo/assets/comm/image/logo_tabbar_siv.png"
                 alt="Home"
-                className="w-[44px]"
+                width={44}
+                height={44}
               />
             }
             label=""

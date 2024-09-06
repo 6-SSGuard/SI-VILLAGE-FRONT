@@ -3,8 +3,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import React, { useState } from 'react';
 import Search from '@/components/pages/brand/Search';
 import LikeBrand from './LikeBrand';
+import { brandResponse } from '@/types/product/brandType';
 
-function BrandTab() {
+function BrandTab({ brandData }: { brandData: brandResponse[] }) {
   const [activityContent, setContent] = useState('az');
 
   return (
@@ -36,7 +37,7 @@ function BrandTab() {
         </TabsList>
         <TabsContent value="az">
           <>
-            <Search />
+            <Search brandData={brandData} />
           </>
         </TabsContent>
         <TabsContent value="myfavor">
