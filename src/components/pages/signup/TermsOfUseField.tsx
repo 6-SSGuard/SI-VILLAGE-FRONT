@@ -5,8 +5,8 @@ import WebsiteTerms from '@/components/dialog/WebsiteTerms';
 import MemberTerms from '@/components/dialog/MemberTerms';
 import ServiceTerms from '@/components/dialog/ServiceTerms';
 import TomboyTerms from '@/components/dialog/TomboyTerms';
-import SearchIcon from '@/components/icons/common/SearchIcon';
 import DialogComponent from '@/components/dialog/DialogComponent';
+import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
 
 export default function TermsOfUseField() {
   const [checkedTerms, setCheckedTerms] = useState<Record<TermKeys, boolean>>({
@@ -149,9 +149,8 @@ export default function TermsOfUseField() {
                 onClick={() =>
                   handleOpenDialog(term.title, '', term.components)
                 }
-                className="text-blue-500 underline"
               >
-                <SearchIcon />
+                <ArrowRightIcon />
               </a>
             </li>
           ))}

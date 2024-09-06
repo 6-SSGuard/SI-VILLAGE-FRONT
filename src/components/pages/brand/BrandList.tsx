@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 
 function BrandList({ searchQuery }: { searchQuery: string }) {
@@ -105,7 +106,12 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
             </div>
             <div className="flex justify-between p-4 font-semibold">
               <p>{brands[letter]}</p>
-              <img src="heart.png" alt="heart" className="w-5 h-5" />
+              <Image
+                src="/images/heart.png"
+                alt="heart"
+                width={24}
+                height={24}
+              />
             </div>
           </div>
         ))}

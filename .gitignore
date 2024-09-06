@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/public
 
 # testing
 /coverage
@@ -36,4 +37,4 @@ yarn-error.log*
 next-env.d.ts
 
 
-build.sh
+/build.sh
