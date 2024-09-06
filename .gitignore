@@ -5,7 +5,14 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-/public
+# public 폴더 전체를 무시
+public/*
+
+# public 폴더 내 images 폴더는 제외
+!public/images/
+
+# images 폴더 내 모든 파일 추적
+!public/images/*
 
 # testing
 /coverage
