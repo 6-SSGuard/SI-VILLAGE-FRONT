@@ -50,16 +50,18 @@ function MainTab() {
               Deal
             </TabsTrigger>
           </Link>
-          <TabsTrigger
-            value="Best"
-            className={`${
-              activeTab === 'Best'
-                ? 'border-b-2 border-black'
-                : 'text-[#929292]'
-            } pb-2`}
-          >
-            Best
-          </TabsTrigger>
+          <Link href="/best">
+            <TabsTrigger
+              value="Best"
+              className={`${
+                activeTab === 'Best'
+                  ? 'border-b-2 border-black'
+                  : 'text-[#929292]'
+              } pb-2`}
+            >
+              Best
+            </TabsTrigger>
+          </Link>
           <TabsTrigger
             value="SILIVE"
             className={`${

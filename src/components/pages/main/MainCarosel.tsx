@@ -26,7 +26,6 @@ function MainCarosel() {
       id: 1,
       imgSrc:
         'https://image.sivillage.com/upload/C00001/s3/dspl/banner/1010/936/00/240800000500936_20240822154540.jpg?cVer=27093928&RS=750&SP=1',
-
       brand: 'VIDIVICI',
       title: '완벽한 가을',
       title2: '아웃도어 케어',
