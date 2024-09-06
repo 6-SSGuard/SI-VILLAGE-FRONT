@@ -26,7 +26,7 @@ function CartBottomNav() {
       <ul
         className={`
         overflow-hidden transition-all duration-500 ease-in-out
-        ${isOpen ? 'w-full h-[45px]' : 'w-full h-0'}`}
+        ${isOpen ? 'w-full h-[60px]' : 'w-full h-0'}`}
       >
         <div className="flex-col borderborder-gray-200 ">
           <div className="flex items-center mt-2 shadow-2xl justify-center ">
