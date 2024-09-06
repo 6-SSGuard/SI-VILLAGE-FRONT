@@ -44,3 +44,19 @@ export interface bestProduceSeleManyDataType {
   purchase_limit: number;
   content_image: string;
 }
+
+//임시로 만든 더미 데이터 타입
+export interface bestCreateListDataType {
+  data: bestCreateDataType[];
+}
+
+export interface bestCreateDataType {
+  id: number;
+  ProductNumber: string;
+  isLike: boolean;
+  ProductImage: string;
+  Product_Title: string;
+  Product_Content: string;
+  Product_DiscountRate: number;
+  Product_price: number;
+}

@@ -7,6 +7,7 @@ import ShoppingBagIcon from '../icons/common/ShoppingBagIcon';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function AuthServiceHeader() {
   const pathName = usePathname();
@@ -65,7 +66,9 @@ export default function AuthServiceHeader() {
                 <SearchIcon />
               </li>
               <li>
-                <ShoppingBagIcon />
+                <Link href="cartmain">
+                  <ShoppingBagIcon />
+                </Link>
               </li>
             </ul>
           </li>

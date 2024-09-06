@@ -29,6 +29,10 @@ function dealPage({ deal }: { deal: dealCardDataType }) {
         <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
       </div>
 
+      <div className="flex justify-center">
+        <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
+      </div>
+
       <div className="mt-3 px-6">
         <div className="flex items-center mt-3 ml-2">
           <p className="text-base font-bold text-orange-500">

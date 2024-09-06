@@ -11,12 +11,7 @@ function ID_Page() {
         <div className="w- full h-70 ">
           {/* 이름 컴포넌트 레이아웃 잡기 */}
           <div className="flex justify-center w-full h-8 mt-3">
-            <Input
-              className="h-12"
-              type="search"
-              name="name"
-              placeholder="이름"
-            />
+            <Input className="h-12" type="search" name="name" />
           </div>
 
           {/* 비밀번호 및 select box 레이아웃 */}
@@ -41,7 +36,6 @@ function ID_Page() {
               className=" w-2/3 h-12 ml-4"
               type="search"
               name="PhoneNumber"
-              placeholder="PhoneNumber"
             ></Input>
           </div>
 
