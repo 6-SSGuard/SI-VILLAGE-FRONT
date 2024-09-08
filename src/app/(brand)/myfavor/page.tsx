@@ -19,9 +19,9 @@ async function page() {
   const Data: brandListDataType = await getBrandListData();
 
   return (
-    <div>
+    <main>
       <BrandTab brandData={Data.data} />
-    </div>
+    </main>
   );
 }
 

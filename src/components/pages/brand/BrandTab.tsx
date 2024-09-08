@@ -42,7 +42,7 @@ function BrandTab({ brandData }: { brandData: brandResponse[] }) {
         </TabsContent>
         <TabsContent value="myfavor">
           <>
-            <LikeBrand />
+            <LikeBrand brandData={brandData} />
           </>
         </TabsContent>
       </Tabs>
