@@ -219,14 +219,24 @@ function MainCarosel() {
           onClick={handlePauseToggle}
           className="items-center justify-center"
         >
-          <Image src="/pause.png" alt="pause" width={16} height={16} />
+          <Image
+            src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/pause.png"
+            alt="pause"
+            width={16}
+            height={16}
+          />
         </button>
         <div className="text-xs items-center justify-center">
           <span className="font-bold">{currentPage}</span> /{' '}
           <span>{slideData.length}</span>
         </div>
         <button className="text-[10px] items-center justify-center">
-          <Image src="/plus.png" alt="plus" width={16} height={16} />
+          <Image
+            src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/plus.png"
+            alt="plus"
+            width={16}
+            height={16}
+          />
         </button>
       </div>
     </div>
