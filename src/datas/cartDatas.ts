@@ -1,6 +1,6 @@
 import { CartProductListType } from '@/types/cart/cartTypes';
 
-export const cartProductData: CartProductListType = {
+export const CartProductData: CartProductListType = {
   data: [
     {
       id: 1,
