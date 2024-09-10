@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { DetailPhotoReviewDataType } from '@/types/detail/detailReviewPhotoType';
 
+//제품 상세정보 이미지 슬라이더에 들어갈
+//이미지 리스트 컴포넌트
 function DetailPhotoReviewImageList({
   photoData,
 }: {
