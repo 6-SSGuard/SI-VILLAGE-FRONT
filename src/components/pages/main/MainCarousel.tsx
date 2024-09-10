@@ -141,7 +141,7 @@ export const slideData = [
   },
 ];
 
-function MainCarosel() {
+function MainCarousel() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -243,4 +243,4 @@ function MainCarosel() {
   );
 }
 
-export default MainCarosel;
+export default MainCarousel;

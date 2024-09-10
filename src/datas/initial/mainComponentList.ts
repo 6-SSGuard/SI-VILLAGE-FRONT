@@ -1,7 +1,7 @@
 import AdCarousel from '@/components/icons/common/AdCarousel';
-import ButtonList from '@/components/pages/main/ButtonList';
+import ButtonList from '@/components/pages/main/MainCategoryList';
 import MainCardBanner from '@/components/pages/main/MainCardBanner';
-import MainCarosel from '@/components/pages/main/MainCarosel';
+import MainCarosel from '@/components/pages/main/MainCarousel';
 import MainHotDeal from '@/components/pages/main/MainHotDeal';
 import MainNewCollection from '@/components/pages/main/MainNewCollection';
 
