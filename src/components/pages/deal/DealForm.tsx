@@ -19,13 +19,13 @@ function dealPage({ deal }: { deal: dealCardDataType[] }) {
 
   return (
     <div className="w-full mt-2">
+
       {deal.map((dealItem) => (
         <div key={dealItem.id} className="mt-8 px-6">
           {/* 타이머 영역 */}
           <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">
             {time} 남음
           </p>
-
           {/* 이미지 영역 */}
           <div className="flex justify-center mt-4">
             <Image

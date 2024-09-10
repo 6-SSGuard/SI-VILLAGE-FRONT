@@ -65,7 +65,7 @@ function ButtonList() {
   ];
   return (
     <main>
-      <div className="grid grid-cols-5 gap-2 m-[0_20px]">
+      <div className="grid grid-cols-5 gap-2 m-[0_20px] mb-8">
         {images.map((image, index) => (
           <Images key={index} {...image} />
         ))}

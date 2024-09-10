@@ -3,9 +3,10 @@ export interface signUpDataRequest {
   email: string;
   password: string;
   name: string;
-  phone: string;
-  birthday: string;
-  permission: string;
+  role: string;
+  // phone: string;
+  // birthday: string;
+  // permission: string;
 }
 
 //로그인 Type
@@ -28,4 +29,21 @@ export interface refreshDataRequest {
 export interface withdrawDataRequest {
   option: string;
   reason: string;
+}
+
+//성공 Response
+export interface authResponse {
+  httpStatus: HttpStatus;
+  isSuccess: boolean;
+  message: string;
+  result: any;
+}
+
+interface HttpStatus {
+  error: boolean;
+  is4xxClientError: boolean;
+  is5xxServerError: boolean;
+  is1xxInformational: boolean;
+  is2xxSuccessful: boolean;
+  is3xxRedirection: boolean;
 }

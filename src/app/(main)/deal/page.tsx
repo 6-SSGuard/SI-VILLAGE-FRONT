@@ -1,5 +1,5 @@
 import React from 'react';
-import { dealDatas } from '@/datas/dealDatas';
+import { dealDatas } from '@/datas/dummys/dealDatas';
 import { dealListDataType } from '@/types/domainTypes';
 import DealPage from './dealmain/dealListContainer';
 

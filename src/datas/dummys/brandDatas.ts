@@ -1,0 +1,107 @@
+import { brandListDataType } from '@/types/product/brandType';
+
+export const brandData: brandListDataType = {
+  data: [
+    {
+      brandId: 1,
+      brandEngName: 'Apple',
+      brandKorName: '애플',
+      liked: true,
+    },
+    {
+      brandId: 2,
+      brandEngName: 'Boeing',
+      brandKorName: '애플',
+      liked: true,
+    },
+    {
+      brandId: 3,
+      brandEngName: 'Coca-Cola',
+      brandKorName: '애플',
+      liked: true,
+    },
+    {
+      brandId: 4,
+      brandEngName: 'Disney',
+      brandKorName: '디즈니',
+      liked: false,
+    },
+    {
+      brandId: 5,
+      brandEngName: 'eBay',
+      brandKorName: '이베이',
+      liked: false,
+    },
+    { brandId: 6, brandEngName: 'Ford', brandKorName: '포드', liked: false },
+    { brandId: 7, brandEngName: 'Google', brandKorName: '구글', liked: false },
+    { brandId: 8, brandEngName: 'Honda', brandKorName: '혼다', liked: false },
+    { brandId: 9, brandEngName: 'IBM', brandKorName: 'IBM', liked: false },
+    {
+      brandId: 10,
+      brandEngName: 'Johnson & Johnson',
+      brandKorName: '존슨앤존슨',
+      liked: false,
+    },
+    {
+      brandId: 11,
+      brandEngName: 'Kelloggs',
+      brandKorName: '켈로그',
+      liked: false,
+    },
+    { brandId: 12, brandEngName: 'Lego', brandKorName: '레고', liked: false },
+    {
+      brandId: 13,
+      brandEngName: 'Microsoft',
+      brandKorName: '마이크로소프트',
+      liked: false,
+    },
+    { brandId: 14, brandEngName: 'Nike', brandKorName: '나이키', liked: false },
+    {
+      brandId: 15,
+      brandEngName: 'Oracle',
+      brandKorName: '오라클',
+      liked: false,
+    },
+    { brandId: 16, brandEngName: 'Pepsi', brandKorName: '펩시', liked: false },
+    {
+      brandId: 17,
+      brandEngName: 'Qualcomm',
+      brandKorName: '퀄컴',
+      liked: false,
+    },
+    {
+      brandId: 18,
+      brandEngName: 'Rolex',
+      brandKorName: '롤렉스',
+      liked: false,
+    },
+    {
+      brandId: 19,
+      brandEngName: 'Samsung',
+      brandKorName: '삼성',
+      liked: false,
+    },
+    {
+      brandId: 20,
+      brandEngName: 'Tesla',
+      brandKorName: '테슬라',
+      liked: false,
+    },
+    { brandId: 21, brandEngName: 'Uber', brandKorName: '우버', liked: false },
+    { brandId: 22, brandEngName: 'Visa', brandKorName: '비자', liked: false },
+    {
+      brandId: 23,
+      brandEngName: 'Walmart',
+      brandKorName: '월마트',
+      liked: false,
+    },
+    {
+      brandId: 24,
+      brandEngName: 'Xerox',
+      brandKorName: '제록스',
+      liked: false,
+    },
+    { brandId: 25, brandEngName: 'Yahoo', brandKorName: '야후', liked: false },
+    { brandId: 26, brandEngName: 'Zara', brandKorName: '자라', liked: false },
+  ],
+};
