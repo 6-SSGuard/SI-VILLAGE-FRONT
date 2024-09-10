@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
 import Link from 'next/link';
-import Image from 'next/image';
+import CategoryLink from './CategoryLink';
 
 const subcategories: { [key: string]: string[] } = {
   뷰티: [
@@ -48,45 +48,19 @@ function CategorySide() {
       <div className="flex bg-[#F9F9F9] overflow-x-auto items-center space-x-4 px-4 scrollbar-hide border-b border-gray-300">
         {/* 상단 */}
         <div className="flex text-center space-x-3 px-2 my-4">
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/store.png" alt="store" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">찜</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/beauty.png" alt="beauty" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">베스트</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/woman.png" alt="woman" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">럭셔리</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/man.png" alt="man" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">아울렛</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/bag.png" alt="bag" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">공식스토어</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/shose.png" alt="shose" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">딜</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/ak.png" alt="ak" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">나우</span>
-          </Link>
-
-          <Link href="#" className="flex-shrink-0">
-            <Image src="/sport.png" alt="sport" width={56} height={56} />
-            <span className="text-xs font-bold text-[#787878]">컨텐츠</span>
-          </Link>
+          <CategoryLink href="#" src="/store.png" alt="store" label="찜" />
+          <CategoryLink
+            href="#"
+            src="/beauty.png"
+            alt="beauty"
+            label="베스트"
+          />
+          <CategoryLink href="#" src="/woman.png" alt="woman" label="럭셔리" />
+          <CategoryLink href="#" src="/man.png" alt="man" label="아울렛" />
+          <CategoryLink href="#" src="/bag.png" alt="bag" label="공식스토어" />
+          <CategoryLink href="#" src="/shose.png" alt="shose" label="딜" />
+          <CategoryLink href="#" src="/ak.png" alt="ak" label="나우" />
+          <CategoryLink href="#" src="/sport.png" alt="sport" label="컨텐츠" />
         </div>
       </div>
 
@@ -119,8 +93,14 @@ function CategorySide() {
                 key={subcategory}
                 className="mb-2 text-sm flex justify-between px-2 py-4"
               >
-                {subcategory}
-                <ArrowRightIcon />
+                {/* 하위 카테고리 클릭 시 product 페이지로 이동 */}
+                <Link
+                  href={`/product/${selectedCategory}/${subcategory}`}
+                  className="flex justify-between items-center w-full"
+                >
+                  <span>{subcategory}</span>
+                  <ArrowRightIcon />
+                </Link>
               </li>
             )) || <p>하위 카테고리가 없습니다.</p>}
           </ul>

@@ -6,3 +6,8 @@
   -ms-overflow-style: none; /* IE 및 Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+@font-face {
+  font-family: 'RegularBoldCello-Heavy';
+  src: url('/fonts/RegularBoldCello-Heavy.ttf');
+}

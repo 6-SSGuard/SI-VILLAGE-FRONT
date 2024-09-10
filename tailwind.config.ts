@@ -30,11 +30,9 @@ const config = {
         '8': '8px',
         '13': '13px',
       },
-
-      borderWidth: {
-        '1': '1px',
+      fontFamily: {
+        'RBC-H': ['RegularBoldCello-Heavy', 'sans-serif'],
       },
-
       colors: {
         'si-text-gray': '#929292',
         'border': 'hsl(var(--border))',
@@ -46,6 +44,7 @@ const config = {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
         },
+
         'secondary': {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
