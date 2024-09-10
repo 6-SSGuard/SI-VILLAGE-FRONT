@@ -1,7 +1,7 @@
 import React from 'react';
 import BestButtonList from '@/components/pages/best/BestButtonList';
 import BestMain from '@/components/pages/best/BestMain';
-import { bestData } from '@/datas/bestDatas';
+import { bestData } from '@/datas/dummys/bestDatas';
 import { bestCreateListDataType } from '@/types/best/bestTypes';
 
 async function getBestListData() {

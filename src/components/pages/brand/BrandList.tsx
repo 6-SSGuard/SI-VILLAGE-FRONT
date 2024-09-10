@@ -1,43 +1,53 @@
 'use client';
+import ScrollToTopButton from '@/components/layouts/ScrollToTopButton';
+import { brandResponse } from '@/types/product/brandType';
 import Image from 'next/image';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
-function BrandList({ searchQuery }: { searchQuery: string }) {
-  const buttons = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
-
+function BrandList({
+  searchQuery,
+  brandData,
+}: {
+  searchQuery: string;
+  brandData: brandResponse[];
+}) {
+  const buttons = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const stickyHeaderHeight = 56;
 
   const [selectedButton, setSelectedButton] = useState('A');
-  // ref 객체의 타입을 명시적으로 설정
   const brandRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  const groupedBrands = brandData.reduce(
+    (acc, brand) => {
+      const firstLetter = brand.brandEngName.charAt(0).toUpperCase();
+      if (!acc[firstLetter]) {
+        acc[firstLetter] = [];
+      }
+      acc[firstLetter].push(brand);
+      return acc;
+    },
+    {} as { [key: string]: brandResponse[] }
+  );
+
+  Object.keys(groupedBrands).forEach(
+    (key) =>
+      (groupedBrands[key] = groupedBrands[key].sort((a, b) =>
+        a.brandEngName.localeCompare(b.brandEngName)
+      ))
+  );
+
+  const filteredBrands = Object.keys(groupedBrands).reduce(
+    (acc, letter) => {
+      const filtered = groupedBrands[letter].filter((brand) =>
+        brand.brandEngName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      if (filtered.length > 0) {
+        acc[letter] = filtered;
+      }
+      return acc;
+    },
+    {} as { [key: string]: brandResponse[] }
+  );
 
   const scrollToBrand = (letter: string) => {
     if (brandRefs.current[letter]) {
@@ -48,35 +58,10 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
       });
     }
   };
-  const filteredBrands = buttons.filter((letter) =>
-    brands[letter].toLowerCase().includes(searchQuery)
-  );
-
-  // 스크롤 위치에 따라 "맨 위로 가기" 버튼 표시 여부 결정
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        // 스크롤 위치 기준 (200px)
-        setShowScrollToTop(true);
-      } else {
-        setShowScrollToTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // "맨 위로 가기" 버튼 클릭 시 페이지 최상단으로 스크롤
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <div>
+      {/* A-Z 버튼 */}
       <div className="flex overflow-x-auto scrollbar-hide ml-4">
         {buttons.map((letter) => (
           <button
@@ -92,8 +77,9 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
           </button>
         ))}
       </div>
+      {/* 브랜드 리스트 */}
       <div className="mt-8">
-        {filteredBrands.map((letter) => (
+        {Object.keys(filteredBrands).map((letter) => (
           <div
             key={letter}
             ref={(el) => {
@@ -104,58 +90,28 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
             <div className="border-b-2 w-full mx-auto">
               <h3 className="text-xl font-bold">{letter}</h3>
             </div>
-            <div className="flex justify-between p-4 font-semibold">
-              <p>{brands[letter]}</p>
-              <Image
-                src="/images/heart.png"
-                alt="heart"
-                width={24}
-                height={24}
-              />
-            </div>
+            {filteredBrands[letter].map((brand) => (
+              <div
+                key={brand.brandId}
+                className="flex justify-between p-4 font-semibold"
+              >
+                <p>{brand.brandEngName}</p>
+                <Image
+                  src="/images/heart.png"
+                  alt="heart"
+                  width={24}
+                  height={24}
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
-      {/* "맨 위로 가기" 버튼 */}
-      {showScrollToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-20 right-4 bg-white p-2 rounded-full shadow-lg transition z-10"
-        >
-          ↑
-        </button>
-      )}
+
+      {/* "맨 위로 가기" 버튼 컴포넌트 */}
+      <ScrollToTopButton />
     </div>
   );
 }
-
-const brands: { [key: string]: string } = {
-  A: 'Apple',
-  B: 'Boeing',
-  C: 'Coca-Cola',
-  D: 'Disney',
-  E: 'eBay',
-  F: 'Ford',
-  G: 'Google',
-  H: 'Honda',
-  I: 'IBM',
-  J: 'Johnson & Johnson',
-  K: 'Kelloggs',
-  L: 'Lego',
-  M: 'Microsoft',
-  N: 'Nike',
-  O: 'Oracle',
-  P: 'Pepsi',
-  Q: 'Qualcomm',
-  R: 'Rolex',
-  S: 'Samsung',
-  T: 'Tesla',
-  U: 'Uber',
-  V: 'Visa',
-  W: 'Walmart',
-  X: 'Xerox',
-  Y: 'Yahoo',
-  Z: 'Zara',
-};
 
 export default BrandList;

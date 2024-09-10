@@ -156,17 +156,21 @@ function ProductList() {
           <div key={product.id}>
             {/* layoutMode가 grid-cols-4이면 이미지 부분만 보여주기 */}
             {layoutMode === 'grid-cols-4' ? (
-              <img
+              <Image
                 src={product.imagesrc}
                 alt={product.name}
                 className="w-full h-auto"
+                width={100}
+                height={100}
               />
             ) : (
               <div className="relative">
-                <img
+                <Image
                   src={product.imagesrc}
                   alt={product.name}
                   className="w-full h-auto mb-2"
+                  width={100}
+                  height={100}
                 />
                 <p className="text-sm font-semibold">{product.brand}</p>
                 <p className="text-xs">{product.name}</p>

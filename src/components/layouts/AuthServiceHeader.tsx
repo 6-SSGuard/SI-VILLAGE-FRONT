@@ -63,7 +63,7 @@ export default function AuthServiceHeader() {
             pathName === '/deal' ||
             pathName === '/event' ? (
               <Image
-                src="/siv_logo.png"
+                src="https://image.sivillage.com/upload/C00001/s3/dspl/banner/90/411/30/240900000505411_20240904175544.gif"
                 alt="메인페이지 이미지"
                 width={180}
                 height={65}
