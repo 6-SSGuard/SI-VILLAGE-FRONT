@@ -1,11 +1,11 @@
 import React from 'react';
 import CartHearder from '@/components/pages/cart/CartHeader';
-import { cartProductData } from '@/datas/cartDatas';
+import { CartProductData } from '@/datas/cartDatas';
 import { CartProductListType } from '@/types/cart/cartTypes';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import CartGeneral from '@/components/pages/cart/CartGeneral';
 async function getCartListData() {
-  const res = await cartProductData;
+  const res = await CartProductData;
 
   return res;
 }

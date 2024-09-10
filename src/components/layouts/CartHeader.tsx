@@ -1,6 +1,7 @@
 import CartArrow from '@/components/icons/headerIcon/cartArrow';
 import HomeIcon from '@/components/icons/headerIcon/HomeIcon';
 import React from 'react';
+import ArrowLeftIcon from '../icons/common/ArrowLeftIcon';
 
 function CartHeaderNav() {
   return (
@@ -9,7 +10,7 @@ function CartHeaderNav() {
         <li className="col-span-2 overflow-hidden">
           <ul className="flex flex-row justify-between items-center">
             <li>
-              <CartArrow />
+              <ArrowLeftIcon />
             </li>
             <li>
               <HomeIcon />
