@@ -1,7 +1,7 @@
 import { dealCardDataType } from '@/types/domainTypes';
 import Image from 'next/image';
 import Badge from '@/components/ui/badge';
-function dealPage({ deal }: { deal: dealCardDataType }) {
+function dealPage({ deal }: { deal: dealCardDataType[] }) {
   //현재 시간
   const currentDate = new Date();
 
@@ -19,37 +19,46 @@ function dealPage({ deal }: { deal: dealCardDataType }) {
 
   return (
     <div className="w-full mt-2">
-      <div className="mt-8 px-6 ">
-        <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">
-          {time} 남음
-        </p>
-      </div>
 
-      <div className="flex justify-center">
-        <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
-      </div>
-
-      <div className="flex justify-center">
-        <Image src={deal.dealImageUrl} alt="image" width={350} height={350} />
-      </div>
-
-      <div className="mt-3 px-6">
-        <div className="flex items-center mt-3 ml-2">
-          <p className="text-base font-bold text-orange-500">
-            {deal.discountRate}%
+      {deal.map((dealItem) => (
+        <div key={dealItem.id} className="mt-8 px-6">
+          {/* 타이머 영역 */}
+          <p className="bg-black h-9 text-white text-center text-sm font-bold flex items-center justify-center">
+            {time} 남음
           </p>
-          <p className="font-bold text-base ml-2">{deal.discountPrice}원</p>
+          {/* 이미지 영역 */}
+          <div className="flex justify-center mt-4">
+            <Image
+              src={dealItem.dealImageUrl}
+              alt="deal image"
+              width={350}
+              height={350}
+              className="object-cover"
+            />
+          </div>
+
+          {/* 할인 정보 및 배지 영역 */}
+          <div className="mt-3 px-6">
+            <div className="flex items-center mt-3">
+              <p className="text-base font-bold text-orange-500">
+                {dealItem.discountRate}%
+              </p>
+              <p className="font-bold text-base ml-2">
+                {dealItem.discountPrice}원
+              </p>
+            </div>
+            <div className="flex items-center mt-1">
+              <p className="text-xs">{dealItem.brandName}</p>
+              <p className="text-xs ml-1">{dealItem.brandTitle}</p>
+            </div>
+            <ul className="flex gap-1 mt-2">
+              {dealItem.badgeList.map((badge, index) => (
+                <Badge key={index} badgeText={badge} />
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="flex items-center mt-1 ml-2">
-          <p className="text-xs">{deal.brandName}</p>
-          <p className="text-xs ml-1">{deal.brandTitle}</p>
-        </div>
-        <ul className="flex gap-1 mt-2 ml-2">
-          {deal.badgeList.map((badge, index) => (
-            <Badge key={index} badgeText={badge} />
-          ))}
-        </ul>
-      </div>
+      ))}
     </div>
   );
 }

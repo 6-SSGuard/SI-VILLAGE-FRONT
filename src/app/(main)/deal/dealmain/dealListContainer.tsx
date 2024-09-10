@@ -6,9 +6,7 @@ function dealPage({ dealListData }: { dealListData: dealCardDataType[] }) {
   return (
     <section>
       <ul>
-        {dealListData.map((deal: dealCardDataType) => (
-          <DealPage key={deal.id} deal={deal} />
-        ))}
+        <DealPage deal={dealListData} />
       </ul>
     </section>
   );
