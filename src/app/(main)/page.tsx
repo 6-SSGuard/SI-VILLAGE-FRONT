@@ -8,6 +8,7 @@ import { dealDatas } from '@/datas/dummys/dealDatas';
 import { dealListDataType } from '@/types/domainTypes';
 import { getServerSession } from 'next-auth';
 import { options } from '../api/auth/[...nextauth]/options';
+import ProductQnA from '@/components/pages/product/ProductQnA';
 // import { mainComponentList } from '@/datas/initial/mainComponentList';
 // import { createElement, Suspense } from 'react';
 // import MotionSectionWithMain from '@/components/pages/main/MotionSectionWithMain';
@@ -40,6 +41,7 @@ async function page() {
       <MainNewCollection />
       <AdCarousel />
       <MainHotDeal dealData={Data.data} />
+      <ProductQnA />
     </main>
   );
 }
