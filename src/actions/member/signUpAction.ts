@@ -18,7 +18,7 @@ export async function signUpAction(signUpFormData: FormData) {
 
   console.log('action payload', payload);
 
-  const res = await fetch(`${process.env.API_BASE_URL}/member/signup`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/member/signup`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {
