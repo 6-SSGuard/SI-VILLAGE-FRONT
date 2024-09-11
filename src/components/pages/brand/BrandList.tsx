@@ -19,7 +19,7 @@ function BrandList({
 
   const groupedBrands = brandData.reduce(
     (acc, brand) => {
-      const firstLetter = brand.brandEngName.charAt(0).toUpperCase();
+      const firstLetter = brand.brand_index_letter;
       if (!acc[firstLetter]) {
         acc[firstLetter] = [];
       }
@@ -32,14 +32,14 @@ function BrandList({
   Object.keys(groupedBrands).forEach(
     (key) =>
       (groupedBrands[key] = groupedBrands[key].sort((a, b) =>
-        a.brandEngName.localeCompare(b.brandEngName)
+        a.brand_name.localeCompare(b.brand_name)
       ))
   );
 
   const filteredBrands = Object.keys(groupedBrands).reduce(
     (acc, letter) => {
       const filtered = groupedBrands[letter].filter((brand) =>
-        brand.brandEngName.toLowerCase().includes(searchQuery.toLowerCase())
+        brand.brand_name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       if (filtered.length > 0) {
         acc[letter] = filtered;
@@ -90,12 +90,9 @@ function BrandList({
             <div className="border-b-2 w-full mx-auto">
               <h3 className="text-xl font-bold">{letter}</h3>
             </div>
-            {filteredBrands[letter].map((brand) => (
-              <div
-                key={brand.brandId}
-                className="flex justify-between p-4 font-semibold"
-              >
-                <p>{brand.brandEngName}</p>
+            {filteredBrands[letter].map((brand, idx) => (
+              <div key={idx} className="flex justify-between p-4 font-semibold">
+                <p>{brand.brand_name}</p>
                 <Image
                   src="/images/heart.png"
                   alt="heart"
