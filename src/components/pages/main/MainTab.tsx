@@ -2,7 +2,7 @@
 import { Tabs } from '@/components/ui/tabs';
 import { TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function MainTab() {
   const [activeTab, setActiveTab] = useState('Home');
