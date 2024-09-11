@@ -1,3 +1,4 @@
+import { commonResType } from '@/types/auth/authType';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import KakaoProvider from 'next-auth/providers/kakao';
@@ -8,38 +9,42 @@ export const options: NextAuthOptions = {
       name: 'credentials',
       credentials: {
         email: {
-          label: 'Email',
+          label: 'email',
           type: 'text',
         },
         password: {
-          label: 'Password',
+          label: 'password',
           type: 'password',
         },
       },
       async authorize(
-        credentials: Record<string, string> | undefined, // 명시적 타입 정의
+        credentials: Record<string, string> | undefined,
         req
       ): Promise<any> {
+        // console.log('check', credentials);
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        console.log(credentials);
+        // console.log('credential', credentials);
 
-        const res = await fetch(`${process.env.API_BASE_URL}/member/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: credentials.email,
-            password: credentials.password,
-          }),
-        });
+        const res = await fetch(
+          `${process.env.API_BASE_URL}/api/member/login`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password,
+            }),
+          }
+        );
         if (res.ok) {
-          const user = await res.json();
-          console.log('user', user.data);
-          const data = user.data;
+          const user: commonResType = (await res.json()) as commonResType;
+          console.log('user1212', user);
+          const data = user.result;
           return data;
         }
         return null;
@@ -52,9 +57,9 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log('signIn', user, account, profile);
+      console.log('kakao', user, account, credentials, profile);
       if (profile) {
-        console.log(profile);
+        // console.log(profile);
         // 회원인지 아닌지 확인
         const res = await fetch(`${process.env.API_BASE_URL}/auth/oauth2`, {
           method: 'POST',
@@ -65,7 +70,7 @@ export const options: NextAuthOptions = {
             oauthId: user.id,
           }),
         });
-        console.log(res);
+        console.log('res', res);
         if (res.ok) {
           const user = await res.json();
           console.log('ssg user', user);
@@ -97,6 +102,9 @@ export const options: NextAuthOptions = {
   },
   pages: {
     signIn: '/sign-in',
-    error: '/auth_error',
+    error: '/error',
   },
+  // session: {
+  //   strategy: 'jwt',
+  // },
 };

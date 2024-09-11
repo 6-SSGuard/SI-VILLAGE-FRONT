@@ -1,4 +1,5 @@
 import AdCarousel from '@/components/icons/common/AdCarousel';
+import MainCategoryList from '@/components/pages/main/MainCategoryList';
 import MainCardBanner from '@/components/pages/main/MainCardBanner';
 import MainCarousel from '@/components/pages/main/MainCarousel';
 import MainHotDeal from '@/components/pages/main/MainHotDeal';
@@ -8,7 +9,6 @@ import { dealListDataType } from '@/types/domainTypes';
 import { getServerSession } from 'next-auth';
 import { options } from '../api/auth/[...nextauth]/options';
 import ProductQnA from '@/components/pages/product/ProductQnA';
-import MainCategoryList from '@/components/pages/main/MainCategoryList';
 // import { mainComponentList } from '@/datas/initial/mainComponentList';
 // import { createElement, Suspense } from 'react';
 // import MotionSectionWithMain from '@/components/pages/main/MotionSectionWithMain';
@@ -21,9 +21,9 @@ async function getDealData() {
 }
 
 async function page() {
-  const session = await getServerSession(options);
-  if (!session) return null;
-  console.log('next auth server session', session.user);
+  // const session = await getServerSession(options);
+  // if (!session) return null;
+  // console.log('next auth server session', session.user);
 
   const Data: dealListDataType = await getDealData();
   return (

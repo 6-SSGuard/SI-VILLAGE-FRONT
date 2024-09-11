@@ -77,15 +77,13 @@ function MainHotDeal({ dealData }: { dealData: dealCardDataType[] }) {
         {dealData.map((deal) => (
           <SwiperSlide key={deal.id}>
             <div className="deal-slide p-4 flex flex-col items-start bg-white">
-              <div className="relative w-full h-[300px]">
-                {' '}
-                {/* 이미지 크기 고정 */}
+              <div className="relative w-full h-[300px] flex items-center justify-center">
                 <Image
                   src={deal.dealImageUrl}
                   alt={deal.brandTitle}
-                  layout="fill" // 부모 컨테이너에 맞게 이미지 크기 채우기
-                  objectFit="cover"
-                  className="rounded"
+                  className="object-cover"
+                  width={200}
+                  height={100}
                 />
                 <div className="absolute bottom-0 left-0 w-full text-center text-white bg-black py-2">
                   <div className="flex items-center justify-center gap-2">

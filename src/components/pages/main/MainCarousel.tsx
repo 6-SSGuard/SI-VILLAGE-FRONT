@@ -194,10 +194,8 @@ function MainCarousel() {
               <Image
                 src={slide.imgSrc}
                 alt={`slide-${slide.id}`}
-                layout="responsive"
                 width={400}
                 height={300}
-                objectFit="cover"
                 priority={slide.id === 1}
               />
               <div className="absolute inset-0 flex items-center justify-center mt-20">

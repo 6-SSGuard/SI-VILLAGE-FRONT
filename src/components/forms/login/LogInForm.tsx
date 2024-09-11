@@ -1,16 +1,41 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function LogInForm({
-  handleSignIn,
-}: {
-  handleSignIn: (formData: FormData) => void;
-}) {
+// function LogInForm(
+//   {
+//     // handleSignIn,
+//   }: {
+//     // handleSignIn: (formData: FormData) => void;
+//   }
+// )
+
+function LogInForm() {
+  const auth = useSession();
+
+  useEffect(() => {
+    console.log('LogInForm auth', auth);
+  }, [auth]);
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
+    console.log(formData.get('email'));
+    console.log(formData.get('password'));
+    signIn('credentials', {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+      redirect: true,
+      callbackUrl: '/',
+    });
+  };
   return (
-    <form className="p-10 text-center" action={handleSignIn}>
+    // <form className="p-10 text-center" action={handleSignIn}>
+    <form className="p-10 text-center" onSubmit={onSubmit}>
       <Input
         type="eamil"
         name="email"
@@ -46,32 +71,48 @@ function LogInForm({
           </div>
         </div>
       </div>
+      {auth && auth?.status === 'authenticated' ? (
+        <Button type="button" className="w-full" onClick={() => signOut()}>
+          로그아웃
+        </Button>
+      ) : (
+        <Button type="submit" className="w-full">
+          로그인
+        </Button>
+      )}
 
-      <Button
+      {/* <Button
         className="w-full h-12 mt-5 bg-[#131922] text-white"
         type="submit"
       >
         로그인
-      </Button>
+      </Button> */}
 
       {/* 소셜 로그인 레이아웃 */}
       <div className="flex space-x-6 my-8 items-center justify-center">
         <Image
-          src="/smartphone.png"
+          src="/images/smartphone.png"
           width={48}
           height={48}
           alt="smartphone"
         ></Image>
+
+        <button onClick={() => signIn('kakao')}>
+          <Image
+            src="/images/kakaotalk.png"
+            width={48}
+            height={48}
+            alt="Kakao"
+          />
+        </button>
 
         <Image
-          src="/kakaotalk.png"
+          src="/images/naver.png"
           width={48}
           height={48}
-          alt="smartphone"
+          alt="naver"
         ></Image>
-
-        <Image src="/naver.png" width={48} height={48} alt="smartphone"></Image>
-        <Image src="/apple.png" alt="apple" width={48} height={48} />
+        <Image src="/images/apple.png" alt="apple" width={48} height={48} />
       </div>
 
       {/* 회원가입 버튼 레이아웃 */}

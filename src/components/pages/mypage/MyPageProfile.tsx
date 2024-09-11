@@ -1,7 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
+import { Session } from 'next-auth';
 
-export default function MyPageProfile() {
+interface MyPageProfileProps {
+  session: Session | null;
+}
+
+export default function MyPageProfile({ session }: MyPageProfileProps) {
+  const userName = session?.user?.name;
+
   return (
     <div className="p-4">
       <div className="flex items-center justify-between">
@@ -16,7 +23,7 @@ export default function MyPageProfile() {
           <div className="ml-4">
             <p className="text-lg font-bold">WELCOME</p>
             <p className="text-sm">
-              <span className="font-medium">박영진님</span>
+              <span className="font-medium">{userName}님</span>
               <button
                 className="text-blue-500 underline ml-2"
                 data-di-id="di-id-d446ed98-492f0858"

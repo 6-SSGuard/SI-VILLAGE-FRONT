@@ -1,7 +1,7 @@
 import AdCarousel from '@/components/icons/common/AdCarousel';
-import ButtonList from '@/components/pages/main/MainCategoryList';
 import MainCardBanner from '@/components/pages/main/MainCardBanner';
-import MainCarosel from '@/components/pages/main/MainCarousel';
+import MainCarousel from '@/components/pages/main/MainCarousel';
+import MainCategoryList from '@/components/pages/main/MainCategoryList';
 import MainHotDeal from '@/components/pages/main/MainHotDeal';
 import MainNewCollection from '@/components/pages/main/MainNewCollection';
 
@@ -9,12 +9,12 @@ export const mainComponentList = [
   {
     id: 1,
     name: 'MainEventBannerList',
-    component: MainCarosel,
+    component: MainCarousel,
   },
   {
     id: 2,
     name: 'MainCategoryList',
-    component: ButtonList,
+    component: MainCategoryList,
   },
   {
     id: 3,

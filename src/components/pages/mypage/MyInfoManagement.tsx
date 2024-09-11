@@ -1,5 +1,8 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import ListItem from './ListItem';
+import { Button } from '@/components/ui/button';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function MyInfoManagement() {
   const items = [
@@ -11,6 +14,11 @@ export default function MyInfoManagement() {
     { text: '사이즈 / 뷰티정보 설정', href: '/mypage/sizeagreeinfo' },
     { text: '로그인 정보 관리', href: '#' },
   ];
+  const auth = useSession();
+
+  useEffect(() => {
+    console.log('LogInForm auth', auth);
+  }, [auth]);
   return (
     <div className="p-4 bg-white shadow-md text-sm">
       <strong className="block font-bold mb-4 border-b border-black">
@@ -21,6 +29,15 @@ export default function MyInfoManagement() {
           <ListItem key={index} text={item.text} href={item.href} />
         ))}
       </ul>
+      {auth && (
+        <Button
+          type="button"
+          className="w-full"
+          onClick={() => signOut({ callbackUrl: '/' })}
+        >
+          로그아웃
+        </Button>
+      )}
     </div>
   );
 }
