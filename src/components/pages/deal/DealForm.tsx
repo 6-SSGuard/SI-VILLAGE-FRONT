@@ -19,7 +19,6 @@ function dealPage({ deal }: { deal: dealCardDataType[] }) {
 
   return (
     <div className="w-full mt-2">
-
       {deal.map((dealItem) => (
         <div key={dealItem.id} className="mt-8 px-6">
           {/* 타이머 영역 */}
