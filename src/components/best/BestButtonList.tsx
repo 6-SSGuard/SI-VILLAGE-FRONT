@@ -41,16 +41,8 @@ function BestPage({ data }: { data: bestCreateDataType[] }) {
       title: '백',
       component: <BestMain data={FilterData} />,
     },
-    {
-      id: 6,
-      title: '슈즈',
-      component: <BestMain data={FilterData} />,
-    },
-    {
-      id: 7,
-      title: '액세서리',
-      component: <BestMain data={FilterData} />,
-    },
+    { id: 6, title: '슈즈', component: <BestMain data={FilterData} /> },
+    { id: 7, title: '액세서리', component: <BestMain data={FilterData} /> },
     { id: 8, title: '스포트/레저', component: <BestMain data={FilterData} /> },
     { id: 9, title: '골프', component: <BestMain data={FilterData} /> },
     { id: 10, title: '키즈', component: <BestMain data={FilterData} /> },
