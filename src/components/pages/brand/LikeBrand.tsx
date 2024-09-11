@@ -12,12 +12,10 @@ function LikeBrand({ brandData }: { brandData: brandResponse[] }) {
       <div className="border-b-2 w-11/12 mx-auto"></div>
       <div className="mt-5 mx-5">
         {brandData
-          .filter((brand) => brand.liked)
-          .map((brand) => (
-            <div key={brand.brandId} className="flex justify-between mb-3">
-              <span className="text-lg font-semibold">
-                {brand.brandEngName}
-              </span>
+          // .filter((brand) => brand.liked)
+          .map((brand, idx) => (
+            <div key={idx} className="flex justify-between mb-3">
+              <span className="text-lg font-semibold">{brand.brand_name}</span>
               <img
                 src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/blackheart.png"
                 alt="찜하트"
