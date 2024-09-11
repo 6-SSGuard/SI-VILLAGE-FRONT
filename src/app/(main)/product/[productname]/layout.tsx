@@ -9,7 +9,15 @@ import ProductCategoryTab from '@/components/pages/product/ProductCategoryTab';
 
 export default function layout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  productinfo,
+  reviews,
+  modal,
+}: {
+  children: React.ReactNode;
+  productinfo: React.ReactNode;
+  modal: React.ReactNode;
+  reviews: React.ReactNode;
+}) {
   const pathname = usePathname();
 
   const categories = [
@@ -32,6 +40,9 @@ export default function layout({
         categories={categories}
         onCategorySelect={handleCategorySelect}
       />
+      {modal}
+      {productinfo}
+      {reviews}
       {children}
       <Footer />
       <BottomTabBar />

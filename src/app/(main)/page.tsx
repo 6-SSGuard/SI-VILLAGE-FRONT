@@ -1,17 +1,11 @@
-import AdCarousel from '@/components/icons/common/AdCarousel';
-import ButtonList from '@/components/pages/main/ButtonList';
-import MainCardBanner from '@/components/pages/main/MainCardBanner';
-import MainCarosel from '@/components/pages/main/MainCarosel';
-import MainHotDeal from '@/components/pages/main/MainHotDeal';
-import MainNewCollection from '@/components/pages/main/MainNewCollection';
 import { dealDatas } from '@/datas/dummys/dealDatas';
 import { dealListDataType } from '@/types/domainTypes';
 import { getServerSession } from 'next-auth';
 import { options } from '../api/auth/[...nextauth]/options';
-import ProductQnA from '@/components/pages/product/ProductQnA';
-// import { mainComponentList } from '@/datas/initial/mainComponentList';
-// import { createElement, Suspense } from 'react';
-// import MotionSectionWithMain from '@/components/pages/main/MotionSectionWithMain';
+import { mainComponentList } from '@/datas/initial/mainComponentList';
+import { createElement, Suspense } from 'react';
+import MotionSectionWithMain from '@/components/pages/main/MotionSectionWithMain';
+import MainCarousel from '@/components/pages/main/MainCarousel';
 
 async function getDealData() {
   const res = await dealDatas;
@@ -21,27 +15,25 @@ async function getDealData() {
 }
 
 async function page() {
-  const session = await getServerSession(options);
-  if (!session) return null;
-  console.log('next auth server session', session.user);
+  // const session = await getServerSession(options);
+  // if (!session) return null;
+  // console.log('next auth server session', session.user);
 
   const Data: dealListDataType = await getDealData();
   return (
     <main className="min-h-screen">
-      {/* {mainComponentList.map((component: any) => (
+      <MainCarousel />
+      {mainComponentList.map((component: any) => (
         <Suspense key={component.id} fallback={<div>skeleton</div>}>
           <MotionSectionWithMain
-            component={createElement(component.component, {})}
+            component={
+              component.name === 'MainHotDeal'
+                ? createElement(component.component, { dealData: Data.data })
+                : createElement(component.component)
+            }
           />
         </Suspense>
-      ))} */}
-      <MainCarosel />
-      <ButtonList />
-      <MainCardBanner />
-      <MainNewCollection />
-      <AdCarousel />
-      <MainHotDeal dealData={Data.data} />
-      <ProductQnA />
+      ))}
     </main>
   );
 }

@@ -47,6 +47,9 @@ export default function AuthServiceHeader() {
       case '/product':
         setTitle('test');
         break;
+      case '/officialstore':
+        setTitle('스토어');
+        break;
       default:
         setTitle('');
         break;

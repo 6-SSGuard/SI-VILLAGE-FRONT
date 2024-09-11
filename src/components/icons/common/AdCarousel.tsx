@@ -79,11 +79,11 @@ function AdCarousel() {
               <Image
                 src={slide.imgSrc}
                 alt={`slide-${slide.id}`}
-                layout="responsive"
                 width={350}
                 height={75}
-                objectFit="cover"
                 priority={slide.id === 1}
+                style={{ objectFit: 'cover' }}
+                className="w-full h-auto"
               />
             </div>
           </SwiperSlide>

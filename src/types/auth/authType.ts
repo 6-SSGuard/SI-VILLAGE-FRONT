@@ -31,6 +31,13 @@ export interface withdrawDataRequest {
   reason: string;
 }
 
+export interface commonResType {
+  httpStatus: string;
+  isSuccess: boolean;
+  message: string;
+  result: any;
+}
+
 //성공 Response
 export interface authResponse {
   httpStatus: HttpStatus;
