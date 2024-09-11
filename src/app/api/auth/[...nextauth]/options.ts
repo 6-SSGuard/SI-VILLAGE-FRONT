@@ -102,7 +102,7 @@ export const options: NextAuthOptions = {
   },
   pages: {
     signIn: '/sign-in',
-    error: '/error',
+    error: '/errors',
   },
   // session: {
   //   strategy: 'jwt',

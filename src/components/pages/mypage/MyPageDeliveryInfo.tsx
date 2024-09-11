@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Delivery1Icon from '@/components/icons/profile/delivery1Icon';
-import Delivery2Icon from '@/components/icons/profile/delivery2Icon';
-import Delivery3Icon from '@/components/icons/profile/delivery3Icon';
-import Delivery4Icon from '@/components/icons/profile/delivery4Icon';
-import Delivery5Icon from '@/components/icons/profile/delivery5Icon';
-import DeliveryStatusItem from './DeliveryStatusItem';
+import Delivery1Icon from '@/components/icons/profile/Delivery1Icon';
+import Delivery2Icon from '@/components/icons/profile/Delivery2Icon';
+import Delivery3Icon from '@/components/icons/profile/Delivery3Icon';
+import Delivery4Icon from '@/components/icons/profile/Delivery4Icon';
+import Delivery5Icon from '@/components/icons/profile/Delivery5Icon';
+import DeliveryStatusItem from '@/components/pages/mypage/DeliveryStatusItem';
 
 export default function MyPageDeliveryInfo() {
   const deliveryStatus = [
