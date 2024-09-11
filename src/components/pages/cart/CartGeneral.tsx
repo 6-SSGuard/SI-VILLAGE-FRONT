@@ -35,7 +35,7 @@ function CartGeneral({
     );
     setCheckedItems(updatedCheckedItems);
   };
-
+  console.log(isAllChecked + 'fafaf');
   // 개별 아이템 체크박스 핸들러
   const handleItemCheck = (id: number) => {
     setCheckedItems((prev) => ({
@@ -76,7 +76,7 @@ function CartGeneral({
               {/* 왼쪽 체크박스 */}
               <input
                 type="checkbox"
-                className="mr-2 w-[24px] h-[24px]"
+                className="mr-2 w-[24 px] h-[24px] accent-black"
                 checked={checkedItems[item.id] || false} // 해당 아이템의 체크 상태
                 onChange={() => handleItemCheck(item.id)} // 상태 변경 핸들러
               />

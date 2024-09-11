@@ -28,6 +28,7 @@ const config = {
       },
       fontSize: {
         '8': '8px',
+        '13': '13px',
       },
       fontFamily: {
         'RBC-H': ['RegularBoldCello-Heavy', 'sans-serif'],
