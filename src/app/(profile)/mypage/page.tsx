@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <>
+    <main>
       <MyPageProfile />
       <MyPageDeliveryInfo />
       <MyShoppingInfo />
@@ -22,6 +22,6 @@ export default function page() {
       <MyActiveInfo />
       <MyInterestInfo />
       <MyInfoManagement />
-    </>
+    </main>
   );
 }

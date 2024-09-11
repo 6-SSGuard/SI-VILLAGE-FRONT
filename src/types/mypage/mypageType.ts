@@ -22,11 +22,10 @@ export interface infoDataSelectRequest {
 
 //뷰티정보 등록
 export interface beautyInfoCreateDataRequest {
-  id: number;
   skinType: string;
   skinTone: string;
   scalpTone: string;
-  beautyKeyword: string;
+  beautyKeyword: string[];
 }
 
 //비밀번호 번경

@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import MarketingPurpose from '@/components/dialog/MarketingPurpose';
-import SearchIcon from '@/components/icons/common/SearchIcon';
 import DialogComponent from '@/components/dialog/DialogComponent';
+import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
 
 export default function MarketingField() {
   const [checkedState, setCheckedState] = useState({
@@ -101,9 +101,8 @@ export default function MarketingField() {
                 <MarketingPurpose />
               )
             }
-            className="text-blue-500 underline"
           >
-            <SearchIcon />
+            <ArrowRightIcon />
           </a>
         </div>
 
