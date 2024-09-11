@@ -1,47 +1,39 @@
 import React from 'react';
 import Link from 'next/link';
+import Delivery1Icon from '@/components/icons/profile/delivery1Icon';
+import Delivery2Icon from '@/components/icons/profile/delivery2Icon';
+import Delivery3Icon from '@/components/icons/profile/delivery3Icon';
+import Delivery4Icon from '@/components/icons/profile/delivery4Icon';
+import Delivery5Icon from '@/components/icons/profile/delivery5Icon';
+import DeliveryStatusItem from './DeliveryStatusItem';
 
 export default function MyPageDeliveryInfo() {
+  const deliveryStatus = [
+    { icon: <Delivery1Icon />, label: '주문/결제', count: 0 },
+    { icon: <Delivery2Icon />, label: '상품준비중', count: 0 },
+    { icon: <Delivery3Icon />, label: '배송준비중', count: 0 },
+    { icon: <Delivery4Icon />, label: '배송중', count: 0 },
+    { icon: <Delivery5Icon />, label: '배송완료', count: 0 },
+  ];
   return (
-    <div className="p-4">
+    <div>
       <div className="bg-gray-100 p-4 rounded-md">
         <h2 className="text-lg font-semibold mb-4">
-          {/* 주문 조회 링크로 연결시키기 */}
+          {/* 주문 조회 링크로 연결 */}
           <Link href="#" passHref>
             주문/배송 조회
           </Link>
         </h2>
-        <ul className="flex flex-row space-x-4 text-xs">
-          <li className="flex items-center">
-            <span className="flex flex-col items-center">
-              <p>주문/결제</p>
-              <p>0</p>
-            </span>
-          </li>
-          <li className="flex items-center">
-            <span className="flex flex-col items-center">
-              <p>상품준비중</p>
-              <p>0</p>
-            </span>
-          </li>
-          <li className="flex items-center">
-            <span className="flex flex-col items-center">
-              <p>배송준비중</p>
-              <p>0</p>
-            </span>
-          </li>
-          <li className="flex items-center">
-            <span className="flex flex-col items-center">
-              <p>배송중</p>
-              <p>0</p>
-            </span>
-          </li>
-          <li className="flex items-center">
-            <span className="flex flex-col items-center">
-              <p>배송완료</p>
-              <p>0</p>
-            </span>
-          </li>
+        <ul className="flex flex-row space-x-4 text-xs text-[#787878]">
+          {/* 반복되는 배송 상태 컴포넌트 */}
+          {deliveryStatus.map((status, index) => (
+            <DeliveryStatusItem
+              key={index}
+              icon={status.icon}
+              label={status.label}
+              count={status.count}
+            />
+          ))}
         </ul>
       </div>
     </div>

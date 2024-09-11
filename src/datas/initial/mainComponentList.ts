@@ -8,31 +8,26 @@ import MainNewCollection from '@/components/pages/main/MainNewCollection';
 export const mainComponentList = [
   {
     id: 1,
-    name: 'MainEventBannerList',
-    component: MainCarousel,
-  },
-  {
-    id: 2,
     name: 'MainCategoryList',
     component: MainCategoryList,
   },
   {
-    id: 3,
+    id: 2,
     name: 'MainCardBanner',
     component: MainCardBanner,
   },
   {
-    id: 4,
+    id: 3,
     name: 'MainNewCollection',
     component: MainNewCollection,
   },
   {
-    id: 5,
+    id: 4,
     name: 'AdCarousel',
     component: AdCarousel,
   },
   {
-    id: 6,
+    id: 5,
     name: 'MainHotDeal',
     component: MainHotDeal,
   },

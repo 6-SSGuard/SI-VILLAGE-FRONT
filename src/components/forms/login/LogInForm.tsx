@@ -6,14 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 
-// function LogInForm(
-//   {
-//     // handleSignIn,
-//   }: {
-//     // handleSignIn: (formData: FormData) => void;
-//   }
-// )
-
 function LogInForm() {
   const auth = useSession();
 
@@ -71,22 +63,12 @@ function LogInForm() {
           </div>
         </div>
       </div>
-      {auth && auth?.status === 'authenticated' ? (
-        <Button type="button" className="w-full" onClick={() => signOut()}>
-          로그아웃
-        </Button>
-      ) : (
-        <Button type="submit" className="w-full">
-          로그인
-        </Button>
-      )}
-
-      {/* <Button
+      <Button
         className="w-full h-12 mt-5 bg-[#131922] text-white"
         type="submit"
       >
         로그인
-      </Button> */}
+      </Button>
 
       {/* 소셜 로그인 레이아웃 */}
       <div className="flex space-x-6 my-8 items-center justify-center">
