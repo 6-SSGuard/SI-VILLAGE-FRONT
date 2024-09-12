@@ -34,6 +34,7 @@ const config = {
         'RBC-H': ['RegularBoldCello-Heavy', 'sans-serif'],
       },
       colors: {
+        'Black': '#000000',
         'si-text-gray': '#929292',
         'border': 'hsl(var(--border))',
         'input': 'hsl(var(--input))',

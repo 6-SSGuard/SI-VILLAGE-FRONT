@@ -59,4 +59,5 @@ export interface bestCreateDataType {
   Product_Content: string;
   Product_DiscountRate: number;
   Product_price: number;
+  category: string;
 }
