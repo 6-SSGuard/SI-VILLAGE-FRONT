@@ -52,8 +52,8 @@ function BestPage({ data }: { data: bestCreateDataType[] }) {
   return (
     <div className="flex flex-col w-full pl-6">
       {/* 필터바와 V 버튼을 포함하는 컨테이너 */}
-      <div className="flex flex-col bg-white">
-        <div className="flex items-center w-full">
+      <div className="relative bg-white z-20">
+        <div className=" items-center w-full relative">
           {/* 필터바 */}
           <div className="flex w-full whitespace-nowrap overflow-x-hidden">
             <ul

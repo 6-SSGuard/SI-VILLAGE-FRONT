@@ -7,6 +7,7 @@ export const bestData: bestCreateListDataType = {
   data: [
     {
       id: 1,
+      productname: '01P0000000025',
       ProductNumber: '1',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/s3/goods/org/046/240816027921046.jpg',
@@ -20,6 +21,7 @@ export const bestData: bestCreateListDataType = {
 
     {
       id: 2,
+      productname: '01P0000000026',
       ProductNumber: '2',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/s3/goods/org/046/240816027921046.jpg',
@@ -33,6 +35,7 @@ export const bestData: bestCreateListDataType = {
 
     {
       id: 3,
+      productname: '01P0000000027',
       ProductNumber: '3',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/s3/goods/org/891/240819028284891.jpg',
@@ -46,6 +49,7 @@ export const bestData: bestCreateListDataType = {
 
     {
       id: 4,
+      productname: '01P0000000028',
       ProductNumber: '4',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/goods/org/417/230310004444417.jpg',
@@ -59,6 +63,7 @@ export const bestData: bestCreateListDataType = {
 
     {
       id: 5,
+      productname: '01P0000000029',
       ProductNumber: '5',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/s3/goods/org/193/240820028329193.jpg',
@@ -73,6 +78,7 @@ export const bestData: bestCreateListDataType = {
     {
       id: 6,
       ProductNumber: '6',
+      productname: '01P0000000030',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/s3/goods/org/046/240816027921046.jpg',
       Product_Title: 'HERNO',
@@ -86,6 +92,7 @@ export const bestData: bestCreateListDataType = {
     {
       id: 7,
       ProductNumber: '7',
+      productname: '01P0000000031',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/goods/org/464/230317004505464.jpg',
       Product_Title: 'GIORGIO ARMANI',
@@ -98,6 +105,7 @@ export const bestData: bestCreateListDataType = {
 
     {
       id: 8,
+      productname: '01P0000000032',
       ProductNumber: '8',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/goods/org/464/230317004505464.jpg',
@@ -112,6 +120,7 @@ export const bestData: bestCreateListDataType = {
     {
       id: 9,
       ProductNumber: '9',
+      productname: '01P0000000033',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/goods/org/464/230317004505464.jpg',
       Product_Title: 'GIORGIO ARMANI',
@@ -124,6 +133,7 @@ export const bestData: bestCreateListDataType = {
 
     {
       id: 10,
+      productname: '01P0000000034',
       ProductNumber: '10',
       ProductImage:
         'https://image.sivillage.com/upload/C00001/goods/org/464/230317004505464.jpg',

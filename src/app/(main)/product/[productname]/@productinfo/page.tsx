@@ -1,6 +1,10 @@
 import React from 'react';
-
-function page() {
+import DetailProductInfo from '@/components/pages/detail/DetailProductInfo';
+import { ProductData } from '@/datas/detailproductdatas';
+import { ReviewInfoData } from '@/datas/detailproductdatas';
+import { DetailProductList } from '@/types/detail/detailproductinfo';
+import { DetailReviewInfoListType } from '@/types/detail/detailReviewType';
+async function page() {
   const productInfo = `
   <div class="detail__tab-info detail__tab " data-iframe-height="" style="transform-origin: 0px 0px; transform: translate(0px, 0px) scale(1, 1);">
 <div class="detail__tab-info-guide"><div class="detail__tab-info-guide-size">
@@ -149,7 +153,39 @@ function page() {
 </div>
 <!-- //SVG-5245 상품상세 템플릿 -->
 </div></div>`;
-  return <div dangerouslySetInnerHTML={{ __html: productInfo }}></div>;
+
+  //제품 상세정보에 대한 데이터
+  async function getProductInfoListDatas() {
+    const data = await ProductData;
+
+    return data;
+  }
+
+  //리뷰에 대한 정보 데이터
+  async function getReviewInfoListDatas() {
+    const photoData = await ReviewInfoData;
+    return photoData;
+  }
+
+  // //전체리뷰에 대한 데이터 정보 불러오기
+  // async function getReviewListDatas() {
+  //   const ListData = await ReviewListData;
+  //   return ListData;
+  // }
+
+  const Data: DetailProductList = await getProductInfoListDatas();
+  const ReviewData: DetailReviewInfoListType = await getReviewInfoListDatas();
+  // const ListData: DetailReviewListType = await getReviewListDatas();
+
+  return (
+    // <div dangerouslySetInnerHTML={{ __html: productInfo }}>
+    // </div>;
+
+    <main className="flex-col overflow-auto">
+      <DetailProductInfo data={Data.data} />
+      {/* <DetailReview photoData={Photo.data} ListData={ListData.data} /> */}
+    </main>
+  );
 }
 
 export default page;

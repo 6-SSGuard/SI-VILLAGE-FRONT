@@ -52,6 +52,7 @@ export interface bestCreateListDataType {
 
 export interface bestCreateDataType {
   id: number;
+  productname: string;
   ProductNumber: string;
   isLike: boolean;
   ProductImage: string;

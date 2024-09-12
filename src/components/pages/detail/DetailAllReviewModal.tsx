@@ -1,32 +1,29 @@
 import React from 'react';
-import Image from 'next/image';
-import { FilterIcon, Key } from 'lucide-react';
-import { StarIcon } from 'lucide-react';
-import { DetailPhotoReviewDataType } from '@/types/detail/detailReviewPhotoType';
+import { FilterIcon, StarIcon } from 'lucide-react';
 import DetailPhotoReviewImageList from './DetailPhotoReviewImageList';
-import {
-  DetailReviewDataType,
-  DetailReviewListType,
-} from '@/types/detail/detailReviewListType';
-
-function DetailReviewList({
-  photoData,
-  ListData,
+import { DetailReviewInfoDataType } from '@/types/detail/detailReviewType';
+import Image from 'next/image';
+function DetailAllReviewModal({
+  data,
   count,
 }: {
-  photoData: DetailPhotoReviewDataType[];
-  ListData: DetailReviewDataType[];
+  data: DetailReviewInfoDataType[];
   count: number;
 }) {
   return (
-    //리뷰 페이지 전체 크기 레이아웃
     <div className="flex-col h-auto">
+      {/* 헤더바 */}
+      <div className="flex sticky top-0 text-lg h-8 items-center justify-center py-2">
+        리뷰 전체 보기
+        <p className="text-gray-500 ">{count}</p>
+        <button className="w-[32px] h-[32px] pl-24">X</button>
+      </div>
+
       {/* 리뷰 별점, 포토리뷰 레이아웃 */}
       <div className="flex-col px-3">
         {/* 리뷰 상단 레이아웃 */}
-        <div className="flex items-center justify-center text-lg">
-          리뷰 전체 보기
-          <p className="text-lg text-gray-400">({count})</p>
+        <div className="flex p-3 justify-between">
+          <p className="text-sm text-gray-500 underline">리뷰 혜택보기</p>
         </div>
 
         {/* 리뷰 중단 레이아웃 */}
@@ -43,8 +40,7 @@ function DetailReviewList({
         <div className="flex flex-col px-3 py-2">
           <p className="text-sm font-light">포토리뷰 모아보기</p>
 
-          {/* 포토리뷰 컴포넌트 */}
-          <DetailPhotoReviewImageList photoData={photoData} />
+          <DetailPhotoReviewImageList photoData={data} />
         </div>
       </div>
 
@@ -60,7 +56,7 @@ function DetailReviewList({
       {/* 리뷰 아이템 */}
       <div className="flex-col h-[152px] mt-3 mx-4 pl-2 ">
         <ul className="flex-col overflow-hidden text-wrap">
-          {ListData.map((item) => (
+          {data.map((item) => (
             <div className="flex-col" key={item.id}>
               {/* 별점 */}
               <li>
@@ -85,7 +81,7 @@ function DetailReviewList({
                     className="w-[16px] h-[16px] object-cover"
                   ></Image>
 
-                  <p className="text-xs ml-2">{item.count}</p>
+                  <p className="text-xs ml-2">{item.likeNumber}</p>
                 </div>
               </li>
 
@@ -109,4 +105,4 @@ function DetailReviewList({
   );
 }
 
-export default DetailReviewList;
+export default DetailAllReviewModal;
