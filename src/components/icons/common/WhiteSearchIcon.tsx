@@ -18,7 +18,7 @@ function WhiteSearchIcon({ isWhite }: { isWhite: boolean }) {
         </mask>
         <path
           d="M14 23.5a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19zM28 28l-7.592-7.592"
-          stroke={isWhite ? '#FFFFFF' : 'black'}
+          stroke={!isWhite ? 'black' : '#FFFFFF'}
           mask="url(#b)"
         />
       </g>

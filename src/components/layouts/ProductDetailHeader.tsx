@@ -16,18 +16,45 @@ function ProductDetailHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // 스크롤 방향에 따라 isWhite 값을 변경
-    setIsWhite(!isVisible.isHeaderVisible);
-  }, [isVisible.isHeaderVisible]);
+    const handleScroll = () => {
+      if (window.scrollY < 56) {
+        setIsWhite(true);
+      } else {
+        setIsWhite(!isVisible.isScrollingUp);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isVisible.isScrollingUp]);
 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 56) {
+        setIsScrolled(true);
+        setIsWhite(false);
+      } else {
+        setIsScrolled(false);
+        setIsWhite(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
     <div className="relative w-full h-[170px]">
       <div
@@ -39,8 +66,12 @@ function ProductDetailHeader() {
         }}
       />
       <header
-        className={`fixed top-0 left-0 w-full h-[56px] flex items-center justify-between p-[0_14px_0_0] z-10 transition-transform ${
-          isVisible.isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+        className={`fixed top-0 left-0 w-full h-[56px] flex items-center justify-between p-[0_14px_0_0] z-10 transition-all duration-300 ${
+          isScrolled
+            ? isVisible.isScrollingUp
+              ? 'translate-y-0 bg-white'
+              : '-translate-y-full'
+            : 'translate-y-0 bg-transparent'
         }`}
       >
         {/* 왼쪽 그룹 */}

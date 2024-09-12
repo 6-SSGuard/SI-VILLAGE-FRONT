@@ -37,7 +37,7 @@ function WhiteBackIcon({ isWhite }: { isWhite: boolean }) {
                 ></use>
                 <polyline
                   id="Path"
-                  stroke={isWhite ? '#FFFFFF' : 'black'}
+                  stroke={!isWhite ? 'black' : '#FFFFFF'}
                   mask="url(#mask-2)"
                   points="21 6 11 16 21 26"
                 ></polyline>

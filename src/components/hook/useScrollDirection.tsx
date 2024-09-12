@@ -10,12 +10,12 @@ function useScrollDirection() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 56) {
+      if (currentScrollY > 60) {
         setIsHeaderVisible(false);
         setIsScrollingUp(currentScrollY < lastScrollY);
       } else {
         setIsHeaderVisible(true);
-        setIsScrollingUp(currentScrollY < lastScrollY);
+        setIsScrollingUp(true);
       }
 
       setLastScrollY(currentScrollY);

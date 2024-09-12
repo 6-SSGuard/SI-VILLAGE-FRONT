@@ -1,6 +1,7 @@
 import React from 'react';
 
 function WhiteBagIcon({ isWhite }: { isWhite: boolean }) {
+  console.log(isWhite);
   return (
     <svg
       width="32px"
@@ -13,7 +14,7 @@ function WhiteBagIcon({ isWhite }: { isWhite: boolean }) {
       <title>5C30F9F7-7763-4C57-9835-187FC900560C</title>
       <g
         id="04.-공통-헤더-부분-개선-:-SIV,자주"
-        stroke={isWhite ? '#FFFFFF' : 'black'}
+        stroke={!isWhite ? 'black' : '#FFFFFF'}
         strokeWidth="1"
         fill="none"
         fillRule="evenodd"
@@ -31,7 +32,7 @@ function WhiteBagIcon({ isWhite }: { isWhite: boolean }) {
                 <path
                   d="M26.9355574,10.5 L24.8695852,27.5 L7.13041483,27.5 L5.06444261,10.5 L26.9355574,10.5 Z"
                   id="Path-2"
-                  stroke={isWhite ? '#FFFFFF' : 'black'}
+                  stroke={!isWhite ? 'black' : '#FFFFFF'}
                   transform="translate(16, 19) rotate(-180) translate(-16, -19)"
                 ></path>
                 <path

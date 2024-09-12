@@ -15,7 +15,7 @@ function WhiteHome({ isWhite }: { isWhite: boolean }) {
         <g
           id="05_Detail_v2_0001_Full"
           transform="translate(-64.000000, -56.000000)"
-          stroke={isWhite ? '#FFFFFF' : 'black'}
+          stroke={!isWhite ? 'black' : '#FFFFFF'}
         >
           <g id="Header" transform="translate(-0.000000, 0.000000)">
             <g
