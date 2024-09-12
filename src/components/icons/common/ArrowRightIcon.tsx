@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ArrowLeftIcon() {
+export default function ArrowRightIcon() {
   return (
     <svg
       width="16"

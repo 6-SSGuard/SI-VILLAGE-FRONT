@@ -1,5 +1,5 @@
 import React from 'react';
-import BestButtonList from '@/components/best/BestButtonList';
+import BestButtonList from '@/components/pages/best/BestButtonList';
 
 import { bestData } from '@/datas/bestDatas';
 async function getBestAllDatas() {

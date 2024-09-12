@@ -3,34 +3,26 @@ import React from 'react';
 export default function ArrowBottomIcon() {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 28 28"
-      transform="scale(-1, 1) rotate(90)"
-      fill="none"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
       xmlns="http://www.w3.org/2000/svg"
+      xlinkHref="http://www.w3.org/1999/xlink"
     >
-      <g clipPath="url(#clip0_42_182)">
-        <mask
-          id="mask0_42_182"
-          style={{ maskType: 'luminance' }}
-          maskUnits="userSpaceOnUse"
-          x="0"
-          y="0"
-          width="32"
-          height="32"
-        >
-          <path d="M0 0H32V32H0V0Z" fill="white" />
-        </mask>
-        <g mask="url(#mask0_42_182)">
-          <path d="M21 6L11 16L21 26" stroke="black" />
-        </g>
-      </g>
       <defs>
-        <clipPath id="clip0_42_182">
-          <rect width="32" height="32" fill="white" />
-        </clipPath>
+        <path id="a" d="M0 0h16v16H0z" />
       </defs>
+      <g fill="none" fillRule="evenodd">
+        <mask id="b" fill="#fff">
+          <use xlinkHref="#a" />
+        </mask>
+        <path
+          d="m10.5 3-5 5 5 5"
+          stroke="#000"
+          mask="url(#b)"
+          transform="rotate(-90 8 8)"
+        />
+      </g>
     </svg>
   );
 }
