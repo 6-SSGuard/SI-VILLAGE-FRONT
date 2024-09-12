@@ -47,9 +47,6 @@ export default function AuthServiceHeader() {
       case '/product':
         setTitle('test');
         break;
-      case '/officialstore':
-        setTitle('스토어');
-        break;
       default:
         setTitle('');
         break;
@@ -104,7 +101,7 @@ export default function AuthServiceHeader() {
           {/* 마지막 li */}
           <li>
             <ul className="flex items-center gap-4">
-              <li onClick={openModal} className="cursor-pointer">
+              <li onClick={openModal}>
                 <SearchIcon />
               </li>
 
