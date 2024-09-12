@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import SearchIcon from '@/components/icons/common/SearchIcon';
 import BrandList from './BrandList';
+import { brandResponse } from '@/types/product/brandType';
 
-function Search() {
+function Search({ brandData }: { brandData: brandResponse[] }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +22,7 @@ function Search() {
           className="w-full mx-2 bg-transparent focus:outline-none placeholder-gray-300 text-black focus:text-black"
         />
       </div>
-      <BrandList searchQuery={searchQuery} />
+      <BrandList searchQuery={searchQuery} brandData={brandData} />
     </>
   );
 }

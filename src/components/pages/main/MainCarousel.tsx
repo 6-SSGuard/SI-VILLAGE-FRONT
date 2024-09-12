@@ -141,7 +141,7 @@ export const slideData = [
   },
 ];
 
-function MainCarosel() {
+function MainCarousel() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -194,10 +194,8 @@ function MainCarosel() {
               <Image
                 src={slide.imgSrc}
                 alt={`slide-${slide.id}`}
-                layout="responsive"
                 width={400}
                 height={300}
-                objectFit="cover"
                 priority={slide.id === 1}
               />
               <div className="absolute inset-0 flex items-center justify-center mt-20">
@@ -219,18 +217,28 @@ function MainCarosel() {
           onClick={handlePauseToggle}
           className="items-center justify-center"
         >
-          <Image src="/pause.png" alt="pause" width={16} height={16} />
+          <Image
+            src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/pause.png"
+            alt="pause"
+            width={16}
+            height={16}
+          />
         </button>
         <div className="text-xs items-center justify-center">
           <span className="font-bold">{currentPage}</span> /{' '}
           <span>{slideData.length}</span>
         </div>
         <button className="text-[10px] items-center justify-center">
-          <Image src="/plus.png" alt="plus" width={16} height={16} />
+          <Image
+            src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/plus.png"
+            alt="plus"
+            width={16}
+            height={16}
+          />
         </button>
       </div>
     </div>
   );
 }
 
-export default MainCarosel;
+export default MainCarousel;

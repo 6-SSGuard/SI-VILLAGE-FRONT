@@ -1,5 +1,5 @@
 import React from 'react';
-import { eventDatas } from '@/datas/eventDatas';
+import { eventDatas } from '@/datas/dummys/eventDatas';
 import { eventListDataType } from '@/types/eventTypes';
 import EventListContainer from './mainevent/eventcontainer';
 import EventFilter from '@/components/pages/event/EventFilter';
