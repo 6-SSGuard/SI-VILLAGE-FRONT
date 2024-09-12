@@ -1,5 +1,5 @@
 'use client';
-import { cartMenuData } from '@/datas/cartMenuData';
+import { cartMenuData } from '@/datas/dummys/cartMenuData';
 import CartMenuItem from './CartMenuItem';
 import React, { useState } from 'react';
 

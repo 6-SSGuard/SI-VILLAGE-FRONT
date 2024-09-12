@@ -9,7 +9,7 @@ export interface ButtonProps {
   label: string; // 버튼 레이블
 }
 
-function Images({ href, src, alt, label }: ButtonProps) {
+function CategoryImages({ href, src, alt, label }: ButtonProps) {
   return (
     <div className="flex flex-col items-center">
       <Link href={href} className="mt-4 flex flex-col items-center">
@@ -26,4 +26,4 @@ function Images({ href, src, alt, label }: ButtonProps) {
   );
 }
 
-export default Images;
+export default CategoryImages;

@@ -8,7 +8,7 @@ export interface dealCardDataType {
   dealImageUrl: string;
   brandName: string;
   brandTitle: string;
-  discountPrice: string;
-  discountRate: string;
+  discountPrice: number;
+  discountRate: number;
   badgeList: string[];
 }
