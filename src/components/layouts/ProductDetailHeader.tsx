@@ -57,14 +57,6 @@ function ProductDetailHeader() {
 
   return (
     <div className="relative w-full">
-      {/* <div
-        className="absolute inset-0 h-[170px] w-full"
-        style={{
-          background:
-            'linear-gradient(rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%)',
-          zIndex: -1,
-        }}
-      /> */}
       <header
         className={`fixed top-0 left-0 w-full h-[56px] flex items-center justify-between p-[0_14px_0_0] z-20 transition-all duration-300 ${
           isScrolled
