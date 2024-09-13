@@ -25,7 +25,7 @@ function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
   const ProductItemData = data.find((item) => item.productname === productname);
 
   return (
-    <div className="w-[400px] h-[580px] px-6">
+    <div className="w-full h-[580px]">
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={10} // 슬라이드 간의 간격
@@ -37,7 +37,7 @@ function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
       >
         {ProductItemData?.productImageList.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="w-[400px] h-[550px]">
+            <div className="w-[400px] h-[550px] z-10">
               <Image
                 src={item}
                 alt="test"
@@ -45,6 +45,13 @@ function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
                 height={600}
                 className="object-cover w-[450px] h-[550px]" // 이미지가 슬라이드에 맞게 꽉 차도록 설정
               />
+              <div
+                className="absolute top-0 left-0 w-full h-[170px] z-10"
+                style={{
+                  background:
+                    'linear-gradient(rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%)',
+                }}
+              ></div>
             </div>
           </SwiperSlide>
         ))}
