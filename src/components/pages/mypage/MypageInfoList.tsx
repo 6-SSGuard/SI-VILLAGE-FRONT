@@ -12,7 +12,7 @@ const MypageInfoList: React.FC<InfoListProps> = ({ title, items }) => {
       <strong className="block text-sm font-bold mb-1 border-b border-black leading-10">
         {title}
       </strong>
-      <ul className="text-[#131922] leading-10">
+      <ul className="text-si-131922 leading-10">
         {items.map((item, index) => (
           <ListItem key={index} text={item.text} href={item.href} />
         ))}

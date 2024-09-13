@@ -15,7 +15,7 @@ const StoreCategoryList: React.FC<CategoryListProps> = ({ categories }) => {
   return (
     <div className="px-6">
       {/* Display the total number of items */}
-      <p className="text-[#131922] font-bold mb-2 mt-4">
+      <p className="text-si-131922 font-bold mb-2 mt-4">
         총 <span className="text-[#d99c63]">{categories.length}</span>건
       </p>
 

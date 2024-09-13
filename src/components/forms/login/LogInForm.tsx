@@ -64,7 +64,7 @@ function LogInForm() {
         </div>
       </div>
       <Button
-        className="w-full h-12 mt-5 bg-[#131922] text-white"
+        className="w-full h-12 mt-5 bg-si-131922 text-white"
         type="submit"
       >
         로그인

@@ -33,7 +33,7 @@ function StoreTab() {
                 className={`${
                   activeTab === category.label
                     ? 'border-b-2 border-black'
-                    : 'text-[#929292]'
+                    : 'text-si-text-gray'
                 } pb-2`}
               >
                 {category.label}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ArrowTopIcon from '@/components/icons/common/ArrowTopIcon';
 import ArrowBottomIcon from '@/components/icons/common/ArrowBottomIcon';
 import SiButton from '@/components/icons/common/SiButton';
+import MaskedWriter from '@/components/layouts/MaskedWriter';
 
 function ProductQnA({ productname }: { productname: string }) {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
@@ -32,7 +33,7 @@ function ProductQnA({ productname }: { productname: string }) {
             <p
               className={`inline-block px-2 py-1 text-[10px] ${
                 qna.answerstatus
-                  ? 'text-white bg-[#131922]'
+                  ? 'text-white bg-si-131922'
                   : 'bg-[#c8c8c8] text-white'
               }`}
             >
@@ -63,7 +64,7 @@ function ProductQnA({ productname }: { productname: string }) {
               </>
             )}
             <div className="text-xs text-gray-500">
-              <span>{maskWriter(qna.writer)}</span>
+              <MaskedWriter writer={qna.writer} />
               <span className="ml-2">{qna.date}</span>
             </div>
           </div>
@@ -116,8 +117,3 @@ const QnAList = {
     },
   ],
 };
-
-// Helper function to mask the writer's name after 4 characters
-function maskWriter(writer: string) {
-  return writer.slice(0, 4) + '******';
-}

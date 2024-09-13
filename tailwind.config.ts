@@ -36,6 +36,7 @@ const config = {
       colors: {
         'Black': '#000000',
         'si-text-gray': '#929292',
+        'si-131922': '#131922',
         'border': 'hsl(var(--border))',
         'input': 'hsl(var(--input))',
         'ring': 'hsl(var(--ring))',

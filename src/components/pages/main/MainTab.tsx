@@ -20,7 +20,7 @@ function MainTab() {
               className={`${
                 activeTab === 'Home'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Home
@@ -32,7 +32,7 @@ function MainTab() {
               className={`${
                 activeTab === 'Event'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Event
@@ -44,7 +44,7 @@ function MainTab() {
               className={`${
                 activeTab === 'Deal'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Deal
@@ -56,7 +56,7 @@ function MainTab() {
               className={`${
                 activeTab === 'Best'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Best
@@ -67,7 +67,7 @@ function MainTab() {
             className={`${
               activeTab === 'SILIVE'
                 ? 'border-b-2 border-black'
-                : 'text-[#929292]'
+                : 'text-si-text-gray'
             } pb-2`}
           >
             S.I.LIVE
@@ -77,7 +77,7 @@ function MainTab() {
             className={`${
               activeTab === 'Content'
                 ? 'border-b-2 border-black'
-                : 'text-[#929292]'
+                : 'text-si-text-gray'
             } pb-2`}
           >
             Content
@@ -87,7 +87,7 @@ function MainTab() {
             className={`${
               activeTab === 'SSG DF'
                 ? 'border-b-2 border-black'
-                : 'text-[#929292]'
+                : 'text-si-text-gray'
             } pb-2`}
           >
             SSG DF

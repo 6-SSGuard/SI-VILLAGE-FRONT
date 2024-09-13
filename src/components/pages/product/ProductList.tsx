@@ -142,7 +142,7 @@ function ProductList() {
           {filters.map((filter, index) => (
             <button
               key={index}
-              className="flex-shrink-0 h-[40px] p-[11px_12px_10px] text-sm border border-gray-300 text-[#131922] whitespace-nowrap"
+              className="flex-shrink-0 h-[40px] p-[11px_12px_10px] text-sm border border-gray-300 text-si-131922 whitespace-nowrap"
             >
               {filter}
             </button>

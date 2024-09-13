@@ -12,7 +12,7 @@ function DetailProductBottomBtn() {
       </Link>
       <Link
         href="#"
-        className="bg-[#131922] w-1/2 h-full flex justify-center items-center"
+        className="bg-si-131922 w-1/2 h-full flex justify-center items-center"
       >
         바로 구매
       </Link>

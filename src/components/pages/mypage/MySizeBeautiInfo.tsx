@@ -17,7 +17,9 @@ function MySizeBeautiInfo() {
         <TabsTrigger
           value="size"
           className={`${
-            activeTab === 'size' ? 'border-b-2 border-black' : 'text-[#929292]'
+            activeTab === 'size'
+              ? 'border-b-2 border-black'
+              : 'text-si-text-gray'
           } pb-2 w-full`}
         >
           나의 사이즈
@@ -28,7 +30,7 @@ function MySizeBeautiInfo() {
           className={`${
             activeTab === 'beautiInfo'
               ? 'border-b-2 border-black '
-              : 'text-[#929292]'
+              : 'text-si-text-gray'
           } pb-2 w-full`}
         >
           나의 뷰티정보
@@ -39,7 +41,7 @@ function MySizeBeautiInfo() {
           <MySizeForm />
           <InfoAgree />
           <Button
-            className="w-11/12 h-12 mb-20 bg-[#131922] text-white font-semibold"
+            className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
             type="submit"
           >
             나의 사이즈 등록
@@ -51,7 +53,7 @@ function MySizeBeautiInfo() {
           <MyBeautiForm />
           <InfoAgree />
           <Button
-            className="w-11/12 h-12 mb-20 bg-[#131922] text-white font-semibold"
+            className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
             type="submit"
           >
             나의 뷰티정보 등록
