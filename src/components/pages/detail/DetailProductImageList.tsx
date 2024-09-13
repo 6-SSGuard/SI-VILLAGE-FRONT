@@ -23,10 +23,6 @@ function DetailProductImageList({ data }: { data: DetailProductImageData[] }) {
         spaceBetween={10} // 슬라이드 간의 간격
         slidesPerView={1} // 한 번에 하나의 슬라이드만 표시
         loop={true} // 슬라이더가 끝나면 처음으로 돌아가도록 설정
-        autoplay={{
-          delay: 4000, // 3초마다 자동 슬라이드
-          disableOnInteraction: false, // 사용자가 상호작용해도 자동 슬라이드 유지
-        }}
         onSlideChange={handleSlideChange}
         // pagination={{ clickable: true }} // 페이지네이션 활성화
         // 좌우 네비게이션 버튼 활성화

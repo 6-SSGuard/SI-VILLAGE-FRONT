@@ -1,5 +1,8 @@
 import { bestCreateListDataType } from '@/types/best/bestTypes';
-
+import BestIconNo1 from '@/components/icons/tabs/tab1';
+import BestIconNo2 from '@/components/icons/tabs/bestmenutab2';
+import BestIconNo3 from '@/components/icons/tabs/BestTab3';
+import { Icon } from 'lucide-react';
 export const bestData: bestCreateListDataType = {
   data: [
     {
@@ -12,6 +15,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 30,
       Product_price: 830000,
       isLike: false,
+      category: '여성의류',
     },
 
     {
@@ -24,6 +28,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 5,
       Product_price: 265000,
       isLike: false,
+      category: '뷰티',
     },
 
     {
@@ -36,6 +41,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 5,
       Product_price: 266000,
       isLike: false,
+      category: '뷰티',
     },
 
     {
@@ -48,6 +54,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 5,
       Product_price: 265000,
       isLike: false,
+      category: '뷰티',
     },
 
     {
@@ -60,6 +67,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 20,
       Product_price: 639000,
       isLike: false,
+      category: '뷰티',
     },
 
     {
@@ -72,6 +80,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 33,
       Product_price: 924350,
       isLike: false,
+      category: '뷰티',
     },
 
     {
@@ -84,6 +93,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 67,
       Product_price: 2747080,
       isLike: false,
+      category: '남성의류',
     },
 
     {
@@ -96,6 +106,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 67,
       Product_price: 2747080,
       isLike: false,
+      category: '남성의류',
     },
 
     {
@@ -108,6 +119,7 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 67,
       Product_price: 2747080,
       isLike: false,
+      category: '뷰티',
     },
 
     {
@@ -120,6 +132,34 @@ export const bestData: bestCreateListDataType = {
       Product_DiscountRate: 67,
       Product_price: 2747080,
       isLike: false,
+      category: '액세사리',
     },
   ],
 };
+
+export const CategoryData = [
+  {
+    id: 1,
+    Icon: BestIconNo1,
+    title: '인기있는 상품',
+    content: 'popularProduct',
+    url: '/best/popular',
+  },
+
+  {
+    id: 2,
+    Icon: BestIconNo2,
+    title: '많이 보는 상품',
+    content: 'manyProduct',
+    url: '/best/most',
+  },
+
+  {
+    id: 3,
+    Icon: BestIconNo3,
+    title: '선물하기 좋은 상품',
+    content: 'giftProduct',
+
+    url: '/best/gift',
+  },
+];
