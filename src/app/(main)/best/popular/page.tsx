@@ -1,7 +1,7 @@
 import React from 'react';
-import BestButtonList from '@/components/best/BestButtonList';
+import BestButtonList from '@/components/pages/best/BestButtonList';
 import { Button } from '@/components/ui/button';
-import { bestData } from '@/datas/bestDatas';
+import { bestData } from '@/datas/dummys/bestDatas';
 async function getBestAllDatas() {
   const data = await bestData;
   return data;

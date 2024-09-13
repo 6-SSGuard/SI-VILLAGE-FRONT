@@ -1,6 +1,6 @@
 'use client';
 import React, { createElement } from 'react';
-import { CategoryData } from '@/datas/bestDatas';
+import { CategoryData } from '@/datas/dummys/bestDatas';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 

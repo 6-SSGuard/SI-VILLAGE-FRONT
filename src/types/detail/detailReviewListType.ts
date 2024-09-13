@@ -15,4 +15,5 @@ export interface DetailReviewDataType {
   color: string;
   content: string;
   count: number;
+  photoImageList: string[];
 }

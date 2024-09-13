@@ -1,4 +1,5 @@
 'use client';
+import { useParams } from 'next/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -6,18 +7,25 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Image from 'next/image';
 import { useState } from 'react';
-import { DetailProductImageData } from '@/types/detail/detailType';
+import { DetailProductInfoData } from '@/types/detail/detailproductinfo';
 import { Swiper as SwiperType } from 'swiper/types';
+import { Item } from '@radix-ui/react-select';
 
-function DetailProductImageList({ data }: { data: DetailProductImageData[] }) {
+function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
   //스와이퍼 인덱스 로직
   const [currentPage, setCurrentPage] = useState(1);
   const handleSlideChange = (swiper: SwiperType) => {
     setCurrentPage(swiper.realIndex + 1);
   };
 
+  //베스트 페이지에서 전달받은 productname확인
+  //라우터 객체 생성 => 전달받은 라우팅값을 productname 에 저장
+  const router = useParams();
+  const productname = router.productname;
+  const ProductItemData = data.find((item) => item.productname === productname);
+
   return (
-    <div className="w-[400px] h-[580px]">
+    <div className="w-[400px] h-[580px] px-6">
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={10} // 슬라이드 간의 간격
@@ -27,12 +35,12 @@ function DetailProductImageList({ data }: { data: DetailProductImageData[] }) {
         // pagination={{ clickable: true }} // 페이지네이션 활성화
         // 좌우 네비게이션 버튼 활성화
       >
-        {data.map((item) => (
-          <SwiperSlide key={item.id}>
+        {ProductItemData?.productImageList.map((item, index) => (
+          <SwiperSlide key={index}>
             <div className="w-[400px] h-[550px]">
               <Image
-                src={item.image}
-                alt={`Product Image ${item.id}`}
+                src={item}
+                alt="test"
                 width={450}
                 height={600}
                 className="object-cover w-[450px] h-[550px]" // 이미지가 슬라이드에 맞게 꽉 차도록 설정
@@ -44,7 +52,7 @@ function DetailProductImageList({ data }: { data: DetailProductImageData[] }) {
         <div className="flex justify-end pr-4">
           <div className="py-1 text-xs justify-end">
             <span className="font-bold">{currentPage}</span> /{' '}
-            <span>{data.length}</span>
+            <span>{ProductItemData?.productImageList.length}</span>
           </div>
         </div>
       </Swiper>

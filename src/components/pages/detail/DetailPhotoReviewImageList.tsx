@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import { DetailPhotoReviewDataType } from '@/types/detail/detailReviewPhotoType';
+import { DetailReviewInfoDataType } from '@/types/detail/detailReviewType';
 
 function DetailPhotoReviewImageList({
   photoData,
 }: {
-  photoData: DetailPhotoReviewDataType[];
+  photoData: DetailReviewInfoDataType[];
 }) {
   return (
     <div className="flex py-5 gap-1 overflow-x-auto object-cover">

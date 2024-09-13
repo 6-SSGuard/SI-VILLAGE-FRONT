@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { bestCreateDataType } from '@/types/best/bestTypes';
+import Link from 'next/link';
 
 function BestMain({ data }: { data: bestCreateDataType[] }) {
   return (
@@ -16,13 +17,16 @@ function BestMain({ data }: { data: bestCreateDataType[] }) {
                   key={index}
                   className="flex flex-col w-[170px] text-wrap line-clamp-2"
                 >
-                  <Image
-                    src={item.ProductImage}
-                    alt={item.Product_Content}
-                    width={170}
-                    height={270}
-                    className="object-cover h-[270px]"
-                  />
+                  {/* 베스트 이미지를 클릭했을때 상세정보 페이지로 이동 && id값도 넘겨주기 */}
+                  <Link href={`/product/${item.productname}`}>
+                    <Image
+                      src={item.ProductImage}
+                      alt={item.Product_Content}
+                      width={170}
+                      height={270}
+                      className="object-cover h-[270px]"
+                    />
+                  </Link>
                   <div className="mt-3 p-2 ">
                     <p className="text-sm font-bold ">{item.Product_Title}</p>
                     <p className="text-xs ">{item.Product_Content}</p>
@@ -50,13 +54,15 @@ function BestMain({ data }: { data: bestCreateDataType[] }) {
                     key={index}
                     className="flex flex-col w-[120px] text-wrap line-clamp-2"
                   >
-                    <Image
-                      src={item.ProductImage}
-                      alt={item.Product_Content}
-                      width={113}
-                      height={170}
-                      className="object-cover h-[170px]"
-                    />
+                    <Link href={`/product/${item.productname}`}>
+                      <Image
+                        src={item.ProductImage}
+                        alt={item.Product_Content}
+                        width={113}
+                        height={170}
+                        className="object-cover h-[170px]"
+                      />
+                    </Link>
                     <div className="mt-3 pl-2 w-[120px] text-wrap line-clamp-2">
                       <p className="text-sm font-bold truncate">
                         {item.Product_Title}
