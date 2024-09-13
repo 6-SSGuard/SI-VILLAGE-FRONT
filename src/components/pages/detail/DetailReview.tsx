@@ -21,7 +21,7 @@ function DetailReview({
   };
 
   return (
-    <div className="overflow-y-auto">
+    <div className="h-auto">
       {/* 전체 리뷰 모달 */}
       {isOpen && (
         <DetailAllReviewModal
@@ -34,8 +34,8 @@ function DetailReview({
       {/* 리뷰 페이지 전체 크기 레이아웃 */}
       <div
         className={`${
-          isOpen ? 'hidden' : 'flex overflow-auto'
-        } scrollbar-hide gap-1 flex-col h-auto`}
+          isOpen ? 'hidden' : 'h-full'
+        } scrollbar-hide gap-1 flex-col h-full`}
       >
         {/* 리뷰 상단 레이아웃 */}
         <div className="flex-col px-3">
@@ -46,7 +46,7 @@ function DetailReview({
 
           {/* 리뷰 중단 레이아웃 */}
           <div className="flex flex-col items-center justify-center py-10">
-            <p className="text-3xl font-bold">별점</p>
+            <p className="text-3xl font-bold">4.9</p>
             <StarIcon
               width={100}
               height={20}
@@ -70,9 +70,9 @@ function DetailReview({
         <div className="border border-gray-200"></div>
 
         {/* 리뷰 아이템 */}
-        <div className="flex-col h-[152px] mt-3 mx-4 pl-2">
+        <div className="flex-col h-auto mt-3 mx-4 pl-2">
           <ul className="flex-col overflow-hidden text-wrap">
-            {data.map((item) => (
+            {data.slice(0, 3).map((item) => (
               <div className="flex-col" key={item.id}>
                 {/* 별점 */}
                 <li>
