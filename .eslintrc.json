@@ -18,7 +18,7 @@
     "@typescript-eslint/no-empty-object-type": "off",
     "prettier/prettier": ["error", { "singleQuote": true }],
     "semi": ["error", "always"],
-    "quotes": ["error", "single"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off"
   },

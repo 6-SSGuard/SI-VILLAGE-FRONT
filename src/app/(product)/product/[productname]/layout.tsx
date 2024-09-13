@@ -12,11 +12,13 @@ export default function layout({
   productinfo,
   reviews,
   modal,
+  productqna,
 }: {
   children: React.ReactNode;
   productinfo: React.ReactNode;
   modal: React.ReactNode;
   reviews: React.ReactNode;
+  productqna: React.ReactNode;
 }) {
   const pathname = usePathname();
 
@@ -34,18 +36,12 @@ export default function layout({
   };
   return (
     <>
-      <AuthServiceHeader />
-      <ProductBreadCrumb pathname={decodeURIComponent(pathname)} />
-      <ProductCategoryTab
-        categories={categories}
-        onCategorySelect={handleCategorySelect}
-      />
       {modal}
       {productinfo}
       {reviews}
+      {productqna}
       {children}
       <Footer />
-      <BottomTabBar />
     </>
   );
 }

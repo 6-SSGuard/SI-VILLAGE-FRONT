@@ -16,7 +16,7 @@ export async function signInAction(signInFormData: FormData) {
   };
 
   console.log('action payload', payload);
-  const res = await fetch(`${process.env.API_BASE_URL}/member/login`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/member/login`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {

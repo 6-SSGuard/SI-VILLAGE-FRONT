@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import ScrollToTopBtn from '@/components/icons/common/ScrollToTopBtn';
 

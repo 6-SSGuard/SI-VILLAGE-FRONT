@@ -4,7 +4,7 @@ import ArrowTopIcon from '@/components/icons/common/ArrowTopIcon';
 import ArrowBottomIcon from '@/components/icons/common/ArrowBottomIcon';
 import SiButton from '@/components/icons/common/SiButton';
 
-function ProductQnA() {
+function ProductQnA({ productname }: { productname: string }) {
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
 
   const handleToggle = (id: number) => {
@@ -22,8 +22,9 @@ function ProductQnA() {
       <SiButton
         className="w-full border h-10 text-sm"
         buttonTitle="상품 문의하기"
-        icon="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/pencil.png" // Add the icon source
+        icon="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/pencil.png"
         iconPosition="left"
+        href={`/product/${productname}/qnaform`}
       />
       <div className="mt-4 space-y-4">
         {QnAList.data.map((qna) => (
