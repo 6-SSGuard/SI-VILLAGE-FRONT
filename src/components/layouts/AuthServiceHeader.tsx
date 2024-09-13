@@ -85,7 +85,7 @@ export default function AuthServiceHeader() {
                 <ArrowLeftIcon />
               </button>
               <div
-                className="flex-grow text-sm border-b border-black text-[#787878] justify-center h-7"
+                className="flex-grow text-sm border-b border-black text-si-787878 justify-center h-7"
                 onClick={openModal}
               >
                 놓칠 수 없는 최대 30% 페이백

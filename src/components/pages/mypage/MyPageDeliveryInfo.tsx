@@ -24,7 +24,7 @@ export default function MyPageDeliveryInfo() {
             주문/배송 조회
           </Link>
         </h2>
-        <ul className="flex flex-row space-x-4 text-xs text-[#787878]">
+        <ul className="flex flex-row space-x-4 text-xs text-si-787878">
           {/* 반복되는 배송 상태 컴포넌트 */}
           {deliveryStatus.map((status, index) => (
             <DeliveryStatusItem

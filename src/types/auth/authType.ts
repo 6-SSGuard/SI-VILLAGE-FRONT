@@ -31,11 +31,12 @@ export interface withdrawDataRequest {
   reason: string;
 }
 
-export interface commonResType {
+export interface commonResType<T> {
   httpStatus: string;
   isSuccess: boolean;
   message: string;
-  result: any;
+  code: number;
+  result?: T;
 }
 
 //성공 Response

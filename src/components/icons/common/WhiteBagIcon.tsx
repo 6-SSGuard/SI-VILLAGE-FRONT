@@ -1,7 +1,6 @@
 import React from 'react';
 
 function WhiteBagIcon({ isWhite }: { isWhite: boolean }) {
-  console.log(isWhite);
   return (
     <svg
       width="32px"
