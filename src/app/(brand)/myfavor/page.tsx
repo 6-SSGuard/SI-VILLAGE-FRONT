@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 async function getBrandListData() {
   const res = await brandData;
-  console.log(res);
+  // console.log(res);
 
   return res;
 }

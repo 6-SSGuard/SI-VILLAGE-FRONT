@@ -79,22 +79,30 @@ async function ShippingAddress() {
                       name="shippingAddress"
                       value={data.id}
                       defaultChecked={data.checked}
-                      className="appearance-none w-full h-full border border-gray-300 rounded-full checked:bg-transparent checked:border-black focus:ring-0"
+                      className="peer w-full h-full border border-gray-300 rounded-full checked:border-black focus:ring-0 accent-black"
                     />
-                    {/* Radio button small dot */}
-                    <span className="w-full h-full border-gray-400 rounded-full absolute inset-0 flex items-center justify-center">
-                      <span className="w-3 h-3 bg-black rounded-full checked:opacity-100"></span>
-                    </span>
                   </div>
                   <div className="flex gap-1 items-center">
                     <p className="font-bold">{data.name}</p>
-                    <p className="flex items-center justify-center text-si-787878">
+                    <p className="flex items-center justify-center text-si-787878 text-xs">
                       |
                     </p>
                     <p className="text-sm text-si-787878">{data.addressname}</p>
                   </div>
                 </label>
-                <button className="text-si-787878 text-xs">수정</button>
+                <div>
+                  <button type="button" className="text-si-787878 text-xs">
+                    수정
+                  </button>
+                  {!data.checked && (
+                    <button
+                      type="button"
+                      className="text-si-787878 text-xs ml-2"
+                    >
+                      삭제
+                    </button>
+                  )}
+                </div>
               </div>
               <p className="text-[#404040] text-sm m-[8px_0px_0px_32px]">
                 {data.address}

@@ -25,6 +25,7 @@ const profititems = [
   { text: '디지털보증서', href: '#' },
 ];
 const MyActiveitems = [
+  { text: '상품리뷰', href: '#' },
   { text: '상품문의', href: '#' },
   { text: '1:1문의내역', href: '#' },
   { text: '이벤트 참여내역', href: '#' },
@@ -55,9 +56,9 @@ export default async function page() {
       <MyPageDeliveryInfo />
       <MypageInfoList title="나의 쇼핑정보" items={shoppingitems} />
       <MypageInfoList title="나의 혜택정보" items={profititems} />
-      <MypageInfoList title="나의 활동정보" items={MyInterestitems} />
-      <MypageInfoList title="나의 관심정보" items={Myinfoitems} />
-      <MypageInfoList title="나의 정보관리" items={shoppingitems} />
+      <MypageInfoList title="나의 활동정보" items={MyActiveitems} />
+      <MypageInfoList title="나의 관심정보" items={MyInterestitems} />
+      <MypageInfoList title="나의 정보관리" items={Myinfoitems} />
       <SSGMembershipInfo />
     </main>
   );
