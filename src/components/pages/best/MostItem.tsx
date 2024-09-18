@@ -3,9 +3,12 @@ import { bestCreateDataType } from '@/types/best/bestTypes';
 import Image from 'next/image';
 function MostItem({ data }: { data: bestCreateDataType[] }) {
   return (
-    <div className="flex w-[200px] h-[280px] gap-2 mt-8">
+    <div className="relative flex w-[200px] h-[280px] gap-2 mt-8">
       {data.map((item, index) => (
-        <div key={index}>
+        <div key={index} className="relative">
+          <button className="absolute top-2 right-2 z-10">
+            <Image src={item.like} alt="wishlist" width={24} height={24} />
+          </button>
           <div className="">
             <Image
               src={item.ProductImage}

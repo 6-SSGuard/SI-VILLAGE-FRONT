@@ -4,9 +4,13 @@ import Image from 'next/image';
 
 function MostPeopleCard({ data }: { data: bestCreateDataType[] }) {
   return (
-    <div className="grid grid-cols-2 px-8 gap-6 mt-8">
+    <div className="relative grid grid-cols-2 px-8 gap-6 mt-8">
       {data.map((item, index) => (
-        <div key={index} className="flex flex-col justify-start">
+        <div key={index} className="relative flex flex-col justify-start">
+          <button className="absolute top-0 right-0 z-10">
+            <Image src={item.like} alt="wishlist" width={24} height={24} />
+          </button>
+
           <div className="w-[170px] h-[170px]">
             <Image
               src={item.ProductImage}

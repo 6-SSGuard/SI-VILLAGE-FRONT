@@ -15,8 +15,17 @@ function BestMain({ data }: { data: bestCreateDataType[] }) {
               index < 2 && (
                 <li
                   key={index}
-                  className="flex flex-col w-[170px] text-wrap line-clamp-2"
+                  className="relative flex flex-col w-[170px] text-wrap line-clamp-2"
                 >
+                  <button className="absolute top-2 right-2 z-10">
+                    <Image
+                      src={item.like}
+                      alt="wishlist"
+                      width={24}
+                      height={24}
+                    />
+                  </button>
+
                   {/* 베스트 이미지를 클릭했을때 상세정보 페이지로 이동 && id값도 넘겨주기 */}
                   <Link href={`/product/${item.productname}`}>
                     <Image
@@ -52,8 +61,16 @@ function BestMain({ data }: { data: bestCreateDataType[] }) {
                 index >= 2 && (
                   <li
                     key={index}
-                    className="flex flex-col w-[120px] text-wrap line-clamp-2"
+                    className="relative flex flex-col w-[120px] text-wrap line-clamp-2"
                   >
+                    <button className="absolute top-2 right-5 z-10">
+                      <Image
+                        src={item.like}
+                        alt="wishlist"
+                        width={24}
+                        height={24}
+                      />
+                    </button>
                     <Link href={`/product/${item.productname}`}>
                       <Image
                         src={item.ProductImage}

@@ -3,9 +3,12 @@ import Image from 'next/image';
 import { bestCreateDataType } from '@/types/best/bestTypes';
 function GiftItemCard({ data }: { data: bestCreateDataType[] }) {
   return (
-    <div className="flex w-full h-[280px] gap-2 mt-10 overflow-x-auto scrollbar-hide">
+    <div className="relative flex w-full h-[280px] gap-2 mt-10 overflow-x-auto scrollbar-hide">
       {data.map((item, index) => (
-        <div key={index}>
+        <div key={index} className="relative">
+          <button className="absolute top-0 right-2 z-10">
+            <Image src={item.like} alt="wishlist" width={24} height={24} />
+          </button>
           <div className="">
             <Image
               src={item.ProductImage}

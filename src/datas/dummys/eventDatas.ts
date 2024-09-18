@@ -70,3 +70,37 @@ export const eventDatas: eventListDataType = {
     },
   ],
 };
+
+export const EventCategoryData = [
+  {
+    id: 1,
+    Icon: 'All',
+    title: '전체',
+    content: 'AllProduct',
+    url: '/event',
+  },
+
+  {
+    id: 2,
+    Icon: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/04IconThemeMneuPlanVillage_b.svg',
+    title: '이벤트 혜택',
+    content: 'event',
+    url: '/eventfavor',
+  },
+
+  {
+    id: 3,
+    Icon: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/04IconThemeMneuPlan_b.svg',
+    title: '브랜드 기획전',
+    content: 'brand',
+    url: '/event/brand',
+  },
+
+  {
+    id: 4,
+    Icon: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/04IconThemeMneuBenefits_b.svg',
+    title: '제휴 혜택',
+    content: 'Affiliate Benefits',
+    url: '/event/Affiliate',
+  },
+];

@@ -3,11 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import BestMain from './BestMain';
 import { bestCreateDataType } from '@/types/best/bestTypes';
-import GiftProduct from './GiftProductPage';
 function BestPage({ data }: { data: bestCreateDataType[] }) {
   const [activeTab, setActiveTab] = useState('전체');
   const [isOpen, setIsOpen] = useState(false);
-  const [Loding, setLoding] = useState(false);
   const [FilterData, setFilterData] = useState<bestCreateDataType[]>([]);
 
   const bestButtonCategoryData = [
@@ -67,7 +65,7 @@ function BestPage({ data }: { data: bestCreateDataType[] }) {
 
       {/* 아이템 컴포넌트로 전달 */}
       <div className="mt-20 overflow-hidden w-full">
-        <GiftProduct data={FilterData} />
+        <BestMain data={FilterData} />
       </div>
     </div>
   );
