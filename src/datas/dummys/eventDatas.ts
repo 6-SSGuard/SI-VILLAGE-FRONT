@@ -77,7 +77,7 @@ export const EventCategoryData = [
     Icon: 'All',
     title: '전체',
     content: 'AllProduct',
-    url: '/event',
+    // url: '/event',
   },
 
   {
@@ -85,7 +85,7 @@ export const EventCategoryData = [
     Icon: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/04IconThemeMneuPlanVillage_b.svg',
     title: '이벤트 혜택',
     content: 'event',
-    url: '/eventfavor',
+    // url: '/eventfavor',
   },
 
   {
@@ -93,7 +93,7 @@ export const EventCategoryData = [
     Icon: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/04IconThemeMneuPlan_b.svg',
     title: '브랜드 기획전',
     content: 'brand',
-    url: '/event/brand',
+    // url: '/event/brand',
   },
 
   {
@@ -101,6 +101,6 @@ export const EventCategoryData = [
     Icon: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/04IconThemeMneuBenefits_b.svg',
     title: '제휴 혜택',
     content: 'Affiliate Benefits',
-    url: '/event/Affiliate',
+    // url: '/event/Affiliate',
   },
 ];
