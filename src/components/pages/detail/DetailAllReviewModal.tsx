@@ -11,7 +11,7 @@ function DetailAllReviewModal({
   count: number;
 }) {
   return (
-    <div className="flex-col h-auto">
+    <div className="flex-col">
       {/* 헤더바 */}
       <div className="flex sticky top-0 text-lg h-8 items-center justify-center py-2">
         리뷰 전체 보기
@@ -54,7 +54,7 @@ function DetailAllReviewModal({
       <div className="border border-gray-200"></div>
 
       {/* 리뷰 아이템 */}
-      <div className="flex-col h-[152px] mt-3 mx-4 pl-2 ">
+      <div className="flex-col h-auto mt-3 mx-4 pl-2 ">
         <ul className="flex-col overflow-hidden text-wrap">
           {data.map((item) => (
             <div className="flex-col" key={item.id}>

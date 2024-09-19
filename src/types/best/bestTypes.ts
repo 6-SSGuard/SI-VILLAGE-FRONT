@@ -61,4 +61,5 @@ export interface bestCreateDataType {
   Product_DiscountRate: number;
   Product_price: number;
   category: string;
+  like: string;
 }
