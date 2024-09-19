@@ -16,16 +16,16 @@ function CategoryHeader() {
     setIsModalOpen(false);
   };
   return (
-    <header className="flex bg-[#F9F9F9] items-center w-full px-4 py-2">
+    <header className="flex bg-[#F9F9F9] items-center w-full px-4 py-2 space-x-4">
       <button type="button" onClick={() => router.back()}>
         <ArrowLeftIcon />
       </button>
 
       <button
-        className="flex items-center w-full border-b border-black"
+        className="flex items-center w-full border-b border-black pb-1"
         onClick={openModal}
       >
-        <SearchIcon />
+        <SearchIcon size={20} />
         <span className="text-sm ml-2 text-si-787878">
           미리 준비하는 추석 최대 15% 쿠폰
         </span>
