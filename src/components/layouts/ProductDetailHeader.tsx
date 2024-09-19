@@ -7,7 +7,7 @@ import WhiteBagIcon from '../icons/common/WhiteBagIcon';
 import { useRouter } from 'next/navigation';
 import SearchModal from '../pages/search/searchModal';
 import Link from 'next/link';
-import useScrollDirection from '../hook/useScrollDirection';
+import useScrollDirection from '../hooks/useScrollDirection';
 
 function ProductDetailHeader() {
   const isVisible = useScrollDirection();

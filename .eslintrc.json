@@ -16,8 +16,6 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-empty-object-type": "off",
-    "prettier/prettier": ["error", { "singleQuote": true,
-      "parser": "flow" }],
     "semi": ["error", "always"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "react/react-in-jsx-scope": "off",

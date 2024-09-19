@@ -39,8 +39,7 @@ export default function AuthServiceHeader() {
         case '/sign-in/forgotcredential':
           setTitle('ID/PW 찾기');
           break;
-        case '/searchbrand':
-        case '/myfavor':
+        case '/brand':
           setTitle('BRAND');
           break;
         case '/product':

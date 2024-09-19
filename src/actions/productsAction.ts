@@ -31,15 +31,15 @@ export async function getProductDetail() {
  * @returns {Promise<authResponse>} "Success." 메시지와 함께 을 반환합니다.
  *  */
 
-export async function getTopCategories(productUuid: string) {
-  const res = await fetch(
-    `${process.env.API_BASE_URL}/api/product/${productUuid}/top-category-name`
-  );
-  if (!res.ok) {
-    throw new Error('Failed to fetch');
-  }
+// export async function getTopCategories(productUuid: string) {
+//   const res = await fetch(
+//     `${process.env.API_BASE_URL}/api/product/${productUuid}/top-category-name`
+//   );
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch');
+//   }
 
-  const data = await res.json();
-  // console.log(data);
-  return data.data;
-}
+//   const data = await res.json();
+//   // console.log(data);
+//   return data.data;
+// }

@@ -1,3 +1,20 @@
+//성공 Response
+export interface authResponse {
+  httpStatus: HttpStatus;
+  isSuccess: boolean;
+  message: string;
+  result: any;
+}
+
+interface HttpStatus {
+  error: boolean;
+  is4xxClientError: boolean;
+  is5xxServerError: boolean;
+  is1xxInformational: boolean;
+  is2xxSuccessful: boolean;
+  is3xxRedirection: boolean;
+}
+
 //회원가입 Type
 export interface signUpDataRequest {
   email: string;
@@ -35,23 +52,5 @@ export interface commonResType<T> {
   httpStatus: string;
   isSuccess: boolean;
   message: string;
-  code: number;
-  result?: T;
-}
-
-//성공 Response
-export interface authResponse {
-  httpStatus: HttpStatus;
-  isSuccess: boolean;
-  message: string;
-  result: any;
-}
-
-interface HttpStatus {
-  error: boolean;
-  is4xxClientError: boolean;
-  is5xxServerError: boolean;
-  is1xxInformational: boolean;
-  is2xxSuccessful: boolean;
-  is3xxRedirection: boolean;
+  result: T;
 }

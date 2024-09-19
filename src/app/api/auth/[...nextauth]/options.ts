@@ -1,4 +1,4 @@
-import { commonResType } from '@/types/auth/authType';
+import { authResponse, commonResType } from '@/types/auth/authType';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import KakaoProvider from 'next-auth/providers/kakao';
@@ -28,24 +28,25 @@ export const options: NextAuthOptions = {
 
         // console.log('credential', credentials);
 
-        const res = await fetch(
-          `${process.env.API_BASE_URL}/api/member/login`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: credentials.email,
-              password: credentials.password,
-            }),
-          }
-        );
-        if (res.ok) {
-          const user: commonResType = (await res.json()) as commonResType;
-          console.log('user1212', user);
-          const data = user.result;
-          return data;
+        try {
+          const res = await fetch(
+            `${process.env.API_BASE_URL}/api/member/login`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password,
+              }),
+              cache: 'no-cache',
+            }
+          );
+          const user = (await res.json()) as commonResType<authResponse>;
+          return user.result;
+        } catch (error) {
+          console.error('error', error);
         }
         return null;
       },
