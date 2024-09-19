@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 function BestMain({ data }: { data: bestCreateDataType[] }) {
   return (
-    <div className="overflow-y-hidden">
+    <div className="overflow-hidden">
       <div className="">
         {/* 조건부에 따라 데이터 배치 */}
         {/* 데이터의 length가 1 ~ 2까지는 상단 grid-cols로 2개 배치 */}

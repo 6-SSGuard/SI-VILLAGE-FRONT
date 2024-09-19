@@ -1,9 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import BestMain from './BestMain';
 import { bestCreateDataType } from '@/types/best/bestTypes';
-function BestPage({ data }: { data: bestCreateDataType[] }) {
+import GiftProduct from './GiftProductPage';
+function GiftFilter({ data }: { data: bestCreateDataType[] }) {
   const [activeTab, setActiveTab] = useState('전체');
   const [isOpen, setIsOpen] = useState(false);
   const [FilterData, setFilterData] = useState<bestCreateDataType[]>([]);
@@ -22,7 +22,6 @@ function BestPage({ data }: { data: bestCreateDataType[] }) {
     { id: 11, title: '라이프' },
   ];
 
-  //data 로딩걸기
   useEffect(() => {
     const timer = setTimeout(() => {
       const filterData =
@@ -30,16 +29,14 @@ function BestPage({ data }: { data: bestCreateDataType[] }) {
           ? data
           : data.filter((item) => item.category === activeTab);
       setFilterData(filterData);
-
-      //데이터 정렬이 끝나면 다시 false
     }, 500);
     return () => clearTimeout(timer);
   }, [activeTab, data]);
 
   return (
-    <div className="flex flex-col w-full  h-auto relative pl-5 pr-10 overflow-x-hidden">
+    <div className="flex flex-col w-full  h-auto relative pl-5 pr-4 ">
       <div
-        className={` absolute pr-10 top-0 left-5 right-1 z-20 whitespace-nowrap overflow-x-hidden  ${isOpen ? 'bg-white' : ''}`}
+        className={` absolute top-0 left-5 right-0 z-20 whitespace-nowrap overflow-x-hidden  ${isOpen ? 'bg-white' : ''}`}
         style={{ height: isOpen ? 'auto' : '48px' }}
       >
         <ul
@@ -56,19 +53,18 @@ function BestPage({ data }: { data: bestCreateDataType[] }) {
             </li>
           ))}
         </ul>
-        <div className="absolute -top-0 right-3  flex overflow-hidden justify-center items-center w-[38px] h-[38px]">
+        <div className="absolute -top-0 -right-0  flex justify-center items-center w-[38px] h-[38px]">
           <Button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? '▲' : '▼'}
           </Button>
         </div>
       </div>
 
-      {/* 아이템 컴포넌트로 전달 */}
       <div className="mt-20 overflow-hidden w-full">
-        <BestMain data={FilterData} />
+        <GiftProduct data={FilterData} />
       </div>
     </div>
   );
 }
 
-export default BestPage;
+export default GiftFilter;
