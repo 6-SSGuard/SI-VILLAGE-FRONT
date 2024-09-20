@@ -15,10 +15,10 @@ function LogInForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+
     const formData = new FormData(e.currentTarget);
-    console.log(formData.get('email'));
-    console.log(formData.get('password'));
+    // console.log(formData.get('email'));
+    // console.log(formData.get('password'));
     signIn('credentials', {
       email: formData.get('email') as string,
       password: formData.get('password') as string,

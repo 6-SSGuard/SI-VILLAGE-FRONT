@@ -3,6 +3,8 @@
 import { beautyInfoCreateDataRequest } from '@/types/mypage/mypageType';
 import { getServerSession } from 'next-auth/next';
 import { options } from '@/app/api/auth/[...nextauth]/options';
+// import { commonResType } from '@/types/auth/authType';
+import { ComponentProps } from '@/components/pages/mypage/MySizeBeautiInfo';
 
 /**
  * 뷰티 정보 조회
@@ -52,11 +54,13 @@ export async function getBeautyInfo() {
     ]
   }
  */
-export async function postBeautyInfo(payload: beautyInfoCreateDataRequest) {
+export async function postBeautyInfo(
+  beautyFormData: beautyInfoCreateDataRequest
+) {
   const session = await getServerSession(options);
   const res = await fetch(`${process.env.API_BASE_URL}/api/beauty-info`, {
     method: 'POST',
-    body: JSON.stringify(payload),
+    body: JSON.stringify(beautyFormData),
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${session?.user.accessToken}`,
@@ -84,16 +88,33 @@ export async function postBeautyInfo(payload: beautyInfoCreateDataRequest) {
     ]
   }
  */
-export async function putBeautyInfo(payload: beautyInfoCreateDataRequest) {
+export async function putBeautyInfo(payload: ComponentProps) {
+  const session = await getServerSession(options);
   const res = await fetch(`${process.env.API_BASE_URL}/api/beauty-info`, {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session?.user.accessToken}`,
     },
   });
 
-  console.log(res);
+  if (res.ok) {
+    return await res.json();
+  }
+  return null;
+}
+
+export async function deleteBeautyInfo() {
+  const session = await getServerSession(options);
+  const res = await fetch(`${process.env.API_BASE_URL}/api/beauty-info`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session?.user.accessToken}`,
+    },
+  });
+
   if (res.ok) {
     return await res.json();
   }

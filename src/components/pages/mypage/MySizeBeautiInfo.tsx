@@ -5,14 +5,25 @@ import MyBeautiForm from '@/components/forms/mypage/MyBeautiForm';
 import MySizeForm from '@/components/forms/mypage/MySizeForm';
 import { Button } from '@/components/ui/button';
 import InfoAgree from './InfoAgree';
-import { beautyInfoCreateDataRequest } from '@/types/mypage/mypageType';
+import {
+  beautyInfoCreateDataRequest,
+  sizeCreateDataRequest,
+} from '@/types/mypage/mypageType';
 
 export interface ComponentProps {
   beautyinfo: beautyInfoCreateDataRequest;
 }
-function MySizeBeautiInfo({ beautyinfo }: ComponentProps) {
+function MySizeBeautiInfo({
+  beautyinfo,
+  sizeinfo,
+  handlePostBeautyInfo,
+}: {
+  beautyinfo: beautyInfoCreateDataRequest;
+  sizeinfo: sizeCreateDataRequest;
+  handlePostBeautyInfo: (formData: FormData) => void;
+}) {
   const [activeTab, setActiveTab] = useState('size');
-  // console.log('bbbl', beautyinfo);
+
   const handleEdit = () => {
     // 수정 로직 구현
     console.log('수정 버튼 클릭');
@@ -22,6 +33,7 @@ function MySizeBeautiInfo({ beautyinfo }: ComponentProps) {
     // 삭제 로직 구현
     console.log('삭제 버튼 클릭');
   };
+
   return (
     <Tabs
       defaultValue="size"
@@ -53,7 +65,7 @@ function MySizeBeautiInfo({ beautyinfo }: ComponentProps) {
       </TabsList>
       <TabsContent value="size">
         <form className="flex flex-col items-center">
-          <MySizeForm />
+          <MySizeForm sizeinfo={sizeinfo} />
           <InfoAgree />
           <Button
             className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
@@ -64,24 +76,27 @@ function MySizeBeautiInfo({ beautyinfo }: ComponentProps) {
         </form>
       </TabsContent>
       <TabsContent value="beautiInfo">
-        <form className="flex flex-col items-center">
+        <form
+          className="flex flex-col items-center"
+          action={handlePostBeautyInfo}
+        >
           <MyBeautiForm beautyinfo={beautyinfo} />
           <InfoAgree />
           {beautyinfo ? (
             <div className="flex justify-between w-11/12 mb-20">
               <Button
-                className="w-[48%] h-12 bg-white text-si-131922 font-semibold border border-si-131922"
-                type="button"
-                onClick={handleEdit}
-              >
-                수정
-              </Button>
-              <Button
-                className="w-[48%] h-12 bg-si-131922 text-white font-semibold"
+                className="w-[48%] h-12 bg-si-787878 text-white font-semibold"
                 type="button"
                 onClick={handleDelete}
               >
                 삭제
+              </Button>
+              <Button
+                className="w-[48%] h-12 bg-si-131922 text-white font-semibold border border-si-131922"
+                type="button"
+                onClick={handleEdit}
+              >
+                나의 뷰티정보 수정
               </Button>
             </div>
           ) : (

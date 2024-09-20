@@ -1,17 +1,21 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Modal } from '@/components/icons/common/Modal';
-import { ComponentProps } from '@/components/pages/mypage/MySizeBeautiInfo';
-
-function MyBeautyForm(beautyinfo: ComponentProps) {
+import { beautyInfoCreateDataRequest } from '@/types/mypage/mypageType';
+interface MySizeBeautiInfoProps {
+  beautyinfo: beautyInfoCreateDataRequest;
+}
+function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
   const MAX_SELECTIONS = 5;
   // beautyinfo에서 초기값 설정
-  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
-  const [selectedSkinType, setSelectedSkinType] = useState<string>('');
-  const [selectedSkinTone, setSelectedSkinTone] = useState<string>('');
-  const [selectedScalpTone, setSelectedScalpTone] = useState<string>('');
+  const [formData, setFormData] = useState({
+    skinType: '',
+    skinTone: '',
+    scalpTone: '',
+    beautyKeyword: [] as string[],
+  });
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
+  // console.log('form', formData);
   const keywords = [
     { label: '4001', value: '모공/결케어' },
     { label: '4002', value: '주름개선' },
@@ -42,36 +46,57 @@ function MyBeautyForm(beautyinfo: ComponentProps) {
   ];
 
   useEffect(() => {
-    if (beautyinfo.beautyinfo) {
-      setSelectedKeywords(beautyinfo.beautyinfo.beautyKeyword || []);
-      setSelectedSkinType(beautyinfo.beautyinfo.skinType || '');
-      setSelectedSkinTone(beautyinfo.beautyinfo.skinTone || '');
-      setSelectedScalpTone(beautyinfo.beautyinfo.scalpTone || '');
+    if (beautyinfo) {
+      setFormData({
+        skinType: beautyinfo.skinType || '',
+        skinTone: beautyinfo.skinTone || '',
+        scalpTone: beautyinfo.scalpTone || '',
+        beautyKeyword: beautyinfo.beautyKeyword || [],
+      });
     }
-  }, [beautyinfo.beautyinfo]);
+  }, [beautyinfo]);
 
-  console.log(selectedKeywords);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
 
-  const handleKeywordChange = (value: string) => {
-    if (selectedKeywords.includes(value)) {
-      // 이미 선택된 경우 선택 해제
-      setSelectedKeywords(
-        selectedKeywords.filter((keyword) => keyword !== value)
-      );
+    if (type === 'checkbox') {
+      setFormData((prevData) => ({
+        ...prevData,
+        beautyKeyword: checked
+          ? [...prevData.beautyKeyword, value]
+          : prevData.beautyKeyword.filter((keyword) => keyword !== value),
+      }));
     } else {
-      // 최대 선택 개수를 넘지 않는 경우에만 추가
-      if (selectedKeywords.length < MAX_SELECTIONS) {
-        setSelectedKeywords([...selectedKeywords, value]);
-      } else {
-        // 최대 개수에 도달한 경우 모달을 표시
-        setIsModalVisible(true);
-      }
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (formData.beautyKeyword.includes(value)) {
+      setFormData((prevData) => ({
+        ...prevData,
+        beautyKeyword: prevData.beautyKeyword.filter(
+          (keyword) => keyword !== value
+        ),
+      }));
+    } else if (formData.beautyKeyword.length < MAX_SELECTIONS) {
+      setFormData((prevData) => ({
+        ...prevData,
+        beautyKeyword: [...prevData.beautyKeyword, value],
+      }));
+    } else {
+      setIsModalVisible(true);
     }
   };
 
   const closeModal = () => {
     setIsModalVisible(false);
   };
+
   return (
     <div>
       {/* 피부타입 섹션 */}
@@ -87,19 +112,19 @@ function MyBeautyForm(beautyinfo: ComponentProps) {
             { label: '1003', value: '지성' },
             { label: '1004', value: '복합성' },
           ].map((item) => (
-            <li key={item.value} className="">
+            <li key={item.label}>
               <label className="block">
                 <input
                   type="radio"
                   className="hidden"
                   name="skinType"
-                  value={item.label}
-                  checked={selectedSkinType === item.value}
-                  onChange={() => setSelectedSkinType(item.value)}
+                  value={item.value}
+                  checked={formData.skinType === item.value}
+                  onChange={handleChange}
                 />
                 <span
                   className={`inline-block w-full text-center p-[11px_14px_10px] border ${
-                    selectedSkinType === item.value
+                    formData.skinType === item.value
                       ? 'border-black'
                       : 'border-gray-300'
                   } cursor-pointer hover:border-black`}
@@ -131,12 +156,12 @@ function MyBeautyForm(beautyinfo: ComponentProps) {
                   className="hidden"
                   name="skinTone"
                   value={item.value}
-                  checked={selectedSkinTone === item.value}
-                  onChange={() => setSelectedSkinTone(item.value)}
+                  checked={formData.skinTone === item.value}
+                  onChange={handleChange}
                 />
                 <span
                   className={`inline-block w-full text-center p-[11px_14px_10px] border ${
-                    selectedSkinTone === item.value
+                    formData.skinTone === item.value
                       ? 'border-black'
                       : 'border-gray-300'
                   } cursor-pointer hover:border-black`}
@@ -166,14 +191,14 @@ function MyBeautyForm(beautyinfo: ComponentProps) {
                 <input
                   type="radio"
                   className="hidden"
-                  name="scaletone"
+                  name="scalpTone"
                   value={item.value}
-                  checked={selectedScalpTone === item.value}
-                  onChange={() => setSelectedSkinTone(item.value)}
+                  checked={formData.scalpTone === item.value}
+                  onChange={handleChange}
                 />
                 <span
                   className={`inline-block w-full text-center p-[11px_14px_10px] border ${
-                    selectedScalpTone === item.value
+                    formData.scalpTone === item.value
                       ? 'border-black'
                       : 'border-gray-300'
                   } cursor-pointer hover:border-black`}
@@ -201,12 +226,12 @@ function MyBeautyForm(beautyinfo: ComponentProps) {
                   className="hidden"
                   name="beautyKeyword"
                   value={item.value}
-                  onChange={() => handleKeywordChange(item.value)}
-                  checked={selectedKeywords.includes(item.value)}
+                  onChange={handleKeywordChange}
+                  checked={formData.beautyKeyword.includes(item.value)}
                 />
                 <span
                   className={`inline-block w-full text-center p-[11px_14px_10px] border ${
-                    selectedKeywords.includes(item.value)
+                    formData.beautyKeyword.includes(item.value)
                       ? 'border-black'
                       : 'border-gray-300'
                   } cursor-pointer hover:border-black`}
