@@ -23,3 +23,14 @@ export interface eventListDataType {
   purchase_limit: number;
   content_imageB: string;
 }
+
+export interface EventBrandListType {
+  data: EventBrandDataType[];
+}
+//이벤트 필버 브랜드 아이템 타입
+export interface EventBrandDataType {
+  id: number;
+  BrandName: string;
+  BrandNum: number;
+  state: false;
+}
