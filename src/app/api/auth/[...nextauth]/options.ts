@@ -30,7 +30,7 @@ export const options: NextAuthOptions = {
 
         try {
           const res = await fetch(
-            `${process.env.API_BASE_URL}/api/member/login`,
+            `${process.env.API_BASE_URL}/api/auth/sign-in`,
             {
               method: 'POST',
               headers: {

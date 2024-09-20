@@ -9,22 +9,30 @@ function MiddleCategoryList({ categoryCode }: { categoryCode: string | null }) {
     []
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (categoryCode) {
       setIsLoading(true);
+      setError(null);
       getMiddleCategories(categoryCode)
         .then((data) => {
-          // console.log(data.categories);
-          setMiddleCategories(data.categories || []);
+          if (data && data.length > 0) {
+            setMiddleCategories(data);
+          } else {
+            setMiddleCategories([]);
+          }
         })
         .catch((error) => {
           console.error('Error fetching middle categories:', error);
+          setError('Failed to fetch categories');
           setMiddleCategories([]);
         })
         .finally(() => {
           setIsLoading(false);
         });
+    } else {
+      setMiddleCategories([]);
     }
   }, [categoryCode]);
 
@@ -32,19 +40,27 @@ function MiddleCategoryList({ categoryCode }: { categoryCode: string | null }) {
     return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className="col-span-9">
       <nav>
         <ul>
-          {middleCategories.map((category) => (
-            <li
-              key={category.categoryCode}
-              className="text-sm flex justify-between px-2 py-3 items-center"
-            >
-              {category.categoryName}
-              <ArrowRightIcon />
-            </li>
-          ))}
+          {middleCategories.length > 0 ? (
+            middleCategories.map((category) => (
+              <li
+                key={category.categoryCode}
+                className="text-sm flex justify-between px-2 py-3 items-center"
+              >
+                {category.categoryName}
+                <ArrowRightIcon />
+              </li>
+            ))
+          ) : (
+            <li>No categories available</li>
+          )}
         </ul>
       </nav>
     </div>

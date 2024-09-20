@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CategoryLink from './CategoryLink';
 import {
   CategorySideProps,
@@ -13,11 +13,14 @@ function CategorySide({ categories }: CategorySideProps) {
     string | null
   >(null);
 
+  const categoriesRef = useRef(categories);
+
   useEffect(() => {
-    if (categories.length > 0) {
-      setSelectedCategoryCode(categories[0].categoryCode);
+    const cats = categoriesRef.current;
+    if (cats && Array.isArray(cats) && cats.length > 0) {
+      setSelectedCategoryCode(cats[1].categoryCode);
     }
-  }, [categories]);
+  }, []);
 
   const handleCategorySelect = async (category: topCategoryType) => {
     setSelectedCategoryCode(category.categoryCode);
@@ -75,9 +78,11 @@ function CategorySide({ categories }: CategorySideProps) {
           <TopCategoryList
             data={categories}
             categoryName={
-              categories.find(
-                (category) => category.categoryCode === selectedCategoryCode
-              )?.categoryName || ''
+              categories && Array.isArray(categories)
+                ? categories.find(
+                    (category) => category.categoryCode === selectedCategoryCode
+                  )?.categoryName || ''
+                : ''
             }
             onCategorySelect={handleCategorySelect}
             selectedCategoryCode={selectedCategoryCode}

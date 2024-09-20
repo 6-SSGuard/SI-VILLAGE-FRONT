@@ -21,8 +21,8 @@ export interface signUpDataRequest {
   password: string;
   name: string;
   role: string;
+  birth: string;
   // phone: string;
-  // birthday: string;
   // permission: string;
 }
 

@@ -48,7 +48,7 @@ const Myinfoitems = [
 
 export default async function page() {
   const session = await getServerSession(options);
-  console.log('여기요', session);
+  // console.log('여기요', session);
 
   return (
     <main>

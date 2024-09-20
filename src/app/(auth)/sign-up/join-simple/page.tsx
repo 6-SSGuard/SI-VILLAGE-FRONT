@@ -17,8 +17,22 @@ export default function Page() {
     const emailDomain = formData.get('emailDomain') as string;
     const email = `${emailId}@${emailDomain}`;
 
+    // 년, 월, 일 받아서 birth로 합치기
+    const year = formData.get('year') as string;
+    const month = formData.get('month') as string;
+    const day = formData.get('day') as string;
+
+    let birth = null;
+    if (year && month && day) {
+      birth = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`; // YYYY-MM-DD 형식으로 변환
+    }
+
     // 새로운 FormData 객체 생성
     const signUpFormData = new FormData();
+
+    if (birth) {
+      signUpFormData.append('birth', birth);
+    }
 
     // 기존 FormData의 모든 필드를 새 FormData에 복사 (email 제외)
     for (const [key, value] of formData.entries()) {
@@ -30,7 +44,7 @@ export default function Page() {
     // 합친 email을 새 FormData에 추가
     signUpFormData.append('email', email);
 
-    console.log('test', signUpFormData);
+    // console.log('test', signUpFormData);
 
     const res = await signUpAction(signUpFormData);
     if (res) {

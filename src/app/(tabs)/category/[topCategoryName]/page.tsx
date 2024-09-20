@@ -8,12 +8,14 @@ import {
 import React from 'react';
 
 async function page() {
-  const topCategoryData: CategorySideProps = await getTopCategories();
+  const topCategoryData: topCategoryType[] = await getTopCategories();
+
+  console.log('test', topCategoryData);
 
   return (
     <main className="h-screen overflow-hidden">
       <CategoryHeader />
-      <CategorySide categories={topCategoryData.categories} />
+      <CategorySide categories={topCategoryData} />
     </main>
   );
 }

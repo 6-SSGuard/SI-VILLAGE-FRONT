@@ -1,7 +1,6 @@
 export interface topCategoryType {
-  categoryCode: string;
   categoryName: string;
-  depth: string;
+  categoryCode: string;
 }
 
 export interface CategorySideProps {

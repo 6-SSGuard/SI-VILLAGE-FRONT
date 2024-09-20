@@ -19,7 +19,7 @@ function BottomTabBar() {
       <nav>
         <ul className="grid grid-cols-5 gap-0 list-none m-0 p-[2px]">
           <BottomTabBarItems
-            href="/category/all"
+            href="/category/sub-categories"
             icon={<BottomCategoryIcon />}
             label="Category"
           />
