@@ -12,6 +12,7 @@ function LogInForm() {
   useEffect(() => {
     console.log('LogInForm auth', auth);
   }, [auth]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e.currentTarget);
@@ -25,6 +26,7 @@ function LogInForm() {
       callbackUrl: '/',
     });
   };
+
   return (
     // <form className="p-10 text-center" action={handleSignIn}>
     <form className="p-10 text-center" onSubmit={onSubmit}>

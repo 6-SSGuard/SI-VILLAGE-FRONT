@@ -1,40 +1,56 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from '@/components/icons/common/Modal';
+import { ComponentProps } from '@/components/pages/mypage/MySizeBeautiInfo';
 
-function MyBeautyForm() {
+function MyBeautyForm(beautyinfo: ComponentProps) {
   const MAX_SELECTIONS = 5;
+  // beautyinfo에서 초기값 설정
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+  const [selectedSkinType, setSelectedSkinType] = useState<string>('');
+  const [selectedSkinTone, setSelectedSkinTone] = useState<string>('');
+  const [selectedScalpTone, setSelectedScalpTone] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const keywords = [
-    { value: '4001', label: '모공/결케어' },
-    { value: '4002', label: '주름개선' },
-    { value: '4003', label: '탄력/리프팅' },
-    { value: '4004', label: '트러블완화' },
-    { value: '4005', label: '각질완화' },
-    { value: '4006', label: '색소침착' },
-    { value: '4007', label: '유분/피지' },
-    { value: '4008', label: '수분/보습' },
-    { value: '4009', label: '톤업효과' },
-    { value: '4010', label: '피부진정' },
-    { value: '4011', label: '민감/저자극' },
-    { value: '4012', label: '향료무첨가' },
-    { value: '4013', label: '세정력' },
-    { value: '4014', label: '커버력' },
-    { value: '4015', label: '광채효과' },
-    { value: '4016', label: '발색력' },
-    { value: '4017', label: '흡수력' },
-    { value: '4018', label: '지속력' },
-    { value: '4019', label: '쿨링효과' },
-    { value: '4020', label: '워터프루프' },
-    { value: '4021', label: '비듬완화' },
-    { value: '4022', label: '탈모완화' },
-    { value: '4023', label: '볼륨효과' },
-    { value: '4024', label: '손상케어' },
-    { value: '4025', label: '컬러케어' },
-    { value: '4026', label: '고정력' },
+    { label: '4001', value: '모공/결케어' },
+    { label: '4002', value: '주름개선' },
+    { label: '4003', value: '탄력/리프팅' },
+    { label: '4004', value: '트러블완화' },
+    { label: '4005', value: '각질완화' },
+    { label: '4006', value: '색소침착' },
+    { label: '4007', value: '유분/피지' },
+    { label: '4008', value: '수분/보습' },
+    { label: '4009', value: '톤업효과' },
+    { label: '4010', value: '피부진정' },
+    { label: '4011', value: '민감/저자극' },
+    { label: '4012', value: '향료무첨가' },
+    { label: '4013', value: '세정력' },
+    { label: '4014', value: '커버력' },
+    { label: '4015', value: '광채효과' },
+    { label: '4016', value: '발색력' },
+    { label: '4017', value: '흡수력' },
+    { label: '4018', value: '지속력' },
+    { label: '4019', value: '쿨링효과' },
+    { label: '4020', value: '워터프루프' },
+    { label: '4021', value: '비듬완화' },
+    { label: '4022', value: '탈모완화' },
+    { label: '4023', value: '볼륨효과' },
+    { label: '4024', value: '손상케어' },
+    { label: '4025', value: '컬러케어' },
+    { label: '4026', value: '고정력' },
   ];
+
+  useEffect(() => {
+    if (beautyinfo.beautyinfo) {
+      setSelectedKeywords(beautyinfo.beautyinfo.beautyKeyword || []);
+      setSelectedSkinType(beautyinfo.beautyinfo.skinType || '');
+      setSelectedSkinTone(beautyinfo.beautyinfo.skinTone || '');
+      setSelectedScalpTone(beautyinfo.beautyinfo.scalpTone || '');
+    }
+  }, [beautyinfo.beautyinfo]);
+
+  console.log(selectedKeywords);
 
   const handleKeywordChange = (value: string) => {
     if (selectedKeywords.includes(value)) {
@@ -66,10 +82,10 @@ function MyBeautyForm() {
         </div>
         <ul className="flex gap-2">
           {[
-            { value: '1001', label: '건성' },
-            { value: '1002', label: '중성' },
-            { value: '1003', label: '지성' },
-            { value: '1004', label: '복합성' },
+            { label: '1001', value: '건성' },
+            { label: '1002', value: '중성' },
+            { label: '1003', value: '지성' },
+            { label: '1004', value: '복합성' },
           ].map((item) => (
             <li key={item.value} className="">
               <label className="block">
@@ -77,10 +93,18 @@ function MyBeautyForm() {
                   type="radio"
                   className="hidden"
                   name="skinType"
-                  value={item.value}
+                  value={item.label}
+                  checked={selectedSkinType === item.value}
+                  onChange={() => setSelectedSkinType(item.value)}
                 />
-                <span className="inline-block w-full text-center p-[11px_14px_10px] border border-gray-300 cursor-pointer hover:border-black">
-                  {item.label}
+                <span
+                  className={`inline-block w-full text-center p-[11px_14px_10px] border ${
+                    selectedSkinType === item.value
+                      ? 'border-black'
+                      : 'border-gray-300'
+                  } cursor-pointer hover:border-black`}
+                >
+                  {item.value}
                 </span>
               </label>
             </li>
@@ -96,20 +120,28 @@ function MyBeautyForm() {
         </div>
         <ul className="flex gap-2">
           {[
-            { value: '2001', label: '쿨톤' },
-            { value: '2002', label: '웜톤' },
-            { value: '2003', label: '뉴트럴톤' },
+            { label: '2001', value: '쿨톤' },
+            { label: '2002', value: '웜톤' },
+            { label: '2003', value: '뉴트럴톤' },
           ].map((item) => (
-            <li key={item.value} className="">
+            <li key={item.label} className="">
               <label className="block">
                 <input
                   type="radio"
                   className="hidden"
                   name="skinTone"
                   value={item.value}
+                  checked={selectedSkinTone === item.value}
+                  onChange={() => setSelectedSkinTone(item.value)}
                 />
-                <span className="inline-block w-full text-center p-[11px_14px_10px] border border-gray-300 cursor-pointer hover:border-black">
-                  {item.label}
+                <span
+                  className={`inline-block w-full text-center p-[11px_14px_10px] border ${
+                    selectedSkinTone === item.value
+                      ? 'border-black'
+                      : 'border-gray-300'
+                  } cursor-pointer hover:border-black`}
+                >
+                  {item.value}
                 </span>
               </label>
             </li>
@@ -125,20 +157,28 @@ function MyBeautyForm() {
         </div>
         <ul className="flex gap-2">
           {[
-            { value: '3001', label: '건성두피' },
-            { value: '3002', label: '중성두피' },
-            { value: '3003', label: '지성두피' },
+            { label: '3001', value: '건성' },
+            { label: '3002', value: '중성' },
+            { label: '3003', value: '지성' },
           ].map((item) => (
-            <li key={item.value} className="">
+            <li key={item.label} className="">
               <label className="block">
                 <input
                   type="radio"
                   className="hidden"
-                  name="scalpType"
+                  name="scaletone"
                   value={item.value}
+                  checked={selectedScalpTone === item.value}
+                  onChange={() => setSelectedSkinTone(item.value)}
                 />
-                <span className="inline-block w-full text-center p-[11px_14px_10px] border border-gray-300 cursor-pointer hover:border-black">
-                  {item.label}
+                <span
+                  className={`inline-block w-full text-center p-[11px_14px_10px] border ${
+                    selectedScalpTone === item.value
+                      ? 'border-black'
+                      : 'border-gray-300'
+                  } cursor-pointer hover:border-black`}
+                >
+                  {item.value}두피
                 </span>
               </label>
             </li>
@@ -154,7 +194,7 @@ function MyBeautyForm() {
         </div>
         <ul className="flex flex-wrap gap-2">
           {keywords.map((item) => (
-            <li key={item.value} className="">
+            <li key={item.label}>
               <label className="flex items-center">
                 <input
                   type="checkbox"
@@ -171,7 +211,7 @@ function MyBeautyForm() {
                       : 'border-gray-300'
                   } cursor-pointer hover:border-black`}
                 >
-                  {item.label}
+                  {item.value}
                 </span>
               </label>
             </li>

@@ -10,7 +10,7 @@ import React from 'react';
 async function page() {
   const topCategoryData: topCategoryType[] = await getTopCategories();
 
-  console.log('test', topCategoryData);
+  // console.log('test', topCategoryData);
 
   return (
     <main className="h-screen overflow-hidden">

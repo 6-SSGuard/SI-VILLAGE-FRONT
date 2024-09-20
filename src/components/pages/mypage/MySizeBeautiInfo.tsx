@@ -5,8 +5,23 @@ import MyBeautiForm from '@/components/forms/mypage/MyBeautiForm';
 import MySizeForm from '@/components/forms/mypage/MySizeForm';
 import { Button } from '@/components/ui/button';
 import InfoAgree from './InfoAgree';
-function MySizeBeautiInfo() {
+import { beautyInfoCreateDataRequest } from '@/types/mypage/mypageType';
+
+export interface ComponentProps {
+  beautyinfo: beautyInfoCreateDataRequest;
+}
+function MySizeBeautiInfo({ beautyinfo }: ComponentProps) {
   const [activeTab, setActiveTab] = useState('size');
+  // console.log('bbbl', beautyinfo);
+  const handleEdit = () => {
+    // 수정 로직 구현
+    console.log('수정 버튼 클릭');
+  };
+
+  const handleDelete = () => {
+    // 삭제 로직 구현
+    console.log('삭제 버튼 클릭');
+  };
   return (
     <Tabs
       defaultValue="size"
@@ -50,14 +65,33 @@ function MySizeBeautiInfo() {
       </TabsContent>
       <TabsContent value="beautiInfo">
         <form className="flex flex-col items-center">
-          <MyBeautiForm />
+          <MyBeautiForm beautyinfo={beautyinfo} />
           <InfoAgree />
-          <Button
-            className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
-            type="submit"
-          >
-            나의 뷰티정보 등록
-          </Button>
+          {beautyinfo ? (
+            <div className="flex justify-between w-11/12 mb-20">
+              <Button
+                className="w-[48%] h-12 bg-white text-si-131922 font-semibold border border-si-131922"
+                type="button"
+                onClick={handleEdit}
+              >
+                수정
+              </Button>
+              <Button
+                className="w-[48%] h-12 bg-si-131922 text-white font-semibold"
+                type="button"
+                onClick={handleDelete}
+              >
+                삭제
+              </Button>
+            </div>
+          ) : (
+            <Button
+              className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
+              type="submit"
+            >
+              나의 뷰티정보 등록
+            </Button>
+          )}
         </form>
       </TabsContent>
     </Tabs>

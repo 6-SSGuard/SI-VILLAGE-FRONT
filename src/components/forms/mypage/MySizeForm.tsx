@@ -1,7 +1,4 @@
 'use client';
-import DialogComponent from '@/components/dialog/DialogComponent';
-import MemberTerms from '@/components/dialog/MemberTerms';
-import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -10,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import React, { useState } from 'react';
+import React from 'react';
 
 function MySizeForm() {
   return (

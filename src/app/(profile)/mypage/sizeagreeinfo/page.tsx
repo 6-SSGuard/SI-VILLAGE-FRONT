@@ -1,18 +1,17 @@
 import MySizeBeautiInfo from '@/components/pages/mypage/MySizeBeautiInfo';
-import { getServerSession } from 'next-auth/next';
-import { options } from '@/app/api/auth/[...nextauth]/options';
 import React from 'react';
 import { getBeautyInfo } from '@/actions/beautyInfoAction';
+import { beautyInfoCreateDataRequest } from '@/types/mypage/mypageType';
+import { commonResType } from '@/types/auth/authType';
 
 async function page() {
-  const session = await getServerSession(options);
-  const beautyInfo = await getBeautyInfo(session?.user.accessToken);
+  const beautyInfo: commonResType<beautyInfoCreateDataRequest> =
+    await getBeautyInfo();
   console.log('t', beautyInfo);
 
-  // console.log('tttT', session?.user.accessToken);
   return (
     <main>
-      <MySizeBeautiInfo />
+      <MySizeBeautiInfo beautyinfo={beautyInfo} />
     </main>
   );
 }
