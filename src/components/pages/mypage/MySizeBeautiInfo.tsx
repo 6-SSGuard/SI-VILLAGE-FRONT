@@ -17,10 +17,12 @@ function MySizeBeautiInfo({
   beautyinfo,
   sizeinfo,
   handlePostBeautyInfo,
+  handlePostSizeInfo,
 }: {
   beautyinfo: beautyInfoCreateDataRequest;
   sizeinfo: sizeCreateDataRequest;
   handlePostBeautyInfo: (formData: FormData) => void;
+  handlePostSizeInfo: (formData: FormData) => void;
 }) {
   const [activeTab, setActiveTab] = useState('size');
 
@@ -64,7 +66,10 @@ function MySizeBeautiInfo({
         </TabsTrigger>
       </TabsList>
       <TabsContent value="size">
-        <form className="flex flex-col items-center">
+        <form
+          className="flex flex-col items-center"
+          action={handlePostSizeInfo}
+        >
           <MySizeForm sizeinfo={sizeinfo} />
           <InfoAgree />
           <Button

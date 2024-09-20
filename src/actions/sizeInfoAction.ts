@@ -1,6 +1,7 @@
 'use server';
 import { getServerSession } from 'next-auth/next';
 import { options } from '@/app/api/auth/[...nextauth]/options';
+import { sizeCreateDataRequest } from '@/types/mypage/mypageType';
 
 /**
  * 사이즈 정보 조회
@@ -50,24 +51,22 @@ export async function getSizeInfo() {
     ]
   }
  */
-// export async function postSizeInfo(
-//   sizeFormData:
-// ) {
-//   const session = await getServerSession(options);
-//   const res = await fetch(`${process.env.API_BASE_URL}/api/size-info`, {
-//     method: 'POST',
-//     body: JSON.stringify(sizeFormData),
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${session?.user.accessToken}`,
-//     },
-//   });
+export async function postSizeInfo(sizeFormData: sizeCreateDataRequest) {
+  const session = await getServerSession(options);
+  const res = await fetch(`${process.env.API_BASE_URL}/api/size-info`, {
+    method: 'POST',
+    body: JSON.stringify(sizeFormData),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session?.user.accessToken}`,
+    },
+  });
 
-//   if (res.ok) {
-//     return await res.json();
-//   }
-//   return null;
-// }
+  if (res.ok) {
+    return await res.json();
+  }
+  return null;
+}
 
 /**
  * 뷰티 정보 수정

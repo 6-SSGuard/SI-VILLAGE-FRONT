@@ -13,22 +13,23 @@ import React, { useEffect, useState } from 'react';
 interface MySizeInfoProps {
   sizeinfo: sizeCreateDataRequest;
 }
+
 function MySizeForm({ sizeinfo }: MySizeInfoProps) {
   const [formData, setFormData] = useState({
-    height: sizeinfo.height || '',
-    weight: sizeinfo.weight || '',
-    topSize: sizeinfo.topSize || '',
-    bottomSize: sizeinfo.bottomSize || '',
-    shoeSize: sizeinfo.shoeSize || '',
+    height: sizeinfo?.height,
+    weight: sizeinfo?.weight,
+    topSize: sizeinfo?.topSize,
+    bottomSize: sizeinfo?.bottomSize,
+    shoeSize: sizeinfo?.shoeSize,
   });
 
   useEffect(() => {
     setFormData({
-      height: sizeinfo.height || '',
-      weight: sizeinfo.weight || '',
-      topSize: sizeinfo.topSize || '',
-      bottomSize: sizeinfo.bottomSize || '',
-      shoeSize: sizeinfo.shoeSize || '',
+      height: sizeinfo?.height,
+      weight: sizeinfo?.weight,
+      topSize: sizeinfo?.topSize,
+      bottomSize: sizeinfo?.bottomSize,
+      shoeSize: sizeinfo?.shoeSize,
     });
   }, [sizeinfo]);
 
@@ -50,13 +51,13 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
           <label htmlFor="height" className="w-1/3 text-sm">
             키
           </label>
-          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray placeholder:text-si-text-gray">
+          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray">
             <Input
               type="text"
               name="height"
               id="height"
               placeholder="입력"
-              className="flex-grow border-none"
+              className="flex-grow border-none placeholder:text-si-text-gray"
               value={formData.height}
               onChange={handleInputChange}
             />
@@ -67,12 +68,13 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
           <label htmlFor="weight" className="w-1/3 text-sm">
             몸무게
           </label>
-          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray placeholder:text-si-text-gray">
+          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray">
             <Input
               type="text"
               name="weight"
               id="weight"
               placeholder="입력"
+              className="placeholder:text-si-text-gray"
               value={formData.weight}
               onChange={handleInputChange}
             />
@@ -83,12 +85,12 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
 
       {/* Top Size */}
       <div className="flex justify-between items-center">
-        <label htmlFor="top-size" className="w-1/3 text-sm">
+        <label htmlFor="topSize" className="w-1/3 text-sm">
           평소 상의 사이즈
         </label>
         <Select
-          name="top-size"
-          value={formData.topSize}
+          name="topSize"
+          value={formData.topSize || ''}
           onValueChange={(value) => handleSelectChange('topSize', value)}
         >
           <SelectTrigger className="w-2/3 border-si-text-gray hover:border-black">
@@ -108,12 +110,12 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
 
       {/* Bottom Size */}
       <div className="flex justify-between items-center">
-        <label htmlFor="bottom-size" className="w-1/3 text-sm">
+        <label htmlFor="bottomSize" className="w-1/3 text-sm">
           평소 하의 사이즈
         </label>
         <Select
-          name="bottom-size"
-          value={formData.bottomSize}
+          name="bottomSize"
+          value={formData.bottomSize || ''}
           onValueChange={(value) => handleSelectChange('bottomSize', value)}
         >
           <SelectTrigger className="w-2/3 border-si-text-gray open:border-black open:ring-black ">
@@ -131,12 +133,12 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
 
       {/* Shoe Size */}
       <div className="flex justify-between items-center">
-        <label htmlFor="shoe-size" className="w-1/3 text-sm">
+        <label htmlFor="shoeSize" className="w-1/3 text-sm">
           평소 신발 사이즈
         </label>
         <Select
-          name="shoe-size"
-          value={formData.shoeSize}
+          name="shoeSize"
+          value={formData.shoeSize || ''}
           onValueChange={(value) => handleSelectChange('shoeSize', value)}
         >
           <SelectTrigger className="w-2/3 border-si-text-gray hover:border-black">
@@ -150,7 +152,7 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
                 value={`${160 + i * 10}`}
               >{`${160 + i * 10}`}</SelectItem>
             ))}
-            <SelectItem value="280 이상">280 이상</SelectItem>
+            <SelectItem value="290 이상">290 이상</SelectItem>
           </SelectContent>
         </Select>
       </div>

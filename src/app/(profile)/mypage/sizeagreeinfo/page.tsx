@@ -6,13 +6,11 @@ import {
   sizeCreateDataRequest,
 } from '@/types/mypage/mypageType';
 import { commonResType } from '@/types/auth/authType';
-import { getSizeInfo } from '@/actions/sizeInfoAction';
+import { getSizeInfo, postSizeInfo } from '@/actions/sizeInfoAction';
 
 async function page() {
   const beautyInfo: commonResType<beautyInfoCreateDataRequest> =
     await getBeautyInfo();
-
-  const sizeInfo: commonResType<sizeCreateDataRequest> = await getSizeInfo();
 
   const handlePostBeautyInfo = async (formData: FormData) => {
     'use server';
@@ -35,12 +33,37 @@ async function page() {
     }
   };
 
+  const sizeInfo: commonResType<sizeCreateDataRequest> = await getSizeInfo();
+
+  const handlePostSizeInfo = async (formData: FormData) => {
+    'use server';
+    const formDataToBeautyInfo = (
+      formData: FormData
+    ): sizeCreateDataRequest => ({
+      height: Number(formData.get('height')) || 0,
+      weight: Number(formData.get('weight')) || 0,
+      topSize: formData.get('topSize') as string,
+      bottomSize: formData.get('bottomSize') as string,
+      shoeSize: formData.get('shoeSize') as string,
+    });
+
+    const sizeInfoData = formDataToBeautyInfo(formData);
+    // console.log('size', formData);
+    try {
+      const res = await postSizeInfo(sizeInfoData);
+      console.log('res', res);
+    } catch (error) {
+      console.error('오류 발생:', error);
+    }
+  };
+
   return (
     <main>
       <MySizeBeautiInfo
         beautyinfo={beautyInfo?.result}
         sizeinfo={sizeInfo?.result}
         handlePostBeautyInfo={handlePostBeautyInfo}
+        handlePostSizeInfo={handlePostSizeInfo}
       />
     </main>
   );
