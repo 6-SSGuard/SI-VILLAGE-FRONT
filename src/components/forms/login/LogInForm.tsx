@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
@@ -12,12 +12,13 @@ function LogInForm() {
   useEffect(() => {
     console.log('LogInForm auth', auth);
   }, [auth]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+
     const formData = new FormData(e.currentTarget);
-    console.log(formData.get('email'));
-    console.log(formData.get('password'));
+    // console.log(formData.get('email'));
+    // console.log(formData.get('password'));
     signIn('credentials', {
       email: formData.get('email') as string,
       password: formData.get('password') as string,
@@ -25,6 +26,7 @@ function LogInForm() {
       callbackUrl: '/',
     });
   };
+
   return (
     // <form className="p-10 text-center" action={handleSignIn}>
     <form className="p-10 text-center" onSubmit={onSubmit}>

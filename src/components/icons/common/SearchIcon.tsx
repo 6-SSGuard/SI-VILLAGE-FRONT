@@ -1,10 +1,14 @@
 import React from 'react';
 
-export default function SearchIcon() {
+interface SearchIconProps {
+  size?: number;
+}
+
+const SearchIcon: React.FC<SearchIconProps> = ({ size = 32 }) => {
   return (
     <svg
-      width="32"
-      height="32"
+      width={size}
+      height={size}
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -35,4 +39,6 @@ export default function SearchIcon() {
       </defs>
     </svg>
   );
-}
+};
+
+export default SearchIcon;

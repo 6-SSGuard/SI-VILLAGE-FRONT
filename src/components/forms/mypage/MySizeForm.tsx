@@ -1,7 +1,4 @@
 'use client';
-import DialogComponent from '@/components/dialog/DialogComponent';
-import MemberTerms from '@/components/dialog/MemberTerms';
-import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -10,9 +7,42 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import React, { useState } from 'react';
+import { sizeCreateDataRequest } from '@/types/mypage/mypageType';
+import React, { useEffect, useState } from 'react';
 
-function MySizeForm() {
+interface MySizeInfoProps {
+  sizeinfo: sizeCreateDataRequest;
+}
+
+function MySizeForm({ sizeinfo }: MySizeInfoProps) {
+  const [formData, setFormData] = useState({
+    height: sizeinfo?.height,
+    weight: sizeinfo?.weight,
+    topSize: sizeinfo?.topSize,
+    bottomSize: sizeinfo?.bottomSize,
+    shoeSize: sizeinfo?.shoeSize,
+  });
+
+  useEffect(() => {
+    setFormData({
+      height: sizeinfo?.height,
+      weight: sizeinfo?.weight,
+      topSize: sizeinfo?.topSize,
+      bottomSize: sizeinfo?.bottomSize,
+      shoeSize: sizeinfo?.shoeSize,
+    });
+  }, [sizeinfo]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // console.log('tts', sizeinfo);
   return (
     <div className="space-y-4 p-[32px_24px_40px]">
       {/* Height and Weight */}
@@ -21,13 +51,15 @@ function MySizeForm() {
           <label htmlFor="height" className="w-1/3 text-sm">
             키
           </label>
-          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray text-si-text-gray">
+          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray">
             <Input
               type="text"
               name="height"
               id="height"
               placeholder="입력"
-              className="flex-grow border-none"
+              className="flex-grow border-none placeholder:text-si-text-gray"
+              value={formData.height}
+              onChange={handleInputChange}
             />
             <span className="mr-2 text-sm text-[#333333]">cm</span>
           </div>
@@ -36,13 +68,15 @@ function MySizeForm() {
           <label htmlFor="weight" className="w-1/3 text-sm">
             몸무게
           </label>
-          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray text-si-text-gray">
+          <div className="w-2/3 flex items-center ring-1 ring-si-text-gray">
             <Input
               type="text"
               name="weight"
               id="weight"
               placeholder="입력"
-              className="flex-grow border-none"
+              className="placeholder:text-si-text-gray"
+              value={formData.weight}
+              onChange={handleInputChange}
             />
             <span className="mr-2 text-sm text-[#333333]">kg</span>
           </div>
@@ -51,31 +85,39 @@ function MySizeForm() {
 
       {/* Top Size */}
       <div className="flex justify-between items-center">
-        <label htmlFor="top-size" className="w-1/3 text-sm">
+        <label htmlFor="topSize" className="w-1/3 text-sm">
           평소 상의 사이즈
         </label>
-        <Select name="top-size">
+        <Select
+          name="topSize"
+          value={formData.topSize || ''}
+          onValueChange={(value) => handleSelectChange('topSize', value)}
+        >
           <SelectTrigger className="w-2/3 border-si-text-gray hover:border-black">
             <SelectValue placeholder="선택" />
           </SelectTrigger>
           <SelectContent className="bg-white border-black">
-            <SelectItem value="xxs">XXS 이하</SelectItem>
-            <SelectItem value="xs">XS</SelectItem>
-            <SelectItem value="s">S</SelectItem>
-            <SelectItem value="m">M</SelectItem>
-            <SelectItem value="l">L</SelectItem>
-            <SelectItem value="xl">XL</SelectItem>
-            <SelectItem value="xxl">XXL 이상</SelectItem>
+            <SelectItem value="XXS">XXS 이하</SelectItem>
+            <SelectItem value="XS">XS</SelectItem>
+            <SelectItem value="S">S</SelectItem>
+            <SelectItem value="M">M</SelectItem>
+            <SelectItem value="L">L</SelectItem>
+            <SelectItem value="XL">XL</SelectItem>
+            <SelectItem value="XXL">XXL 이상</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Bottom Size */}
       <div className="flex justify-between items-center">
-        <label htmlFor="bottom-size" className="w-1/3 text-sm">
+        <label htmlFor="bottomSize" className="w-1/3 text-sm">
           평소 하의 사이즈
         </label>
-        <Select name="bottom-size">
+        <Select
+          name="bottomSize"
+          value={formData.bottomSize || ''}
+          onValueChange={(value) => handleSelectChange('bottomSize', value)}
+        >
           <SelectTrigger className="w-2/3 border-si-text-gray open:border-black open:ring-black ">
             <SelectValue placeholder="선택" />
           </SelectTrigger>
@@ -91,10 +133,14 @@ function MySizeForm() {
 
       {/* Shoe Size */}
       <div className="flex justify-between items-center">
-        <label htmlFor="shoe-size" className="w-1/3 text-sm">
+        <label htmlFor="shoeSize" className="w-1/3 text-sm">
           평소 신발 사이즈
         </label>
-        <Select name="shoe-size">
+        <Select
+          name="shoeSize"
+          value={formData.shoeSize || ''}
+          onValueChange={(value) => handleSelectChange('shoeSize', value)}
+        >
           <SelectTrigger className="w-2/3 border-si-text-gray hover:border-black">
             <SelectValue placeholder="선택" />
           </SelectTrigger>
@@ -106,7 +152,7 @@ function MySizeForm() {
                 value={`${160 + i * 10}`}
               >{`${160 + i * 10}`}</SelectItem>
             ))}
-            <SelectItem value="280 이상">280 이상</SelectItem>
+            <SelectItem value="290 이상">290 이상</SelectItem>
           </SelectContent>
         </Select>
       </div>

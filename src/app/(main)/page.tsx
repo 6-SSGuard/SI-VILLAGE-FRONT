@@ -1,7 +1,5 @@
 import { dealDatas } from '@/datas/dummys/dealDatas';
 import { dealListDataType } from '@/types/domainTypes';
-import { getServerSession } from 'next-auth';
-import { options } from '../api/auth/[...nextauth]/options';
 import { mainComponentList } from '@/datas/initial/mainComponentList';
 import { createElement, Suspense } from 'react';
 import MotionSectionWithMain from '@/components/pages/main/MotionSectionWithMain';

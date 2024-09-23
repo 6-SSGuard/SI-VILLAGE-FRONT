@@ -1,19 +1,20 @@
+'use client';
 import React from 'react';
 import Footer from '@/components/layouts/Footer';
 import BottomTabBar from '@/components/layouts/BottomTabBar';
 import AuthServiceHeader from '@/components/layouts/AuthServiceHeader';
+import { usePathname } from 'next/navigation';
 
 export default function layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const pathname = usePathname();
+
   return (
     <>
-      <AuthServiceHeader />
+      {pathname == '/brand' && <AuthServiceHeader />}
       {children}
-      <footer className="pb-12 bg-gray-100 text-black mt-4">
-        <Footer />
-      </footer>
-
+      {pathname == '/brand' && <Footer />}
       <BottomTabBar />
     </>
   );
