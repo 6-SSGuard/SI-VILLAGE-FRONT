@@ -18,7 +18,7 @@ const CategoryLink: React.FC<CategoryLinkProps> = ({
   return (
     <Link href={href} className="flex-shrink-0">
       <Image src={src} alt={alt} width={56} height={56} />
-      <span className="text-xs font-bold text-[#787878]">{label}</span>
+      <span className="text-xs font-bold text-si-787878">{label}</span>
     </Link>
   );
 };

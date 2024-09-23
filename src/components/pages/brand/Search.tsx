@@ -13,7 +13,7 @@ function Search({ brandData }: { brandData: brandResponse[] }) {
   return (
     <>
       <div className="flex mt-3 w-11/12 items-center border-b-2 border-gray-300 p-2 mx-auto">
-        <SearchIcon />
+        <SearchIcon size={24} />
         <input
           type="text"
           placeholder="브랜드명 검색"

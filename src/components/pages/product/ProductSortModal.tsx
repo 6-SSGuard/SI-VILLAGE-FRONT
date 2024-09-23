@@ -62,7 +62,7 @@ const ProductSortModal: React.FC<BottomModalProps> = ({ isOpen, onClose }) => {
 
           <ul>
             {sortingOptions.map((option, index) => (
-              <li key={index} className="px-6 leading-[48px] text-[#787878]">
+              <li key={index} className="px-6 leading-[48px] text-si-787878">
                 {option}
               </li>
             ))}

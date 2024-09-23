@@ -11,3 +11,13 @@ export interface deliveryDataType {
   phone: string;
   receiverAddress: string;
 }
+
+export interface shippingAddressType {
+  addressId: number;
+  address: string;
+  addressDetail: string;
+  zipCode: string;
+  receiverName: string;
+  receiverPhone: string;
+  isDefault: boolean;
+}

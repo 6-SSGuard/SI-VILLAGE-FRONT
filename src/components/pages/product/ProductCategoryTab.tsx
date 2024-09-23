@@ -67,7 +67,7 @@ const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({
         <>
           <div className="fixed  bg-white z-50 p-[0px_0px_16px_24px] leading-[48px] overflow-auto max-h-[80vh]">
             <div className="flex justify-between items-center border-b pb-2">
-              <h2 className="text-sm text-[#787878] leading-[48px]">
+              <h2 className="text-sm text-si-787878 leading-[48px]">
                 ALL CATEGORIES
               </h2>
               <button

@@ -14,7 +14,7 @@ function ProductQnA({ productname }: { productname: string }) {
       [id]: !prevState[id],
     }));
   };
-
+  // console.log('here', productname);
   return (
     <section className="p-6">
       <h2 className="text-lg font-semibold">
@@ -25,7 +25,10 @@ function ProductQnA({ productname }: { productname: string }) {
         buttonTitle="상품 문의하기"
         icon="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/pencil.png"
         iconPosition="left"
-        href={`/product/${productname}/qnaform`}
+        href={{
+          pathname: `/product/${productname}/qnaform`,
+          query: { productname: productname },
+        }}
       />
       <div className="mt-4 space-y-4">
         {QnAList.data.map((qna) => (

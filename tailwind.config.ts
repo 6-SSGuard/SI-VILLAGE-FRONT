@@ -38,6 +38,7 @@ const config = {
         'Black': '#000000',
         'si-text-gray': '#929292',
         'si-131922': '#131922',
+        'si-787878': '#787878',
         'border': 'hsl(var(--border))',
         'input': 'hsl(var(--input))',
         'ring': 'hsl(var(--ring))',
