@@ -5,6 +5,7 @@ import Eventcontainer from '@/components/pages/event/EventContainer';
 import EventFilter from '@/components/pages/event/EventFilter';
 import { EventBrandListType } from '@/types/event/eventType';
 import { EventBrandFilterData } from '@/datas/dummys/eventDatas';
+import EventFilterCustom from '@/components/pages/event/EventFilterCustom';
 
 async function getEventListData() {
   // const res = await fetch('https://jsonplaceholder.typicode.com/posts')
@@ -23,6 +24,7 @@ async function page() {
   return (
     <main>
       <div className="flex-col">
+        <EventFilterCustom />
         <EventFilter
           eventListCnt={data.eventListCnt}
           brandData={brandData.data}
