@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { ArrowRightIcon } from 'lucide-react';
@@ -7,12 +8,31 @@ import { HeartIcon } from 'lucide-react';
 import { ShareIcon } from 'lucide-react';
 import DetailProductImageList from './DetailProductImageList';
 import { DetailProductInfoData } from '@/types/detail/detailproductinfo';
+// import { getProductCodeImage } from '@/actions/productDetailAction';
 function detailProductInfo({ data }: { data: DetailProductInfoData[] }) {
   //베스트 페이지에서 전달받은 productname확인
   //라우터 객체 생성 => 전달받은 라우팅값을 productname 에 저장
   const router = useParams();
   const productname = router.productname;
-  const ProductItemData = data.find((item) => item.productname === productname);
+  const ProductItemData = data.find(
+    (item) => item.product_code === productname
+  );
+
+  // useEffect(() => {
+  //   // router.query.productname이 초기 렌더링에서 undefined일 수 있으므로, 존재할 때만 호출
+  //   if (productname) {
+  //     const fetchProductDetail = async () => {
+  //       try {
+  //         const product = await getProductCodeImage(productname as string); // 제품 코드로 API 호출
+  //         setImage(product);
+  //       } catch (err) {
+  //         Error('failed');
+  //       }
+  //     };
+
+  //     fetchProductDetail(); // 함수 호출
+  //   }
+  // }, [productname]);
 
   return (
     <div className="flex flex-col">
@@ -84,6 +104,14 @@ function detailProductInfo({ data }: { data: DetailProductInfoData[] }) {
 
       {/* 할인쿠폰 */}
       <div className=" px-6 bg-gray-200">{/* 할인쿠폰 내용 추가 */}</div>
+
+      {/* <Image
+        src={ProductItemData?.productImage}
+        width={400}
+        height={400}
+        alt="aafafaf"
+        className="w-[400px] h-[400px] object-cover"
+      ></Image> */}
     </div>
   );
 }

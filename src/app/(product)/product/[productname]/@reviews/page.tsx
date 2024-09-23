@@ -2,6 +2,9 @@ import React from 'react';
 import { DetailReviewInfoListType } from '@/types/detail/detailReviewType';
 import { ReviewInfoData } from '@/datas/detailproductdatas';
 import DetailReview from '@/components/pages/detail/DetailReview';
+import { reviewListByProductId } from '@/actions/reviewActions';
+import { DetailReviewDataType } from '@/types/detail/detailReviewListType';
+import { DetailReviewListType } from '@/types/detail/detailReviewListType';
 // import DetailReview from '@/components/pages/detail/DetailReview';
 
 // export interface reviewDataType {
@@ -56,6 +59,18 @@ async function getReviewInfo() {
 
 async function page({ params }: { params: { productName: string } }) {
   const ReviewData: DetailReviewInfoListType = await getReviewInfo();
+
+  const getData = async () => {
+    const productCode = parseInt(params.productName);
+    const reviewData = (await reviewListByProductId(
+      productCode
+    )) as unknown as Promise<DetailReviewListType>;
+
+    return reviewData;
+  };
+
+  const Data = await getData();
+  console.log(Data);
 
   return (
     <main>

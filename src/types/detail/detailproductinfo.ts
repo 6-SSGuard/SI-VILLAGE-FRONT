@@ -4,7 +4,7 @@ export interface DetailProductList {
 }
 
 export interface DetailProductInfoData {
-  productname: string;
+  product_code: string;
   productTitle: string;
   productContent: string;
   productdiscountRate: string;
@@ -14,4 +14,5 @@ export interface DetailProductInfoData {
   productColorImageList: string[];
   productReviewCount: number;
   productislike: number;
+  productImage: string;
 }

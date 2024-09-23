@@ -52,19 +52,16 @@ function BenefitFilterDialog({ data }: { data: EventBrandDataType[] }) {
       <span className="text-2xl ml-2">혜택</span>
 
       {/* 필터바 */}
-      <div className="grid grid-cols-2 gap-2 mt-2 justify-start px-2">
+      <div className="grid grid-cols-2 gap-2 mt-2 px-2">
         {filters.map((filter) => (
-          <li
-            key={filter.id}
-            className="flex items-center space-x-3 mt-4 w-[176px] h-[24px]"
-          >
+          <li key={filter.id} className="flex items-center space-x-3 mt-4">
             <input
               type="checkbox"
               checked={filter.checked}
               onChange={() => handleCheckboxChange(filter.id)}
-              className=" border border-white h-[24px] w-[24px] accent-black text-black "
+              className="h-[24px] w-[24px] accent-black"
             />
-            <span className="font-sans">{filter.label}</span>
+            <span>{filter.label}</span>
           </li>
         ))}
       </div>
@@ -72,34 +69,21 @@ function BenefitFilterDialog({ data }: { data: EventBrandDataType[] }) {
       <div className="mt-8 h-[6px] w-full bg-gray-100"></div>
 
       <div className="flex flex-col">
-        {/* 브랜드 상단 바*/}
         <div className="flex justify-between p-4 mt-4">
-          <div>
-            <span className="text-xl">브랜드</span>
-          </div>
-          <div>
-            <ChevronDown onClick={Handle} />
-          </div>
+          <span className="text-xl">브랜드</span>
+          <ChevronDown onClick={Handle} />
         </div>
-        {/* 화살표 버튼이 true되면 열림 */}
         {arrowState && <EventModalCard data={data} />}
       </div>
 
-      {/* 고정된 하단 네비게이션 바 */}
-      <div className="sticky bottom-0 left-0 right-0 flex w-full bg-white p-4 shadow-md ">
-        <div className="w-1/2 pr-2">
-          <button
-            onClick={resetHandle}
-            className="bg-gray-400 w-full text-white py-2 rounded"
-          >
-            초기화
-          </button>
-        </div>
-        <div className="w-1/2 pl-2">
-          <button className="bg-black w-full text-white py-2 rounded">
-            적용
-          </button>
-        </div>
+      <div className="sticky bottom-0 flex w-full bg-white p-4 shadow-md">
+        <button
+          onClick={resetHandle}
+          className="w-1/2 bg-gray-400 text-white py-2 rounded mr-2"
+        >
+          초기화
+        </button>
+        <button className="w-1/2 bg-black text-white py-2 rounded">적용</button>
       </div>
     </div>
   );

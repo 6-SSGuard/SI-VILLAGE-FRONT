@@ -9,7 +9,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { DetailProductInfoData } from '@/types/detail/detailproductinfo';
 import { Swiper as SwiperType } from 'swiper/types';
-import { Item } from '@radix-ui/react-select';
 
 function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
   //스와이퍼 인덱스 로직
@@ -22,7 +21,9 @@ function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
   //라우터 객체 생성 => 전달받은 라우팅값을 productname 에 저장
   const router = useParams();
   const productname = router.productname;
-  const ProductItemData = data.find((item) => item.productname === productname);
+  const ProductItemData = data.find(
+    (item) => item.product_code === productname
+  );
 
   return (
     <div className="w-full h-[580px]">

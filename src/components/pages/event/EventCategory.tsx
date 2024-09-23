@@ -25,10 +25,7 @@ function EventCategory() {
           {EventCategoryData.map((item, index) => {
             const isActive = PathName === item.url || item.url === Activity;
             return (
-              <li
-                key={item.id}
-                className="flex flex-col items-center justify-center gap-2"
-              >
+              <li key={item.id} className="flex flex-col items-center gap-2">
                 <Link href={item.url}>
                   <div
                     className={`w-[72px] h-[72px] rounded-full flex justify-center items-center transition-all duration-300 ${
@@ -46,11 +43,7 @@ function EventCategory() {
                       <img
                         src={item.Icon}
                         alt={item.title}
-                        width={40}
-                        height={40}
-                        style={{
-                          filter: isActive ? 'invert(1)' : 'invert(0)',
-                        }}
+                        className={`w-10 h-10 ${isActive ? 'invert' : ''}`}
                       />
                     )}
                   </div>

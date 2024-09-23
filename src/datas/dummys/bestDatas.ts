@@ -2,7 +2,6 @@ import { bestCreateListDataType } from '@/types/best/bestTypes';
 import BestIconNo1 from '@/components/icons/tabs/tab1';
 import BestIconNo2 from '@/components/icons/tabs/bestmenutab2';
 import BestIconNo3 from '@/components/icons/tabs/BestTab3';
-import { Icon } from 'lucide-react';
 export const bestData: bestCreateListDataType = {
   data: [
     {
