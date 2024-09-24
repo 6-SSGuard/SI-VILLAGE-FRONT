@@ -1,19 +1,14 @@
 'use client';
-
-import { useRef } from 'react';
 import { useState } from 'react';
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import CartGeneral from './CartGeneral';
 import { CartProductDataType } from '@/types/cart/cartTypes';
+import { CartListItem } from '@/app/(cart)/cartmain/page';
 
-function CartHearder({
-  cartListData,
-}: {
-  cartListData: CartProductDataType[];
-}) {
-  const navRef = useRef(' ');
+function CartHearder({ cartListId }: { cartListId: CartListItem[] }) {
   const [activityContent, setContent] = useState('general');
+
   return (
     <Tabs defaultValue="general" className="w-full">
       <TabsList className="flex justify-between border-b">
@@ -45,10 +40,12 @@ function CartHearder({
       </TabsList>
 
       <TabsContent value="general">
-        <CartGeneral cartListData={cartListData} />
+        <CartGeneral cartListId={cartListId} />
       </TabsContent>
-      <TabsContent value="pw">
-        <></>
+      <TabsContent value="regular">
+        <section className="flex items-center justify-center">
+          이 페이지는 현재 준비 중입니다.
+        </section>
       </TabsContent>
     </Tabs>
   );

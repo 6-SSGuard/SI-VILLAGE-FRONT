@@ -1,12 +1,15 @@
 import MySizeBeautiInfo from '@/components/pages/mypage/MySizeBeautiInfo';
 import React from 'react';
-import { getBeautyInfo, postBeautyInfo } from '@/actions/beautyInfoAction';
+import {
+  getBeautyInfo,
+  postBeautyInfo,
+} from '@/actions/mypage/beautyInfoAction';
 import {
   beautyInfoCreateDataRequest,
   sizeCreateDataRequest,
 } from '@/types/mypage/mypageType';
 import { commonResType } from '@/types/auth/authType';
-import { getSizeInfo, postSizeInfo } from '@/actions/sizeInfoAction';
+import { getSizeInfo, postSizeInfo } from '@/actions/mypage/sizeInfoAction';
 
 async function page() {
   const beautyInfo: commonResType<beautyInfoCreateDataRequest> =
