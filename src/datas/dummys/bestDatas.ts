@@ -17,6 +17,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 830000,
       isLike: false,
       category: '여성의류',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -31,6 +32,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 265000,
       isLike: false,
       category: '뷰티',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -45,6 +47,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 266000,
       isLike: false,
       category: '뷰티',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -59,6 +62,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 265000,
       isLike: false,
       category: '뷰티',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -73,6 +77,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 639000,
       isLike: false,
       category: '뷰티',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -87,6 +92,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 924350,
       isLike: false,
       category: '뷰티',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -101,6 +107,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 2747080,
       isLike: false,
       category: '남성의류',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -115,6 +122,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 2747080,
       isLike: false,
       category: '남성의류',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -129,6 +137,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 2747080,
       isLike: false,
       category: '뷰티',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
 
     {
@@ -143,6 +152,7 @@ export const bestData: bestCreateListDataType = {
       Product_price: 2747080,
       isLike: false,
       category: '액세사리',
+      like: 'https://cdn-mo.sivillage.com/mo/assets/comm/image/icon_heart_light_off.svg',
     },
   ],
 };

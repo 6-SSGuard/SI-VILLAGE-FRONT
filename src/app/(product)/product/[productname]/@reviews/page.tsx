@@ -71,7 +71,7 @@ async function page({ params }: { params: { productName: string } }) {
         ))}
       </div> */}
       \
-      <div>
+      <div className="h-full">
         <DetailReview data={ReviewData.data} count={ReviewData.count} />
       </div>
     </main>

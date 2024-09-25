@@ -25,6 +25,7 @@ const profititems = [
   { text: '디지털보증서', href: '#' },
 ];
 const MyActiveitems = [
+  { text: '상품리뷰', href: '#' },
   { text: '상품문의', href: '#' },
   { text: '1:1문의내역', href: '#' },
   { text: '이벤트 참여내역', href: '#' },
@@ -39,7 +40,7 @@ const Myinfoitems = [
   { text: '개인정보 수정', href: '#' },
   { text: '비밀번호 변경', href: '#' },
   { text: 'SNS 연결 관리', href: '#' },
-  { text: '배송지/환불계좌 관리', href: '#' },
+  { text: '배송지 관리', href: '/mypage/shipping' },
   { text: '회원탈퇴', href: '#' },
   { text: '사이즈 / 뷰티정보 설정', href: '/mypage/sizeagreeinfo' },
   { text: '로그인 정보 관리', href: '#' },
@@ -47,7 +48,7 @@ const Myinfoitems = [
 
 export default async function page() {
   const session = await getServerSession(options);
-  console.log('여기요', session);
+  // console.log('여기요', session);
 
   return (
     <main>
@@ -55,9 +56,9 @@ export default async function page() {
       <MyPageDeliveryInfo />
       <MypageInfoList title="나의 쇼핑정보" items={shoppingitems} />
       <MypageInfoList title="나의 혜택정보" items={profititems} />
-      <MypageInfoList title="나의 활동정보" items={MyInterestitems} />
-      <MypageInfoList title="나의 관심정보" items={Myinfoitems} />
-      <MypageInfoList title="나의 정보관리" items={shoppingitems} />
+      <MypageInfoList title="나의 활동정보" items={MyActiveitems} />
+      <MypageInfoList title="나의 관심정보" items={MyInterestitems} />
+      <MypageInfoList title="나의 정보관리" items={Myinfoitems} />
       <SSGMembershipInfo />
     </main>
   );

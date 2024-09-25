@@ -2,10 +2,40 @@
 import { Tabs } from '@/components/ui/tabs';
 import { TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+
+interface TabMap {
+  '/': string;
+  '/event': string;
+  '/deal': string;
+  '/best': string;
+  '/silive': string;
+  '/content': string;
+  '/ssgdf': string;
+  [key: string]: string;
+}
 
 function MainTab() {
+  const pathname = usePathname();
   const [activeTab, setActiveTab] = useState('Home');
+
+  const tabMap = {
+    '/': 'Home',
+    '/event': 'Event',
+    '/deal': 'Deal',
+    '/best': 'Best',
+    '/silive': 'SILIVE',
+    '/content': 'Content',
+    '/ssgdf': 'SSG DF',
+  };
+
+  useEffect(() => {
+    const currentTab =
+      pathname in tabMap ? tabMap[pathname as keyof typeof tabMap] : 'Home';
+    setActiveTab(currentTab);
+  }, [pathname]);
+
   return (
     <main className="sticky top-0 z-20 bg-white border-b">
       <Tabs

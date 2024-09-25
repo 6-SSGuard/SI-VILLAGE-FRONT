@@ -1,21 +1,15 @@
-import Link from 'next/link';
 import React from 'react';
-import { DetailReviewInfoListType } from '@/types/detail/detailReviewType';
-import { ReviewInfoData } from '@/datas/detailproductdatas';
-import DetailReview from '@/components/pages/detail/DetailReview';
-
-async function getReviewInfo() {
-  const res = await ReviewInfoData;
-  return res;
-}
-
-async function page({ params }: { params: { productName: string } }) {
-  const ReviewData: DetailReviewInfoListType = await getReviewInfo();
-
+import MostProductPage from '@/components/pages/best/MostProductPage';
+import MostPeopleProduct from '@/components/pages/best/MostPeopleProduct';
+async function page() {
   return (
     <main>
-      <div className="flex overflow-auto">
-        <DetailReview data={ReviewData.data} count={ReviewData.count} />
+      <div className="flex-col overflow-auto">
+        {/* 키워드로 보는 인기상품 컴포넌트 */}
+        <MostProductPage />
+
+        {/* 사람들이 많이 본 인기상품 컴포넌트 */}
+        <MostPeopleProduct />
       </div>
     </main>
   );

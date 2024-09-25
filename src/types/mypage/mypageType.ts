@@ -2,11 +2,11 @@
 
 //사이즈 등록 Request
 export interface sizeCreateDataRequest {
-  id: number;
   height: number;
   weight: number;
   topSize: string;
-  pantsSize: string;
+  bottomSize: string;
+  shoeSize: string;
 }
 
 //개인 정보 수정 Request
@@ -22,10 +22,10 @@ export interface infoDataSelectRequest {
 
 //뷰티정보 등록
 export interface beautyInfoCreateDataRequest {
-  skinType: string;
-  skinTone: string;
-  scalpTone: string;
-  beautyKeyword: string[];
+  skinType?: string;
+  skinTone?: string;
+  scalpTone?: string;
+  beautyKeyword?: string[];
 }
 
 //비밀번호 번경

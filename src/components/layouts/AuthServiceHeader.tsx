@@ -22,34 +22,33 @@ export default function AuthServiceHeader() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   useEffect(() => {
-    switch (pathName) {
-      case '/sign-in':
-        setTitle('로그인');
-        break;
-      case '/sign-up':
-        setTitle('회원가입');
-        break;
-      case '/sign-up/join-simple':
-        setTitle('온라인 간편가입');
-        break;
-      case '/sign-in/forgotcredential':
-        setTitle('ID/PW 찾기');
-        break;
-      case '/mypage':
-        setTitle('마이페이지');
-        break;
-      case '/searchbrand':
-      case '/myfavor':
-        setTitle('BRAND');
-        break;
-      case '/product':
-        setTitle('test');
-        break;
-      default:
-        setTitle('');
-        break;
+    if (pathName.startsWith('/mypage')) {
+      setTitle('마이페이지');
+    } else {
+      switch (pathName) {
+        case '/sign-in':
+          setTitle('로그인');
+          break;
+        case '/sign-up':
+          setTitle('회원가입');
+          break;
+        case '/sign-up/join-simple':
+          setTitle('온라인 간편가입');
+          break;
+        case '/sign-in/forgotcredential':
+          setTitle('ID/PW 찾기');
+          break;
+        case '/brand':
+          setTitle('BRAND');
+          break;
+        case '/product':
+          setTitle('test');
+          break;
+        default:
+          setTitle('');
+          break;
+      }
     }
   }, [pathName]);
 
@@ -85,7 +84,7 @@ export default function AuthServiceHeader() {
                 <ArrowLeftIcon />
               </button>
               <div
-                className="flex-grow text-sm border-b border-black text-[#787878] justify-center h-7"
+                className="flex-grow text-sm border-b border-black text-si-787878 justify-center h-7"
                 onClick={openModal}
               >
                 놓칠 수 없는 최대 30% 페이백

@@ -9,10 +9,8 @@ function Eventcontainer({
 }) {
   return (
     <section className="container mt-3">
-      <ul className="flex flex-col gap-3">
-        {eventListData.map((event: eventCardDataType) => (
-          <EventCard key={event.id} event={event} />
-        ))}
+      <ul className="flex-col gap-3">
+        <EventCard event={eventListData} />
       </ul>
     </section>
   );
