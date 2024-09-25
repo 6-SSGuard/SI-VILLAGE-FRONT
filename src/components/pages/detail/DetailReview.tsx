@@ -1,18 +1,24 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FilterIcon, StarIcon } from 'lucide-react';
 import { DetailReviewInfoDataType } from '@/types/detail/detailReviewType';
 import DetailPhotoReviewImageList from './DetailPhotoReviewImageList';
 import { Button } from '@/components/ui/button';
 import DetailAllReviewModal from './DetailAllReviewModal';
+import { productReviewListType } from '@/types/review/reviewType';
+
+import { reviewIdbyReviewList } from '@/actions/reviewActions';
+import { reviewIdDataType } from '@/types/review/reviewType';
 
 function DetailReview({
   data,
   count,
+  id,
 }: {
   data: DetailReviewInfoDataType[];
   count: number;
+  id: reviewIdDataType;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,8 +26,30 @@ function DetailReview({
     setIsOpen(!isOpen);
   };
 
+  console.log(id.id + ' ' + 'test123');
+  const [item, setitem] = useState<productReviewListType>();
+
+  // 비동기 함수 내에서 데이터를 불러오는 useEffect
+  useEffect(() => {
+    if (id) {
+      console.log(id.id);
+      const fetchReviewData = async () => {
+        try {
+          const reviewListData = await reviewIdbyReviewList(id.id);
+          console.log(reviewListData + ' 전달 받은 데이터');
+          setitem(reviewListData); // Set the fetched data to state
+        } catch (error) {
+          console.error('Failed to fetch review data', error);
+        }
+      };
+      fetchReviewData();
+    }
+  }, [id]);
+
+  console.log(item && item);
+
   return (
-    <div className="overflow-y-auto">
+    <div className="h-auto">
       {/* 전체 리뷰 모달 */}
       {isOpen && (
         <DetailAllReviewModal
@@ -30,12 +58,11 @@ function DetailReview({
           // onClose={handleEvent} // 모달 닫기 상태
         />
       )}
-
       {/* 리뷰 페이지 전체 크기 레이아웃 */}
       <div
         className={`${
-          isOpen ? 'hidden' : 'flex overflow-auto'
-        } scrollbar-hide gap-1 flex-col h-auto`}
+          isOpen ? 'hidden' : 'h-full'
+        } scrollbar-hide gap-1 flex-col h-full`}
       >
         {/* 리뷰 상단 레이아웃 */}
         <div className="flex-col px-3">
@@ -46,7 +73,7 @@ function DetailReview({
 
           {/* 리뷰 중단 레이아웃 */}
           <div className="flex flex-col items-center justify-center py-10">
-            <p className="text-3xl font-bold">별점</p>
+            <p className="text-3xl font-bold">4.9</p>
             <StarIcon
               width={100}
               height={20}
@@ -70,9 +97,9 @@ function DetailReview({
         <div className="border border-gray-200"></div>
 
         {/* 리뷰 아이템 */}
-        <div className="flex-col h-[152px] mt-3 mx-4 pl-2">
+        <div className="flex-col h-auto mt-3 mx-4 pl-2">
           <ul className="flex-col overflow-hidden text-wrap">
-            {data.map((item) => (
+            {data.slice(0, 3).map((item) => (
               <div className="flex-col" key={item.id}>
                 {/* 별점 */}
                 <li>

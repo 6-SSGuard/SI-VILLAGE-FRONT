@@ -4,7 +4,10 @@ import { productDummy } from '@/datas/dummys/productDummy';
 function page() {
   return (
     <main>
-      <div dangerouslySetInnerHTML={{ __html: productDummy }} />
+      <div
+        className="overflow-auto"
+        dangerouslySetInnerHTML={{ __html: productDummy }}
+      />
     </main>
   );
 }
