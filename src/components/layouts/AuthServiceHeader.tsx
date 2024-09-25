@@ -9,12 +9,23 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { getCartItemCount } from '@/actions/cart/cartActions';
 
 export default function AuthServiceHeader() {
   const pathName = usePathname();
   const [title, setTitle] = useState<string>('');
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState<number>(0);
+  useEffect(() => {
+    const fetchCartItemCount = async () => {
+      const count = await getCartItemCount();
+      setCartItemCount(count?.quantity);
+    };
+
+    fetchCartItemCount();
+  }, []);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -105,10 +116,15 @@ export default function AuthServiceHeader() {
               </li>
 
               {isModalOpen && <SearchModal onClose={closeModal} />}
-              <li>
+              <li className="relative">
                 <Link href="cartmain">
                   <ShoppingBagIcon />
                 </Link>
+                {cartItemCount > 0 && (
+                  <span className="absolute top-[-4px] right-[-8px] bg-[#D99C63] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
               </li>
             </ul>
           </li>

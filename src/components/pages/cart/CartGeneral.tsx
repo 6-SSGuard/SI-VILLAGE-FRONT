@@ -1,11 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import CartProductListPage from './CartProductListPage';
-import {
-  CartProductDataType,
-  CartProductListType,
-} from '@/types/cart/cartTypes';
-import Image from 'next/image';
 import { getCartById } from '@/actions/cart/cartActions';
 import CartItem from './CartItem';
 import { CartListItem } from '@/app/(cart)/cartmain/page';
@@ -20,6 +14,7 @@ interface CartItemType {
 
 function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
   const [cartData, setCartData] = useState<CartItemType[]>([]);
+  const [isCartEmpty, setIsCartEmpty] = useState(false);
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -37,9 +32,11 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
         console.error('카트 데이터를 가져오는 중 오류 발생:', error);
       }
     };
-    // 컴포넌트가 마운트될 때 fetchCartData 호출
-    if (cartListId.length > 0) {
+    if (cartListId?.length > 0) {
       fetchCartData();
+      setIsCartEmpty(false); // 장바구니에 아이템이 있을 때
+    } else {
+      setIsCartEmpty(true); // 장바구니가 비어 있을 때
     }
   }, [cartListId]);
 
@@ -53,26 +50,7 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
   const handleSelectAll = () => {
     const newIsAllChecked = !isAllChecked;
     setIsAllChecked(newIsAllChecked);
-
-    // 모든 아이템의 체크 상태를 전체 선택 상태로 동기화
-    // const updatedCheckedItems = cartListData.reduce(
-    //   (acc, item) => ({ ...acc, [item.id]: newIsAllChecked }),
-    //   {}
-    // );
-    // setCheckedItems(updatedCheckedItems);
   };
-  // console.log(isAllChecked + 'fafaf');
-  // 개별 아이템 체크박스 핸들러
-  // const handleItemCheck = (id: number) => {
-  //   setCheckedItems((prev) => ({
-  //     ...prev,
-  //     [id]: !prev[id], // 해당 id의 체크 상태 반전
-  //   }));
-
-  //   // 모든 체크박스가 선택되었는지 확인하여 전체 체크박스 상태 업데이트
-  //   const allChecked = cartListData.every((item) => checkedItems[item.id]);
-  //   setIsAllChecked(allChecked);
-  // };
 
   return (
     <div className="overflow-x-hidden">
@@ -95,20 +73,24 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
       <div className="flex-col">
         {/* 경계선 */}
         <div className="w-full h-2 bg-gray-200"></div>
-        <div>
-          {cartData.map((item, index) => (
-            <div key={index} className="cart-item">
-              <CartItem productCode={item.productCode} />
-
-              <p>
-                <strong>Quantity:</strong> {item.quantity}
-              </p>
-              <p>
-                <strong>Selected:</strong> {item.selected ? 'Yes' : 'No'}
-              </p>
-            </div>
-          ))}
-        </div>
+        {isCartEmpty ? (
+          <div className="text-center py-10">
+            <p className="text-lg font-semibold">장바구니에 상품이 없습니다.</p>
+          </div>
+        ) : (
+          <div>
+            {cartData.map((item) => (
+              <div key={item.cartId} className="cart-item">
+                <CartItem
+                  cartId={item.cartId}
+                  productCode={item.productCode}
+                  quantity={item.quantity}
+                  selected={item.selected}
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="flex items-center">
           <div className="overflow-hidden transition-all py-6 pl-5">
@@ -134,7 +116,6 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
           </div>
         </div>
         <div className="border-4 border-gray-200"></div>
-        <div className="py-10">afaf</div>
       </div>
     </div>
   );

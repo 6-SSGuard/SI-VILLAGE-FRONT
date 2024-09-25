@@ -35,74 +35,117 @@ export async function getCartById(cartId: number) {
 }
 
 // 장바구니 수정
-// export async function updateCartById(cartId: number, cartData: any) {
-//   const session = await getServerSession(options);
-//   const response = await fetch(
-//     `${process.env.API_BASE_URL}/api/cart/member/${cartId}`,
-//     {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${session?.user.accessToken}`,
-//       },
-//       body: JSON.stringify(cartData),
-//     }
-//   );
-//   const data = await response.json();
-//   return data.result;
-// }
+export async function updateCartById(cartId: number, cartData: any) {
+  try {
+    const session = await getServerSession(options);
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/cart/member/${cartId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.user.accessToken}`,
+        },
+        body: JSON.stringify(cartData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to update cart item');
+    }
+
+    const data = await response.json();
+    return data.result;
+  } catch (error) {
+    console.error('Error updating cart item:', error);
+    throw error;
+  }
+}
 
 // 장바구니 삭제
-// export async function deleteCartById(cartId: number) {
-//   const session = await getServerSession(options);
-//   const response = await fetch(
-//     `${process.env.API_BASE_URL}/api/cart/member/${cartId}`,
-//     {
-//       method: 'DELETE',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${session?.user.accessToken}`,
-//       },
-//     }
-//   );
-//   const data = await response.json();
-//   return data.result;
-// }
+export async function deleteCartById(cartId: number) {
+  try {
+    const session = await getServerSession(options);
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/cart/member/${cartId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to delete cart item');
+    }
+
+    const data = await response.json();
+    return data.result;
+  } catch (error) {
+    console.error('Error deleting cart item:', error);
+    throw error;
+  }
+}
 
 // 장바구니 토글
 export async function toggleCartItem(cartId: number) {
-  const session = await getServerSession(options);
-  const response = await fetch(
-    `${process.env.API_BASE_URL}/api/cart/member/${cartId}/toggle`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${session?.user.accessToken}`,
-      },
+  try {
+    const session = await getServerSession(options);
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/cart/member/${cartId}/toggle`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to toggle cart item');
     }
-  );
-  const data = await response.json();
-  return data.result;
+
+    const data = await response.json();
+    return data.result;
+  } catch (error) {
+    console.error('Error toggling cart item:', error);
+    throw error;
+  }
 }
 
 // 장바구니 추가
 export async function addCartItem(cartData: any) {
-  const session = await getServerSession(options);
-  const response = await fetch(`${process.env.API_BASE_URL}/api/cart/member`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${session?.user.accessToken}`,
-    },
-    body: JSON.stringify(cartData),
-  });
-  const data = await response.json();
-  return data.result;
+  try {
+    const session = await getServerSession(options);
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/cart/member`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.user.accessToken}`,
+        },
+        body: JSON.stringify(cartData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to add cart item');
+    }
+
+    const data = await response.json();
+    return data.result;
+  } catch (error) {
+    console.error('Error adding cart item:', error);
+    throw error;
+  }
 }
 
 // 장바구니 수량 변경
-export async function increaseCartItem(cartId: number) {
+export async function increaseCartItem(cartId: number, quantity: number) {
   const session = await getServerSession(options);
   const response = await fetch(
     `${process.env.API_BASE_URL}/api/cart/member/increase/${cartId}`,
@@ -112,6 +155,7 @@ export async function increaseCartItem(cartId: number) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${session?.user.accessToken}`,
       },
+      body: JSON.stringify({ quantity }),
     }
   );
   const data = await response.json();
