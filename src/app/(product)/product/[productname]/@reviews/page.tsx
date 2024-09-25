@@ -2,61 +2,25 @@ import React from 'react';
 import { DetailReviewInfoListType } from '@/types/detail/detailReviewType';
 import { ReviewInfoData } from '@/datas/detailproductdatas';
 import DetailReview from '@/components/pages/detail/DetailReview';
-// import DetailReview from '@/components/pages/detail/DetailReview';
-
-// export interface reviewDataType {
-//   id: string;
-//   name: string;
-//   review: string;
-//   rating: number;
-// }
-
-// const reviewDatas: reviewDataType[] = [
-//   {
-//     id: '1',
-//     name: 'John Doe',
-//     review:
-//       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.',
-//     rating: 5,
-//   },
-//   {
-//     id: '2',
-//     name: 'Jane Doe',
-//     review:
-//       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.',
-//     rating: 4,
-//   },
-//   {
-//     id: '3',
-//     name: 'John Doe',
-//     review:
-//       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.',
-//     rating: 3,
-//   },
-//   {
-//     id: '4',
-//     name: 'Jane Doe',
-//     review:
-//       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.',
-//     rating: 2,
-//   },
-//   {
-//     id: '5',
-//     name: 'John Doe',
-//     review:
-//       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.',
-//     rating: 1,
-//   },
-// ];
-//리뷰에 대한 정보 데이터
+import { reviewListByProductId } from '@/actions/reviewActions';
 async function getReviewInfo() {
   const res = await ReviewInfoData;
   return res;
 }
 
-async function page({ params }: { params: { productName: string } }) {
+async function page({ params }: { params: { productname: string } }) {
   const ReviewData: DetailReviewInfoListType = await getReviewInfo();
 
+  // 리뷰 id 조회 api
+  const getIdData = async () => {
+    const reviewId = await reviewListByProductId(params.productname); // API 호출 결과를 배열로 받음
+    return reviewId;
+  };
+
+  const reviewId = await getIdData(); // 비동기 처리 후 id 리스트를 reviewId에 저장
+  console.log(reviewId, '리뷰 ID 목록');
+
+  // id 값만 추출하는 로직
   return (
     <main>
       {/* <div className="w-full bg-red-200">
@@ -70,9 +34,15 @@ async function page({ params }: { params: { productName: string } }) {
           </div>
         ))}
       </div> */}
-      \
       <div className="h-full">
-        <DetailReview data={ReviewData.data} count={ReviewData.count} />
+        {reviewId.map((id, index) => (
+          <DetailReview
+            key={index}
+            data={ReviewData.data}
+            count={ReviewData.count}
+            id={id}
+          />
+        ))}
       </div>
     </main>
   );
