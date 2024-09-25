@@ -4,21 +4,36 @@ import ArrowTopIcon from '@/components/icons/common/ArrowTopIcon';
 import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
 import AddressSearchDialog from '@/components/dialog/AddressDialog';
+import { postShippingAddress } from '@/actions/mypage/shippingActions';
+
+interface shippingType {
+  addressName: string; //배송지명
+  recipient: string; // 받으시는 분
+  phone: string; // 전화번호
+  address: string; // 도로명 주소
+  detailedAddress: string; // 상세주소
+  postalCode: string; // 우편번호
+  defaultAddress: boolean; //  기본 배송지
+}
 
 function AddressDialog() {
   const [isAddressAdded, setIsAddressAdded] = useState(true); // 배송지 목록에 추가
-  const [isDefaultAddress, setIsDefaultAddress] = useState(false); // 기본 배송지 설정
+  const [defaultAddress, setDefaultAddress] = useState(false); // 기본 배송지 설정
   const [isAgreed, setIsAgreed] = useState(false); // 배송지 정보 수집 및 이용에 대한 동의 (필수)
   const [showAgreement, setShowAgreement] = useState(false); // 동의 관련 정보 펼치기
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [address, setAddress] = useState('');
   const [jibunAddress, setJibunAddress] = useState('');
   const [zonecode, setZonecode] = useState('');
+  const [recipient, setRecipient] = useState('');
+  const [phone, setPhone] = useState('');
+  const [addressName, setAddressName] = useState('');
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  // 주소 검색 후 데이터 처리
   const handleComplete = (data: any) => {
-    // 주소 데이터 처리
     // console.log('주소', data);
     setAddress(data.address);
     setZonecode(data.zonecode);
@@ -26,33 +41,70 @@ function AddressDialog() {
     console.log(data);
   };
 
+  // 폼 제출 처리
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isAgreed) {
+      alert('배송지 정보 수집 및 이용에 대한 동의가 필요합니다.');
+      return;
+    }
+
+    const shippingData: shippingType = {
+      addressName,
+      recipient,
+      phone,
+      address: address,
+      detailedAddress: '',
+      postalCode: zonecode,
+      defaultAddress: defaultAddress,
+    };
+
+    console.log(shippingData, 'shiping');
+
+    try {
+      const result = await postShippingAddress(shippingData); // API 호출
+      if (result) {
+        alert('배송지가 성공적으로 등록되었습니다.');
+        setIsModalOpen(false);
+      } else {
+        alert('배송지 등록에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('배송지 등록 에러:', error);
+    }
+  };
+
   return (
-    <form className="p-2 space-y-6">
+    <form className="p-2 space-y-6" onSubmit={handleSubmit}>
       {/* 입력 필드 */}
       <div className="space-y-2 mt-4">
         <Input
           className="w-full placeholder:text-gray-400 border-[#E0E0E0] p-2 border h-[48px]"
           type="text"
-          name="addressname"
+          name="addressName"
           placeholder="배송지명"
+          onChange={(e) => setAddressName(e.target.value)}
         />
         <Input
           className="w-full placeholder:text-gray-400 p-2 border-[#E0E0E0]  h-[48px]"
           type="text"
-          name="receiption"
+          name="recipient"
           placeholder="받으시는 분"
+          onChange={(e) => setRecipient(e.target.value)}
         />
         <Input
           className="w-full placeholder:text-gray-400 p-2 border-[#E0E0E0] h-[48px]"
           type="text"
           name="phone"
           placeholder="전화번호"
+          onChange={(e) => setPhone(e.target.value)}
         />
         <div className="flex space-x-1 mt-4">
           <Input
             className="w-full placeholder:text-gray-400 p-2 h-[40px] border-none"
             type="text"
-            name="zonecode"
+            name="postalCode"
             placeholder="우편번호"
             value={zonecode || ''}
             readOnly
@@ -106,8 +158,8 @@ function AddressDialog() {
           <input
             type="checkbox"
             name="baseDlvpSetYn"
-            checked={isDefaultAddress}
-            onChange={() => setIsDefaultAddress(!isDefaultAddress)}
+            checked={defaultAddress}
+            onChange={() => setDefaultAddress(!defaultAddress)}
             className="w-5 h-5 accent-black"
           />
           <span className="text-sm">기본 배송지로 설정</span>

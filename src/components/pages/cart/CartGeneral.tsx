@@ -4,6 +4,7 @@ import { getCartById } from '@/actions/cart/cartActions';
 import CartItem from './CartItem';
 import { CartListItem } from '@/app/(cart)/cartmain/page';
 import CartBottomNav from '@/components/layouts/CartBottomNav';
+import { getProductCodeByDetailInfo } from '@/actions/productDetailActionHook';
 
 interface CartItemType {
   cartId: number;

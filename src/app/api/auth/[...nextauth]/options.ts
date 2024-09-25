@@ -26,8 +26,6 @@ export const options: NextAuthOptions = {
           return null;
         }
 
-        // console.log('credential', credentials);
-
         try {
           const res = await fetch(
             `${process.env.API_BASE_URL}/api/auth/sign-in`,
@@ -44,7 +42,13 @@ export const options: NextAuthOptions = {
             }
           );
           const user = (await res.json()) as commonResType<authResponse>;
-          return user.result;
+          if (user?.result) {
+            return {
+              ...user.result,
+              accessToken: user.result.accessToken, // 액세스 토큰 포함
+              refreshToken: user.result.refreshToken, // 리프레시 토큰 포함
+            };
+          }
         } catch (error) {
           console.error('error', error);
         }
@@ -58,7 +62,7 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log('kakao', user, account, credentials, profile);
+      // console.log('kakao', user, account, credentials, profile);
       if (profile) {
         // console.log(profile);
         // 회원인지 아닌지 확인

@@ -15,6 +15,7 @@ function ShippingAddressForm({ shippingData }: ShippingAddressFormProps) {
     description?: string;
     contentComponent?: React.ReactNode;
   } | null>(null);
+
   const handleOpenDialog = (
     title: string,
     description?: string,
@@ -71,7 +72,14 @@ function ShippingAddressForm({ shippingData }: ShippingAddressFormProps) {
                     <p className="flex items-center justify-center text-si-787878 text-xs">
                       |
                     </p>
-                    <p className="text-sm text-si-787878">{data.addressName}</p>
+                    <p className="text-sm text-si-787878">
+                      {data.addressName}{' '}
+                      {data.defaultAddress && (
+                        <span className="text-si-787878 text-sm">
+                          (기본배송지)
+                        </span>
+                      )}
+                    </p>
                   </div>
                 </label>
                 <div>

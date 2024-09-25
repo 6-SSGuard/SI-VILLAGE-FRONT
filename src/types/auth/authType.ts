@@ -1,9 +1,10 @@
 //성공 Response
 export interface authResponse {
-  httpStatus: HttpStatus;
-  isSuccess: boolean;
-  message: string;
-  result: any;
+  grantType: string;
+  accessToken: string;
+  refreshToken: string;
+  memberUuid: string;
+  name: string;
 }
 
 interface HttpStatus {

@@ -1,6 +1,6 @@
 // import { commonResType } from "@/types/auth/authType";
 // import { shippingAddressType } from "@/types/delivery/deliveryType";
-
+'use server';
 import { options } from '@/app/api/auth/[...nextauth]/options';
 import { shippingAddressRequest } from '@/types/mypage/mypageType';
 import { getServerSession } from 'next-auth';
@@ -64,7 +64,6 @@ const handleShippingAddressDefaultSelecter = async (
   shippingAddressId: number,
   formData: shippingAddressRequest
 ) => {
-  'use server';
   // console.log(formData);
   const shippingDefaultAddressUpdate = await fetch(
     `${process.env.API_BASE_URL}/api/shipping-address/member/${shippingAddressId}/default`,

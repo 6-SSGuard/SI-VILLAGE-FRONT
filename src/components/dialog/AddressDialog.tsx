@@ -117,13 +117,13 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
           }}
         >
           <Image
-            src="/t1.daumcdn.net/postcode/resource/images/close.png"
+            src={'/close.png'}
             id="btnCloseLayer"
             style={{
               cursor: 'pointer',
               position: 'absolute',
-              right: '-3px',
-              top: '-3px',
+              right: '0px',
+              top: '0px',
               zIndex: 1001,
             }}
             onClick={onClose}

@@ -5,6 +5,10 @@ import {
   increaseCartItem,
   toggleCartItem,
 } from '@/actions/cart/cartActions';
+import {
+  getProductCodeByDetailInfo,
+  getProductCodeBythumnailImage,
+} from '@/actions/productDetailActionHook';
 
 // CartItem 컴포넌트 타입 정의
 interface CartItemProps {
@@ -58,12 +62,8 @@ const CartItem = ({
 
   const fetchProductData = async () => {
     try {
-      // productCode를 이용해 상품 정보 API 호출 (예시로 fetch 사용)
-      const response = await fetch(
-        `${process.env.API_BASE_URL}/api/product/details/${productCode}`
-      );
-      const data = await response.json();
-      setProductData(data.result);
+      const data = await getProductCodeByDetailInfo(productCode);
+      setProductData(data);
     } catch (error) {
       console.error('상품 정보를 가져오는 중 오류 발생:', error);
     }
@@ -74,12 +74,9 @@ const CartItem = ({
 
     const fetchProductthumbnail = async () => {
       try {
-        const response = await fetch(
-          `${process.env.API_BASE_URL}/api/product/image/brief/thumbnail/${productCode}`
-        );
-        const data = await response.json();
+        const data = await getProductCodeBythumnailImage(productCode);
 
-        setThumbnail(data.result);
+        setThumbnail(data);
       } catch (error) {
         console.error('상품 이미지를 가져오는 중 오류 발생:', error);
       }
