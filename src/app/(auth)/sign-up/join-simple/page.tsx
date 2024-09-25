@@ -11,11 +11,14 @@ export const metadata: Metadata = {
 export default function Page() {
   async function handleSignUp(formData: FormData) {
     'use server';
+    console.log('test', formData);
 
     // 이메일 아이디와 도메인을 합치기
     const emailId = formData.get('emailId') as string;
     const emailDomain = formData.get('emailDomain') as string;
     const email = `${emailId}@${emailDomain}`;
+
+    console.log('domain', emailDomain);
 
     // 년, 월, 일 받아서 birth로 합치기
     const year = formData.get('year') as string;
@@ -43,8 +46,6 @@ export default function Page() {
 
     // 합친 email을 새 FormData에 추가
     signUpFormData.append('email', email);
-
-    // console.log('test', signUpFormData);
 
     const res = await signUpAction(signUpFormData);
     if (res) {

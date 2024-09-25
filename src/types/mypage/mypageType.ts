@@ -92,3 +92,26 @@ export interface beautyInfoRegistDataResponse {
 export interface passwordChangeResponse {
   message: string;
 }
+
+// 배송지 정보
+export interface shippingAddressResponse {
+  shippingAddressId: number;
+  addressName: string;
+  recipient: string;
+  phone: string;
+  address: string;
+  detailedAddress: string;
+  postalCode: string;
+  defaultAddress: boolean;
+}
+
+// 배송지 요청정보
+export interface shippingAddressRequest {
+  addressName: string;
+  recipient: string;
+  phone: string;
+  address: string;
+  detailedAddress: string;
+  postalCode: string;
+  defaultAddress: boolean;
+}
