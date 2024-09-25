@@ -17,7 +17,6 @@ function CartBottomNav() {
               src="/shoppingBagTabCloseWhiteUP.png"
               alt="shoppingBag"
             />
-            {/* 버튼의 상태에 따라 화살표 방향 변경 */}
           </button>
         </div>
       </div>

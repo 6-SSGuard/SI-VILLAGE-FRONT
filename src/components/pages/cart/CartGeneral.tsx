@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getCartById } from '@/actions/cart/cartActions';
 import CartItem from './CartItem';
 import { CartListItem } from '@/app/(cart)/cartmain/page';
+import CartBottomNav from '@/components/layouts/CartBottomNav';
 
 interface CartItemType {
   cartId: number;
@@ -115,8 +116,8 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
             )}
           </div>
         </div>
-        <div className="border-4 border-gray-200"></div>
       </div>
+      <CartBottomNav />
     </div>
   );
 }

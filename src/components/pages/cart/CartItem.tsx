@@ -23,6 +23,17 @@ interface ProductInfo {
   detailContent: string;
 }
 
+interface ProductOptionType {
+  options: ProductOption[];
+}
+
+interface ProductOption {
+  productOptionId: number;
+  sizeId: null | number;
+  volume: string;
+  stock: number;
+}
+
 interface ThumbnailType {
   thumbnailUrl: string;
 }
@@ -35,6 +46,9 @@ const CartItem = ({
   selected: initialSelected,
 }: CartItemProps) => {
   const [productData, setProductData] = useState<ProductInfo | null>(null);
+  const [productOption, setProductOption] = useState<ProductOptionType | null>(
+    null
+  );
   const [thumbnail, setThumbnail] = useState<ThumbnailType>({
     thumbnailUrl: '',
   });
@@ -42,20 +56,21 @@ const CartItem = ({
   const [quantity, setQuantity] = useState(initialQuantity);
   console.log(selected);
 
+  const fetchProductData = async () => {
+    try {
+      // productCode를 이용해 상품 정보 API 호출 (예시로 fetch 사용)
+      const response = await fetch(
+        `${process.env.API_BASE_URL}/api/product/details/${productCode}`
+      );
+      const data = await response.json();
+      setProductData(data.result);
+    } catch (error) {
+      console.error('상품 정보를 가져오는 중 오류 발생:', error);
+    }
+  };
+
   useEffect(() => {
     // 상품 정보를 가져오는 API 호출
-    const fetchProductData = async () => {
-      try {
-        // productCode를 이용해 상품 정보 API 호출 (예시로 fetch 사용)
-        const response = await fetch(
-          `${process.env.API_BASE_URL}/api/product/details/${productCode}`
-        );
-        const data = await response.json();
-        setProductData(data.result);
-      } catch (error) {
-        console.error('상품 정보를 가져오는 중 오류 발생:', error);
-      }
-    };
 
     const fetchProductthumbnail = async () => {
       try {
@@ -70,6 +85,20 @@ const CartItem = ({
       }
     };
 
+    const fetchProductOption = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.API_BASE_URL}/api/product/option/details/${productCode}`
+        );
+        const data = await response.json();
+
+        setProductOption({ options: data.result });
+      } catch (error) {
+        console.error('상품 옵션를 가져오는 중 오류 발생:', error);
+      }
+    };
+
+    fetchProductOption();
     fetchProductData();
     fetchProductthumbnail();
   }, [productCode]);
@@ -164,10 +193,15 @@ const CartItem = ({
 
         {/* 상품 정보 */}
         <div className="w-3/4 pl-5">
-          <div className="flex justify-between items-center mb-3">
-            <p className="text-lg font-bold">
+          <div className="text-xs text-si-787878">
+            {productOption?.options.map((option) => (
+              <div key={option.productOptionId}>{option.volume}</div>
+            ))}
+          </div>
+          <div className="flex justify-between items-center my-6">
+            <p className="font-bold">
               {productData?.price !== undefined
-                ? productData.price.toLocaleString() + '원'
+                ? (productData.price * quantity).toLocaleString() + '원'
                 : '가격 정보 없음'}
             </p>
             <div className="flex items-center">
@@ -198,13 +232,13 @@ const CartItem = ({
             <span className="w-[20px] h-[20px] bg-gray-100 text-center text-xs flex items-center justify-center">
               s.l.
             </span>
-            <p className="ml-3 text-gray-500">
+            <p className="ml-3 text-gray-500 text-xs">
               {(productData.price * 0.01).toFixed(0)}p 적립
             </p>
           </div>
 
           {/* 배송 안내 */}
-          <div className="text-sm text-gray-500 mb-3">
+          <div className="text-xs text-gray-500 mb-3">
             20시30분까지 결제 시{' '}
             <span className="text-orange-400 font-bold">오늘 출발</span>
           </div>
@@ -214,7 +248,7 @@ const CartItem = ({
             <button className="border border-gray-300 text-sm px-3 py-1">
               5% 쿠폰
             </button>
-            <p className="text-sm text-gray-500">사용가능 쿠폰</p>
+            <p className="text-xs text-gray-500">사용가능 쿠폰</p>
           </div>
 
           {/* 바로 구매 버튼 */}
