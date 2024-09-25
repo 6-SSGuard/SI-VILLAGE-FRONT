@@ -1,7 +1,7 @@
-import { brandResponse } from '@/types/product/brandType';
+import { BrandDataType } from '@/actions/brandAction';
 import React from 'react';
 
-function LikeBrand({ brandData }: { brandData: brandResponse[] }) {
+function LikeBrand({ brandData }: { brandData: BrandDataType[] }) {
   return (
     <div className="mt-5">
       <img
@@ -15,7 +15,9 @@ function LikeBrand({ brandData }: { brandData: brandResponse[] }) {
           // .filter((brand) => brand.liked)
           .map((brand, idx) => (
             <div key={idx} className="flex justify-between mb-3">
-              <span className="text-lg font-semibold">{brand.brand_name}</span>
+              <span className="text-lg font-semibold">
+                {brand.brandEngName}
+              </span>
               <img
                 src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/blackheart.png"
                 alt="찜하트"

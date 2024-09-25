@@ -48,14 +48,18 @@ export const fetchDataRevaliDateTags = async <T>(
   return data.result;
 };
 
-export const fetchData = async <T>(url: string): Promise<T> => {
+export const fetchData = async <T>(url: string, token?: string): Promise<T> => {
   const res = await fetch(url, {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
   });
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch data from ${url}`);
-  }
+  // if (!res.ok) {
+  //   throw new Error(`Failed to fetch data from ${url}`);
+  // }
 
   const data = (await res.json()) as commonResType<T>;
 

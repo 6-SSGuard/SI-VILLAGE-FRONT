@@ -88,24 +88,21 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
         <label htmlFor="topSize" className="w-1/3 text-sm">
           평소 상의 사이즈
         </label>
-        <Select
+        <select
           name="topSize"
           value={formData.topSize || ''}
-          onValueChange={(value) => handleSelectChange('topSize', value)}
+          onChange={(e) => handleSelectChange('topSize', e.target.value)}
+          className="w-2/3 h-10 border border-si-text-gray hover:border-black"
         >
-          <SelectTrigger className="w-2/3 border-si-text-gray hover:border-black">
-            <SelectValue placeholder="선택" />
-          </SelectTrigger>
-          <SelectContent className="bg-white border-black">
-            <SelectItem value="XXS">XXS 이하</SelectItem>
-            <SelectItem value="XS">XS</SelectItem>
-            <SelectItem value="S">S</SelectItem>
-            <SelectItem value="M">M</SelectItem>
-            <SelectItem value="L">L</SelectItem>
-            <SelectItem value="XL">XL</SelectItem>
-            <SelectItem value="XXL">XXL 이상</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="">선택</option>
+          <option value="XXS">XXS 이하</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL 이상</option>
+        </select>
       </div>
 
       {/* Bottom Size */}
@@ -113,22 +110,19 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
         <label htmlFor="bottomSize" className="w-1/3 text-sm">
           평소 하의 사이즈
         </label>
-        <Select
+        <select
           name="bottomSize"
           value={formData.bottomSize || ''}
-          onValueChange={(value) => handleSelectChange('bottomSize', value)}
+          onChange={(e) => handleSelectChange('bottomSize', e.target.value)}
+          className="w-2/3 h-10 border border-si-text-gray hover:border-black"
         >
-          <SelectTrigger className="w-2/3 border-si-text-gray open:border-black open:ring-black ">
-            <SelectValue placeholder="선택" />
-          </SelectTrigger>
-          <SelectContent className="bg-white border-black">
-            <SelectItem value="23 이하">23 이하</SelectItem>
-            {Array.from({ length: 14 }, (_, i) => (
-              <SelectItem key={i} value={`${24 + i}`}>{`${24 + i}`}</SelectItem>
-            ))}
-            <SelectItem value="38 이상">38 이상</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="">선택</option>
+          <option value="23 이하">23 이하</option>
+          {Array.from({ length: 14 }, (_, i) => (
+            <option key={i} value={`${24 + i}`}>{`${24 + i}`}</option>
+          ))}
+          <option value="38 이상">38 이상</option>
+        </select>
       </div>
 
       {/* Shoe Size */}
@@ -136,25 +130,22 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
         <label htmlFor="shoeSize" className="w-1/3 text-sm">
           평소 신발 사이즈
         </label>
-        <Select
+        <select
           name="shoeSize"
           value={formData.shoeSize || ''}
-          onValueChange={(value) => handleSelectChange('shoeSize', value)}
+          onChange={(e) => handleSelectChange('shoeSize', e.target.value)}
+          className="w-2/3 h-10 border border-si-text-gray hover:border-black"
         >
-          <SelectTrigger className="w-2/3 border-si-text-gray hover:border-black">
-            <SelectValue placeholder="선택" />
-          </SelectTrigger>
-          <SelectContent className="bg-white border-black">
-            <SelectItem value="150 이하">150 이하</SelectItem>
-            {Array.from({ length: 13 }, (_, i) => (
-              <SelectItem
-                key={i}
-                value={`${160 + i * 10}`}
-              >{`${160 + i * 10}`}</SelectItem>
-            ))}
-            <SelectItem value="290 이상">290 이상</SelectItem>
-          </SelectContent>
-        </Select>
+          <option value="">선택</option>
+          <option value="150 이하">150 이하</option>
+          {Array.from({ length: 13 }, (_, i) => (
+            <option
+              key={i}
+              value={`${160 + i * 10}`}
+            >{`${160 + i * 10}`}</option>
+          ))}
+          <option value="290 이상">290 이상</option>
+        </select>
       </div>
 
       <div className="text-xs text-si-text-gray">

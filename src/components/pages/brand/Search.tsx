@@ -2,14 +2,16 @@
 import React, { useState } from 'react';
 import SearchIcon from '@/components/icons/common/SearchIcon';
 import BrandList from './BrandList';
-import { brandResponse } from '@/types/product/brandType';
 
-function Search({ brandData }: { brandData: brandResponse[] }) {
+import { BrandDataType } from '@/actions/brandAction';
+
+function Search({ brandData }: { brandData: BrandDataType[] }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value.toLowerCase());
   };
+  console.log(brandData);
   return (
     <>
       <div className="flex mt-3 w-11/12 items-center border-b-2 border-gray-300 p-2 mx-auto">

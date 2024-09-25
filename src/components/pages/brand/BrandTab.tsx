@@ -3,9 +3,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import React, { useState } from 'react';
 import Search from '@/components/pages/brand/Search';
 import LikeBrand from './LikeBrand';
-import { brandResponse } from '@/types/product/brandType';
+import { BrandDataType } from '@/actions/brandAction';
 
-function BrandTab({ brandData }: { brandData: brandResponse[] }) {
+function BrandTab({ brandData }: { brandData: BrandDataType[] }) {
   const [activityContent, setContent] = useState('az');
 
   return (

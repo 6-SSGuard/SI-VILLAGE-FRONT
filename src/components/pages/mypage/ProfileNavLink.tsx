@@ -14,7 +14,7 @@ const ProfileNavLink: React.FC = () => {
       </li>
       <li className="flex-1 text-center">
         <Link
-          href="#"
+          href="/mypage/shipping"
           className="flex items-center justify-center h-full text-gray-700 hover:text-black"
         >
           배송지 관리
