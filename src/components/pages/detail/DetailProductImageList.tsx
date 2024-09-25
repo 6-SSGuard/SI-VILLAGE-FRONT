@@ -6,24 +6,24 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DetailProductInfoData } from '@/types/detail/detailproductinfo';
 import { Swiper as SwiperType } from 'swiper/types';
+import { detailImageListReq } from '@/types/detail/detailproductinfo';
 
-function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
+function DetailProductImageList({ data }: { data: detailImageListReq }) {
   //스와이퍼 인덱스 로직
   const [currentPage, setCurrentPage] = useState(1);
+  const [ImageData, setImageData] = useState<detailImageListReq>();
   const handleSlideChange = (swiper: SwiperType) => {
     setCurrentPage(swiper.realIndex + 1);
   };
 
-  //베스트 페이지에서 전달받은 productname확인
-  //라우터 객체 생성 => 전달받은 라우팅값을 productname 에 저장
-  const router = useParams();
-  const productname = router.productname;
-  const ProductItemData = data.find(
-    (item) => item.product_code === productname
-  );
+  useEffect(() => {
+    if (data) {
+      setImageData(data);
+    }
+  }, [data]);
 
   return (
     <div className="w-full h-[580px]">
@@ -36,7 +36,7 @@ function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
         // pagination={{ clickable: true }} // 페이지네이션 활성화
         // 좌우 네비게이션 버튼 활성화
       >
-        {ProductItemData?.productImageList.map((item, index) => (
+        {ImageData?.imageUrl.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="w-[400px] h-[550px] z-10">
               <Image
@@ -60,7 +60,7 @@ function DetailProductImageList({ data }: { data: DetailProductInfoData[] }) {
         <div className="flex justify-end pr-4">
           <div className="py-1 text-xs justify-end">
             <span className="font-bold">{currentPage}</span> /{' '}
-            <span>{ProductItemData?.productImageList.length}</span>
+            <span>{ImageData?.imageUrl?.length}</span>
           </div>
         </div>
       </Swiper>

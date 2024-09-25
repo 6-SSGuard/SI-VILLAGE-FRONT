@@ -1,13 +1,46 @@
 'use server';
-import { DetailProductInfoData } from './../types/detail/detailproductinfo';
+import { authResponse } from '@/types/auth/authType';
+import { productReviewListType } from '@/types/review/reviewType';
+import { reviewIdDataType } from '@/types/review/reviewType';
+//상품의 리뷰 id 조회 api
+
 export const reviewListByProductId = async (
-  productCode: number
-): Promise<DetailProductInfoData> => {
+  productCode: string
+): Promise<reviewIdDataType[]> => {
+  ('use server');
+
+  const res = await fetch(
+    `${process.env.API_BASE_URL}/api/review/product/${productCode}`
+  );
+  const data = await res.json();
+
+  const idList = data.result;
+  return idList;
+};
+
+export const reviewIdbyReviewList = async (
+  reviewId: number
+): Promise<productReviewListType> => {
   'use server';
 
   const res = await fetch(
-    `${process.env.API_BASE_URL}/api/reviews/${productCode}/product`
+    `${process.env.API_BASE_URL}/api/review/${reviewId}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${reviewId}`,
+      },
+    }
   );
-  const data = await res.json();
-  return data;
+
+  // Check if the response is OK
+  if (!res.ok) {
+    throw new Error(`Failed to fetch review data: ${res.status}`);
+  }
+
+  const reviewListData = (await res.json()) as authResponse;
+
+  console.log(reviewListData);
+
+  return reviewListData.result as productReviewListType;
 };

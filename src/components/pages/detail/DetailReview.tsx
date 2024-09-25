@@ -1,24 +1,52 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FilterIcon, StarIcon } from 'lucide-react';
 import { DetailReviewInfoDataType } from '@/types/detail/detailReviewType';
 import DetailPhotoReviewImageList from './DetailPhotoReviewImageList';
 import { Button } from '@/components/ui/button';
 import DetailAllReviewModal from './DetailAllReviewModal';
+import { productReviewListType } from '@/types/review/reviewType';
+
+import { reviewIdbyReviewList } from '@/actions/reviewActions';
+import { reviewIdDataType } from '@/types/review/reviewType';
 
 function DetailReview({
   data,
   count,
+  id,
 }: {
   data: DetailReviewInfoDataType[];
   count: number;
+  id: reviewIdDataType;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleEvent = () => {
     setIsOpen(!isOpen);
   };
+
+  console.log(id.id + ' ' + 'test123');
+  const [item, setitem] = useState<productReviewListType>();
+
+  // 비동기 함수 내에서 데이터를 불러오는 useEffect
+  useEffect(() => {
+    if (id) {
+      console.log(id.id);
+      const fetchReviewData = async () => {
+        try {
+          const reviewListData = await reviewIdbyReviewList(id.id);
+          console.log(reviewListData + ' 전달 받은 데이터');
+          setitem(reviewListData); // Set the fetched data to state
+        } catch (error) {
+          console.error('Failed to fetch review data', error);
+        }
+      };
+      fetchReviewData();
+    }
+  }, [id]);
+
+  console.log(item && item);
 
   return (
     <div className="h-auto">
@@ -30,7 +58,6 @@ function DetailReview({
           // onClose={handleEvent} // 모달 닫기 상태
         />
       )}
-
       {/* 리뷰 페이지 전체 크기 레이아웃 */}
       <div
         className={`${

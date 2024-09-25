@@ -7,7 +7,7 @@ export const ProductData: DetailProductList = {
   allCount: 10,
   data: [
     {
-      product_code: '01P0000000025',
+      product_code: 'PTZBCZZRR1QL4J',
       productImageList: [
         'https://image.sivillage.com/upload/C00001/goods/org/093/230908006345093.jpg',
         'https://image.sivillage.com/upload/C00001/goods/org/093/230908006345093.jpg',
@@ -31,7 +31,55 @@ export const ProductData: DetailProductList = {
     },
 
     {
-      product_code: '01P0000000026',
+      product_code: '2',
+      productImageList: [
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+      ],
+      productImage:
+        'https://m-goods.sivillage.com/goods/getGoodDescCont.siv?goods_no=01P0000000026',
+      productTitle: 'ONEILL',
+      productContent: '공용 비스타 플리스 트레이닝 상의 OUFTK4152-199',
+      productislike: 10,
+      productdiscountRate: '50',
+      productPrice: 500000,
+      productCurrentColor: '블랙',
+      productColorImageList: [
+        'https://image.sivillage.com/upload/C00001/goods/org/006/230823006039006.jpg',
+      ],
+      productReviewCount: 100,
+    },
+
+    {
+      product_code: '3',
+      productImageList: [
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+        'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
+      ],
+      productImage:
+        'https://m-goods.sivillage.com/goods/getGoodDescCont.siv?goods_no=01P0000000026',
+      productTitle: 'ONEILL',
+      productContent: '공용 비스타 플리스 트레이닝 상의 OUFTK4152-199',
+      productislike: 10,
+      productdiscountRate: '50',
+      productPrice: 500000,
+      productCurrentColor: '블랙',
+      productColorImageList: [
+        'https://image.sivillage.com/upload/C00001/goods/org/006/230823006039006.jpg',
+      ],
+      productReviewCount: 100,
+    },
+
+    {
+      product_code: '4',
       productImageList: [
         'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
         'https://image.sivillage.com/upload/C00001/s3/goods/org/934/240429015016934.jpg',
