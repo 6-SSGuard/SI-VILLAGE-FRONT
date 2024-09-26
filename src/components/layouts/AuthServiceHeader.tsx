@@ -78,6 +78,7 @@ export default function AuthServiceHeader() {
                 width={180}
                 height={65}
                 className="items-start"
+                unoptimized
               />
             ) : (
               pathName !== '/product' && (

@@ -50,8 +50,15 @@ export interface withdrawDataRequest {
 }
 
 export interface commonResType<T> {
-  httpStatus: string;
+  httpStatus: HttpStatus;
   isSuccess: boolean;
   message: string;
   result: T;
+}
+
+export interface userDataType {
+  accessToken: string;
+  name: string;
+  uuid: string;
+  email?: string;
 }

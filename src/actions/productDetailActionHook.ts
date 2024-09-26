@@ -1,5 +1,5 @@
 'use server';
-import { authResponse } from '@/types/auth/authType';
+import { authResponse, commonResType } from '@/types/auth/authType';
 import { detailInforeq } from '@/types/detail/detailproductinfo';
 import { detailthumnailImagereq } from '@/types/detail/detailproductinfo';
 import { detailImageListReq } from '@/types/detail/detailproductinfo';
@@ -15,6 +15,7 @@ export const getProductCodeByDetailInfo = async (
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { tags: ['getProduct'] },
     }
   );
 
@@ -22,9 +23,9 @@ export const getProductCodeByDetailInfo = async (
     throw new Error('Failed to fetch');
   }
 
-  const data = (await res.json()) as authResponse;
+  const data = (await res.json()) as commonResType<detailInforeq>;
 
-  return data.result as detailInforeq;
+  return data.result;
 };
 
 //썸네일 이미지 조회
@@ -45,9 +46,9 @@ export const getProductCodeBythumnailImage = async (
     throw new Error('Failed to fetch');
   }
 
-  const data = (await res.json()) as authResponse;
+  const data = (await res.json()) as commonResType<detailthumnailImagereq>;
 
-  return data.result as detailthumnailImagereq;
+  return data.result;
 };
 
 //이미지 리스트 조회
@@ -70,7 +71,7 @@ export const getProductCodeByImageList = async (
     throw new Error('Failed to fetch');
   }
 
-  const data = (await res.json()) as authResponse;
+  const data = (await res.json()) as commonResType<detailImageListReq[]>;
   console.log(data, 'api');
-  return data.result as detailImageListReq[];
+  return data.result;
 };

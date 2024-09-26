@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="pb-12 bg-gray-100 text-black mt-4">
+    <footer className="pb-12 bg-gray-100 text-black">
       <nav className="bg-white w-full flex justify-around text-[14px] text-[#404040] p-4 border-t-8">
         <Link href="#">ABOUT</Link>
         <Link href="http://www.sikorea.co.kr" passHref>

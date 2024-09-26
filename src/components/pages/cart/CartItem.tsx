@@ -9,6 +9,7 @@ import {
   getProductCodeByDetailInfo,
   getProductCodeBythumnailImage,
 } from '@/actions/productDetailActionHook';
+import CloseIcon from '@/components/icons/common/CloseIcon';
 
 // CartItem 컴포넌트 타입 정의
 interface CartItemProps {
@@ -16,6 +17,8 @@ interface CartItemProps {
   productCode: string;
   quantity: number;
   selected: boolean;
+  total: number;
+  setTotal: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface ProductInfo {
@@ -47,23 +50,28 @@ const CartItem = ({
   cartId,
   productCode,
   quantity: initialQuantity,
-  selected: initialSelected,
+  selected,
+  total,
+  setTotal,
 }: CartItemProps) => {
-  const [productData, setProductData] = useState<ProductInfo | null>(null);
+  const [productData, setProductData] = useState<ProductInfo>();
   const [productOption, setProductOption] = useState<ProductOptionType | null>(
     null
   );
   const [thumbnail, setThumbnail] = useState<ThumbnailType>({
     thumbnailUrl: '',
   });
-  const [selected, setSelected] = useState(initialSelected);
+  // const [selected, setSelected] = useState(initialSelected);
   const [quantity, setQuantity] = useState(initialQuantity);
-  console.log(selected);
+  // console.log(selected);
 
   const fetchProductData = async () => {
     try {
       const data = await getProductCodeByDetailInfo(productCode);
       setProductData(data);
+      if (selected) {
+        setTotal(data.price * quantity + total);
+      }
     } catch (error) {
       console.error('상품 정보를 가져오는 중 오류 발생:', error);
     }
@@ -71,7 +79,6 @@ const CartItem = ({
 
   useEffect(() => {
     // 상품 정보를 가져오는 API 호출
-
     const fetchProductthumbnail = async () => {
       try {
         const data = await getProductCodeBythumnailImage(productCode);
@@ -101,19 +108,14 @@ const CartItem = ({
   }, [productCode]);
 
   const handleCheckboxChange = async () => {
-    try {
-      const toggled = await toggleCartItem(cartId);
-
-      setSelected(toggled);
-    } catch (error) {
-      console.error('카트 아이템 토글 중 오류 발생:', error);
-    }
+    await toggleCartItem(cartId);
   };
 
-  const handleDecreaseQuantity = async () => {
+  const handleDecreaseQuantity = async (price: number) => {
     if (quantity > 1) {
       try {
         const newQuantity = quantity - 1;
+        setTotal(total - price);
         await increaseCartItem(cartId, newQuantity);
         setQuantity(newQuantity);
       } catch (error) {
@@ -122,9 +124,11 @@ const CartItem = ({
     }
   };
 
-  const handleIncreaseQuantity = async () => {
+  const handleIncreaseQuantity = async (price: number) => {
     try {
       const newQuantity = quantity + 1;
+      setTotal(price + total);
+
       await increaseCartItem(cartId, newQuantity);
       setQuantity(newQuantity);
     } catch (error) {
@@ -166,7 +170,7 @@ const CartItem = ({
           onClick={handleDeleteCartItem}
           className="text-gray-400 hover:text-black"
         >
-          X
+          <CloseIcon />
         </button>
       </div>
 
@@ -204,7 +208,7 @@ const CartItem = ({
             <div className="flex items-center">
               <button
                 className="border h-6 px-2 text-sm"
-                onClick={handleDecreaseQuantity}
+                onClick={() => handleDecreaseQuantity(productData.price)}
                 disabled={quantity === 1}
               >
                 -
@@ -212,12 +216,12 @@ const CartItem = ({
               <input
                 type="text"
                 value={quantity}
-                className="border w-[40px] h-6 text-center"
+                className="border w-[40px] h-6 text-center text-sm"
                 readOnly
               />
               <button
                 className="border px-2 h-6 text-sm"
-                onClick={handleIncreaseQuantity}
+                onClick={() => handleIncreaseQuantity(productData.price)}
               >
                 +
               </button>
@@ -230,7 +234,7 @@ const CartItem = ({
               s.l.
             </span>
             <p className="ml-3 text-gray-500 text-xs">
-              {(productData.price * 0.01).toFixed(0)}p 적립
+              {(productData.price * quantity * 0.005).toLocaleString()}p 적립
             </p>
           </div>
 
