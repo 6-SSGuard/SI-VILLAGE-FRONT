@@ -31,7 +31,7 @@ export const getProductCodeByDetailInfo = async (
     {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${productCode}`,
+        'Content-Type': 'application/json',
       },
     }
   );

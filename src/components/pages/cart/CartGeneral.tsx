@@ -26,6 +26,7 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
             return data; // 각 cartId에 해당하는 데이터를 반환
           })
         );
+
         // 모든 데이터를 받아와서 상태에 저장
         setCartData(cartResponses);
       } catch (error) {

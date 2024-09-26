@@ -17,6 +17,10 @@ export interface DetailProductInfoData {
   productImage: string;
 }
 
+//좋아요 토글
+export interface likeToggle {
+  islike: boolean;
+}
 //디테일 정보 Response
 export interface detailInforeq {
   productCode: string;
@@ -34,5 +38,5 @@ export interface detailthumnailImagereq {
 
 //디테일 이미지 리스트 Response
 export interface detailImageListReq {
-  imageUrl: string[];
+  imageUrl: string;
 }

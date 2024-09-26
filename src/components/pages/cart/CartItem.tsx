@@ -77,7 +77,6 @@ const CartItem = ({
   const handleCheckboxChange = async () => {
     try {
       const toggled = await toggleCartItem(cartId);
-
       setSelected(toggled);
     } catch (error) {
       console.error('카트 아이템 토글 중 오류 발생:', error);

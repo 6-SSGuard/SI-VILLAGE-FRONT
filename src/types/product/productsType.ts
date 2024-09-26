@@ -85,3 +85,16 @@ export interface productRequest {
   productImageUrls: string[];
   categoryCode: string;
 }
+
+export interface ProductPolicyRequest {
+  productByVendorId: number;
+  productCode: string;
+  productName: null;
+  vendorName: string;
+  mainView: boolean;
+  newProduct: boolean;
+  display: boolean;
+  maxOrderCount: number;
+  minOrderCount: number;
+  discountRate: number;
+}
