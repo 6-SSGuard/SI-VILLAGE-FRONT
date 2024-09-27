@@ -2,10 +2,40 @@
 import { Tabs } from '@/components/ui/tabs';
 import { TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+
+interface TabMap {
+  '/': string;
+  '/event': string;
+  '/deal': string;
+  '/best': string;
+  '/silive': string;
+  '/content': string;
+  '/ssgdf': string;
+  [key: string]: string;
+}
 
 function MainTab() {
+  const pathname = usePathname();
   const [activeTab, setActiveTab] = useState('Home');
+
+  const tabMap = {
+    '/': 'Home',
+    '/event': 'Event',
+    '/deal': 'Deal',
+    '/best': 'Best',
+    '/silive': 'SILIVE',
+    '/content': 'Content',
+    '/ssgdf': 'SSG DF',
+  };
+
+  useEffect(() => {
+    const currentTab =
+      pathname in tabMap ? tabMap[pathname as keyof typeof tabMap] : 'Home';
+    setActiveTab(currentTab);
+  }, [pathname]);
+
   return (
     <main className="sticky top-0 z-20 bg-white border-b">
       <Tabs
@@ -20,7 +50,7 @@ function MainTab() {
               className={`${
                 activeTab === 'Home'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Home
@@ -32,7 +62,7 @@ function MainTab() {
               className={`${
                 activeTab === 'Event'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Event
@@ -44,20 +74,19 @@ function MainTab() {
               className={`${
                 activeTab === 'Deal'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Deal
             </TabsTrigger>
           </Link>
-
           <Link href="/best">
             <TabsTrigger
               value="Best"
               className={`${
                 activeTab === 'Best'
                   ? 'border-b-2 border-black'
-                  : 'text-[#929292]'
+                  : 'text-si-text-gray'
               } pb-2`}
             >
               Best
@@ -68,7 +97,7 @@ function MainTab() {
             className={`${
               activeTab === 'SILIVE'
                 ? 'border-b-2 border-black'
-                : 'text-[#929292]'
+                : 'text-si-text-gray'
             } pb-2`}
           >
             S.I.LIVE
@@ -78,7 +107,7 @@ function MainTab() {
             className={`${
               activeTab === 'Content'
                 ? 'border-b-2 border-black'
-                : 'text-[#929292]'
+                : 'text-si-text-gray'
             } pb-2`}
           >
             Content
@@ -88,7 +117,7 @@ function MainTab() {
             className={`${
               activeTab === 'SSG DF'
                 ? 'border-b-2 border-black'
-                : 'text-[#929292]'
+                : 'text-si-text-gray'
             } pb-2`}
           >
             SSG DF

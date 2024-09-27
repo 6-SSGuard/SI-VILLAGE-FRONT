@@ -1,7 +1,7 @@
 import React from 'react';
-import { dealDatas } from '@/datas/dealDatas';
+import { dealDatas } from '@/datas/dummys/dealDatas';
 import { dealListDataType } from '@/types/domainTypes';
-import DealPage from './dealmain/dealListContainer';
+import DealListContainer from '@/components/pages/deal/DealListContainer';
 
 async function getDealListData() {
   const res = await dealDatas;
@@ -9,13 +9,13 @@ async function getDealListData() {
   return res;
 }
 
-async function dealPage() {
+async function page() {
   const data: dealListDataType = await getDealListData();
   return (
     <main>
-      <DealPage dealListData={data.data} />
+      <DealListContainer dealListData={data.data} />
     </main>
   );
 }
 
-export default dealPage;
+export default page;

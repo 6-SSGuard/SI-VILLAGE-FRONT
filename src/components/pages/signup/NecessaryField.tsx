@@ -10,9 +10,8 @@ import {
 
 export default function NecessaryField() {
   const [formData, setFormData] = useState({
-    email: '',
-    // emailId: '',
-    // emailDomain: '',
+    emailId: '',
+    emailDomain: '',
     password: '',
     passwordConfirm: '',
     name: '',
@@ -33,13 +32,23 @@ export default function NecessaryField() {
     }));
   };
 
-  // const handleDomainChange = (value: string) => {
-  //   setFormData({
-  //     ...formData,
-  //     emailDomain: value === 'custom' ? '' : value,
-  //     isCustomDomain: value === 'custom',
-  //   });
-  // };
+  const handleDomainChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+
+    if (value === 'custom') {
+      setFormData((prev) => ({
+        ...prev,
+        isCustomDomain: true,
+        [name]: '',
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        isCustomDomain: false,
+        [name]: value,
+      }));
+    }
+  };
 
   return (
     <>
@@ -49,44 +58,38 @@ export default function NecessaryField() {
           <div className="flex items-center space-x-2">
             <Input
               type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`${inputStyle} flex-grow`}
-              placeholder="email"
-            />
-            {/* <Input
-              type="text"
               name="emailId"
               value={formData.emailId}
               onChange={handleChange}
               className={`${inputStyle} flex-grow`}
+              placeholder="이메일 아이디"
             />
             <span className="text-lg">@</span>
-            <Input
-              type="text"
+            {formData.isCustomDomain && (
+              <Input
+                type="text"
+                name="emailDomain"
+                value={formData.emailDomain}
+                onChange={handleChange}
+                className={`${inputStyle} flex-grow`}
+                placeholder="도메인"
+              />
+            )}
+
+            {/* 이메일 도메인 선택 필드 */}
+            <select
+              onChange={handleDomainChange}
               name="emailDomain"
-              value={formData.emailDomain}
-              onChange={handleChange}
-              disabled={!formData.isCustomDomain}
-              className={`${inputStyle} flex-grow`}
-            /> */}
-            {/* <Select
-              onValueChange={handleDomainChange}
-              value={formData.emailDomain}
+              value={formData.isCustomDomain ? '' : formData.emailDomain}
+              className={`w-[180px] ${inputStyle}`}
             >
-              <SelectTrigger className={`w-[180px] ${inputStyle}`}>
-                <SelectValue placeholder="직접입력" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="custom">직접입력</SelectItem>
-                <SelectItem value="naver.com">naver.com</SelectItem>
-                <SelectItem value="gmail.com">gmail.com</SelectItem>
-                <SelectItem value="daum.net">daum.net</SelectItem>
-                <SelectItem value="hanmail.net">hanmail.net</SelectItem>
-                <SelectItem value="nate.com">nate.com</SelectItem>
-              </SelectContent>
-            </Select> */}
+              <option value="custom">직접입력</option>
+              <option value="naver.com">naver.com</option>
+              <option value="gmail.com">gmail.com</option>
+              <option value="daum.net">daum.net</option>
+              <option value="hanmail.net">hanmail.net</option>
+              <option value="nate.com">nate.com</option>
+            </select>
           </div>
         </div>
 

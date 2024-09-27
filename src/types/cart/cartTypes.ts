@@ -17,3 +17,11 @@ export interface cartMenuType {
   name: string;
   link: string;
 }
+
+export interface cartItemType {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  isChecked: boolean;
+}

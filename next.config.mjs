@@ -14,8 +14,10 @@ const nextConfig = withPWA({
   reactStrictMode: true,
   images: {
     domains: [
+      'm.sivillage.com',
       'image.sivillage.com',
       'ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com',
+      'm-goods.sivillage',
     ],
   },
   // output: 'standalone',

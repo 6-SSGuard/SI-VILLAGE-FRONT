@@ -2,7 +2,7 @@ import React from 'react';
 
 function Badge({ badgeText }: { badgeText: string }) {
   return (
-    <p className="text-white text-xs bg-black text-center px-2 py-1 w-18 h-5">
+    <p className="text-white bg-[#141A23] px-[6px] h-5 text-[10px] font-bold flex items-center justify-center">
       {badgeText}
     </p>
   );

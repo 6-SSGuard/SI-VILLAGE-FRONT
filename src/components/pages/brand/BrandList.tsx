@@ -1,99 +1,193 @@
 'use client';
+import { BrandDataType, toggleBrandItem } from '@/actions/brandAction';
+import LikeHeart from '@/components/icons/common/LikeHeart';
+import ScrollToTopButton from '@/components/layouts/ScrollToTopButton';
+import { HeartIcon } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
-function BrandList({ searchQuery }: { searchQuery: string }) {
-  const buttons = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
-
+function BrandList({
+  searchQuery,
+  brandData,
+}: {
+  searchQuery: string;
+  brandData: BrandDataType[];
+}) {
+  const buttonsAZ = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '0~9', 'etc'];
+  const buttonsKR = [...'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ', '0~9', 'etc'];
   const stickyHeaderHeight = 56;
 
   const [selectedButton, setSelectedButton] = useState('A');
-  // ref 객체의 타입을 명시적으로 설정
+  const [isKorean, setIsKorean] = useState(false); // A-Z / ㄱ-ㅎ 상태 관리
   const brandRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  // 필터링된 브랜드 리스트 생성
+  const koreanOrder = [
+    'ㄱ',
+    'ㄴ',
+    'ㄷ',
+    'ㄹ',
+    'ㅁ',
+    'ㅂ',
+    'ㅅ',
+    'ㅇ',
+    'ㅈ',
+    'ㅊ',
+    'ㅋ',
+    'ㅌ',
+    'ㅍ',
+    'ㅎ',
+  ];
+  // 브랜드의 첫 글자를 한글 자음, 숫자, 기타 등으로 변환하는 함수
+  const getFirstLetter = (brand: BrandDataType, isKorean: boolean) => {
+    if (isKorean) {
+      let letter = brand.brandIndexLetterKor;
+      // 쌍자음 처리
+      if (['ㄲ', 'ㄸ', 'ㅃ', 'ㅆ'].includes(letter)) {
+        const mapping: { [key: string]: string } = {
+          ㄲ: 'ㄱ',
+          ㄸ: 'ㄷ',
+          ㅃ: 'ㅂ',
+          ㅆ: 'ㅅ',
+        };
+        letter = mapping[letter];
+      }
 
+      // 기타 기호 처리 (한글 자음이 아닌 경우)
+      if (!koreanOrder.includes(letter)) {
+        if (/\d/.test(letter)) {
+          return '0~9';
+        }
+        return 'etc';
+      }
+
+      return letter;
+    } else {
+      const letter = brand.brandIndexLetter;
+
+      // 숫자로 시작하는 경우
+      if (/\d/.test(letter)) {
+        return '0~9';
+      }
+
+      // 기타 기호 처리
+      if (!/[a-zA-Z]/.test(letter)) {
+        return 'etc';
+      }
+
+      return letter.toUpperCase(); // A-Z 모드에서는 대문자로 정렬
+    }
+  };
+
+  // 브랜드 데이터 그룹화 로직 (A-Z 또는 ㄱ-ㅎ)
+  const groupedBrands = (brandData ?? []).reduce(
+    (acc, brand) => {
+      const firstLetter = getFirstLetter(brand, isKorean); // 첫 글자를 결정
+
+      if (!acc[firstLetter]) {
+        acc[firstLetter] = [];
+      }
+      acc[firstLetter].push(brand);
+      return acc;
+    },
+    {} as { [key: string]: BrandDataType[] }
+  );
+
+  // 필터링된 브랜드 리스트 생성
+  const filteredBrands = Object.keys(groupedBrands ?? {})
+    .sort((a, b) => {
+      if (isKorean) {
+        const indexA = koreanOrder.indexOf(a);
+        const indexB = koreanOrder.indexOf(b);
+
+        // ㄱ이 가장 먼저 오도록 처리, 그 외는 인덱스 순서에 따라 정렬
+        if (indexA === -1 && indexB === -1) return 0; // 둘 다 etc나 0~9일 경우 위치 유지
+        if (indexA === -1) return 1; // a가 etc거나 0~9인 경우 뒤로
+        if (indexB === -1) return -1; // b가 etc거나 0~9인 경우 뒤로
+        return indexA - indexB;
+      } else {
+        // A-Z 모드일 경우 알파벳, 숫자, 기타 순서로 정렬
+        if (a === '0~9' || b === '0~9') return a === '0~9' ? -1 : 1;
+        if (a === 'etc' || b === 'etc') return a === 'etc' ? 1 : -1;
+        return a.localeCompare(b);
+      }
+    })
+    .reduce(
+      (acc, letter) => {
+        const filtered = groupedBrands[letter].filter((brand) =>
+          brand.brandEngName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        if (filtered.length > 0) {
+          acc[letter] = filtered;
+        }
+        return acc;
+      },
+      {} as { [key: string]: BrandDataType[] }
+    );
+
+  const handleLikeClick = async (brandId: number) => {
+    try {
+      await toggleBrandItem(brandId);
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    }
+  };
+
+  // 특정 브랜드로 스크롤 이동
   const scrollToBrand = (letter: string) => {
-    if (brandRefs.current[letter]) {
+    const brandElement = brandRefs.current[letter];
+    if (brandElement !== undefined && brandElement !== null) {
       setSelectedButton(letter);
       window.scrollTo({
-        top: brandRefs.current[letter]!.offsetTop - stickyHeaderHeight,
+        top: brandElement.offsetTop - stickyHeaderHeight,
         behavior: 'smooth',
       });
     }
   };
-  const filteredBrands = buttons.filter((letter) =>
-    brands[letter].toLowerCase().includes(searchQuery)
-  );
-
-  // 스크롤 위치에 따라 "맨 위로 가기" 버튼 표시 여부 결정
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        // 스크롤 위치 기준 (200px)
-        setShowScrollToTop(true);
-      } else {
-        setShowScrollToTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // "맨 위로 가기" 버튼 클릭 시 페이지 최상단으로 스크롤
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <div>
-      <div className="flex overflow-x-auto scrollbar-hide ml-4">
-        {buttons.map((letter) => (
+      <div className="relative flex items-center my-4">
+        {/* Fixed buttons on the left */}
+        <div className="absolute left-0 top-1 flex items-start ml-5">
           <button
-            key={letter}
-            onClick={() => scrollToBrand(letter)}
-            className={`px-2 py-1 mx-[1.5px] text-xs mt-4 ${
-              selectedButton === letter
-                ? 'border-2 border-black text-black bg-white'
-                : 'border-2 border-gray-300 text-gray-700 bg-white'
+            onClick={() => setIsKorean(false)}
+            className={`mb-2 text-sm min-w-[30px] ${
+              !isKorean ? 'font-bold' : 'text-gray-500'
             }`}
           >
-            {letter}
+            A-Z
           </button>
-        ))}
+          <button
+            onClick={() => setIsKorean(true)}
+            className={`text-sm ml-2 min-w-[35px] ${
+              isKorean ? 'font-bold' : 'text-gray-500'
+            }`}
+          >
+            ㄱ-ㅎ
+          </button>
+        </div>
+
+        {/* Scrollable button list on the right */}
+        <div className="ml-24 flex overflow-x-auto scrollbar-hide w-full">
+          {(isKorean ? buttonsKR : buttonsAZ).map((letter) => (
+            <button
+              key={letter}
+              onClick={() => scrollToBrand(letter)}
+              className={`flex-shrink-0 w-8 h-8 mx-[1px] text-xs text-center ${
+                selectedButton === letter
+                  ? 'border-2 border-black text-black bg-white'
+                  : 'border-2 border-gray-300 text-gray-700 bg-white'
+              }`}
+            >
+              {letter}
+            </button>
+          ))}
+        </div>
       </div>
+
+      {/* 브랜드 리스트 */}
       <div className="mt-8">
-        {filteredBrands.map((letter) => (
+        {Object.keys(filteredBrands).map((letter) => (
           <div
             key={letter}
             ref={(el) => {
@@ -101,61 +195,32 @@ function BrandList({ searchQuery }: { searchQuery: string }) {
             }}
             className="mb-8 mx-4"
           >
-            <div className="border-b-2 w-full mx-auto">
-              <h3 className="text-xl font-bold">{letter}</h3>
+            <div className="border-b-2 w-full mx-auto p-[0px_16px_9px]">
+              {/* 조건에 따라 letter 제목 출력 */}
+              <h3 className="font-semibold">{letter}</h3>
             </div>
-            <div className="flex justify-between p-4 font-semibold">
-              <p>{brands[letter]}</p>
-              <Image
-                src="/images/heart.png"
-                alt="heart"
-                width={24}
-                height={24}
-              />
-            </div>
+
+            {filteredBrands[letter].map((brand, idx) => (
+              <div key={idx} className="flex justify-between p-4">
+                <div className="flex flex-col">
+                  <p className="font-semibold">{brand.brandEngName}</p>
+                  <p className="text-sm mt-3">{brand.brandKorName}</p>
+                </div>
+                <div className="h-6">
+                  <button onClick={() => handleLikeClick(brand.brandId)}>
+                    <HeartIcon />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         ))}
       </div>
-      {/* "맨 위로 가기" 버튼 */}
-      {showScrollToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-20 right-4 bg-white p-2 rounded-full shadow-lg transition z-10"
-        >
-          ↑
-        </button>
-      )}
+
+      {/* "맨 위로 가기" 버튼 컴포넌트 */}
+      <ScrollToTopButton />
     </div>
   );
 }
-
-const brands: { [key: string]: string } = {
-  A: 'Apple',
-  B: 'Boeing',
-  C: 'Coca-Cola',
-  D: 'Disney',
-  E: 'eBay',
-  F: 'Ford',
-  G: 'Google',
-  H: 'Honda',
-  I: 'IBM',
-  J: 'Johnson & Johnson',
-  K: 'Kelloggs',
-  L: 'Lego',
-  M: 'Microsoft',
-  N: 'Nike',
-  O: 'Oracle',
-  P: 'Pepsi',
-  Q: 'Qualcomm',
-  R: 'Rolex',
-  S: 'Samsung',
-  T: 'Tesla',
-  U: 'Uber',
-  V: 'Visa',
-  W: 'Walmart',
-  X: 'Xerox',
-  Y: 'Yahoo',
-  Z: 'Zara',
-};
 
 export default BrandList;

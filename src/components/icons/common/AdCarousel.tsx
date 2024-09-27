@@ -19,31 +19,35 @@ function AdCarousel() {
   const slideData = [
     {
       id: 1,
-      imgSrc: '/ad1.png',
+      imgSrc:
+        'https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/ad1.png',
     },
     {
       id: 2,
-      imgSrc: '/ad2.png',
+      imgSrc:
+        'https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/ad2.png',
     },
     {
       id: 3,
-      imgSrc: '/ad3.png',
+      imgSrc:
+        'https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/ad3.png',
     },
     {
       id: 4,
-      imgSrc: '/ad4.png',
+      imgSrc:
+        'https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/ad4.png',
     },
     {
       id: 5,
-      imgSrc: '/ad5.png',
+      imgSrc:
+        'https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/ad5.png',
     },
   ];
-  SwiperCore.use([Navigation, Scrollbar, Autoplay]);
+  SwiperCore.use([Navigation, Scrollbar, Autoplay, EffectCreative]);
 
   return (
     <div className="swiper-container relative">
       <Swiper
-        modules={[EffectCreative]}
         scrollbar={{
           hide: false, // 스크롤바를 항상 표시
           draggable: true,
@@ -75,11 +79,11 @@ function AdCarousel() {
               <Image
                 src={slide.imgSrc}
                 alt={`slide-${slide.id}`}
-                layout="responsive"
                 width={350}
                 height={75}
-                objectFit="cover"
                 priority={slide.id === 1}
+                style={{ objectFit: 'cover' }}
+                className="w-full h-auto"
               />
             </div>
           </SwiperSlide>

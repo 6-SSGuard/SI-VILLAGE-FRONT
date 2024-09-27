@@ -9,12 +9,23 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { getCartItemCount } from '@/actions/cart/cartActions';
 
 export default function AuthServiceHeader() {
   const pathName = usePathname();
   const [title, setTitle] = useState<string>('');
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState<number>(0);
+  useEffect(() => {
+    const fetchCartItemCount = async () => {
+      const count = await getCartItemCount();
+      setCartItemCount(count?.quantity);
+    };
+
+    fetchCartItemCount();
+  }, []);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -22,34 +33,32 @@ export default function AuthServiceHeader() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   useEffect(() => {
-    switch (pathName) {
-      case '/sign-in':
-        setTitle('로그인');
-        break;
-      case '/sign-up':
-        setTitle('회원가입');
-        break;
-      case '/sign-up/join-simple':
-        setTitle('온라인 간편가입');
-        break;
-      case '/sign-in/forgotcredential':
-        setTitle('ID/PW 찾기');
-        break;
-      case '/mypage':
-        setTitle('마이페이지');
-        break;
-      case '/searchbrand':
-      case '/myfavor':
-        setTitle('BRAND');
-        break;
-      case '/product':
-        setTitle('test');
-        break;
-      default:
-        setTitle('');
-        break;
+    if (pathName.startsWith('/mypage')) {
+      setTitle('마이페이지');
+    } else if (pathName.startsWith('/filter')) {
+      setTitle('');
+    } else {
+      switch (pathName) {
+        case '/sign-in':
+          setTitle('로그인');
+          break;
+        case '/sign-up':
+          setTitle('회원가입');
+          break;
+        case '/sign-up/join-simple':
+          setTitle('온라인 간편가입');
+          break;
+        case '/sign-in/forgotcredential':
+          setTitle('ID/PW 찾기');
+          break;
+        case '/brand':
+          setTitle('BRAND');
+          break;
+        default:
+          setTitle('');
+          break;
+      }
     }
   }, [pathName]);
 
@@ -63,14 +72,15 @@ export default function AuthServiceHeader() {
             pathName === '/deal' ||
             pathName === '/event' ? (
               <Image
-                src="/siv_logo.png"
+                src="https://image.sivillage.com/upload/C00001/s3/dspl/banner/90/411/30/240900000505411_20240904175544.gif"
                 alt="메인페이지 이미지"
                 width={180}
                 height={65}
                 className="items-start"
+                unoptimized
               />
             ) : (
-              pathName !== '/product' && (
+              pathName !== '/filter' && (
                 <button type="button" onClick={() => router.back()}>
                   <ArrowLeftIcon />
                 </button>
@@ -78,14 +88,14 @@ export default function AuthServiceHeader() {
             )}
           </li>
 
-          {/* 가운데 li: /product일 때와 아닐 때 구분 */}
-          {pathName === '/product' ? (
+          {/* 가운데 li: /filter 때와 아닐 때 구분 */}
+          {pathName.startsWith('/filter') ? (
             <li className="flex-grow flex items-center gap-3 p-1">
               <button type="button" onClick={() => router.back()}>
                 <ArrowLeftIcon />
               </button>
               <div
-                className="flex-grow text-sm border-b border-black text-[#787878] justify-center h-7"
+                className="flex-grow text-sm border-b border-black text-si-787878 justify-center h-7"
                 onClick={openModal}
               >
                 놓칠 수 없는 최대 30% 페이백
@@ -101,15 +111,20 @@ export default function AuthServiceHeader() {
           {/* 마지막 li */}
           <li>
             <ul className="flex items-center gap-4">
-              <li onClick={openModal} className="cursor-pointer">
+              <li onClick={openModal}>
                 <SearchIcon />
               </li>
 
               {isModalOpen && <SearchModal onClose={closeModal} />}
-              <li>
+              <li className="relative">
                 <Link href="cartmain">
                   <ShoppingBagIcon />
                 </Link>
+                {cartItemCount > 0 && (
+                  <span className="absolute top-[-4px] right-[-8px] bg-[#D99C63] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
               </li>
             </ul>
           </li>

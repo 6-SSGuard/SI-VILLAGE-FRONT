@@ -28,12 +28,17 @@ const config = {
       },
       fontSize: {
         '8': '8px',
+        '13': '13px',
+        '22': '22px',
       },
       fontFamily: {
         'RBC-H': ['RegularBoldCello-Heavy', 'sans-serif'],
       },
       colors: {
+        'Black': '#000000',
         'si-text-gray': '#929292',
+        'si-131922': '#131922',
+        'si-787878': '#787878',
         'border': 'hsl(var(--border))',
         'input': 'hsl(var(--input))',
         'ring': 'hsl(var(--ring))',

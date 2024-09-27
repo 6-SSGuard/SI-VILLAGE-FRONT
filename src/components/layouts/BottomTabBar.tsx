@@ -1,9 +1,11 @@
+'use client';
 import React from 'react';
 import BottomCategoryIcon from '../icons/bottom/BottomCategoryIcon';
 import BottomBrandIcon from '../icons/bottom/BottomBrandIcon';
 import BottomMyIcon from '../icons/bottom/BottomMyIcon';
 import BottomRecentIcon from '../icons/bottom/BottomRecentIcon';
 import BottomTabBarItems from './BottomTabBarItems';
+import Image from 'next/image';
 
 function BottomTabBar() {
   return (
@@ -12,22 +14,23 @@ function BottomTabBar() {
       <nav>
         <ul className="grid grid-cols-5 gap-0 list-none m-0 p-[2px]">
           <BottomTabBarItems
-            href="/category"
+            href="/category/sub-categories"
             icon={<BottomCategoryIcon />}
             label="Category"
           />
           <BottomTabBarItems
-            href="/searchbrand"
+            href="/brand"
             icon={<BottomBrandIcon />}
             label="BRAND"
           />
           <BottomTabBarItems
             href="/"
             icon={
-              <img
+              <Image
                 src="https://m.sivillage.com/mo/assets/comm/image/logo_tabbar_siv.png"
                 alt="Home"
-                className="w-[44px]"
+                width={44}
+                height={44}
               />
             }
             label=""

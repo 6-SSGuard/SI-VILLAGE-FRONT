@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="pb-12 bg-gray-100 text-black mt-4">
+    <footer className="pb-12 bg-gray-100 text-black">
       <nav className="bg-white w-full flex justify-around text-[14px] text-[#404040] p-4 border-t-8">
         <Link href="#">ABOUT</Link>
         <Link href="http://www.sikorea.co.kr" passHref>
@@ -55,7 +55,7 @@ export default function Footer() {
         >
           <div
             className={
-              ' p-[3px_24px_26px_24px] text-[12px] leading-[20px] text-[#787878]  '
+              ' p-[3px_24px_26px_24px] text-[12px] leading-[20px] text-si-787878'
             }
           >
             <div>
@@ -106,14 +106,14 @@ export default function Footer() {
         </div>
 
         <ul className="p-[14px_24px] flex flex-row">
-          <li className=" pr-5 text-[12px] font-semibold leading-[20px] text-[#787878]">
+          <li className=" pr-5 text-[12px] font-semibold leading-[20px] text-si-787878">
             <Link href={'/'}>개인정보처리방침</Link>
           </li>
-          <li className=" pr-5 text-[12px] font-medium leading-[20px] text-[#787878]">
+          <li className=" pr-5 text-[12px] font-medium leading-[20px] text-si-787878">
             <Link href={'/'}>이용약관</Link>
           </li>
 
-          <li className=" pr-5 text-[12px] font-medium leading-[20px] text-[#787878]">
+          <li className=" pr-5 text-[12px] font-medium leading-[20px] text-si-787878">
             <Link href={'/'}>PC 버전보기</Link>
           </li>
         </ul>

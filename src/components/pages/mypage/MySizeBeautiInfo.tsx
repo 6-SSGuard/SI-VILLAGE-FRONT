@@ -5,8 +5,37 @@ import MyBeautiForm from '@/components/forms/mypage/MyBeautiForm';
 import MySizeForm from '@/components/forms/mypage/MySizeForm';
 import { Button } from '@/components/ui/button';
 import InfoAgree from './InfoAgree';
-function MySizeBeautiInfo() {
+import {
+  beautyInfoCreateDataRequest,
+  sizeCreateDataRequest,
+} from '@/types/mypage/mypageType';
+
+export interface ComponentProps {
+  beautyinfo: beautyInfoCreateDataRequest;
+}
+function MySizeBeautiInfo({
+  beautyinfo,
+  sizeinfo,
+  handlePostBeautyInfo,
+  handlePostSizeInfo,
+}: {
+  beautyinfo: beautyInfoCreateDataRequest;
+  sizeinfo: sizeCreateDataRequest;
+  handlePostBeautyInfo: (formData: FormData) => void;
+  handlePostSizeInfo: (formData: FormData) => void;
+}) {
   const [activeTab, setActiveTab] = useState('size');
+  console.log('  sizeinfo,', sizeinfo);
+  const handleEdit = () => {
+    // 수정 로직 구현
+    console.log('수정 버튼 클릭');
+  };
+
+  const handleDelete = () => {
+    // 삭제 로직 구현
+    console.log('삭제 버튼 클릭');
+  };
+
   return (
     <Tabs
       defaultValue="size"
@@ -17,7 +46,9 @@ function MySizeBeautiInfo() {
         <TabsTrigger
           value="size"
           className={`${
-            activeTab === 'size' ? 'border-b-2 border-black' : 'text-[#929292]'
+            activeTab === 'size'
+              ? 'border-b-2 border-black'
+              : 'text-si-text-gray'
           } pb-2 w-full`}
         >
           나의 사이즈
@@ -28,34 +59,76 @@ function MySizeBeautiInfo() {
           className={`${
             activeTab === 'beautiInfo'
               ? 'border-b-2 border-black '
-              : 'text-[#929292]'
+              : 'text-si-text-gray'
           } pb-2 w-full`}
         >
           나의 뷰티정보
         </TabsTrigger>
       </TabsList>
       <TabsContent value="size">
-        <form className="flex flex-col items-center">
-          <MySizeForm />
+        <form
+          className="flex flex-col items-center"
+          action={handlePostSizeInfo}
+        >
+          <MySizeForm sizeinfo={sizeinfo} />
           <InfoAgree />
-          <Button
-            className="w-11/12 h-12 mb-20 bg-[#131922] text-white font-semibold"
-            type="submit"
-          >
-            나의 사이즈 등록
-          </Button>
+          {sizeinfo.bottomSize !== null ? (
+            <div className="flex w-full space-x-2 px-6">
+              <Button
+                className="w-1/2 h-12 mb-20 bg-si-787878 text-white font-semibold"
+                type="submit"
+              >
+                삭제
+              </Button>
+              <Button
+                className="w-1/2 h-12 mb-20 bg-si-131922 text-white font-semibold"
+                type="submit"
+              >
+                나의 사이즈 수정
+              </Button>
+            </div>
+          ) : (
+            <Button
+              className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
+              type="submit"
+            >
+              나의 사이즈 등록
+            </Button>
+          )}
         </form>
       </TabsContent>
       <TabsContent value="beautiInfo">
-        <form className="flex flex-col items-center">
-          <MyBeautiForm />
+        <form
+          className="flex flex-col items-center"
+          action={handlePostBeautyInfo}
+        >
+          <MyBeautiForm beautyinfo={beautyinfo} />
           <InfoAgree />
-          <Button
-            className="w-11/12 h-12 mb-20 bg-[#131922] text-white font-semibold"
-            type="submit"
-          >
-            나의 뷰티정보 등록
-          </Button>
+          {beautyinfo ? (
+            <div className="flex justify-between w-11/12 mb-20">
+              <Button
+                className="w-[48%] h-12 bg-si-787878 text-white font-semibold"
+                type="button"
+                onClick={handleDelete}
+              >
+                삭제
+              </Button>
+              <Button
+                className="w-[48%] h-12 bg-si-131922 text-white font-semibold border border-si-131922"
+                type="button"
+                onClick={handleEdit}
+              >
+                나의 뷰티정보 수정
+              </Button>
+            </div>
+          ) : (
+            <Button
+              className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
+              type="submit"
+            >
+              나의 뷰티정보 등록
+            </Button>
+          )}
         </form>
       </TabsContent>
     </Tabs>

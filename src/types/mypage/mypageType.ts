@@ -2,11 +2,11 @@
 
 //사이즈 등록 Request
 export interface sizeCreateDataRequest {
-  id: number;
   height: number;
   weight: number;
   topSize: string;
-  pantsSize: string;
+  bottomSize: string;
+  shoeSize: string;
 }
 
 //개인 정보 수정 Request
@@ -22,10 +22,10 @@ export interface infoDataSelectRequest {
 
 //뷰티정보 등록
 export interface beautyInfoCreateDataRequest {
-  skinType: string;
-  skinTone: string;
-  scalpTone: string;
-  beautyKeyword: string[];
+  skinType?: string;
+  skinTone?: string;
+  scalpTone?: string;
+  beautyKeyword?: string[];
 }
 
 //비밀번호 번경
@@ -91,4 +91,27 @@ export interface beautyInfoRegistDataResponse {
 //비밀번호 번경
 export interface passwordChangeResponse {
   message: string;
+}
+
+// 배송지 정보
+export interface shippingAddressResponse {
+  shippingAddressId: number;
+  addressName: string;
+  recipient: string;
+  phone: string;
+  address: string;
+  detailedAddress: string;
+  postalCode: string;
+  defaultAddress: boolean;
+}
+
+// 배송지 요청정보
+export interface shippingAddressRequest {
+  addressName: string;
+  recipient: string;
+  phone: string;
+  address: string;
+  detailedAddress: string;
+  postalCode: string;
+  defaultAddress: boolean;
 }

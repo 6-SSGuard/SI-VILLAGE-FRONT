@@ -1,11 +1,29 @@
+//성공 Response
+export interface authResponse {
+  grantType: string;
+  accessToken: string;
+  refreshToken: string;
+  memberUuid: string;
+  name: string;
+}
+
+interface HttpStatus {
+  error: boolean;
+  is4xxClientError: boolean;
+  is5xxServerError: boolean;
+  is1xxInformational: boolean;
+  is2xxSuccessful: boolean;
+  is3xxRedirection: boolean;
+}
+
 //회원가입 Type
 export interface signUpDataRequest {
   email: string;
   password: string;
   name: string;
   role: string;
+  birth: string;
   // phone: string;
-  // birthday: string;
   // permission: string;
 }
 
@@ -31,19 +49,16 @@ export interface withdrawDataRequest {
   reason: string;
 }
 
-//성공 Response
-export interface authResponse {
+export interface commonResType<T> {
   httpStatus: HttpStatus;
   isSuccess: boolean;
   message: string;
-  result: any;
+  result: T;
 }
 
-interface HttpStatus {
-  error: boolean;
-  is4xxClientError: boolean;
-  is5xxServerError: boolean;
-  is1xxInformational: boolean;
-  is2xxSuccessful: boolean;
-  is3xxRedirection: boolean;
+export interface userDataType {
+  accessToken: string;
+  name: string;
+  uuid: string;
+  email?: string;
 }

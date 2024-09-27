@@ -16,7 +16,7 @@ export async function signInAction(signInFormData: FormData) {
   };
 
   console.log('action payload', payload);
-  const res = await fetch(`${process.env.API_BASE_URL}/member/login`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/auth/sign-in`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {
@@ -40,7 +40,7 @@ export async function signInAction(signInFormData: FormData) {
  */
 export async function logoutAction() {
   console.log('action payload');
-  const res = await fetch(`${process.env.API_BASE_URL}/member/logout`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/auth/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -62,21 +62,38 @@ export async function logoutAction() {
  * @returns {Promise<ApiResponse>} "Success." 메시지와 함께 accessToken, refreshToken을 반환합니다.
  * @throws 403 "Expired Refresh Token" 오류를 반환할 수 있습니다.
  */
-// export const refreshToken = async (
-//   refreshToken: string,
-// ): Promise<ApiResponse> => {
-//   try {
-//     const response = await apiClient.post<ApiResponse>(
-//       '/api/v1/auth/refresh-token',
-//       {
-//         refreshToken,
-//       },
-//     );
-//     return response.data;
-//   } catch (error) {
-//     if (isAxiosError(error) && error.response) {
-//       throw error.response.data;
-//     }
-//     throw error;
-//   }
-// };
+export async function refreshAccessToken(token: any) {
+  try {
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/auth/refresh`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          refreshToken: token.refreshToken,
+        }),
+      }
+    );
+
+    const refreshedTokens = await response.json();
+
+    if (!response.ok) {
+      throw refreshedTokens;
+    }
+
+    return {
+      ...token,
+      accessToken: refreshedTokens.accessToken,
+      expiresAt: refreshedTokens.expiresAt,
+      refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
+    };
+  } catch (error) {
+    console.error('RefreshAccessTokenError', error);
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError',
+    };
+  }
+}

@@ -37,6 +37,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -45,5 +46,15 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# sw
+/service-worker.js
+sw.js
+sw.js.map
+.sw.js.map
+.sw.js
+/sw.js
+/sw.js.map
+workbox-*.js
+workbox-*.js.map
 
 /build.sh

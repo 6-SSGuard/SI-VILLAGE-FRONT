@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Script from 'next/script';
+import Image from 'next/image';
 
 // Daum Postcode API의 타입을 정의합니다.
 interface IAddr {
@@ -115,18 +116,20 @@ const AddressSearchModal: React.FC<AddressSearchModalProps> = ({
             zIndex: 1000,
           }}
         >
-          <img
-            src="//t1.daumcdn.net/postcode/resource/images/close.png"
+          <Image
+            src={'/close.png'}
             id="btnCloseLayer"
             style={{
               cursor: 'pointer',
               position: 'absolute',
-              right: '-3px',
-              top: '-3px',
+              right: '0px',
+              top: '0px',
               zIndex: 1001,
             }}
             onClick={onClose}
             alt="닫기 버튼"
+            width={10}
+            height={10}
           />
         </div>
       )}
