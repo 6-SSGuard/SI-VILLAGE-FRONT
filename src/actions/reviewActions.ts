@@ -1,5 +1,5 @@
 'use server';
-import { authResponse } from '@/types/auth/authType';
+import { commonResType } from '@/types/auth/authType';
 import { productReviewListType } from '@/types/review/reviewType';
 import { reviewIdDataType } from '@/types/review/reviewType';
 //상품의 리뷰 id 조회 api
@@ -38,7 +38,8 @@ export const reviewIdbyReviewList = async (
     throw new Error(`Failed to fetch review data: ${res.status}`);
   }
 
-  const reviewListData = (await res.json()) as authResponse;
+  const reviewListData =
+    (await res.json()) as commonResType<productReviewListType>;
 
   console.log(reviewListData);
 

@@ -31,7 +31,7 @@ const ProductSortModal: React.FC<BottomModalProps> = ({ isOpen, onClose }) => {
     <>
       {isOpen && (
         <div
-          className="fixed max-h inset-0 z-40 bg-black bg-opacity-50"
+          className="fixed max-h inset-0 z-100 bg-black bg-opacity-50"
           onClick={onClose}
         ></div>
       )}

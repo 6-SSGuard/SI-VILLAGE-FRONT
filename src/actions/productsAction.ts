@@ -6,7 +6,7 @@ import { cursorDataType, pageType } from '@/types/product/productsType';
 /**
  * 물품 생성
  * @remarks
- * POST 요청을 '/api/product/' 엔드포인트에 보냅니다. 성공시 메시지와 result를 반환합니다.
+ * get 요청을 '/api/product/' 엔드포인트에 보냅니다. 성공시 메시지와 result를 반환합니다.
  * @param {productRequest}
  * @returns {Promise<authResponse>} "Success." 메시지와 함께 을 반환합니다.
  *  */
@@ -41,6 +41,6 @@ export const getProductListByCategory = async (
 
   const fetchUrl = `${process.env.API_BASE_URL}/api/product-category-list?${params.toString()}`;
 
-  console.log('fetchUrl', fetchUrl);
+  // console.log('fetchUrl', fetchUrl);
   return fetchDataNoCache<cursorDataType>(fetchUrl);
 };
