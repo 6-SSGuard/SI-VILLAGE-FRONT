@@ -36,3 +36,10 @@ export interface detailthumnailImagereq {
 export interface detailImageListReq {
   imageUrl: string[];
 }
+
+export interface breifProductReq {
+  productCode: string;
+  brandEngName: string;
+  productName: string;
+  price: number;
+}

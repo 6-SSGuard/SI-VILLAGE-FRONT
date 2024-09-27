@@ -12,7 +12,7 @@ import {
 import CloseIcon from '@/components/icons/common/CloseIcon';
 
 // CartItem 컴포넌트 타입 정의
-interface CartItemProps {
+export interface CartItemProps {
   cartId: number;
   productCode: string;
   quantity: number;
@@ -21,7 +21,7 @@ interface CartItemProps {
   setTotal: React.Dispatch<React.SetStateAction<number>>;
 }
 
-interface ProductInfo {
+export interface ProductInfo {
   productCode: string;
   productName: string;
   price: number;
@@ -30,18 +30,18 @@ interface ProductInfo {
   detailContent: string;
 }
 
-interface ProductOptionType {
+export interface ProductOptionType {
   options: ProductOption[];
 }
 
-interface ProductOption {
+export interface ProductOption {
   productOptionId: number;
   sizeId: null | number;
   volume: string;
   stock: number;
 }
 
-interface ThumbnailType {
+export interface ThumbnailType {
   thumbnailUrl: string;
 }
 

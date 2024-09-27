@@ -1,6 +1,9 @@
 'use server';
 import { authResponse, commonResType } from '@/types/auth/authType';
-import { detailInforeq } from '@/types/detail/detailproductinfo';
+import {
+  breifProductReq,
+  detailInforeq,
+} from '@/types/detail/detailproductinfo';
 import { detailthumnailImagereq } from '@/types/detail/detailproductinfo';
 import { detailImageListReq } from '@/types/detail/detailproductinfo';
 
@@ -73,5 +76,28 @@ export const getProductCodeByImageList = async (
 
   const data = (await res.json()) as commonResType<detailImageListReq[]>;
   console.log(data, 'api');
+  return data.result;
+};
+
+// 단일 상품에 대한 간략 정보 조회
+export const getProductCode = async (
+  productCode: string
+): Promise<breifProductReq> => {
+  const res = await fetch(
+    `${process.env.API_BASE_URL}/api/product/brief/${productCode}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch');
+  }
+
+  const data = (await res.json()) as commonResType<breifProductReq>;
+
   return data.result;
 };

@@ -1,32 +1,28 @@
+'use client';
 import ArrowBottomIcon from '@/components/icons/common/ArrowBottomIcon';
 import CloseIcon from '@/components/icons/common/CloseIcon';
 import React, { useEffect, useState } from 'react';
 import { CategoryBtn } from './CategoryBtn';
 
-interface Category {
-  id: string;
-  name: string;
+export interface Category {
+  categoryCode: string;
+  categoryName: string;
 }
 
 interface CategoryTabBarProps {
   categories: Category[];
-  onCategorySelect: (category: Category) => void;
 }
 
-const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({
-  categories,
-  onCategorySelect,
-}) => {
+const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({ categories }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleCategoryClick = (category: Category) => {
-    onCategorySelect(category);
     setIsExpanded(false);
   };
 
   const toggleExpand = () => setIsExpanded(!isExpanded);
 
-  const allCategory = { id: 'all', name: '전체' };
+  const allCategory = { categoryCode: 'all', categoryName: '전체' };
 
   // Disable background scroll when expanded
   useEffect(() => {
@@ -43,15 +39,15 @@ const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({
         <div className="flex items-center overflow-x-auto whitespace-nowrap scrollbar-hide border-y leading-[48px]">
           <CategoryBtn
             category={allCategory}
-            onClick={handleCategoryClick}
+            // onClick={handleCategoryClick}
             className="pl-6 font-semibold flex-shrink-0"
           />
           <div className="flex  overflow-x-auto scrollbar-hide">
             {categories.map((category) => (
               <CategoryBtn
-                key={category.id}
+                key={category.categoryCode}
                 category={category}
-                onClick={handleCategoryClick}
+                // onClick={handleCategoryClick}
                 className="bg-white whitespace-nowrap"
               />
             ))}
@@ -80,14 +76,14 @@ const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({
             <div className="flex flex-wrap mt-4 overflow-y-auto max-h-[calc(80vh-48px)]">
               <CategoryBtn
                 category={allCategory}
-                onClick={handleCategoryClick}
+                // onClick={handleCategoryClick}
                 className="font-semibold"
               />
               {categories.map((category) => (
                 <CategoryBtn
-                  key={category.id}
+                  key={category.categoryCode}
                   category={category}
-                  onClick={handleCategoryClick}
+                  // onClick={handleCategoryClick}
                 />
               ))}
             </div>

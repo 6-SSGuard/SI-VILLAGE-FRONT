@@ -1,6 +1,8 @@
 'use client';
-import { BrandDataType } from '@/actions/brandAction';
+import { BrandDataType, toggleBrandItem } from '@/actions/brandAction';
+import LikeHeart from '@/components/icons/common/LikeHeart';
 import ScrollToTopButton from '@/components/layouts/ScrollToTopButton';
+import { HeartIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 
@@ -90,14 +92,6 @@ function BrandList({
     {} as { [key: string]: BrandDataType[] }
   );
 
-  // 그룹별로 정렬
-  // Object.keys(groupedBrands).forEach(
-  //   (key) =>
-  //     (groupedBrands[key] = groupedBrands[key].sort((a, b) =>
-  //       a.brandEngName.localeCompare(b.brandEngName)
-  //     ))
-  // );
-
   // 필터링된 브랜드 리스트 생성
   const filteredBrands = Object.keys(groupedBrands ?? {})
     .sort((a, b) => {
@@ -129,6 +123,14 @@ function BrandList({
       },
       {} as { [key: string]: BrandDataType[] }
     );
+
+  const handleLikeClick = async (brandId: number) => {
+    try {
+      await toggleBrandItem(brandId);
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    }
+  };
 
   // 특정 브랜드로 스크롤 이동
   const scrollToBrand = (letter: string) => {
@@ -205,12 +207,9 @@ function BrandList({
                   <p className="text-sm mt-3">{brand.brandKorName}</p>
                 </div>
                 <div className="h-6">
-                  <Image
-                    src="/images/heart.png"
-                    alt="heart"
-                    width={24}
-                    height={24}
-                  />
+                  <button onClick={() => handleLikeClick(brand.brandId)}>
+                    <HeartIcon />
+                  </button>
                 </div>
               </div>
             ))}

@@ -17,13 +17,16 @@ export async function getSizeInfo() {
   const session = await getServerSession(options);
 
   try {
-    const res = await fetch(`${process.env.API_BASE_URL}/api/size-info`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${session?.user.accessToken}`,
-      },
-    });
+    const res = await fetch(
+      `${process.env.API_BASE_URL}/api/size-info/member`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
@@ -53,7 +56,7 @@ export async function getSizeInfo() {
  */
 export async function postSizeInfo(sizeFormData: sizeCreateDataRequest) {
   const session = await getServerSession(options);
-  const res = await fetch(`${process.env.API_BASE_URL}/api/size-info`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/size-info/member`, {
     method: 'POST',
     body: JSON.stringify(sizeFormData),
     headers: {

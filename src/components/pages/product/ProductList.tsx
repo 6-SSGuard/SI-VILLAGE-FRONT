@@ -1,11 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BoxFourIcon from '@/components/icons/product/boxFourIcon';
 import RowFourIcon from '@/components/icons/product/rowFourIcon';
 import RowOneIcon from '@/components/icons/product/rowOneIcon';
 import SortIcon from '@/components/icons/product/sortIcon';
 import Image from 'next/image';
 import ProductSortModal from './ProductSortModal';
+import { breifProductReq } from '@/types/detail/detailproductinfo';
+import { getProductCode } from '@/actions/productDetailActionHook';
+import { ProductType } from '@/types/product/productsType';
+import ProductImageOnly from './ProductImageOnly';
+import ProductTwoList from './ProductTwoList';
+import ProductCardList from './ProductCardList';
 
 const products = [
   {
@@ -93,7 +99,7 @@ const filters = [
   '길이',
   '핏',
 ];
-function ProductList() {
+function ProductList({ getProductList }: { getProductList: ProductType[] }) {
   const [layoutMode, setLayoutMode] = useState('grid-cols-2');
   const [likedProducts, setLikedProducts] = useState<{
     [key: number]: boolean;
@@ -117,9 +123,18 @@ function ProductList() {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  // 로딩 중일 때 처리
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // 제품 정보가 없을 때 처리
+  // if (!product) {
+  //   return <div>Product not found</div>;
+  // }
   return (
     <div>
       <div className="flex justify-between items-center mt-4 p-[0px_16px_0px_24px]">
@@ -152,55 +167,25 @@ function ProductList() {
 
       {/* Product Grid */}
       <div className={`grid ${layoutMode} gap-2 p-[0px_16px]`}>
-        {products.map((product) => (
-          <div key={product.id}>
-            {/* layoutMode가 grid-cols-4이면 이미지 부분만 보여주기 */}
-            {layoutMode === 'grid-cols-4' ? (
-              <Image
-                src={product.imagesrc}
-                alt={product.name}
-                className="w-full h-auto"
-                width={100}
-                height={100}
-              />
-            ) : (
-              <div className="relative">
-                <Image
-                  src={product.imagesrc}
-                  alt={product.name}
-                  className="w-full h-auto mb-2"
-                  width={100}
-                  height={100}
-                />
-                <p className="text-sm font-semibold">{product.brand}</p>
-                <p className="text-xs">{product.name}</p>
-                <p className="text-gray-500 text-xs">
-                  {product.price.toLocaleString()}
-                </p>
-                <div className="absolute top-2 right-2">
-                  {/* Toggle the heart image based on the liked state */}
-                  <button onClick={() => toggleLike(product.id)}>
-                    {likedProducts[product.id] ? (
-                      <Image
-                        src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/blackheart.png"
-                        alt="black heart"
-                        width={24}
-                        height={24}
-                      />
-                    ) : (
-                      <Image
-                        src="/images/heart.png"
-                        alt="heart"
-                        width={24}
-                        height={24}
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+        {getProductList.map((product, index) =>
+          layoutMode === 'grid-cols-4' ? (
+            <ProductImageOnly key={product.id} product={product} />
+          ) : layoutMode === 'grid-cols-2' ? (
+            <ProductTwoList
+              key={product.id}
+              product={product}
+              // isLiked={likedProducts[product.id]}
+              toggleLike={toggleLike}
+            />
+          ) : (
+            <ProductCardList
+              key={product.id}
+              product={product}
+              // isLiked={likedProducts[product.id]}
+              toggleLike={toggleLike}
+            />
+          )
+        )}
       </div>
 
       {/* Render the BottomModal */}
