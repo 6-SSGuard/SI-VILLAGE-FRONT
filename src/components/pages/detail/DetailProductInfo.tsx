@@ -2,7 +2,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ArrowRightIcon } from 'lucide-react';
+import { ColorReq } from '@/types/detail/detailproductinfo';
 import { HeartIcon } from 'lucide-react';
 import { ShareIcon } from 'lucide-react';
 import {
@@ -12,54 +12,72 @@ import {
 import { ProductByProductLikeToggle } from '@/actions/productsAction';
 import DetailProductImageList from './DetailProductImageList';
 import { ChevronRight } from 'lucide-react';
+import { ProductPolicyRequest } from '@/types/product/productsType';
+import DetailProductBottomBtn from '@/components/layouts/DetailProductBottomBtn';
 
 function detailProductInfo({
   detailInfoData,
   detailImageData,
-  discount,
+  policyData,
   productCode,
+  colorData,
 }: {
   detailInfoData: detailInforeq;
-  discount: number;
+  policyData: ProductPolicyRequest;
   detailImageData: detailImageListReq[];
   productCode: string;
+  colorData: ColorReq;
 }) {
   const [infoData, setinfoData] = useState<detailInforeq>();
   const [Like, setLike] = useState<boolean>(false);
-
-  const LikeToggleEvent = async () => {
-    try {
-      const response = await ProductByProductLikeToggle(productCode);
-
-      //api에서 불러온 값이 undefinded면 토글 이벤트 적용
-      if (response) {
-        setLike(!Like);
-      }
-    } catch (error) {
-      console.error('Failed to fetch LikeToggle', error);
+  //셋 초기 boolean값 지정
+  const fetchToggle = async () => {
+    const response = await ProductByProductLikeToggle(productCode);
+    if (!response?.liked) {
+      setLike(!response?.liked);
     }
   };
 
-  console.log(Like, 'toggle');
+  // 좋아요 토글 이벤트
+  const handleLikeToggle = async () => {
+    try {
+      const response = await ProductByProductLikeToggle(productCode);
+      if (!response) {
+        setLike(!Like); // 좋아요 상태 토글
+      }
+    } catch (error) {
+      console.error('Failed to toggle like', error);
+    }
+  };
 
   useEffect(() => {
     if (detailInfoData) {
       setinfoData(detailInfoData);
     }
 
-    const ToggleDataResetListener = async () => {
-      const response = await ProductByProductLikeToggle(productCode);
-      if (response == undefined) setLike(false);
-    };
-    console.log(Like, 'test Reset');
-    ToggleDataResetListener();
+    fetchToggle();
   }, [detailInfoData, productCode]);
 
+  //최종가격
   const discount_resultPrice =
-    detailInfoData.price - detailInfoData.price * discount;
+    detailInfoData.price - detailInfoData.price * policyData.discountRate;
 
-  const discountRate = discount * 100;
+  const discountRate = policyData.discountRate * 100;
 
+  const getColorClass = () => {
+    switch (colorData.colorCode) {
+      case 'black':
+        return 'bg-black';
+      case 'blue':
+        return 'bg-blue-500';
+      case 'green':
+        return 'bg-green-500';
+      case 'yellow':
+        return 'bg-yellow-500';
+      default:
+        return 'bg-black'; // 기본 색상
+    }
+  };
   return (
     <div className="">
       <DetailProductImageList data={detailImageData} />
@@ -67,7 +85,9 @@ function detailProductInfo({
         <div className="px-6">
           <ul className="grid grid-cols-10 gap-4  mt-8 ml-2">
             <li className="col-span-6 flex items-center">
-              <p className="text-base font-bold">{infoData?.brandEngName}</p>
+              <p className="text-base font-bold">
+                {detailInfoData?.brandEngName}
+              </p>
               <ChevronRight />
             </li>
 
@@ -78,10 +98,10 @@ function detailProductInfo({
                   alt="Liked"
                   width={24}
                   height={24}
-                  onClick={LikeToggleEvent}
+                  onClick={handleLikeToggle}
                 />
               ) : (
-                <HeartIcon width={24} height={24} onClick={LikeToggleEvent} />
+                <HeartIcon width={24} height={24} onClick={handleLikeToggle} />
               )}
               <ShareIcon />
             </li>
@@ -109,13 +129,20 @@ function detailProductInfo({
               src="/five-starts.png"
               width={67}
               height={12}
-              alt="reviewStar"
+              alt=""
               className="object-cover"
             />
+
+            <p className="pl-2 text-13">4.6</p>
           </div>
 
-          <div className="flex gap-4 py-5 mt-4">
-            <div className="w-[38px] h-[38px] border border-gray-300 flex items-center justify-center"></div>
+          <p className="pl-2 text-xs text-gray-400 mt-3">
+            {colorData.colorName}
+          </p>
+          <div className="flex gap-4 py-5 pl-2">
+            <div
+              className={`w-[38px] h-[38px] border-1 border-gray-300 flex items-center justify-center ${getColorClass()}`}
+            ></div>
           </div>
 
           <div className="py-1 mt-5 bg-gray-200 "></div>
@@ -123,15 +150,20 @@ function detailProductInfo({
 
         <div className="px-6 bg-gray-200"></div>
       </div>
-
-      <div className="w-[420px] h-full scrollbar-hide flex justify-center ml-1">
+      <div className="w-[400px] h-[3500px] scrollbar-hide overflow-y-hidden">
         {infoData && (
           <iframe
             src={infoData?.detailContent}
-            className="h-[3500px] w-[400px] object-cover overflow-x-hidden"
+            className="h-[3500px] w-[400px] object-cover scrollbar-hide overflow-y-hidden"
           />
         )}
       </div>
+      <DetailProductBottomBtn
+        colorName={colorData.colorName}
+        presentPrice={discount_resultPrice}
+        policyData={policyData}
+        Like={Like}
+      />
     </div>
   );
 }

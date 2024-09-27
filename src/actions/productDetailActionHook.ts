@@ -91,6 +91,5 @@ export const getProductCodeByImageList = async (
   }
 
   const data = (await res.json()) as authResponse;
-  console.log(data, 'api');
   return data.result as detailImageListReq[];
 };

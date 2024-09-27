@@ -19,7 +19,7 @@ export interface DetailProductInfoData {
 
 //좋아요 토글
 export interface likeToggle {
-  islike: boolean;
+  liked: boolean;
 }
 //디테일 정보 Response
 export interface detailInforeq {
@@ -39,4 +39,11 @@ export interface detailthumnailImagereq {
 //디테일 이미지 리스트 Response
 export interface detailImageListReq {
   imageUrl: string;
+}
+
+//색상 조회
+export interface ColorReq {
+  colorId: number;
+  colorName: string;
+  colorCode: string;
 }

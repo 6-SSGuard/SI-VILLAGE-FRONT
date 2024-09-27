@@ -1,11 +1,10 @@
 import React from 'react';
 import DetailProductInfo from '@/components/pages/detail/DetailProductInfo';
-import { likeToggle } from '@/types/detail/detailproductinfo';
 import { getProductCodeByProductPolicy } from '@/actions/productsAction';
 import { getProductCodeByImageList } from '@/actions/productDetailActionHook';
 import { getProductCodeByDetailInfo } from '@/actions/productDetailActionHook';
-import { getProductCodeBythumnailImage } from '@/actions/productDetailActionHook';
-import { ProductByProductLikeToggle } from '@/actions/productsAction';
+import { ColorIdByColor } from '@/actions/productsAction';
+
 async function page({ params }: { params: { productname: string } }) {
   //상세정보 조회
   const getdetailinfo = async () => {
@@ -15,12 +14,23 @@ async function page({ params }: { params: { productname: string } }) {
 
   const detailinfoData = await getdetailinfo();
 
-  //썸네일 이미지 조회
-  const getdetailthumnailImage = async () => {
-    const Data = await getProductCodeBythumnailImage(params.productname);
+  //색상조회
+  const getColor = async () => {
+    const Data = await ColorIdByColor(detailinfoData.colorId);
     return Data;
   };
-  const detailthumnailImage = await getdetailthumnailImage();
+
+  const data = await getColor();
+
+  console.log(data, 'test fafafafafa');
+  console.log(detailinfoData.colorId, 'colorcolroaatat');
+
+  //썸네일 이미지 조회
+  // const getdetailthumnailImage = async () => {
+  //   const Data = await getProductCodeBythumnailImage(params.productname);
+  //   return Data;
+  // };
+  // const detailthumnailImage = await getdetailthumnailImage();
 
   // //디테일 이미지 리스트 조회
   const getdetailImageList = async () => {
@@ -38,21 +48,21 @@ async function page({ params }: { params: { productname: string } }) {
 
   const ProductPolicyData = await getProductPolicy();
 
-  const getLikeToggle = async () => {
-    const response = await ProductByProductLikeToggle(params.productname);
-    return response;
-  };
+  // const getLikeToggle = async () => {
+  //   const response = await ProductByProductLikeToggle(params.productname);
+  //   return response;
+  // };
 
-  const data = await getLikeToggle();
+  // const data = await getLikeToggle();
 
   return (
     <main className="flex-col overflow-auto">
       <DetailProductInfo
         detailInfoData={detailinfoData}
-        detailthumnailData={detailthumnailImage}
         detailImageData={detailImageListData}
-        discount={ProductPolicyData.discountRate}
+        policyData={ProductPolicyData}
         productCode={params.productname}
+        colorData={data}
       />
     </main>
   );

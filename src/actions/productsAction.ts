@@ -2,7 +2,9 @@
 import { ProductPolicyRequest } from '@/types/product/productsType';
 import { authResponse } from '@/types/auth/authType';
 import { getServerSession } from 'next-auth/next';
-import { options } from '@/app/api/auth/[...nextauth]/options';
+// import { options } from '@/app/api/auth/[...nextauth]/options';
+import { likeToggle } from '@/types/detail/detailproductinfo';
+import { ColorReq } from '@/types/detail/detailproductinfo';
 
 /**
  * 물품 생성
@@ -55,14 +57,12 @@ export const getProductCodeByProductPolicy = async (
 //상품의 좋아요 토글
 export const ProductByProductLikeToggle = async (productCode: string) => {
   try {
-    const session = await getServerSession(options);
     const res = await fetch(
       `${process.env.API_BASE_URL}/api/product-like/member/${productCode}`,
       {
-        method: 'PUT',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user.accessToken}`,
         },
       }
     );
@@ -70,13 +70,31 @@ export const ProductByProductLikeToggle = async (productCode: string) => {
       throw new Error('Failed to fetch');
     }
 
-    const data = await res.json();
-    return data.result;
+    const data = (await res.json()) as authResponse;
+
+    return data.result as likeToggle;
   } catch (error) {
     console.error('Error toggle detail like toggle', error);
   }
 };
 
+//색상조회
+export const ColorIdByColor = async (id: number): Promise<ColorReq> => {
+  'use server';
+  const res = await fetch(`${process.env.API_BASE_URL}/api/color/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch');
+  }
+
+  const data = (await res.json()) as authResponse;
+
+  return data.result as ColorReq;
+};
 /**
  * 특정 물품의 2차 카테고리 이름 반환
  * @remarks
