@@ -5,16 +5,23 @@ import {
   increaseCartItem,
   toggleCartItem,
 } from '@/actions/cart/cartActions';
+import {
+  getProductCodeByDetailInfo,
+  getProductCodeBythumnailImage,
+} from '@/actions/productDetailActionHook';
+import CloseIcon from '@/components/icons/common/CloseIcon';
 
 // CartItem 컴포넌트 타입 정의
-interface CartItemProps {
+export interface CartItemProps {
   cartId: number;
   productCode: string;
   quantity: number;
   selected: boolean;
+  total: number;
+  setTotal: React.Dispatch<React.SetStateAction<number>>;
 }
 
-interface ProductInfo {
+export interface ProductInfo {
   productCode: string;
   productName: string;
   price: number;
@@ -23,7 +30,18 @@ interface ProductInfo {
   detailContent: string;
 }
 
-interface ThumbnailType {
+export interface ProductOptionType {
+  options: ProductOption[];
+}
+
+export interface ProductOption {
+  productOptionId: number;
+  sizeId: null | number;
+  volume: string;
+  stock: number;
+}
+
+export interface ThumbnailType {
   thumbnailUrl: string;
 }
 
@@ -32,61 +50,72 @@ const CartItem = ({
   cartId,
   productCode,
   quantity: initialQuantity,
-  selected: initialSelected,
+  selected,
+  total,
+  setTotal,
 }: CartItemProps) => {
-  const [productData, setProductData] = useState<ProductInfo | null>(null);
+  const [productData, setProductData] = useState<ProductInfo>();
+  const [productOption, setProductOption] = useState<ProductOptionType | null>(
+    null
+  );
   const [thumbnail, setThumbnail] = useState<ThumbnailType>({
     thumbnailUrl: '',
   });
-  const [selected, setSelected] = useState(initialSelected);
+  // const [selected, setSelected] = useState(initialSelected);
   const [quantity, setQuantity] = useState(initialQuantity);
-  console.log(selected);
+  // console.log(selected);
+
+  const fetchProductData = async () => {
+    try {
+      const data = await getProductCodeByDetailInfo(productCode);
+      setProductData(data);
+      if (selected) {
+        setTotal(data.price * quantity + total);
+      }
+    } catch (error) {
+      console.error('상품 정보를 가져오는 중 오류 발생:', error);
+    }
+  };
 
   useEffect(() => {
     // 상품 정보를 가져오는 API 호출
-    const fetchProductData = async () => {
-      try {
-        // productCode를 이용해 상품 정보 API 호출 (예시로 fetch 사용)
-        const response = await fetch(
-          `${process.env.API_BASE_URL}/api/product/details/${productCode}`
-        );
-        const data = await response.json();
-        setProductData(data.result);
-      } catch (error) {
-        console.error('상품 정보를 가져오는 중 오류 발생:', error);
-      }
-    };
-
     const fetchProductthumbnail = async () => {
       try {
-        const response = await fetch(
-          `${process.env.API_BASE_URL}/api/product/image/brief/thumbnail/${productCode}`
-        );
-        const data = await response.json();
+        const data = await getProductCodeBythumnailImage(productCode);
 
-        setThumbnail(data.result);
+        setThumbnail(data);
       } catch (error) {
         console.error('상품 이미지를 가져오는 중 오류 발생:', error);
       }
     };
 
+    const fetchProductOption = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.API_BASE_URL}/api/product/option/details/${productCode}`
+        );
+        const data = await response.json();
+
+        setProductOption({ options: data.result });
+      } catch (error) {
+        console.error('상품 옵션를 가져오는 중 오류 발생:', error);
+      }
+    };
+
+    fetchProductOption();
     fetchProductData();
     fetchProductthumbnail();
   }, [productCode]);
 
   const handleCheckboxChange = async () => {
-    try {
-      const toggled = await toggleCartItem(cartId);
-      setSelected(toggled);
-    } catch (error) {
-      console.error('카트 아이템 토글 중 오류 발생:', error);
-    }
+    await toggleCartItem(cartId);
   };
 
-  const handleDecreaseQuantity = async () => {
+  const handleDecreaseQuantity = async (price: number) => {
     if (quantity > 1) {
       try {
         const newQuantity = quantity - 1;
+        setTotal(total - price);
         await increaseCartItem(cartId, newQuantity);
         setQuantity(newQuantity);
       } catch (error) {
@@ -95,9 +124,11 @@ const CartItem = ({
     }
   };
 
-  const handleIncreaseQuantity = async () => {
+  const handleIncreaseQuantity = async (price: number) => {
     try {
       const newQuantity = quantity + 1;
+      setTotal(price + total);
+
       await increaseCartItem(cartId, newQuantity);
       setQuantity(newQuantity);
     } catch (error) {
@@ -139,7 +170,7 @@ const CartItem = ({
           onClick={handleDeleteCartItem}
           className="text-gray-400 hover:text-black"
         >
-          X
+          <CloseIcon />
         </button>
       </div>
 
@@ -163,16 +194,21 @@ const CartItem = ({
 
         {/* 상품 정보 */}
         <div className="w-3/4 pl-5">
-          <div className="flex justify-between items-center mb-3">
-            <p className="text-lg font-bold">
+          <div className="text-xs text-si-787878">
+            {productOption?.options.map((option) => (
+              <div key={option.productOptionId}>{option.volume}</div>
+            ))}
+          </div>
+          <div className="flex justify-between items-center my-6">
+            <p className="font-bold">
               {productData?.price !== undefined
-                ? productData.price.toLocaleString() + '원'
+                ? (productData.price * quantity).toLocaleString() + '원'
                 : '가격 정보 없음'}
             </p>
             <div className="flex items-center">
               <button
                 className="border h-6 px-2 text-sm"
-                onClick={handleDecreaseQuantity}
+                onClick={() => handleDecreaseQuantity(productData.price)}
                 disabled={quantity === 1}
               >
                 -
@@ -180,12 +216,12 @@ const CartItem = ({
               <input
                 type="text"
                 value={quantity}
-                className="border w-[40px] h-6 text-center"
+                className="border w-[40px] h-6 text-center text-sm"
                 readOnly
               />
               <button
                 className="border px-2 h-6 text-sm"
-                onClick={handleIncreaseQuantity}
+                onClick={() => handleIncreaseQuantity(productData.price)}
               >
                 +
               </button>
@@ -197,13 +233,13 @@ const CartItem = ({
             <span className="w-[20px] h-[20px] bg-gray-100 text-center text-xs flex items-center justify-center">
               s.l.
             </span>
-            <p className="ml-3 text-gray-500">
-              {(productData.price * 0.01).toFixed(0)}p 적립
+            <p className="ml-3 text-gray-500 text-xs">
+              {(productData.price * quantity * 0.005).toLocaleString()}p 적립
             </p>
           </div>
 
           {/* 배송 안내 */}
-          <div className="text-sm text-gray-500 mb-3">
+          <div className="text-xs text-gray-500 mb-3">
             20시30분까지 결제 시{' '}
             <span className="text-orange-400 font-bold">오늘 출발</span>
           </div>
@@ -213,7 +249,7 @@ const CartItem = ({
             <button className="border border-gray-300 text-sm px-3 py-1">
               5% 쿠폰
             </button>
-            <p className="text-sm text-gray-500">사용가능 쿠폰</p>
+            <p className="text-xs text-gray-500">사용가능 쿠폰</p>
           </div>
 
           {/* 바로 구매 버튼 */}

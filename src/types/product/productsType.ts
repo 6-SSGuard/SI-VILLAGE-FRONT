@@ -38,6 +38,18 @@ export interface detail_thumbnailDataType {
   image: string;
 }
 
+export interface ProductType {
+  id: string;
+}
+
+export interface cursorDataType {
+  content: ProductType[];
+  nextCursor: string;
+  hasNext: boolean;
+  pageSize: number;
+  page: number;
+}
+
 export interface detail_productDataType {
   name: string;
   price: number;
@@ -97,4 +109,40 @@ export interface ProductPolicyRequest {
   maxOrderCount: number;
   minOrderCount: number;
   discountRate: number;
+}
+export interface pageType {
+  page: number;
+  size: number;
+  sort: SortType[];
+}
+
+// Sort 관련 타입
+export interface SortType {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
+
+// Pageable 관련 타입
+export interface PageableType {
+  pageNumber: number;
+  pageSize: number;
+  sort: SortType;
+  offset: number;
+  paged: boolean;
+  unpaged: boolean;
+}
+
+// 서버에서 받아온 데이터를 표현하는 타입
+export interface ContentData {
+  id: string;
+}
+
+// CursorDataType 수정
+export interface CursorDataType {
+  content: ContentData[]; // string[] 대신 ContentData[]
+  nextCursor: string | null; // nextCursor를 lastProductCode로 처리
+  hasNext: boolean;
+  pageSize: number;
+  page: number;
 }

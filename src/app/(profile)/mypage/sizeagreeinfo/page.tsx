@@ -37,6 +37,7 @@ async function page() {
   };
 
   const sizeInfo: commonResType<sizeCreateDataRequest> = await getSizeInfo();
+  // console.log('sizeInfo', sizeInfo);
 
   const handlePostSizeInfo = async (formData: FormData) => {
     'use server';

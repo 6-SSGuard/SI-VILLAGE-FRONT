@@ -1,12 +1,5 @@
 'use client';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { sizeCreateDataRequest } from '@/types/mypage/mypageType';
 import React, { useEffect, useState } from 'react';
 
@@ -42,7 +35,8 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // console.log('tts', sizeinfo);
+  console.log('sizeinfo', sizeinfo);
+
   return (
     <div className="space-y-4 p-[32px_24px_40px]">
       {/* Height and Weight */}
@@ -58,8 +52,9 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
               id="height"
               placeholder="입력"
               className="flex-grow border-none placeholder:text-si-text-gray"
-              value={formData.height}
+              value={formData.height !== null ? formData.height : ''}
               onChange={handleInputChange}
+              disabled={formData.height !== null}
             />
             <span className="mr-2 text-sm text-[#333333]">cm</span>
           </div>
@@ -74,9 +69,10 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
               name="weight"
               id="weight"
               placeholder="입력"
-              className="placeholder:text-si-text-gray"
-              value={formData.weight}
+              className="flex-grow border-none placeholder:text-si-text-gray"
+              value={formData.weight !== null ? formData.weight : ''}
               onChange={handleInputChange}
+              disabled={formData.weight !== null}
             />
             <span className="mr-2 text-sm text-[#333333]">kg</span>
           </div>
@@ -90,9 +86,10 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
         </label>
         <select
           name="topSize"
-          value={formData.topSize || ''}
+          value={formData.topSize !== null ? formData.topSize : ''}
           onChange={(e) => handleSelectChange('topSize', e.target.value)}
-          className="w-2/3 h-10 border border-si-text-gray hover:border-black"
+          className="w-2/3 h-10 border border-si-text-gray hover:border-black pl-2 text-sm"
+          disabled={formData.topSize !== null}
         >
           <option value="">선택</option>
           <option value="XXS">XXS 이하</option>
@@ -112,9 +109,10 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
         </label>
         <select
           name="bottomSize"
-          value={formData.bottomSize || ''}
+          value={formData?.bottomSize || ''}
           onChange={(e) => handleSelectChange('bottomSize', e.target.value)}
-          className="w-2/3 h-10 border border-si-text-gray hover:border-black"
+          className="w-2/3 h-10 border border-si-text-gray hover:border-black pl-2 text-sm"
+          disabled={formData.bottomSize !== null}
         >
           <option value="">선택</option>
           <option value="23 이하">23 이하</option>
@@ -132,9 +130,10 @@ function MySizeForm({ sizeinfo }: MySizeInfoProps) {
         </label>
         <select
           name="shoeSize"
-          value={formData.shoeSize || ''}
+          value={formData.shoeSize !== null ? formData.shoeSize : ''}
           onChange={(e) => handleSelectChange('shoeSize', e.target.value)}
-          className="w-2/3 h-10 border border-si-text-gray hover:border-black"
+          className="w-2/3 h-10 border border-si-text-gray hover:border-black pl-2 text-sm"
+          disabled={formData.shoeSize !== null}
         >
           <option value="">선택</option>
           <option value="150 이하">150 이하</option>

@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { getCartById } from '@/actions/cart/cartActions';
 import CartItem from './CartItem';
 import { CartListItem } from '@/app/(cart)/cartmain/page';
+import CartBottomNav from '@/components/layouts/CartBottomNav';
+import ArrowTopIcon from '@/components/icons/common/ArrowTopIcon';
+import ArrowBottomIcon from '@/components/icons/common/ArrowBottomIcon';
 
 interface CartItemType {
   cartId: number;
@@ -15,6 +18,7 @@ interface CartItemType {
 function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
   const [cartData, setCartData] = useState<CartItemType[]>([]);
   const [isCartEmpty, setIsCartEmpty] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -55,28 +59,38 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
 
   return (
     <div className="overflow-x-hidden">
-      <div className="flex p-4 ml-3 justify-between">
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            name="isAllChecked"
-            checked={isAllChecked}
-            onChange={handleSelectAll}
-            className="accent-black w-[24px] h-[24px]"
-          />
-          <span className="text-sm ml-3">전체선택</span>
-        </div>
-        <div className="flex items-center">
-          <p className="text-xs">선택상품삭제</p>
-        </div>
-      </div>
+      {!isCartEmpty ? (
+        <>
+          <div className="flex p-4 ml-3 justify-between">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="isAllChecked"
+                checked={isAllChecked}
+                onChange={handleSelectAll}
+                className="accent-black w-[24px] h-[24px]"
+              />
+              <span className="text-sm ml-3">전체선택</span>
+            </div>
+            <div className="flex items-center">
+              <p className="text-sm text-si-787878 border-b- border-si-787878">
+                선택상품삭제
+              </p>
+            </div>
+          </div>
+          <div className="w-full h-2 bg-gray-200"></div>
+        </>
+      ) : (
+        <></>
+      )}
 
+      {/* 경계선 */}
       <div className="flex-col">
-        {/* 경계선 */}
-        <div className="w-full h-2 bg-gray-200"></div>
         {isCartEmpty ? (
-          <div className="text-center py-10">
-            <p className="text-lg font-semibold">장바구니에 상품이 없습니다.</p>
+          <div className="text-center">
+            <p className="text-sm font-semibold text-si-787878 my-20">
+              쇼핑백에 담긴 상품이 없습니다.
+            </p>
           </div>
         ) : (
           <div>
@@ -87,37 +101,39 @@ function CartGeneral({ cartListId }: { cartListId: CartListItem[] }) {
                   productCode={item.productCode}
                   quantity={item.quantity}
                   selected={item.selected}
+                  total={total}
+                  setTotal={setTotal}
                 />
               </div>
             ))}
           </div>
         )}
-
-        <div className="flex items-center">
-          <div className="overflow-hidden transition-all py-6 pl-5">
-            <span className="font-bold text-lg">쇼핑백 이용약관</span>
-            <button className="ml-48" onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? '∧' : '∨'}
-            </button>
-            {isOpen && (
-              <ul className="list-disc pl-6 mt-2 text-sm">
-                <li>
-                  쇼핑백은 최대 100개의 상품을 담을 수 있고, 최대 보관기간은
-                  30일입니다.
-                </li>
-                <li>
-                  판매 종료된 상품은 쇼핑백에 담긴 지 14일 이후 자동삭제 됩니다.
-                </li>
-                <li>
-                  선물포장가능 상품인 경우 주문서에서 선물포장 신청이
-                  가능합니다.
-                </li>
-              </ul>
-            )}
-          </div>
+        <div className="w-full h-2 bg-gray-200"></div>
+        <div className="flex w-full overflow-hidden transition-all px-6 justify-between h-16">
+          <span className="flex font-bold text-lg justify-center items-center">
+            쇼핑백 이용약관
+          </span>
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <ArrowTopIcon /> : <ArrowBottomIcon />}
+          </button>
         </div>
-        <div className="border-4 border-gray-200"></div>
+        {isOpen && (
+          <ul className="list-disc px-4 mx-2 mt-3 text-sm text-[#404040]">
+            <li>
+              쇼핑백은 최대 100개의 상품을 담을 수 있고, 최대 보관기간은
+              30일입니다.
+            </li>
+            <li>
+              판매 종료된 상품은 쇼핑백에 담긴 지 14일 이후 자동삭제 됩니다.
+            </li>
+            <li>
+              선물포장가능 상품인 경우 주문서에서 선물포장 신청이 가능합니다.
+            </li>
+          </ul>
+        )}
       </div>
+      <div className="w-full h-2 bg-gray-200"></div>
+      <CartBottomNav total={total} />
     </div>
   );
 }

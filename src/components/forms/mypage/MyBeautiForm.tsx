@@ -9,10 +9,10 @@ function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
   const MAX_SELECTIONS = 5;
   // beautyinfo에서 초기값 설정
   const [formData, setFormData] = useState({
-    skinType: '',
-    skinTone: '',
-    scalpTone: '',
-    beautyKeyword: [] as string[],
+    skinType: beautyinfo?.skinType || '',
+    skinTone: beautyinfo?.skinTone || '',
+    scalpTone: beautyinfo?.scalpTone || '',
+    beautyKeyword: beautyinfo?.beautyKeyword || [],
   });
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   // console.log('form', formData);
@@ -45,16 +45,16 @@ function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
     { label: '4026', value: '고정력' },
   ];
 
-  useEffect(() => {
-    if (beautyinfo) {
-      setFormData({
-        skinType: beautyinfo.skinType || '',
-        skinTone: beautyinfo.skinTone || '',
-        scalpTone: beautyinfo.scalpTone || '',
-        beautyKeyword: beautyinfo.beautyKeyword || [],
-      });
-    }
-  }, [beautyinfo]);
+  // useEffect(() => {
+  //   if (beautyinfo) {
+  //     setFormData({
+  //       skinType: beautyinfo.skinType || '',
+  //       skinTone: beautyinfo.skinTone || '',
+  //       scalpTone: beautyinfo.scalpTone || '',
+  //       beautyKeyword: beautyinfo.beautyKeyword || [],
+  //     });
+  //   }
+  // }, [beautyinfo]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -118,7 +118,7 @@ function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
                   type="radio"
                   className="hidden"
                   name="skinType"
-                  value={item.value}
+                  value={item.value !== null ? item.value : ''}
                   checked={formData.skinType === item.value}
                   onChange={handleChange}
                 />
@@ -155,7 +155,7 @@ function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
                   type="radio"
                   className="hidden"
                   name="skinTone"
-                  value={item.value}
+                  value={item.value !== null ? item.value : ''}
                   checked={formData.skinTone === item.value}
                   onChange={handleChange}
                 />
@@ -192,7 +192,7 @@ function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
                   type="radio"
                   className="hidden"
                   name="scalpTone"
-                  value={item.value}
+                  value={item.value !== null ? item.value : ''}
                   checked={formData.scalpTone === item.value}
                   onChange={handleChange}
                 />
@@ -225,7 +225,7 @@ function MyBeautyForm({ beautyinfo }: MySizeBeautiInfoProps) {
                   type="checkbox"
                   className="hidden"
                   name="beautyKeyword"
-                  value={item.value}
+                  value={item.value !== null ? item.value : ''}
                   onChange={handleKeywordChange}
                   checked={formData.beautyKeyword.includes(item.value)}
                 />

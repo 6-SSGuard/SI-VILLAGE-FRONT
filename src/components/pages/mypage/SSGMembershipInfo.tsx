@@ -5,7 +5,6 @@ import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 
 function SSGMembershipInfo() {
-  const auth = useSession();
   return (
     <div className="bg-white px-6">
       <strong className="block text-sm font-bold mb-1 border-b border-black leading-10">
@@ -14,15 +13,14 @@ function SSGMembershipInfo() {
           <ArrowBigRight />
         </a>
       </strong>
-      {auth && (
-        <Button
-          type="button"
-          className="w-full text-sm items justify-start"
-          onClick={() => signOut({ callbackUrl: '/' })}
-        >
-          로그아웃
-        </Button>
-      )}
+
+      <Button
+        type="button"
+        className="w-full text-sm items justify-start"
+        onClick={() => signOut({ callbackUrl: '/' })}
+      >
+        로그아웃
+      </Button>
     </div>
   );
 }

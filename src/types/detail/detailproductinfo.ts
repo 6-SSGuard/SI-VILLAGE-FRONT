@@ -47,3 +47,10 @@ export interface ColorReq {
   colorName: string;
   colorCode: string;
 }
+
+export interface breifProductReq {
+  productCode: string;
+  brandEngName: string;
+  productName: string;
+  price: number;
+}

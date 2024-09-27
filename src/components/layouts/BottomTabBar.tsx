@@ -6,13 +6,8 @@ import BottomMyIcon from '../icons/bottom/BottomMyIcon';
 import BottomRecentIcon from '../icons/bottom/BottomRecentIcon';
 import BottomTabBarItems from './BottomTabBarItems';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
 
 function BottomTabBar() {
-  const { data: session } = useSession();
-
-  // 로그인된 경우와 그렇지 않은 경우 링크를 설정
-  const myPageLink = session ? '/mypage' : '/sign-in';
   return (
     <div className="text-sm bg-white items-center justify-center p-1 fixed inset-x-0 bottom-0 border-t border-gray-200 z-10">
       {/* 하단바 */}
@@ -41,7 +36,7 @@ function BottomTabBar() {
             label=""
           />
           <BottomTabBarItems
-            href={myPageLink}
+            href="/mypage"
             icon={<BottomMyIcon />}
             label="MY"
           />

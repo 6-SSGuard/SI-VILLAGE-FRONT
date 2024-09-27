@@ -36,6 +36,8 @@ export default function AuthServiceHeader() {
   useEffect(() => {
     if (pathName.startsWith('/mypage')) {
       setTitle('마이페이지');
+    } else if (pathName.startsWith('/filter')) {
+      setTitle('');
     } else {
       switch (pathName) {
         case '/sign-in':
@@ -52,9 +54,6 @@ export default function AuthServiceHeader() {
           break;
         case '/brand':
           setTitle('BRAND');
-          break;
-        case '/product':
-          setTitle('test');
           break;
         default:
           setTitle('');
@@ -78,9 +77,10 @@ export default function AuthServiceHeader() {
                 width={180}
                 height={65}
                 className="items-start"
+                unoptimized
               />
             ) : (
-              pathName !== '/product' && (
+              pathName !== '/filter' && (
                 <button type="button" onClick={() => router.back()}>
                   <ArrowLeftIcon />
                 </button>
@@ -88,8 +88,8 @@ export default function AuthServiceHeader() {
             )}
           </li>
 
-          {/* 가운데 li: /product일 때와 아닐 때 구분 */}
-          {pathName === '/product' ? (
+          {/* 가운데 li: /filter 때와 아닐 때 구분 */}
+          {pathName.startsWith('/filter') ? (
             <li className="flex-grow flex items-center gap-3 p-1">
               <button type="button" onClick={() => router.back()}>
                 <ArrowLeftIcon />

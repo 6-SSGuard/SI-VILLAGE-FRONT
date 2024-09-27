@@ -1,9 +1,10 @@
 //성공 Response
 export interface authResponse {
-  httpStatus: HttpStatus;
-  isSuccess: boolean;
-  message: string;
-  result: any;
+  grantType: string;
+  accessToken: string;
+  refreshToken: string;
+  memberUuid: string;
+  name: string;
 }
 
 interface HttpStatus {
@@ -49,8 +50,15 @@ export interface withdrawDataRequest {
 }
 
 export interface commonResType<T> {
-  httpStatus: string;
+  httpStatus: HttpStatus;
   isSuccess: boolean;
   message: string;
   result: T;
+}
+
+export interface userDataType {
+  accessToken: string;
+  name: string;
+  uuid: string;
+  email?: string;
 }

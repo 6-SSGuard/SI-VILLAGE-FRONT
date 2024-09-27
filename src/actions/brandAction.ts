@@ -24,3 +24,31 @@ export async function getBrand(): Promise<[BrandDataType]> {
     session?.user.accessToken
   );
 }
+
+// 브랜드 토글
+export async function toggleBrandItem(brandId: number) {
+  'use server';
+  try {
+    const session = await getServerSession(options);
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/brand-like/member/${brandId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to toggle cart item');
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error toggling cart item:', error);
+    throw error;
+  }
+}

@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '@/providers/AuthProvider';
+import AuthContextProvider from '@/providers/AuthContextProvider';
+import { getServerSession } from 'next-auth';
+import { options } from './api/auth/[...nextauth]/options';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,16 +24,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(options);
+  const isAuth = session?.user ? true : false;
   return (
     <html lang="ko">
       <body className={inter.className}>
         {' '}
-        <AuthProvider>{children}</AuthProvider>
+        <AuthContextProvider isAuth={isAuth}>{children}</AuthContextProvider>
       </body>
     </html>
   );

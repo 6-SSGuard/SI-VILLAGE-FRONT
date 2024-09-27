@@ -1,18 +1,12 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function LogInForm() {
-  const auth = useSession();
-
-  useEffect(() => {
-    console.log('LogInForm auth', auth);
-  }, [auth]);
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -23,7 +17,6 @@ function LogInForm() {
       email: formData.get('email') as string,
       password: formData.get('password') as string,
       redirect: true,
-      callbackUrl: '/',
     });
   };
 
@@ -81,7 +74,10 @@ function LogInForm() {
           alt="smartphone"
         ></Image>
 
-        <button onClick={() => signIn('kakao')}>
+        <button
+          onClick={() => signIn('kakao', { redirect: true })}
+          type="button"
+        >
           <Image
             src="/images/kakaotalk.png"
             width={48}

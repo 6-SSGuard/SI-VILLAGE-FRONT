@@ -25,7 +25,7 @@ function MySizeBeautiInfo({
   handlePostSizeInfo: (formData: FormData) => void;
 }) {
   const [activeTab, setActiveTab] = useState('size');
-
+  console.log('  sizeinfo,', sizeinfo);
   const handleEdit = () => {
     // 수정 로직 구현
     console.log('수정 버튼 클릭');
@@ -72,12 +72,29 @@ function MySizeBeautiInfo({
         >
           <MySizeForm sizeinfo={sizeinfo} />
           <InfoAgree />
-          <Button
-            className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
-            type="submit"
-          >
-            나의 사이즈 등록
-          </Button>
+          {sizeinfo.bottomSize !== null ? (
+            <div className="flex w-full space-x-2 px-6">
+              <Button
+                className="w-1/2 h-12 mb-20 bg-si-787878 text-white font-semibold"
+                type="submit"
+              >
+                삭제
+              </Button>
+              <Button
+                className="w-1/2 h-12 mb-20 bg-si-131922 text-white font-semibold"
+                type="submit"
+              >
+                나의 사이즈 수정
+              </Button>
+            </div>
+          ) : (
+            <Button
+              className="w-11/12 h-12 mb-20 bg-si-131922 text-white font-semibold"
+              type="submit"
+            >
+              나의 사이즈 등록
+            </Button>
+          )}
         </form>
       </TabsContent>
       <TabsContent value="beautiInfo">

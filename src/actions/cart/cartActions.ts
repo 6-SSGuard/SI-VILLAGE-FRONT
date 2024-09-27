@@ -1,6 +1,7 @@
 'use server';
 import { options } from '@/app/api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth';
+import { revalidateTag } from 'next/cache';
 
 // 장바구니 조회
 export async function getCartById(cartId: number) {
@@ -19,6 +20,7 @@ export async function getCartById(cartId: number) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session.user.accessToken}`,
         },
+        next: { tags: ['getCart'] },
       }
     );
 
@@ -27,6 +29,7 @@ export async function getCartById(cartId: number) {
     }
 
     const data = await response.json();
+    console.log(data);
     return data.result;
   } catch (error) {
     console.error('Error fetching cart data:', error);
@@ -91,6 +94,7 @@ export async function deleteCartById(cartId: number) {
 
 // 장바구니 토글
 export async function toggleCartItem(cartId: number) {
+  'use server';
   try {
     const session = await getServerSession(options);
     const response = await fetch(
@@ -109,7 +113,7 @@ export async function toggleCartItem(cartId: number) {
     }
 
     const data = await response.json();
-    return data.result;
+    revalidateTag('getCart');
   } catch (error) {
     console.error('Error toggling cart item:', error);
     throw error;
@@ -173,6 +177,7 @@ export async function getCartItemIds() {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${session?.user.accessToken}`,
       },
+      next: { tags: ['getCart'] },
     }
   );
   const data = await response.json();

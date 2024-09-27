@@ -2,6 +2,7 @@
 import { getMiddleCategories } from '@/actions/categoryAction';
 import ArrowRightIcon from '@/components/icons/common/ArrowRightIcon';
 import { topCategoryType } from '@/types/category/categoryType';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 function MiddleCategoryList({ categoryCode }: { categoryCode: string | null }) {
@@ -50,13 +51,14 @@ function MiddleCategoryList({ categoryCode }: { categoryCode: string | null }) {
         <ul>
           {middleCategories.length > 0 ? (
             middleCategories.map((category) => (
-              <li
+              <Link
                 key={category.categoryCode}
                 className="text-sm flex justify-between px-2 py-3 items-center"
+                href={`/filter?topCategoryName=${categoryCode}&middleCategoryName=${category.categoryCode}&pageSize=${10}&sort=${'newest'}`}
               >
                 {category.categoryName}
                 <ArrowRightIcon />
-              </li>
+              </Link>
             ))
           ) : (
             <li>No categories available</li>
