@@ -69,6 +69,8 @@ export const reviewIdbyReviewImage = async (
   if (!res.ok) {
     throw new Error('Failed to fetch');
   }
+  const reviewListData =
+    (await res.json()) as commonResType<productReviewListType>;
 
   const reviewListData = (await res.json()) as commonResType<getReviewImage>;
 

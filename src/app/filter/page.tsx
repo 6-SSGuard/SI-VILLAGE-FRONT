@@ -1,11 +1,10 @@
 import { getMiddleCategories } from '@/actions/categoryAction';
 import { getProductListByCategory } from '@/actions/productsAction';
-import ProductCategoryTab from '@/components/pages/product/ProductCategoryTab';
-import ProductList from '@/components/pages/product/ProductList';
-// import ProductListCard from '@/components/pages/product/ProductListCard';
+import ProductListContainer from '@/components/pages/product/ProductListContainer';
+
 import React from 'react';
 
-async function page({
+async function Page({
   searchParams,
 }: {
   searchParams: {
@@ -18,8 +17,7 @@ async function page({
     sort?: string | null;
   };
 }) {
-  // console.log('searchParams', searchParams);
-  const getProductList = await getProductListByCategory(
+  const initialProductList = await getProductListByCategory(
     searchParams.topCategoryName,
     searchParams.middleCategoryName,
     searchParams.bottomCategoryName,
@@ -29,19 +27,19 @@ async function page({
     searchParams.sort
   );
 
-  const getmiddleList = await getMiddleCategories(
+  const middleCategories = await getMiddleCategories(
     searchParams.middleCategoryName ?? ''
   );
 
-  // console.log('getMiddleCategories', getmiddleList);
   return (
-    <main>
-      <ProductCategoryTab categories={getmiddleList} />
-      <section className="px-6">
-        <ProductList getProductList={getProductList.content} />
-      </section>
+    <main className="relative">
+      <ProductListContainer
+        initialProductList={initialProductList.content}
+        middleCategories={middleCategories}
+        initialSearchParams={searchParams}
+      />
     </main>
   );
 }
 
-export default page;
+export default Page;

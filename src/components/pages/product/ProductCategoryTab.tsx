@@ -9,15 +9,21 @@ export interface Category {
   categoryName: string;
 }
 
-interface CategoryTabBarProps {
-  categories: Category[];
+interface ProductCategoryTabProps {
+  categories: any[];
+  onCategoryChange: (category: string) => void;
+  isModalOpen: boolean;
 }
 
-const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({ categories }) => {
+const ProductCategoryTab: React.FC<ProductCategoryTabProps> = ({
+  categories,
+  onCategoryChange,
+  isModalOpen,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleCategoryClick = (category: Category) => {
-    setIsExpanded(false);
+    onCategoryChange(category.categoryCode);
   };
 
   const toggleExpand = () => setIsExpanded(!isExpanded);
@@ -33,21 +39,26 @@ const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({ categories }) => {
     }
   }, [isExpanded]);
 
+  console.log(categories, 'categories');
+
   return (
-    <div className="relative">
+    <div
+      className={`sticky top-0 z-40 bg-white transition-opacity duration-300 ${isModalOpen ? 'opacity-10' : ''}`}
+    >
       {!isExpanded ? (
+        // 여기에서 sticky와 관련된 문제를 해결합니다.
         <div className="flex items-center overflow-x-auto whitespace-nowrap scrollbar-hide border-y leading-[48px]">
           <CategoryBtn
             category={allCategory}
-            // onClick={handleCategoryClick}
+            onClickUrl={handleCategoryClick}
             className="pl-6 font-semibold flex-shrink-0"
           />
-          <div className="flex  overflow-x-auto scrollbar-hide">
+          <div className="flex overflow-x-auto scrollbar-hide">
             {categories.map((category) => (
               <CategoryBtn
                 key={category.categoryCode}
                 category={category}
-                // onClick={handleCategoryClick}
+                onClickUrl={handleCategoryClick}
                 className="bg-white whitespace-nowrap"
               />
             ))}
@@ -61,7 +72,7 @@ const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({ categories }) => {
         </div>
       ) : (
         <>
-          <div className="fixed  bg-white z-50 p-[0px_0px_16px_24px] leading-[48px] overflow-auto max-h-[80vh]">
+          <div className="fixed bg-white z-50 p-[0px_0px_16px_24px] leading-[48px] overflow-auto max-h-[80vh]">
             <div className="flex justify-between items-center border-b pb-2">
               <h2 className="text-sm text-si-787878 leading-[48px]">
                 ALL CATEGORIES
@@ -76,14 +87,14 @@ const ProductCategoryTab: React.FC<CategoryTabBarProps> = ({ categories }) => {
             <div className="flex flex-wrap mt-4 overflow-y-auto max-h-[calc(80vh-48px)]">
               <CategoryBtn
                 category={allCategory}
-                // onClick={handleCategoryClick}
+                onClickUrl={handleCategoryClick}
                 className="font-semibold"
               />
               {categories.map((category) => (
                 <CategoryBtn
                   key={category.categoryCode}
                   category={category}
-                  // onClick={handleCategoryClick}
+                  onClickUrl={handleCategoryClick}
                 />
               ))}
             </div>

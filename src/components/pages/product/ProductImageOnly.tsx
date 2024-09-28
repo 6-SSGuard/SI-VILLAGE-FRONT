@@ -41,13 +41,17 @@ function ProductImageOnly({ product }: { product: ProductType }) {
   }, [product.id]);
   return (
     <div className="w-[86px] h-[130px] flex justify-center items-center">
-      <Image
-        src={thumbnail.thumbnailUrl}
-        alt={product.id}
-        className="w-auto h-auto max-h-full max-w-full"
-        width={100}
-        height={150}
-      />
+      {thumbnail?.thumbnailUrl ? (
+        <Image
+          src={thumbnail.thumbnailUrl}
+          alt={product.id}
+          className="w-auto h-auto max-h-full max-w-full"
+          width={100}
+          height={150}
+        />
+      ) : (
+        <div>이미지 없음</div>
+      )}
     </div>
   );
 }
