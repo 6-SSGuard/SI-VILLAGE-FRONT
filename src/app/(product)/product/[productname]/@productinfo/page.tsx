@@ -4,6 +4,9 @@ import { getProductCodeByProductPolicy } from '@/actions/productsAction';
 import { getProductCodeByImageList } from '@/actions/productDetailActionHook';
 import { getProductCodeByDetailInfo } from '@/actions/productDetailActionHook';
 import { ColorIdByColor } from '@/actions/productsAction';
+import { getProductCodeByOpion } from '@/actions/productsAction';
+
+import { reviewListByProductId } from '@/actions/reviewActions';
 
 async function page({ params }: { params: { productname: string } }) {
   //상세정보 조회
@@ -21,9 +24,6 @@ async function page({ params }: { params: { productname: string } }) {
   };
 
   const data = await getColor();
-
-  console.log(data, 'test fafafafafa');
-  console.log(detailinfoData.colorId, 'colorcolroaatat');
 
   //썸네일 이미지 조회
   // const getdetailthumnailImage = async () => {
@@ -48,12 +48,20 @@ async function page({ params }: { params: { productname: string } }) {
 
   const ProductPolicyData = await getProductPolicy();
 
-  // const getLikeToggle = async () => {
-  //   const response = await ProductByProductLikeToggle(params.productname);
-  //   return response;
-  // };
+  //옵션목록
+  const getOptions = async () => {
+    const Data = await getProductCodeByOpion(params.productname);
+    return Data;
+  };
+  const Options = await getOptions();
 
-  // const data = await getLikeToggle();
+  // 리뷰 id 조회 api
+  const getIdData = async () => {
+    const reviewId = await reviewListByProductId(params.productname); // API 호출 결과를 배열로 받음
+    return reviewId;
+  };
+
+  const reviewId = await getIdData(); // 비동기 처리 후 id 리스트를 reviewId에 저장
 
   return (
     <main className="flex-col overflow-auto">
@@ -63,6 +71,8 @@ async function page({ params }: { params: { productname: string } }) {
         policyData={ProductPolicyData}
         productCode={params.productname}
         colorData={data}
+        detailProductOpion={Options}
+        reviewSize={reviewId.length}
       />
     </main>
   );

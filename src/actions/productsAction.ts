@@ -2,13 +2,12 @@
 import { ProductPolicyRequest } from '@/types/product/productsType';
 import { authResponse, commonResType } from '@/types/auth/authType';
 import { getServerSession } from 'next-auth/next';
-// import { options } from '@/app/api/auth/[...nextauth]/options';
 import { likeToggle } from '@/types/detail/detailproductinfo';
 import { ColorReq } from '@/types/detail/detailproductinfo';
-
 import { fetchDataNoCache } from '@/components/hooks/fetchDataHook';
 import { cursorDataType, pageType } from '@/types/product/productsType';
-
+import { detailProductOpion } from '@/types/detail/detailproductinfo';
+// import { options } from '@/app/api/auth/[...nextauth]/options';
 /**
  * 물품 생성
  * @remarks
@@ -116,4 +115,27 @@ export const ColorIdByColor = async (id: number): Promise<ColorReq> => {
   const data = (await res.json()) as commonResType<ColorReq>;
 
   return data.result as ColorReq;
+};
+
+//상품 옵션 조회
+export const getProductCodeByOpion = async (
+  productCode: string
+): Promise<detailProductOpion> => {
+  'use server';
+  const res = await fetch(
+    `${process.env.API_BASE_URL}/api/product/option/details/${productCode}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  if (!res.ok) {
+    throw new Error('Failed to fetch');
+  }
+
+  const data = (await res.json()) as commonResType<detailProductOpion>;
+
+  return data.result as detailProductOpion;
 };

@@ -14,6 +14,9 @@ import DetailProductImageList from './DetailProductImageList';
 import { ChevronRight } from 'lucide-react';
 import { ProductPolicyRequest } from '@/types/product/productsType';
 import DetailProductBottomBtn from '@/components/layouts/DetailProductBottomBtn';
+import { detailProductOpion } from '@/types/detail/detailproductinfo';
+import { StarIcon } from 'lucide-react';
+import { productReviewListType } from '@/types/review/reviewType';
 
 function detailProductInfo({
   detailInfoData,
@@ -21,15 +24,21 @@ function detailProductInfo({
   policyData,
   productCode,
   colorData,
+  detailProductOpion,
+  reviewSize,
 }: {
   detailInfoData: detailInforeq;
   policyData: ProductPolicyRequest;
   detailImageData: detailImageListReq[];
   productCode: string;
   colorData: ColorReq;
+  detailProductOpion: detailProductOpion;
+  reviewSize: number;
 }) {
   const [infoData, setinfoData] = useState<detailInforeq>();
   const [Like, setLike] = useState<boolean>(false);
+  const [Option, SetOption] = useState<detailProductOpion>();
+
   //셋 초기 boolean값 지정
   const fetchToggle = async () => {
     const response = await ProductByProductLikeToggle(productCode);
@@ -55,8 +64,11 @@ function detailProductInfo({
       setinfoData(detailInfoData);
     }
 
+    if (detailProductOpion) {
+      SetOption(detailProductOpion);
+    }
     fetchToggle();
-  }, [detailInfoData, productCode]);
+  }, [detailInfoData, productCode, detailProductOpion]);
 
   //최종가격
   const discount_resultPrice =
@@ -78,6 +90,7 @@ function detailProductInfo({
         return 'bg-black'; // 기본 색상
     }
   };
+
   return (
     <div className="">
       <DetailProductImageList data={detailImageData} />
@@ -124,45 +137,38 @@ function detailProductInfo({
             </p>
           </div>
 
-          <div className="flex items-center gap-2 mt-2">
-            <Image
-              src="/five-starts.png"
-              width={67}
-              height={12}
-              alt=""
-              className="object-cover"
-            />
-
-            <p className="pl-2 text-13">4.6</p>
-          </div>
-
-          <p className="pl-2 text-xs text-gray-400 mt-3">
-            {colorData.colorName}
+          <p className="flex pl-2 mt-2 text-13 underline items-center">
+            {reviewSize}건 리뷰
           </p>
-          <div className="flex gap-4 py-5 pl-2">
-            <div
-              className={`w-[38px] h-[38px] border-1 border-gray-300 flex items-center justify-center ${getColorClass()}`}
-            ></div>
-          </div>
+
+          <span className="text-xs pl-2 text-gray-400">
+            {colorData.colorName}
+          </span>
+          <div
+            className={`w-[38px]h-[38px] mt-5 border-1 border-gray-400 flex items-center justify-center ${getColorClass()}`}
+          ></div>
 
           <div className="py-1 mt-5 bg-gray-200 "></div>
         </div>
 
         <div className="px-6 bg-gray-200"></div>
       </div>
-      <div className="w-[400px] h-[3500px] scrollbar-hide overflow-y-hidden">
+      <div className="w-[400px] h-[3500px]">
         {infoData && (
           <iframe
             src={infoData?.detailContent}
-            className="h-[3500px] w-[400px] object-cover scrollbar-hide overflow-y-hidden"
+            className="h-[3500px] w-[400px] object-cover scrollbar-hide overflow-y-hidden
+            pl-2"
           />
         )}
       </div>
+      <div className="h-2 bg-gray-200"></div>
       <DetailProductBottomBtn
         colorName={colorData.colorName}
         presentPrice={discount_resultPrice}
         policyData={policyData}
         Like={Like}
+        options={detailProductOpion}
       />
     </div>
   );

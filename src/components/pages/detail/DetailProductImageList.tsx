@@ -28,7 +28,7 @@ function DetailProductImageList({ data }: { data: detailImageListReq[] }) {
   console.log(imageData, 'image data');
 
   return (
-    <div className="w-full h-[550px] ">
+    <div className="w-full h-[500px] ">
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={10} // 슬라이드 간의 간격

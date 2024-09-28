@@ -2,6 +2,7 @@
 import { options } from '@/app/api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth';
 import { revalidateTag } from 'next/cache';
+import { addCartType } from '@/types/cart/cartTypes';
 
 // 장바구니 조회
 export async function getCartById(cartId: number) {
@@ -121,7 +122,7 @@ export async function toggleCartItem(cartId: number) {
 }
 
 // 장바구니 추가
-export async function addCartItem(cartData: any) {
+export async function addCartItem(addCartData: addCartType) {
   try {
     const session = await getServerSession(options);
     const response = await fetch(
@@ -132,7 +133,7 @@ export async function addCartItem(cartData: any) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session?.user.accessToken}`,
         },
-        body: JSON.stringify(cartData),
+        body: JSON.stringify(addCartData),
       }
     );
 

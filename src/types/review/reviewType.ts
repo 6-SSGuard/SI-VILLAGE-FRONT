@@ -75,7 +75,7 @@ export interface productReviewListType {
   reviewContent: string;
   authorEmail: string;
   memberInfomation: string;
-  reviewData: string;
+  reviewDate: string;
 }
 
 // 리뷰 id 조회 response
@@ -91,4 +91,9 @@ export interface getReviewIdResponse {
   isSuccess: boolean;
   message: string;
   result: [];
+}
+
+export interface getReviewImage {
+  reviewImageId: number;
+  reviewImageUrl: string;
 }

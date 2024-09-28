@@ -54,3 +54,11 @@ export interface breifProductReq {
   productName: string;
   price: number;
 }
+
+//상품 옵션 조회
+export interface detailProductOpion {
+  productOptionId: number;
+  sizeId: number;
+  volume: string;
+  stokc: number;
+}

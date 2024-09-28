@@ -1,5 +1,5 @@
 'use Client';
-import React, { useCallback } from 'react';
+
 import { useState } from 'react';
 import { ProductPolicyRequest } from '@/types/product/productsType';
 import { Button } from '@/components/ui/button';
@@ -7,22 +7,49 @@ import { Minus, Plus } from 'lucide-react';
 import { TextUi } from '@/components/ui/text/TextUi';
 import { ToastAction } from '@radix-ui/react-toast';
 import { useToast } from '@/hooks/use-toast';
+import { detailProductOpion } from '@/types/detail/detailproductinfo';
+import { addCartType } from '@/types/cart/cartTypes';
+import { addCartItem } from '@/actions/cart/cartActions';
 
 function SelectorModal({
   colorName,
   presentPrice,
   policyData,
-  Like,
+  option,
 }: {
   colorName: string;
   presentPrice: number;
   policyData: ProductPolicyRequest;
-  Like: boolean;
+  option: detailProductOpion;
 }) {
   const [count, setCount] = useState(1);
+  const [isOpen, setOpen] = useState(false);
+
   const [totalPrice, setTotalPrice] = useState<number>(presentPrice);
   const { toast } = useToast();
+  const CartData: addCartType = {
+    productCode: policyData.productCode,
+    productOptionId: option.productOptionId,
+    quantity: count,
+  };
 
+  // 장바구니에 아이템 추가하는 함수
+  const addToCart = async () => {
+    try {
+      const response = await addCartItem(CartData);
+      console.log(response, 'addCartTest');
+    } catch (error) {
+      console.error('Error adding to cart', error);
+    }
+  };
+
+  const HandleEvent = async () => {
+    if (isOpen) {
+      await addToCart();
+    }
+    console.log('click');
+    setOpen(!isOpen);
+  };
   const getColorClass = () => {
     switch (colorName) {
       case 'black':
@@ -72,9 +99,7 @@ function SelectorModal({
     }
   };
   return (
-    <section className="h-[220px] bg-white">
-      <p></p>
-
+    <section className="h-[250px] bg-white">
       <ul className="px-6">
         {/* 색상 */}
         <li
@@ -120,6 +145,21 @@ function SelectorModal({
 
               <span className="text-base ml-1 font-bold">원</span>
             </div>
+          </div>
+        </li>
+
+        <li>
+          <div className="fixed bottom-0 right-0 left-0 w-full h-[60px]  flex ">
+            <Button
+              className="bg-white w-1/2 h-[60px] justify-center items-center z-100"
+              onClick={HandleEvent}
+              type="submit"
+            >
+              쇼핑백
+            </Button>
+            <Button className="bg-black text-white w-1/2 h-[60px] justify-center items-center active:bg-black focus:bg-black z-100">
+              바로 구매
+            </Button>
           </div>
         </li>
       </ul>
