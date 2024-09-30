@@ -5,7 +5,6 @@ import { getProductCodeByImageList } from '@/actions/productDetailActionHook';
 import { getProductCodeByDetailInfo } from '@/actions/productDetailActionHook';
 import { ColorIdByColor } from '@/actions/productsAction';
 import { getProductCodeByOpion } from '@/actions/productsAction';
-
 import { reviewListByProductId } from '@/actions/reviewActions';
 
 async function page({ params }: { params: { productname: string } }) {
@@ -62,7 +61,6 @@ async function page({ params }: { params: { productname: string } }) {
   };
 
   const reviewId = await getIdData(); // 비동기 처리 후 id 리스트를 reviewId에 저장
-
   return (
     <main className="flex-col overflow-auto">
       <DetailProductInfo
@@ -73,6 +71,7 @@ async function page({ params }: { params: { productname: string } }) {
         colorData={data}
         detailProductOpion={Options}
         reviewSize={reviewId.length}
+        reviewId={reviewId}
       />
     </main>
   );

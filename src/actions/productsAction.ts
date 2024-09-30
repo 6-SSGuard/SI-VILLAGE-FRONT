@@ -120,7 +120,7 @@ export const ColorIdByColor = async (id: number): Promise<ColorReq> => {
 //상품 옵션 조회
 export const getProductCodeByOpion = async (
   productCode: string
-): Promise<detailProductOpion> => {
+): Promise<detailProductOpion[]> => {
   'use server';
   const res = await fetch(
     `${process.env.API_BASE_URL}/api/product/option/details/${productCode}`,
@@ -135,7 +135,7 @@ export const getProductCodeByOpion = async (
     throw new Error('Failed to fetch');
   }
 
-  const data = (await res.json()) as commonResType<detailProductOpion>;
+  const data = (await res.json()) as commonResType<detailProductOpion[]>;
 
-  return data.result as detailProductOpion;
+  return data.result as detailProductOpion[];
 };

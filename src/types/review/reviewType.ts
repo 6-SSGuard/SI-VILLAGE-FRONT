@@ -97,3 +97,7 @@ export interface getReviewImage {
   reviewImageId: number;
   reviewImageUrl: string;
 }
+
+export interface getReviewLikeCount {
+  reviewLikeCount: number;
+}
