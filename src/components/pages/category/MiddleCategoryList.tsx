@@ -54,7 +54,7 @@ function MiddleCategoryList({ categoryCode }: { categoryCode: string | null }) {
               <Link
                 key={category.categoryCode}
                 className="text-sm flex justify-between px-2 py-3 items-center"
-                href={`/filter?topCategoryName=${categoryCode}&middleCategoryName=${category.categoryCode}&pageSize=${10}&sort=${'newest'}`}
+                href={`/filter?topCategoryName=${categoryCode}&middleCategoryName=${category.categoryCode}&pageSize=${20}&sort=${'newest'}`}
               >
                 {category.categoryName}
                 <ArrowRightIcon />

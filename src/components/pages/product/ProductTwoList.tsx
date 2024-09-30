@@ -8,15 +8,18 @@ import { ProductType } from '@/types/product/productsType';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { ThumbnailType } from '../cart/CartItem';
+import Link from 'next/link';
+import EmptyHeartIcon from '@/components/icons/common/EmptyHeartIcon';
+import FilledHeartIcon from '@/components/icons/common/FilledHeartIcon';
 
 function ProductTwoList({
   product,
   // isLiked,
-  toggleLike,
+  // toggleLike,
 }: {
   product: ProductType;
   // isLiked: boolean;
-  toggleLike: (id: number) => void;
+  // toggleLike: (id: string) => void;
 }) {
   const [productData, setProductData] = useState<breifProductReq | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,40 +53,37 @@ function ProductTwoList({
 
   return (
     <div className="relative">
-      <div className="w-[170px] h-[250px] flex justify-center items-center">
-        <Image
-          src={thumbnail.thumbnailUrl}
-          alt={product.id}
-          className="w-auto h-auto max-h-full max-w-full"
-          width={200}
-          height={300}
-        />
-      </div>
-      <div className="py-4 px-2">
-        <p className="text-sm font-semibold mb-[6px]">
-          {productData?.brandEngName}
-        </p>
-        <p className="text-xs text-[#404040] mb-[2px]">
-          {productData?.productName}
-        </p>
-        <p className="text-[#404040] text-xs">
-          {productData?.price.toLocaleString()}
-        </p>
-      </div>
-      {/* <div className="absolute top-2 right-2">
-        <button onClick={() => toggleLike(product.id)}>
-          {isLiked ? (
+      <Link href={`/product/${product.id}`}>
+        <div className="w-[170px] h-[250px] flex justify-center items-center">
+          {thumbnail?.thumbnailUrl ? (
             <Image
-              src="https://ssgaud-nextjs-image.s3.ap-northeast-2.amazonaws.com/blackheart.png"
-              alt="black heart"
-              width={24}
-              height={24}
+              src={thumbnail.thumbnailUrl}
+              alt={product.id}
+              className="w-auto h-auto max-h-full max-w-full"
+              width={200}
+              height={300}
             />
           ) : (
-            <Image src="/images/heart.png" alt="heart" width={24} height={24} />
+            <div>이미지 없음</div>
           )}
+        </div>
+        <div className="py-4 px-2">
+          <p className="text-sm font-semibold mb-[6px]">
+            {productData?.brandEngName}
+          </p>
+          <p className="text-xs text-[#404040] mb-[2px]">
+            {productData?.productName}
+          </p>
+          <p className="text-[#404040] text-xs">
+            {productData?.price.toLocaleString()}
+          </p>
+        </div>
+      </Link>
+      <div className="absolute top-2 right-2">
+        <button>
+          <EmptyHeartIcon />
         </button>
-      </div> */}
+      </div>
     </div>
   );
 }

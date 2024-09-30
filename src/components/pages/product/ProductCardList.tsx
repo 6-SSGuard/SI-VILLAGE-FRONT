@@ -12,11 +12,11 @@ import { ThumbnailType } from '../cart/CartItem';
 function ProductCardList({
   product,
   // isLiked,
-  toggleLike,
+  // toggleLike,
 }: {
   product: ProductType;
   // isLiked: boolean;
-  toggleLike: (id: number) => void;
+  // toggleLike: (id: number) => void;
 }) {
   const [productData, setProductData] = useState<breifProductReq | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,13 +50,17 @@ function ProductCardList({
   return (
     <div className="flex flex-col items-center space-x-4">
       <div className="w-[350px] h-[500px] flex justify-center items-center">
-        <Image
-          src={thumbnail.thumbnailUrl}
-          alt={product.id}
-          className="w-auto h-auto max-h-full max-w-full"
-          width={400}
-          height={600}
-        />
+        {thumbnail?.thumbnailUrl ? (
+          <Image
+            src={thumbnail.thumbnailUrl}
+            alt={product.id}
+            className="w-auto h-auto max-h-full max-w-full"
+            width={400}
+            height={600}
+          />
+        ) : (
+          <div>이미지 없음</div>
+        )}
       </div>
       <div className="py-4 px-2">
         <p className="text-sm font-semibold mb-[6px]">
