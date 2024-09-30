@@ -1,3 +1,4 @@
+import { productReviewListType } from '../review/reviewType';
 //성공 Response
 export interface authResponse {
   grantType: string;
@@ -61,4 +62,11 @@ export interface userDataType {
   name: string;
   uuid: string;
   email?: string;
+}
+
+export interface ReviewResponse {
+  httpStatus: HttpStatus;
+  isSuccess: boolean;
+  message: string;
+  result: productReviewListType[];
 }

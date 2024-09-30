@@ -25,3 +25,9 @@ export interface cartItemType {
   quantity: number;
   isChecked: boolean;
 }
+
+export interface addCartType {
+  productCode: string;
+  productOptionId: number;
+  quantity: number;
+}

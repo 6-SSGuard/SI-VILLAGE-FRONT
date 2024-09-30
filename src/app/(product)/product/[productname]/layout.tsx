@@ -1,7 +1,6 @@
 import React from 'react';
 import Footer from '@/components/layouts/Footer';
 import ProductDetailHeader from '@/components/layouts/ProductDetailHeader';
-import DetailProductBottomBtn from '@/components/layouts/DetailProductBottomBtn';
 export default function layout({
   modal,
   productinfo,
@@ -24,7 +23,6 @@ export default function layout({
       {productqna}
       {children}
       <Footer />
-      <DetailProductBottomBtn />
     </>
   );
 }
