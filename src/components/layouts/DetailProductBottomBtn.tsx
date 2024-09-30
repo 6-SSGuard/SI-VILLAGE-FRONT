@@ -16,7 +16,7 @@ function DetailProductBottomBtn({
   presentPrice: number;
   policyData: ProductPolicyRequest;
   Like: boolean;
-  options: detailProductOpion;
+  options: detailProductOpion[];
 }) {
   const [isOpen, setOpen] = useState(false);
 
@@ -59,12 +59,12 @@ function DetailProductBottomBtn({
           isOpen ? 'h-[220px] bg-white' : 'h-0'
         } overflow-hidden`}
       >
-        <SelectorModal
+        {/* <SelectorModal
           colorName={colorName}
           presentPrice={presentPrice}
           policyData={policyData}
-          option={options}
-        />
+          options={options}
+        /> */}
       </div>
     </div>
   );

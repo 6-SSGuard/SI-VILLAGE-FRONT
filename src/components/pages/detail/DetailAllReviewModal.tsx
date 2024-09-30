@@ -4,27 +4,34 @@ import {
   reviewIdbyReviewImage,
 } from '@/actions/reviewActions';
 import { getReviewImage } from '@/types/review/reviewType';
-import { FilterIcon, StarIcon } from 'lucide-react';
 import { productReviewListType } from '@/types/review/reviewType';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { reviewIdDataType } from '@/types/review/reviewType';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
+import { StarIcon } from 'lucide-react';
+import { detailProductOpion } from '@/types/detail/detailproductinfo';
+
 function DetailAllReviewModal({
   id,
   productname,
+  detailProductOption,
 }: {
   id: reviewIdDataType[];
   productname: string;
+  detailProductOption: detailProductOpion[];
 }) {
   console.log(productname, 'afafaf');
   const [items, setItems] = useState<productReviewListType[]>([]); // Use a flat array for all reviews
   const [images, setImages] = useState<getReviewImage[]>([]); // 이미지 배열
+  const [Option, SetOption] = useState<detailProductOpion[]>([]);
+
   // 별점 표시 함수
   function renderStars(score: number) {
     const fullStars = Math.floor(score); // 꽉 찬 별 개수
     const hasHalfStar = score % 1 !== 0; // 반 별 유무 확인
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // 빈 별 개수 계산
-
     const stars = [];
 
     // 꽉 찬 별 추가 (진한 오렌지색으로 별 내부를 채움)
@@ -123,20 +130,31 @@ function DetailAllReviewModal({
         console.error('Failed to fetch review images', error);
       }
     };
+
+    if (detailProductOption) {
+      SetOption(detailProductOption);
+    }
+
     fetchReviewData();
     fetchReviewImage();
-  }, [id]);
+  }, [id, detailProductOption]);
 
+  const router = useRouter();
   return (
-    <div className="flex-col">
+    <div className="flex-col overflow-y-auto w-full">
       {/* 헤더바 */}
-      <div className="flex sticky top-0 text-lg h-8 items-center justify-center py-2">
-        리뷰 전체 보기
-        <p className="text-gray-500 ">{items.length}</p>
-        <button className="w-[32px] h-[32px] pl-24">X</button>
-      </div>
+      <ul className="flex-col px-8">
+        <div className="flex sticky top-0 left-3 h-12 bg-white items-center justify-center mt-4">
+          <p className="text-lg pl-18">리뷰 전체 보기</p>
+          <p className="text-gray-500 ">{`(${items.length})`}</p>
+          <Button
+            className="rounded-full fill absolute right-0 ml-8 top-1/2 transform -translate-y-1/2 w-[32px] h-[32px]"
+            onClick={() => router.back()}
+          >
+            {'X'}
+          </Button>
+        </div>
 
-      <ul>
         {items.length > 0 ? (
           items.map((review, index) => (
             <div className="flex-col mt-10" key={index}>
@@ -144,7 +162,7 @@ function DetailAllReviewModal({
               <li className="flex gap-2">{renderStars(review.score)}</li>
 
               {/* 닉네임, 날짜 */}
-              <li className="flex mt-2">
+              <li className="flex mt-2 w-full justify-between">
                 <div className="flex">
                   <p className="text-xs text-gray-500">
                     {maskText(review.authorEmail, 4)}
@@ -154,6 +172,24 @@ function DetailAllReviewModal({
                     {review.reviewDate}
                   </p>
                 </div>
+
+                <div className="flex">
+                  <Image
+                    src="/like-review.png"
+                    width={23}
+                    height={23}
+                    alt="like"
+                    className="w-[16px] h-16px]"
+                  ></Image>
+
+                  <p className="text-xs ml-1">{0}</p>
+                </div>
+              </li>
+
+              <li className=" mt-3">
+                {Option && (
+                  <span className="text-xs text-gray-400">{`구매옵션 ${Option[0].volume}`}</span>
+                )}
               </li>
 
               {/* 리뷰 내용 */}
@@ -171,13 +207,13 @@ function DetailAllReviewModal({
                       width={198}
                       height={198}
                       alt="Review Image"
-                      className="w-[198px] h-[198px]"
+                      className="w-[172px] h-[172px]"
                     />
                   )}
                 </div>
               </li>
 
-              <div className="border border-gray-200 mt-6"></div>
+              <div className="border border-gray-200 mt-14"></div>
               <div className="py-2"></div>
             </div>
           ))

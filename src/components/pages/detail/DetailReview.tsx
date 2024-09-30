@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { StarIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
   productReviewListType,
   reviewIdDataType,
@@ -13,22 +12,23 @@ import {
 import { getReviewImage } from '@/types/review/reviewType';
 import Image from 'next/image';
 import SiButton from '@/components/icons/common/SiButton';
-
+import { detailProductOpion } from '@/types/detail/detailproductinfo';
+import { reviewIdbyLikeCount } from '@/actions/reviewActions';
+import { getReviewLikeCount } from '@/types/review/reviewType';
 // 리뷰 ID 타입을 number로 수정
 function DetailReview({
   id,
   productname,
+  detailProductOption,
 }: {
   id: reviewIdDataType[];
   productname: string;
+  detailProductOption: detailProductOpion[];
 }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState<productReviewListType[]>([]);
   const [images, setImages] = useState<getReviewImage[]>([]); // 이미지 배열
-
-  const handleEvent = () => {
-    setIsOpen(!isOpen);
-  };
+  const [Option, SetOption] = useState<detailProductOpion[]>([]);
+  const [likecount, setlikecount] = useState<getReviewLikeCount[]>([]);
 
   // 별점 표시 함수
   function renderStars(score: number) {
@@ -125,10 +125,32 @@ function DetailReview({
       }
     };
 
+    //리뷰 Like
+    const fetchReviewLikeCount = async () => {
+      try {
+        const reviewLikeCount = await Promise.all(
+          id.map(async (item) => {
+            const reviews = await reviewIdbyLikeCount(item.id);
+            return reviews;
+          })
+        );
+
+        const flattenedData = reviewLikeCount.flat();
+        setlikecount(flattenedData);
+      } catch (error) {
+        console.error('Failed to fetch review data', error);
+      }
+    };
+    if (detailProductOption) {
+      SetOption(detailProductOption);
+    }
+
     fetchReviewImage();
     fetchReviewData();
-  }, [id]);
-
+    fetchReviewLikeCount();
+  }, [id, detailProductOption]);
+  console.log(likecount, 'count');
+  console.log(images, 'images');
   return (
     <div className="">
       <ul className="flex-col overflow-hidden text-wrap px-8">
@@ -146,7 +168,7 @@ function DetailReview({
               <li className="flex gap-2">{renderStars(review.score)}</li>
 
               {/* 닉네임, 날짜 */}
-              <li className="flex mt-2">
+              <li className="flex mt-2 w-full justify-between">
                 <div className="flex">
                   <p className="text-xs text-gray-500">
                     {maskText(review.authorEmail, 4)}
@@ -156,6 +178,24 @@ function DetailReview({
                     {review.reviewDate}
                   </p>
                 </div>
+
+                <div className="flex">
+                  <Image
+                    src="/like-review.png"
+                    width={23}
+                    height={23}
+                    alt="like"
+                    className="w-[16px] h-16px]"
+                  ></Image>
+
+                  <p className="text-xs ml-1">{0}</p>
+                </div>
+              </li>
+
+              <li className=" mt-3">
+                {Option && (
+                  <span className="text-xs text-gray-400">{`구매옵션 ${Option[0].volume}`}</span>
+                )}
               </li>
 
               {/* 리뷰 내용 */}
@@ -173,13 +213,13 @@ function DetailReview({
                       width={198}
                       height={198}
                       alt="Review Image"
-                      className="w-[198px] h-[198px]"
+                      className="w-[172px] h-[172px]"
                     />
                   )}
                 </div>
               </li>
 
-              <div className="border border-gray-200 mt-6"></div>
+              <div className="border border-gray-200 mt-14"></div>
               <div className="py-2"></div>
             </div>
           ))
@@ -190,7 +230,7 @@ function DetailReview({
       {/* 리뷰 전체 보기 버튼 */}
       <div className="px-2 py-4">
         <SiButton
-          className="text-sm border border-gray-200 w-full h-full"
+          className="text-sm border border-gray-200 w-full h-[48px]"
           href={{
             pathname: `/product/${productname}/reviewform`,
             query: { productname: productname },
