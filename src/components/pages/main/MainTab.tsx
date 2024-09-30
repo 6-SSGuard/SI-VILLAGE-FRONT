@@ -80,7 +80,7 @@ function MainTab() {
               Deal
             </TabsTrigger>
           </Link>
-          <Link href="/best">
+          <Link href="/best" passHref>
             <TabsTrigger
               value="Best"
               className={`${

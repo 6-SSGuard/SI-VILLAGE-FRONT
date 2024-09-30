@@ -1,9 +1,7 @@
 import AdCarousel from '@/components/icons/common/AdCarousel';
 import MainCardBanner from '@/components/pages/main/MainCardBanner';
-import MainCarousel from '@/components/pages/main/MainCarousel';
 import MainCategoryList from '@/components/pages/main/MainCategoryList';
 import MainHotDeal from '@/components/pages/main/MainHotDeal';
-import MainNewCollection from '@/components/pages/main/MainNewCollection';
 
 export const mainComponentList = [
   {
@@ -18,16 +16,11 @@ export const mainComponentList = [
   },
   {
     id: 3,
-    name: 'MainNewCollection',
-    component: MainNewCollection,
-  },
-  {
-    id: 4,
     name: 'AdCarousel',
     component: AdCarousel,
   },
   {
-    id: 5,
+    id: 4,
     name: 'MainHotDeal',
     component: MainHotDeal,
   },

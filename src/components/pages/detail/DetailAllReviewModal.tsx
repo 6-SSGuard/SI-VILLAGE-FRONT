@@ -175,7 +175,7 @@ function DetailAllReviewModal({
 
                 <div className="flex">
                   <Image
-                    src="/like-review.png"
+                    src="/images/like-review.png"
                     width={23}
                     height={23}
                     alt="like"

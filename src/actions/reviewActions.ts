@@ -71,42 +71,41 @@ export const reviewIdbyReviewImage = async (
   if (!res.ok) {
     throw new Error('Failed to fetch');
   }
-  const reviewListData =
-    (await res.json()) as commonResType<productReviewListType>;
 
-  const reviewListData = (await res.json()) as commonResType<getReviewImage>;
+  const reviewImageListData =
+    (await res.json()) as commonResType<getReviewImage>;
 
-  return reviewListData.result as getReviewImage;
+  return reviewImageListData.result as getReviewImage;
 };
 
 //리뷰 좋아요 조회
 
-export const reviewIdbyLikeCount = async (
-  reviewId: number
-): Promise<getReviewLikeCount> => {
-  'use server';
+// export const reviewIdbyLikeCount = async (
+//   reviewId: number
+// ): Promise<getReviewLikeCount> => {
+//   'use server';
 
-  try {
-    const session = await getServerSession(options);
-    const response = await fetch(
-      `${process.env.API_BASE_URL}/api/review-like/member/${reviewId}/like`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user.accessToken}`,
-        },
-      }
-    );
+//   try {
+//     const session = await getServerSession(options);
+//     const response = await fetch(
+//       `${process.env.API_BASE_URL}/api/review-like/member/${reviewId}/like`,
+//       {
+//         method: 'GET',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${session?.user.accessToken}`,
+//         },
+//       }
+//     );
 
-    if (!response.ok) {
-      throw new Error('Like count를 받아오지 못했습니다');
-    }
+//     if (!response.ok) {
+//       throw new Error('Like count를 받아오지 못했습니다');
+//     }
 
-    const data = (await response.json()) as commonResType<getReviewLikeCount>;
-    return data.result as getReviewLikeCount;
-  } catch (error) {
-    console.error('Error updating cart item:', error);
-    throw error;
-  }
-};
+//     const data = (await response.json()) as commonResType<getReviewLikeCount>;
+//     return data.result as getReviewLikeCount;
+//   } catch (error) {
+//     console.error('Error updating cart item:', error);
+//     throw error;
+//   }
+// };

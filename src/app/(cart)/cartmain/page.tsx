@@ -15,7 +15,6 @@ export interface CartListItem {
 }
 
 async function Page() {
-  const Data: CartProductListType = await getCartListData();
   const cartId: CartListItem[] = await getCartItemIds();
 
   return (

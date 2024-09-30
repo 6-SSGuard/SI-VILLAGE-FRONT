@@ -1,5 +1,6 @@
 'use client';
 import { BrandDataType, toggleBrandItem } from '@/actions/brandAction';
+import EmptyHeartIcon from '@/components/icons/common/EmptyHeartIcon';
 import LikeHeart from '@/components/icons/common/LikeHeart';
 import ScrollToTopButton from '@/components/layouts/ScrollToTopButton';
 import { HeartIcon } from 'lucide-react';
@@ -208,7 +209,7 @@ function BrandList({
                 </div>
                 <div className="h-6">
                   <button onClick={() => handleLikeClick(brand.brandId)}>
-                    <HeartIcon />
+                    <EmptyHeartIcon />
                   </button>
                 </div>
               </div>

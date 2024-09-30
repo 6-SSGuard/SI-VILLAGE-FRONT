@@ -45,7 +45,7 @@ function DetailProductBottomBtn({
       {/* 버튼 컨테이너 */}
       <div className="fixed bottom-0 right-0 left-0 w-full h-[60px] z-50 flex ">
         <Button
-          className="bg-si-787878 w-1/2 h-[60px] justify-center items-center"
+          className="bg-si-787878 text-white w-1/2 h-[60px] justify-center items-center"
           onClick={HandleEvent}
         >
           쇼핑백

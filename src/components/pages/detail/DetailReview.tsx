@@ -13,7 +13,7 @@ import { getReviewImage } from '@/types/review/reviewType';
 import Image from 'next/image';
 import SiButton from '@/components/icons/common/SiButton';
 import { detailProductOpion } from '@/types/detail/detailproductinfo';
-import { reviewIdbyLikeCount } from '@/actions/reviewActions';
+// import { reviewIdbyLikeCount } from '@/actions/reviewActions';
 import { getReviewLikeCount } from '@/types/review/reviewType';
 // 리뷰 ID 타입을 number로 수정
 function DetailReview({
@@ -126,31 +126,31 @@ function DetailReview({
     };
 
     //리뷰 Like
-    const fetchReviewLikeCount = async () => {
-      try {
-        const reviewLikeCount = await Promise.all(
-          id.map(async (item) => {
-            const reviews = await reviewIdbyLikeCount(item.id);
-            return reviews;
-          })
-        );
+    // const fetchReviewLikeCount = async () => {
+    //   try {
+    //     const reviewLikeCount = await Promise.all(
+    //       id.map(async (item) => {
+    //         const reviews = await reviewIdbyLikeCount(item.id);
+    //         return reviews;
+    //       })
+    //     );
 
-        const flattenedData = reviewLikeCount.flat();
-        setlikecount(flattenedData);
-      } catch (error) {
-        console.error('Failed to fetch review data', error);
-      }
-    };
+    //     const flattenedData = reviewLikeCount.flat();
+    //     setlikecount(flattenedData);
+    //   } catch (error) {
+    //     console.error('Failed to fetch review data', error);
+    //   }
+    // };
     if (detailProductOption) {
       SetOption(detailProductOption);
     }
 
     fetchReviewImage();
     fetchReviewData();
-    fetchReviewLikeCount();
-  }, [id, detailProductOption]);
-  console.log(likecount, 'count');
-  console.log(images, 'images');
+    // fetchReviewLikeCount();
+  }, [detailProductOption]);
+  // console.log(likecount, 'count');
+  // console.log(images, 'images');
   return (
     <div className="">
       <ul className="flex-col overflow-hidden text-wrap px-8">
@@ -181,7 +181,7 @@ function DetailReview({
 
                 <div className="flex">
                   <Image
-                    src="/like-review.png"
+                    src="/images/like-review.png"
                     width={23}
                     height={23}
                     alt="like"

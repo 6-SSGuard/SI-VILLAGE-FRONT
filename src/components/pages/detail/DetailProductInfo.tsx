@@ -167,7 +167,7 @@ function detailProductInfo({
             <li className="col-span-4 flex justify-end items-center gap-4">
               {Like ? (
                 <Image
-                  src="/heartlike.png" // 좋아요 이미지
+                  src="/images/heartlike.png" // 좋아요 이미지
                   alt="Liked"
                   width={24}
                   height={24}
@@ -183,7 +183,7 @@ function detailProductInfo({
                 />
               )}
               <Image
-                src="/share.png"
+                src="/images/share.png"
                 alt="share"
                 width={24}
                 height={24}

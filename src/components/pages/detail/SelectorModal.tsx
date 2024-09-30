@@ -151,7 +151,7 @@ function SelectorModal({
         <li>
           <div className="fixed bottom-0 right-0 left-0 w-full h-[60px]  flex ">
             <Button
-              className="bg-white w-1/2 h-[60px] justify-center items-center z-100"
+              className="bg-si-787878 text-white w-1/2 h-[60px] justify-center items-center z-100"
               onClick={HandleEvent}
               type="submit"
             >
